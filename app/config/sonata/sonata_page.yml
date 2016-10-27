@@ -18,6 +18,7 @@ sonata_page:
         block:    AppBundle\Entity\Page\Block
 
     multisite:             host_with_path # host
+    is_inline_edition_on:  false # TODO : do not enable it it doesn t work, check why in front
     use_streamed_response: false # set the value to false in debug mode or if the reverse proxy does not handle streamed response
 
     ignore_uri_patterns:
@@ -47,9 +48,12 @@ sonata_page:
 
     assets:
         stylesheets:
+            - bundles/sonatapage/sonata-page.front.css
             - assetic/sonata_front_css.css
+            - exim/assets/css/%exim.theme%_front_css.css
 
         javascripts:
+            - bundles/sonatapage/sonata-page.front.js
             - assetic/sonata_front_js.js
 
     default_template: default
@@ -117,13 +121,50 @@ sonata_page:
                      B: content_bottom
                      F: footer
 
+        3columns:
+            path: 'AppBundle::demo_3columns_layout.html.twig'
+            name: '3 columns layout'
+            containers:
+                 header:
+                     name: Header
+                 content_top:
+                     name: Top content
+                 left_col:
+                     name: Left content
+                 right_col:
+                     name: Right content
+                 center_col:
+                     name: Center content
+                 content_bottom:
+                     name: Bottom content
+                 footer:
+                     name: Footer
+            matrix:
+                 layout: |
+                     HHHHHHHH
+                     TTTTTTTT
+                     LLCCCCRR
+                     BBBBBBBB
+                     FFFFFFFF
+
+                 mapping:
+                     H: header
+                     T: content_top
+                     L: left_col
+                     R: right_col
+                     C: center_col
+                     B: content_bottom
+                     F: footer
+
     page_defaults:
-        homepage: { decorate: false, enabled: true }
+        homepage:
+            decorate: false
+            enabled: true
 
     caches:
         esi:
             token:    add an unique token here # default is a random value
-            version:  3                        # version 3 is the default on debian wheezy ...
+            version:  3     # TODO : do not enable it it doesn t work                    # version 3 is the default on debian wheezy ..., check why in front
             servers:
                 # you need to ajust this configuration to match your varnish configuration
                 - %sonata_page.varnish.command%

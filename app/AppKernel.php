@@ -23,6 +23,8 @@ class AppKernel extends Kernel
     {
         $bundles = array(
 
+            new Application\Sonata\AdminBundle\ApplicationSonataAdminBundle(),
+            new Application\Sonata\PageBundle\ApplicationSonataPageBundle(),
             new AppBundle\AppBundle(),
 
             // SYMFONY STANDARD EDITION

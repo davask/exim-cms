@@ -19,6 +19,10 @@ parameters:
     sonata_admin.title:             Sonata Project
     sonata_admin.logo_title:        /bundles/sonataadmin/logo_title.png
 
+    # Sonata Seo Options
+    sonata_seo.title: 'La chaine du droit'
+    sonata_seo.baseline: 'La chaine du droit : le droit de savoir'
+
     # Sonata News Options
     sonata_news.blog_title:         My Awesome Blog
     sonata_news.blog_link:          http://awesome-blog.ltd
@@ -40,3 +44,6 @@ parameters:
     sonata.fixtures.product.fake:        0     # number of fake product to load
     sonata.fixtures.customer.fake:       10    # number of customer to load
     sonata.fixtures.page.create_subsite: false # create a second website, so you can test the multisite feature
+
+    # exim configuration
+    exim.theme: exim
