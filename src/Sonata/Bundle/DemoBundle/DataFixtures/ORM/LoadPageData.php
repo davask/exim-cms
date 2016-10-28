@@ -272,8 +272,8 @@ CONTENT
 <div class="col-md-3 welcome"><h2>Welcome</h2></div>
 <div class="col-md-9">
     <p>
-        This page is a demo of the Sonata Sandbox available on <a href="https://github.com/sonata-project/sandbox">github</a>.
-        This demo try to be interactive so you will be able to found out the different features provided by the Sonata's Bundle.
+        This page is a demo of the eXim Sandbox available on <a href="https://github.com/davask/exim">github</a>.
+        This demo try to be interactive so you will be able to found out the different features provided by the eXim's Bundle.
     </p>
 
     <p>
@@ -482,7 +482,7 @@ CONTENT
 
     <h3>Two-Step Verification</h3>
     The <strong>secure</strong> account is a demo of the Two-Step Verification provided by
-    the <a href="https://sonata-project.org/bundles/user/2-0/doc/reference/two_step_validation.html">Sonata User Bundle</a>
+    the <a href="https://sonata-project.org/bundles/user/3-x/doc/reference/two_step_validation.html">Sonata User Bundle</a>
 
     <br />
     <br />
@@ -532,11 +532,12 @@ CONTENT
     public function createLegalNotesPage(SiteInterface $site)
     {
         $this->createTextContentPage($site, 'legal-notes', 'Legal notes', <<<'CONTENT'
-<p>The Sonata framework is built with many great open source libraries / tools.</p>
+<p>The eXim framework is built with many great open source libraries / tools.</p>
 <section>
     <h3>Backend</h3>
     <ul>
         <li><a href="http://symfony.com" title="Symfony, PHP framework official website">Symfony 2</a>, the PHP framework for web projects (Code licensed under MIT),</li>
+        <li><a href="https://sonata-project.org" title="Sonata Project - Rich bundles for your Symfony2 projects official website">Sonata Project</a>, the Sonata Project - Rich bundles for your Symfony2 projects,</li>
         <li><a href="http://twig.sensiolabs.org" title="Twig, PHP template engine">Twig</a>, the PHP template engine (Code licensed under the new BSD license),</li>
         <li><a href="http://www.doctrine-project.org" title="Doctrine, PHP ORM">Doctrine</a>, the PHP ORM.</li>
     </ul>
@@ -1143,7 +1144,7 @@ CONTENT
         $footerLeft->addChildren($text = $blockManager->create());
 
         $text->setType('sonata.block.service.text');
-        $text->setSetting('content', '<h2>Sonata Demo</h2><p class="handcraft">HANDCRAFTED IN PARIS<br />WITH MIXED HERITAGE</p><p><a href="http://twitter.com/sonataproject" target="_blank">Follow Sonata on Twitter</a></p>');
+        $text->setSetting('content', '<h2>eXim Demo</h2><p class="handcraft">HANDCRAFTED IN ERLANGEN<br />WITH MIXED HERITAGE</p><p><a href="http://twitter.com/davaskwebltd" target="_blank">Follow davask web ltd. on Twitter</a></p>');
 
         $text->setPosition(1);
         $text->setEnabled(true);
@@ -1174,7 +1175,7 @@ CONTENT
         $text->setSetting('content', <<<'CONTENT'
 <h4>ABOUT</h4>
 <ul class="links">
-    <li><a href="http://www.sonata-project.org/about" target="_blank">About Sonata</a></li>
+    <li><a href="https://github.com/davask/exim" target="_blank">About eXim</a></li>
     <li><a href="/legal-notes">Legal notes</a></li>
     <li><a href="/shop/payment/terms-and-conditions">Terms</a></li>
 </ul>
@@ -1193,7 +1194,7 @@ CONTENT
 <h4>COMMUNITY</h4>
 <ul class="links">
     <li><a href="/blog">Blog</a></li>
-    <li><a href="http://www.github.com/sonata-project" target="_blank">Github</a></li>
+    <li><a href="https://github.com/davask/exim" target="_blank">Github</a></li>
     <li><a href="/contact-us">Contact us</a></li>
 </ul>
 CONTENT

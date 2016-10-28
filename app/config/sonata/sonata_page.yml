@@ -48,13 +48,15 @@ sonata_page:
 
     assets:
         stylesheets:
-            - bundles/sonatapage/sonata-page.front.css
             - assetic/sonata_front_css.css
             - exim/assets/css/%exim.theme%_front_css.css
+            - bundles/sonatapage/sonata-page.front.css
+
+        # javascripts_header:
+        #     - assetic/sonata_front_js.js
 
         javascripts:
             - bundles/sonatapage/sonata-page.front.js
-            - assetic/sonata_front_js.js
 
     default_template: default
     templates:

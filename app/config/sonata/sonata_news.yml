@@ -3,6 +3,7 @@
 #
 sonata_news:
     class:
+        # comment to disable
         post:       AppBundle\Entity\News\Post
         comment:    AppBundle\Entity\News\Comment
         tag:        AppBundle\Entity\Classification\Tag
@@ -21,9 +22,9 @@ sonata_news:
     # comment options
     comment:
         notification:
-            emails:   %sonata_news.comment.emails%
-            from:     %sonata_news.comment.email_from%
-            template: 'SonataNewsBundle:Mail:comment_notification.txt.twig'
+    #         emails:   %sonata_news.comment.emails%
+    #         from:     %sonata_news.comment.email_from%
+    #         template: 'SonataNewsBundle:Mail:comment_notification.txt.twig'
 
 
 # Enable Doctrine to map the provided entities

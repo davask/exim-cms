@@ -29,9 +29,9 @@ fos_elastica:
                         enabled:                { type: boolean }
                         slug:                   ~
                         publication_start_date: { type: date }
-                        comment_enabled:        { type: boolean }
-                        comment_close_at:       { type: date  }
-                        comment_counts:         { type: integer }
+                        # comment_enabled:        { type: boolean }
+                        # comment_close_at:       { type: date  }
+                        # comment_counts:         { type: integer }
                         created_at:             { type: date }
                         updated_at:             { type: date }
 
@@ -39,16 +39,16 @@ fos_elastica:
                         model:                  AppBundle\Entity\News\Post
                         provider:               ~
 
-                comment:
-                    serializer:                 { groups: ['sonata_search'] }
-                    mappings:
-                        name:                   { boost: 5 }
-                        url:                    ~
-                        email:                  ~
-                        message:                ~
-                        status:                 { type: integer }
-                        created_at:             { type: date }
-                        updated_at:             { type: date }
+                # comment:
+                #     serializer:                 { groups: ['sonata_search'] }
+                #     mappings:
+                #         name:                   { boost: 5 }
+                #         url:                    ~
+                #         email:                  ~
+                #         message:                ~
+                #         status:                 { type: integer }
+                #         created_at:             { type: date }
+                #         updated_at:             { type: date }
 
 
                     persistence:

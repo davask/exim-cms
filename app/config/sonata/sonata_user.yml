@@ -22,7 +22,7 @@ sonata_user:
 
     impersonating:
         route:                page_slug
-        parameters:           { path: /admin/app/user-user/list }
+        parameters:           { path: / }
 
     google_authenticator:
         server:               %sonata_user.google_authenticator.server%
@@ -57,13 +57,13 @@ sonata_user:
                         title: Recent Posts
                         number: 5
                         mode: public
-                -
-                    position: left
-                    type: sonata.news.block.recent_comments
-                    settings:
-                        title: Recent Comments
-                        number: 5
-                        mode: public
+                # -
+                #     position: left
+                #     type: sonata.news.block.recent_comments
+                #     settings:
+                #         title: Recent Comments
+                #         number: 5
+                #         mode: public
         menu:
             -
                 route: 'sonata_user_profile_show'

@@ -1,0 +1,14 @@
+{%- if app.user and is_granted('ROLE_EXIM_ADMIN') %}
+<!-- exim sonata_page_javascripts -->
+{% endif %}
+{% block sonata_page_javascripts %}
+    {%- block page_javascripts -%} {#- Deprecated block -#}
+        {% for js in sonata_page.assets.javascripts %}
+        <script src="{{ asset(js) }}"></script>
+{# exim space fix -#}
+        {% endfor %}
+    {% endblock %}
+{% endblock %}
+{% if app.user and is_granted('ROLE_EXIM_ADMIN') -%}
+<!-- /exim-->
+{% endif %}
