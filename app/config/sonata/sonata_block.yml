@@ -60,7 +60,6 @@ sonata_block:
             contexts: [user]
 
         # TimelineBundle's Blocks
-
         sonata.timeline.block.timeline:
         sonata.timeline.block.timeline:
             contexts:   [admin]
@@ -87,7 +86,6 @@ sonata_block:
         sonata.seo.block.twitter.embed:
 
         sonata.demo.block.newsletter:
-
 
         # Formatter
         sonata.formatter.block.formatter:

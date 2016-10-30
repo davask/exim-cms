@@ -146,9 +146,9 @@ sonata_admin:
 
             sonata.admin.group.comment:
                 roles: [ROLE_EXIM_ADMIN]
-                label:           Comments
-                label_catalogue: SonataDemoBundle
-                icon:            '<i class="fa fa-th"></i>'
+                label:           Conversation
+                label_catalogue: SonataNewsBundle
+                icon:            '<i class="fa fa-comments"></i>'
                 items:
                     - sonata.comment.admin.thread
                     - sonata.news.admin.comment
@@ -178,7 +178,7 @@ sonata_admin:
             sonata.admin.group.site_builder:
                 roles: [ROLE_EXIM_ADMIN]
                 label:           Site Builder
-                label_catalogue: SonataDemoBundle
+                label_catalogue: SonataPageBundle
                 icon:            '<i class="fa fa-puzzle-piece"></i>'
                 items:
                     - sonata.page.admin.site

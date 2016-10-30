@@ -19,51 +19,55 @@ file that was distributed with this source code.
     <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
     {{ sonata_seo_title() }}
     {{ sonata_seo_metadatas() }}
+    {#<base href="{{ url('page_slug', { 'path': '/' }) }}">#}
 
-    {% include 'SonataPageBundle::base_favicon.html.twig' %}
-    {% include 'SonataPageBundle::base_stylesheets.html.twig' %}
-    {% include 'SonataPageBundle::base_header_javascripts.html.twig' %}
+    {% include theme.path.private ~'/head:favicon.html.twig' %}
+    {% include theme.path.private ~'/head:stylesheets.html.twig' %}
+    {% include 'SonataPageBundle:base:header_javascripts.html.twig' %}
 
 </head>
 {% endblock %}
 
 {%- block sonata_page_body_tag -%}
 <body class="sonata-bc">
+    {% include "ApplicationSonataSeoBundle:Block:_facebook_sdk.html.twig" %}
+    {#% include "SonataSeoBundle:Block:_google_plus_sdk.html.twig" %#}
 {%- endblock -%}
 
+{% if app.user and is_granted('ROLE_EXIM_ADMIN') -%}
+<!-- exim sonata_page_top_bar -->
+{% endif %}
 {% block sonata_page_top_bar %}
-    {% if app.user and is_granted('ROLE_EXIM_ADMIN') -%}
-    <!-- exim sonata_page_top_bar -->
-    {% endif %}
 
+    {%- if app.user and is_granted('ROLE_EXIM_ADMIN') -%}
+    <!-- exim page_top_bar -->
+    {% endif %}
     {% block page_top_bar %} {# Deprecated block #}
-        {%- if app.user and is_granted('ROLE_EXIM_ADMIN') -%}
-        <!-- exim page_top_bar -->
-        {% endif %}
         {% if sonata_page.isEditor or ( app.user and is_granted('ROLE_PREVIOUS_ADMIN') ) %}
 
-            {%- include 'SonataPageBundle::base_inline_edition.html.twig' %}
+            {%- include 'SonataPageBundle:base:inline_edition.html.twig' %}
 
-    <header class="sonata-bc sonata-page-top-bar navbar navbar-exim" role="banner" {% include 'SonataPageBundle::base_inline_edition.html.twig' with { 'part' : 'attribut' } %}>
+            {%- include "DwlEximCoreBundle:Block:demo.html.twig" %}
+    <header class="sonata-bc sonata-page-top-bar navbar navbar-exim" role="banner" {% include 'SonataPageBundle:base:inline_edition.html.twig' with { 'part' : 'attribut' } %}>
         <div class="container">
             <ul class="nav navbar-nav">
-                {% include 'SonataPageBundle::base_header_admin.html.twig' %}
-                {% include 'SonataPageBundle::base_header_edition.html.twig' %}
+                {% include 'SonataPageBundle:base:header_admin.html.twig' %}
+                {% include 'SonataPageBundle:base:header_edition.html.twig' %}
                 {% include 'SonataPageBundle:base:header_switch.html.twig' %}
             </ul>
         </div>
     </header>
 
         {% endif %}
-        {%- if app.user and is_granted('ROLE_EXIM_ADMIN') -%}
-        <!-- /exim-->
-{# exim space fix -#}
-        {% endif -%}
     {% endblock %}
-    {% if app.user and is_granted('ROLE_EXIM_ADMIN') -%}
+    {%- if app.user and is_granted('ROLE_EXIM_ADMIN') -%}
     <!-- /exim-->
-    {%- endif %}
+{# exim space fix -#}
+    {% endif -%}
 {% endblock %}
+{% if app.user and is_granted('ROLE_EXIM_ADMIN') -%}
+<!-- /exim-->
+{%- endif %}
 
 {% block sonata_page_container %}
     {% block page_container %}{% endblock %} {# Deprecated block #}
@@ -71,25 +75,7 @@ file that was distributed with this source code.
 
 {% block sonata_page_asset_footer %}
     {% block page_asset_footer %} {# Deprecated block #}
-        {% include 'SonataPageBundle::base_javascripts.html.twig' %}
-        {% if page is defined %}
-            {% if page.stylesheet is not empty %}
-                <style>
-                    {{ page.stylesheet|raw }}
-                </style>
-            {% endif %}
-            {% if page.javascript is not empty %}
-                <script>
-                    {{ page.javascript|raw }}
-                </script>
-            {% endif %}
-        {% endif %}
-        {#
-            These includes can be done only at this point as all blocks are loaded,
-            Limition : this does not work if a global page is loaded from an ESI tag inside a container block
-        #}
-        {{ sonata_block_include_stylesheets('screen', app.request.basePath) }}
-        {{ sonata_block_include_javascripts('screen', app.request.basePath) }}
+        {% include theme.path.private ~'/footer:javascripts.html.twig' %}
     {% endblock %}
 {% endblock %}
 

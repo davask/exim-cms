@@ -46,6 +46,9 @@ imports:
     - { resource: sonata/sonata_customer.yml }
     - { resource: sonata/sonata_basket.yml }
 
+    # Sonata e-commerce bundles
+    - { resource: dwl/exim_theme.yml }
+
 framework:
     #esi:             ~
     translator:      { fallbacks: ["%locale%"] }

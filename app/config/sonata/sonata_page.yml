@@ -47,6 +47,7 @@ sonata_page:
             "Application\Sonata\PageBundle\Entity\Block": getId
 
     assets:
+<<<<<<< HEAD
         stylesheets:
             - assetic/sonata_front_css.css
             - exim/assets/css/%exim.theme%_front_css.css
@@ -57,12 +58,23 @@ sonata_page:
 
         javascripts:
             - bundles/sonatapage/sonata-page.front.js
+=======
+        stylesheets: []
+            # - assetic/sonata_front_css.css
+            # - bundles/sonatapage/sonata-page.front.css
+
+        # javascripts_header:
+        #     - assetic/sonata_front_js.js
+
+        javascripts: []
+            # - bundles/sonatapage/sonata-page.front.js
+>>>>>>> c021cb08f9886c2288ea65789dcb1d747978a8e6
 
     default_template: default
     templates:
         default:
-            path: 'AppBundle::demo_layout.html.twig'
-            name: 'default'
+            path: 'AppBundle::1_column_layout.html.twig'
+            name: '1 column layout - default'
             containers:
                  header:
                      name: Header
@@ -92,7 +104,7 @@ sonata_page:
                      F: footer
 
         2columns:
-            path: 'AppBundle::demo_2columns_layout.html.twig'
+            path: 'AppBundle::2_columns_layout.html.twig'
             name: '2 columns layout'
             containers:
                  header:
@@ -124,7 +136,7 @@ sonata_page:
                      F: footer
 
         3columns:
-            path: 'AppBundle::demo_3columns_layout.html.twig'
+            path: 'AppBundle::3_columns_layout.html.twig'
             name: '3 columns layout'
             containers:
                  header:

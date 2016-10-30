@@ -1,0 +1,23 @@
+parameters:
+    theme.name: exim
+    theme.path.public: 'bundles/dwleximcore/themes/%theme.name%'
+    theme.path.private: 'DwlEximCoreBundle:themes/%theme.name%'
+    theme.assets.version: '1.0'
+
+twig:
+    globals:
+        theme:
+            name: '%theme.name%'
+            path:
+                public: '%theme.path.public%'
+                private: '%theme.path.private%'
+            assets:
+                version: '%theme.assets.version%'
+                stylesheets:
+                    - //maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css
+                    - '%theme.path.public%/css/sonata_legacy.css'
+                    - bundles/sonatapage/sonata-page.front.css
+                    - '%theme.path.public%/css/front_css.css'
+                javascripts:
+                    - //maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js
+                    - bundles/sonatapage/sonata-page.front.js
