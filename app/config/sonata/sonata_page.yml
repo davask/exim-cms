@@ -47,18 +47,6 @@ sonata_page:
             "Application\Sonata\PageBundle\Entity\Block": getId
 
     assets:
-<<<<<<< HEAD
-        stylesheets:
-            - assetic/sonata_front_css.css
-            - exim/assets/css/%exim.theme%_front_css.css
-            - bundles/sonatapage/sonata-page.front.css
-
-        # javascripts_header:
-        #     - assetic/sonata_front_js.js
-
-        javascripts:
-            - bundles/sonatapage/sonata-page.front.js
-=======
         stylesheets: []
             # - assetic/sonata_front_css.css
             # - bundles/sonatapage/sonata-page.front.css
@@ -68,7 +56,6 @@ sonata_page:
 
         javascripts: []
             # - bundles/sonatapage/sonata-page.front.js
->>>>>>> c021cb08f9886c2288ea65789dcb1d747978a8e6
 
     default_template: default
     templates:
