@@ -1,0 +1,4 @@
+exim:
+  demo:
+    demonstration:
+      message: "Note: this website is a demo of eXim. Any orders placed on this site will not be processed."

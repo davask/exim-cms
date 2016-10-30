@@ -1,0 +1,17 @@
+parameters:
+    exim.name: exim
+    exim.path.public: 'bundles/dwleximcore/themes/%exim.name%'
+    exim.path.private: 'DwlEximCoreBundle:themes/%exim.name%'
+    exim.assets.version: '1.0'
+
+twig:
+    globals:
+        theme:
+            name: '%theme.name%'
+            path:
+                public: '%theme.path.public%'
+                private: '%theme.path.private%'
+            assets:
+                version: '%theme.assets.version%'
+                stylesheets:
+                    - '%theme.path.public%/css/front_css.css'

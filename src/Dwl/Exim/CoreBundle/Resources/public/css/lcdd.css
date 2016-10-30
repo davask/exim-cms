@@ -1,0 +1,22 @@
+body { padding-top:80px; }
+
+/*******************************\
+    $NAVBAR
+\*******************************/
+.navbar-lcdd {
+    background-color: #113f59;
+    border-color: transparent;
+    min-height: 80px;
+    padding-top: 15px;
+}
+
+/*******************************\
+    $FOOTER
+\*******************************/
+.footer-lcdd {
+    background-color: #113f59;
+}
+
+.footer-lcdd .navbar-dropdown a {
+    color:#333333;
+}

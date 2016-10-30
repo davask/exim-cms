@@ -25,6 +25,7 @@ class AppKernel extends Kernel
 
             new Application\Sonata\AdminBundle\ApplicationSonataAdminBundle(),
             new Application\Sonata\PageBundle\ApplicationSonataPageBundle(),
+            new Application\Sonata\SeoBundle\ApplicationSonataSeoBundle(),
             new AppBundle\AppBundle(),
 
             // SYMFONY STANDARD EDITION
@@ -95,6 +96,9 @@ class AppKernel extends Kernel
 
             // CMF Integration
             new Symfony\Cmf\Bundle\RoutingBundle\CmfRoutingBundle(),
+
+            // EXIM CORE
+            new Dwl\Exim\CoreBundle\DwlEximCoreBundle(),
 
             // DEMO and QA - Can be deleted
             new Sonata\Bundle\DemoBundle\SonataDemoBundle(),

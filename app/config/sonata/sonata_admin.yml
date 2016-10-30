@@ -40,17 +40,17 @@ sonata_admin:
         blocks:
 #            - { position: left, type: sonata.admin.block.admin_list }
 #            - { position: right, type: sonata.admin_doctrine_orm.block.audit}
-            -
-                roles: [ROLE_EXIM_ADMIN]
-                class:    col-lg-3 col-xs-6
-                position: top
-                type:     sonata.admin.block.stats
-                settings:
-                    code: sonata.news.admin.comment
-                    icon: fa-comments
-                    text: Open Comment
-                    filters:
-                        status: { type: 3, value: 0 } # 3 => NumberType::TYPE_EQUAL
+            # -
+            #     roles: [ROLE_EXIM_ADMIN]
+            #     class:    col-lg-3 col-xs-6
+            #     position: top
+            #     type:     sonata.admin.block.stats
+            #     settings:
+            #         code: sonata.news.admin.comment
+            #         icon: fa-comments
+            #         text: Open Comment
+            #         filters:
+            #             status: { type: 3, value: 0 } # 3 => NumberType::TYPE_EQUAL
 
             -
                 roles: [ROLE_EXIM_ADMIN]
@@ -105,14 +105,14 @@ sonata_admin:
                     title: Recent Posts
                     number: 7
                     mode: admin
-            -
-                roles: [ROLE_EXIM_ADMIN]
-                position: left
-                type: sonata.news.block.recent_comments
-                settings:
-                    title: Recent Comments
-                    number: 7
-                    mode: admin
+            # -
+            #     roles: [ROLE_EXIM_ADMIN]
+            #     position: left
+            #     type: sonata.news.block.recent_comments
+            #     settings:
+            #         title: Recent Comments
+            #         number: 7
+            #         mode: admin
             -
                 roles: [ROLE_EXIM_ADMIN]
                 position: right
@@ -140,11 +140,18 @@ sonata_admin:
                 label_catalogue: SonataDemoBundle
                 icon:            '<i class="fa fa-th"></i>'
                 items:
-                    - sonata.news.admin.comment
                     - sonata.news.admin.post
                     - sonata.media.admin.media
                     - sonata.media.admin.gallery
+
+            sonata.admin.group.comment:
+                roles: [ROLE_EXIM_ADMIN]
+                label:           Conversation
+                label_catalogue: SonataNewsBundle
+                icon:            '<i class="fa fa-comments"></i>'
+                items:
                     - sonata.comment.admin.thread
+                    - sonata.news.admin.comment
 
             sonata.admin.group.ecommerce:
                 roles: [ROLE_SUPER_ADMIN]
@@ -171,11 +178,12 @@ sonata_admin:
             sonata.admin.group.site_builder:
                 roles: [ROLE_EXIM_ADMIN]
                 label:           Site Builder
-                label_catalogue: SonataDemoBundle
+                label_catalogue: SonataPageBundle
                 icon:            '<i class="fa fa-puzzle-piece"></i>'
                 items:
                     - sonata.page.admin.site
                     - sonata.page.admin.page
+                    - sonata.page.admin.block
 
             sonata.admin.group.administration:
                 roles: [ROLE_EXIM_ADMIN]
@@ -187,9 +195,9 @@ sonata_admin:
                     - sonata.user.admin.group
                     - sonata.notification.admin.message
 
-            sonata.admin.group.demo:
-                roles: [ROLE_EXIM_ADMIN]
-                label: Demo
+            sonata.admin.group.lcdd:
+                roles: [ROLE_SUPER_ADMIN]
+                label: LCDD
                 icon:  '<i class="fa fa-play-circle"></i>'
                 items:
                     - sonata.demo.admin.car
