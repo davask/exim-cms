@@ -16,7 +16,6 @@ twig:
                 stylesheets:
                     - //maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css
                     - '%theme.path.public%/css/sonata_legacy.css'
-                    - bundles/sonatapage/sonata-page.front.css
                     - '%theme.path.public%/css/front_css.css'
                 javascripts:
                     - //maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js
