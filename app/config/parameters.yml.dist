@@ -45,6 +45,3 @@ parameters:
     sonata.fixtures.product.fake:        0     # number of fake product to load
     sonata.fixtures.customer.fake:       10    # number of customer to load
     sonata.fixtures.page.create_subsite: false # create a second website, so you can test the multisite feature
-
-    # exim configuration
-    exim.theme: exim

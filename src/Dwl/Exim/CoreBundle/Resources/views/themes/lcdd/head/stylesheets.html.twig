@@ -3,14 +3,9 @@
 <!-- exim exim_theme_styles -->
 {% endif %}
 {% block exim_theme_styles %}
-    {%- block page_stylesheets -%} {#- Deprecated block -#}
-        {% for stylesheet in theme.assets.stylesheets %}
-    <link rel="stylesheet" href="{{ asset(stylesheet) }}?v={{theme.assets.version}}" media="all">
+    <link rel="stylesheet" href="{{ theme.path.web }}/assets/css/front.css?v={{theme.assets.version}}" media="all">
 {# exim space fix -#}
-        {% endfor %}
-    {% endblock %}
 {% endblock %}
 {% if app.user and is_granted('ROLE_EXIM_ADMIN') -%}
 <!-- /exim-->
 {% endif %}
-

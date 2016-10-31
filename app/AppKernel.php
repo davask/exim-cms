@@ -23,6 +23,8 @@ class AppKernel extends Kernel
     {
         $bundles = array(
 
+            new Liip\ImagineBundle\LiipImagineBundle(),
+            new Knp\Bundle\GaufretteBundle\KnpGaufretteBundle(),
             new Application\Sonata\AdminBundle\ApplicationSonataAdminBundle(),
             new Application\Sonata\PageBundle\ApplicationSonataPageBundle(),
             new Application\Sonata\SeoBundle\ApplicationSonataSeoBundle(),
@@ -52,7 +54,6 @@ class AppKernel extends Kernel
             new Sonata\PageBundle\SonataPageBundle(),
             new Sonata\NewsBundle\SonataNewsBundle(),
             new Sonata\MediaBundle\SonataMediaBundle(),
-            // new Liip\ImagineBundle\LiipImagineBundle(),
 
             new Ivory\CKEditorBundle\IvoryCKEditorBundle(),
 

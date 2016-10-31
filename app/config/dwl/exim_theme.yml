@@ -1,22 +1,133 @@
+# dependencies :
+#    - sonata-porject
+#    - liip/imagine-bundle
+#    - liip/imagine-bundle
+#    - knplabs/knp-gaufrette-bundle
+
 parameters:
-    theme.name: exim
+    # exim theme
+    theme.name: lcdd
+    theme.path.root: '%kernel.root_dir%/../web/themes/%theme.name%'
+    theme.path.web: '/themes/%theme.name%'
     theme.path.public: 'bundles/dwleximcore/themes/%theme.name%'
+    theme.path.internal: '%kernel.root_dir%/../web/%theme.path.public%'
     theme.path.private: 'DwlEximCoreBundle:themes/%theme.name%'
     theme.assets.version: '1.0'
 
+    # Assetic
+    # assetic.filter.compass.images_dir: '%kernel.root_dir%/../web/images'
+    # assetic.filter.compass.http_path:  '/images'
+
+
 twig:
+    paths:
+        '%kernel.root_dir%/../web/themes/%theme.name%/views': '%theme.name%'
+
     globals:
         theme:
             name: '%theme.name%'
             path:
-                public: '%theme.path.public%'
+                web:     '%theme.path.web%'
+                root:    '%theme.path.root%'
+                public:  '%theme.path.public%'
                 private: '%theme.path.private%'
             assets:
                 version: '%theme.assets.version%'
-                stylesheets:
-                    - //maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css
-                    - '%theme.path.public%/css/sonata_legacy.css'
-                    - '%theme.path.public%/css/front_css.css'
+                # stylesheets:
+                #     - //maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css
+                #     - '%theme.path.public%/css/sonata_legacy.css'
+                #     - '%theme.path.public%/css/front_css.css'
                 javascripts:
                     - //maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js
                     - bundles/sonatapage/sonata-page.front.js
+
+assetic:
+
+    debug:          '%kernel.debug%'
+    use_controller: '%kernel.debug%'
+    # read_from:      %kernel.root_dir%/../web
+    write_to:       %kernel.root_dir%/../web/themes/%theme.name%
+    # bundles:        [] # disable bundles parsing
+
+    filters:
+        cssrewrite:
+            style: compressed
+        sass:
+            bin: /usr/local/bin/sass
+            apply_to:   '\.sass$'
+            style: compressed
+        compass:
+            bin: /usr/local/bin/compass
+            apply_to:   '\.scss$'
+            style: compressed
+
+    assets:
+        # see https://sonata-project.org/blog/2012/5/15/assetic-package-configuration
+        #
+        front_css:
+            inputs:
+                - //maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css
+                - %theme.path.root%/assets/css/sonata_legacy.css
+                - %theme.path.root%/assets/css/lcdd.css
+                - %theme.path.root%/assets/compass/scss/front.scss
+                - %theme.path.root%/assets/compass/scss/style.scss
+            output: 'assets/css/front.css'
+
+liip_imagine:
+
+    resolvers:
+        theme:
+            web_path:
+                web_root: '%kernel.root_dir%/../web'
+                cache_prefix: '%theme.path.web%/assets/img'
+
+    loaders:
+        theme:
+            filesystem:
+                data_root: '%theme.path.root%/media'
+        # stream.profile_photos:
+        #     stream:
+        #         wrapper: gaufrette://profile_photos
+    # driver:               gd
+    cache:                theme
+    data_loader:          theme
+    # default_image:        null
+    # controller:
+    #     filter_action:         liip_imagine.controller:filterAction
+    #     filter_runtime_action: liip_imagine.controller:filterRuntimeAction
+    filter_sets:
+
+        # use the default cache configuration
+        src: ~
+
+        # # the name of the "filter set"
+        # thumb:
+
+        #     # adjust the image quality to 75%
+        #     quality: 75 # deprecated
+
+        #     # list of transformations to apply (the "filters")
+        #     filters:
+
+        #         # create a thumbnail: set size to 120x90 and use the "outbound" mode
+        #         # to crop the image when the size ratio of the input differs
+        #         thumbnail:
+        #             size: [120, 90]
+        #             mode: outbound
+
+        #         # create a 2px black border: center the thumbnail on a black background
+        #         # 4px larger to create a 2px border around the final image
+        #         background:
+        #             size: [124, 94]
+        #             position: center
+        #             color: '#000000'
+
+# knp_gaufrette:
+#     adapters:
+#         media:
+#             local:
+#                 directory: '%kernel.root_dir%/../web'
+#     filesystems:
+#             media:
+#                 adapter:    media
+#                 alias:      media_filesystem

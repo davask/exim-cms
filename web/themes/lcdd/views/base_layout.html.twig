@@ -1,0 +1,83 @@
+{#
+
+This file is part of the Sonata package.
+
+(c) Thomas Rabaix <thomas.rabaix@sonata-project.org>
+
+For the full copyright and license information, please view the LICENSE
+file that was distributed with this source code.
+
+#}
+{% block sonata_page_html_tag %}
+<!DOCTYPE html>
+<html {{ sonata_seo_html_attributes() }}>
+{% endblock %}
+
+{% block sonata_page_head %}
+<head {{ sonata_seo_head_attributes() }}>
+
+    <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+    {{ sonata_seo_title() }}
+    {{ sonata_seo_metadatas() }}
+    {#<base href="{{ url('page_slug', { 'path': '/' }) }}">#}
+
+    {% include theme.path.private ~'/head:favicon.html.twig' %}
+    {% include theme.path.private ~'/head:stylesheets.html.twig' %}
+    {% include 'SonataPageBundle:base:header_javascripts.html.twig' %}
+
+</head>
+{% endblock %}
+
+{%- block sonata_page_body_tag -%}
+<body class="sonata-bc">
+    {% include "ApplicationSonataSeoBundle:Block:_facebook_sdk.html.twig" %}
+    {#% include "SonataSeoBundle:Block:_google_plus_sdk.html.twig" %#}
+{%- endblock -%}
+
+{% if app.user and is_granted('ROLE_EXIM_ADMIN') -%}
+<!-- exim sonata_page_top_bar -->
+{% endif %}
+{% block sonata_page_top_bar %}
+
+    {%- if app.user and is_granted('ROLE_EXIM_ADMIN') -%}
+    <!-- exim page_top_bar -->
+    {% endif %}
+    {% block page_top_bar %} {# Deprecated block #}
+        {% if sonata_page.isEditor or ( app.user and is_granted('ROLE_PREVIOUS_ADMIN') ) %}
+
+            {%- include 'SonataPageBundle:base:inline_edition.html.twig' %}
+
+            {%- include "DwlEximCoreBundle:Block:demo.html.twig" %}
+    <header class="sonata-bc sonata-page-top-bar navbar navbar-exim" role="banner" {% include 'SonataPageBundle:base:inline_edition.html.twig' with { 'part' : 'attribut' } %}>
+        <div class="container">
+            <ul class="nav navbar-nav">
+                {% include 'SonataPageBundle:base:header_admin.html.twig' %}
+                {% include 'SonataPageBundle:base:header_edition.html.twig' %}
+                {% include 'SonataPageBundle:base:header_switch.html.twig' %}
+            </ul>
+        </div>
+    </header>
+
+        {% endif %}
+    {% endblock %}
+    {%- if app.user and is_granted('ROLE_EXIM_ADMIN') -%}
+    <!-- /exim-->
+{# exim space fix -#}
+    {% endif -%}
+{% endblock %}
+{% if app.user and is_granted('ROLE_EXIM_ADMIN') -%}
+<!-- /exim-->
+{%- endif %}
+
+{% block sonata_page_container %}
+    {% block page_container %}{% endblock %} {# Deprecated block #}
+{% endblock %}
+
+{% block sonata_page_asset_footer %}
+    {% block page_asset_footer %} {# Deprecated block #}
+        {% include theme.path.private ~'/footer:javascripts.html.twig' %}
+    {% endblock %}
+{% endblock %}
+
+</body>
+</html>

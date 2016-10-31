@@ -12,7 +12,6 @@
 
     "require": {
         "php": ">=5.3.3",
-        "michelf/php-markdown": "~1.6",
         "doctrine/data-fixtures": "1.1.1",
         "doctrine/dbal": "~2.4,<2.5",
         "doctrine/doctrine-bundle": "~1.5",
@@ -24,7 +23,10 @@
         "incenteev/composer-parameter-handler": "~2.0",
         "jms/serializer-bundle": "~0.11",
         "knplabs/gaufrette": "~0.1.6",
+        "knplabs/knp-gaufrette-bundle": "^0.3.0",
         "knplabs/knp-menu-bundle": "dev-master",
+        "liip/imagine-bundle": "^1.6",
+        "michelf/php-markdown": "~1.6",
         "mopa/bootstrap-bundle": "v3.0.0-beta3",
         "nelmio/api-doc-bundle": "dev-master",
         "sensio/distribution-bundle": "~4.0",
