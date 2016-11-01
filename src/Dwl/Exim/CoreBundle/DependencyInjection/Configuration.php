@@ -13,20 +13,13 @@ use Symfony\Component\Config\Definition\ConfigurationInterface;
 class Configuration implements ConfigurationInterface
 {
 
-    private $params;
-
-    public function  __construct($params)
-    {
-        $this->params = $params;
-    }
-
     /**
      * {@inheritdoc}
      */
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('dwl_exim_core');
+        $rootNode = $treeBuilder->root('exim_theme');
 
         $rootNode
             ->children()
@@ -36,12 +29,16 @@ class Configuration implements ConfigurationInterface
                 ->arrayNode('theme')
                     ->addDefaultsIfNotSet()
                     ->children()
-                        ->scalarNode('name')->defaultValue($this->params['name'])->end()
+                        ->scalarNode('name')->defaultValue('exim')->end()
                         ->arrayNode('path')
                             ->addDefaultsIfNotSet()
                             ->children()
-                                ->scalarNode('public')->defaultValue($this->params['path']['public'])->end()
-                                ->scalarNode('private')->defaultValue($this->params['path']['private'])->end()
+                                ->scalarNode('web')->defaultValue($theme_path_web)->end()
+                                ->scalarNode('root')->defaultValue($theme_path_root)->end()
+                                ->scalarNode('public')->defaultValue($theme_path_public)->end()
+                                // ->scalarNode('internal')->defaultValue($theme_path_internal)->end()
+                                ->scalarNode('private')->defaultValue($theme_path_private)->end()
+                                ->scalarNode('views')->defaultValue($theme_path_root . '/views')->end()
                             ->end()
                         ->end()
                     ->end()
@@ -49,17 +46,7 @@ class Configuration implements ConfigurationInterface
                 ->arrayNode('assets')
                     ->addDefaultsIfNotSet()
                     ->children()
-                        ->scalarNode('version')->defaultValue($this->params['assets']['version'])->end()
-                        ->arrayNode('stylesheets')->end()
-                        // ->defaultValue(array(
-                        //     '//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css',
-                        //     $this->params['path']['public'] . '/css/front.css'
-                        // ))->prototype('scalar')
-                        ->arrayNode('javascripts')->end()
-                        // ->defaultValue(array(
-                        //     '//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js',
-                        //     $this->params['path']['public'] . '/css/front.js'
-                        // ))->prototype('scalar')
+                        ->scalarNode('version')->defaultValue('%theme.assets.version%')->end()
                     ->end()
                 ->end()
             ->end()

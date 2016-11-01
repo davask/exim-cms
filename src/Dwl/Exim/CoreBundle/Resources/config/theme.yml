@@ -1,17 +1,48 @@
 parameters:
-    exim.name: exim
-    exim.path.public: 'bundles/dwleximcore/themes/%exim.name%'
-    exim.path.private: 'DwlEximCoreBundle:themes/%exim.name%'
-    exim.assets.version: '1.0'
+    # theme details
+    exim.theme.name: exim
+    exim.theme.assets.version: '1.0'
+    exim.theme.web.root: '%kernel.root_dir%/../web'
+    exim.theme.path.web: '/themes/%exim.theme.name%'
+    exim.theme.path.root: '%exim.theme.web.root%'
+    exim.theme.path.public: 'bundles/dwleximcore%exim.theme.path.web%'
+    exim.theme.path.internal: '%exim.theme.path.root%'
+    exim.theme.path.private: 'DwlEximCoreBundle:themes/%exim.theme.name%'
+    exim.theme.front.css: []
+    exim.theme.front.js: []
+
 
 twig:
     globals:
         theme:
-            name: '%theme.name%'
+            name: '%exim.theme.name%'
             path:
-                public: '%theme.path.public%'
-                private: '%theme.path.private%'
+                public: '%exim.theme.path.public%'
+                private: '%exim.theme.path.private%'
             assets:
-                version: '%theme.assets.version%'
-                stylesheets:
-                    - '%theme.path.public%/css/front_css.css'
+                version: '%exim.theme.assets.version%'
+                javascripts: '%exim.theme.front.js%'
+
+assetic:
+    assets:
+        front_css:
+            inputs: '%exim.theme.front.css%'
+            output: 'assets/css/front.css'
+        front_js:
+            inputs: '%exim.theme.front.js%'
+            output: 'assets/css/front.js'
+
+    debug : '%kernel.debug%'
+    use_controller : '%kernel.debug%'
+    write_to : '%exim.theme.path.root%'
+    filters :
+        cssrewrite:
+            style: 'compressed'
+        sass:
+            bin: '/usr/local/bin/sass'
+            apply_to: '\.sass$'
+            style: 'compressed'
+        compass:
+            bin: '/usr/local/bin/compass'
+            apply_to: '\.scss$'
+            style: 'compressed'

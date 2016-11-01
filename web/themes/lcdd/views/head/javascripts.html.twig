@@ -1,0 +1,20 @@
+{%- if app.user and is_granted('ROLE_EXIM_ADMIN') %}
+<!-- exim sonata_page_header_javascripts -->
+{% endif %}
+{% block sonata_page_header_javascripts %}
+    {%- block page_header_javascripts -%} {#- Deprecated block #}
+    <!-- Le HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+        <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+{# exim space fix -#}
+        {#% for js in sonata_page.assets.javascripts %#}
+        {% for js in [ theme.path.web ~ '/assetic/sonata_front_js.js'] %}
+    <script src="{{ asset(js) }}"></script>
+{# exim space fix -#}
+        {% endfor %}
+    {% endblock %}
+{% endblock %}
+{% if app.user and is_granted('ROLE_EXIM_ADMIN') -%}
+<!-- /exim-->
+{% endif %}

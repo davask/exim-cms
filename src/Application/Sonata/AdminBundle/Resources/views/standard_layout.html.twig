@@ -31,9 +31,10 @@ file that was distributed with this source code.
 {% endblock %}
     {#<base href="{{ url('page_slug', { 'path': '/' }) }}">#}
 
-    {% include theme.path.private ~'/head:favicon.html.twig' %}
+    {% include '@lcdd/head/favicon.html.twig' %}
 
 {% block stylesheets %}
+    <link rel="stylesheet" href="{{ theme.path.web }}/assets/css/admin.css?v={{theme.assets.version}}" media="all">
     {% for stylesheet in sonata_admin.adminPool.getOption('stylesheets', []) %}
     <link rel="stylesheet" href="{{ asset(stylesheet) }}">
     {% endfor %}

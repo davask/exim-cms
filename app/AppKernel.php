@@ -23,12 +23,17 @@ class AppKernel extends Kernel
     {
         $bundles = array(
 
+            // APP
+            new AppBundle\AppBundle(),
+            // EXIM CORE
+            new Dwl\Exim\CoreBundle\DwlEximCoreBundle(),
+
+            // EXIM DEPENDENCIES
             new Liip\ImagineBundle\LiipImagineBundle(),
             new Knp\Bundle\GaufretteBundle\KnpGaufretteBundle(),
             new Application\Sonata\AdminBundle\ApplicationSonataAdminBundle(),
             new Application\Sonata\PageBundle\ApplicationSonataPageBundle(),
             new Application\Sonata\SeoBundle\ApplicationSonataSeoBundle(),
-            new AppBundle\AppBundle(),
 
             // SYMFONY STANDARD EDITION
             new Symfony\Bundle\FrameworkBundle\FrameworkBundle(),
@@ -98,9 +103,6 @@ class AppKernel extends Kernel
             // CMF Integration
             new Symfony\Cmf\Bundle\RoutingBundle\CmfRoutingBundle(),
 
-            // EXIM CORE
-            new Dwl\Exim\CoreBundle\DwlEximCoreBundle(),
-
             // DEMO and QA - Can be deleted
             new Sonata\Bundle\DemoBundle\SonataDemoBundle(),
             new Sonata\Bundle\QABundle\SonataQABundle(),
@@ -110,6 +112,7 @@ class AppKernel extends Kernel
             new Sonata\TimelineBundle\SonataTimelineBundle(),
 
             new Mopa\Bundle\BootstrapBundle\MopaBootstrapBundle(),
+
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

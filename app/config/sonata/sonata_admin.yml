@@ -22,7 +22,7 @@ sonata_admin:
     options:
         html5_validate: false # does not use html5 validation
         pager_links: 5        # pager max links to display
-        use_bootlint: %kernel.debug%
+        use_bootlint: false # %kernel.debug%
 
     templates:
         # default global templates
@@ -211,9 +211,9 @@ sonata_admin:
             # So you can either use them, and add your custom assets here
             #   ~ or ~
             # tweak the assetic.yml and the following lines
-            - assetic/sonata_admin_css.css
-            - assetic/sonata_formatter_css.css
-            - assetic/sonata_jqueryui_css.css
+            - '%exim.theme.path.web%/assetic/sonata_admin_css.css'
+            - '%exim.theme.path.web%/assetic/sonata_formatter_css.css'
+            - '%exim.theme.path.web%/assetic/sonata_jqueryui_css.css'
             - bundles/sonataadmin/vendor/admin-lte/dist/css/skins/skin-blue-light.min.css
 
             # Default admin assets
@@ -242,9 +242,9 @@ sonata_admin:
 
 
         javascripts:
-            - assetic/sonata_admin_js.js
-            - assetic/sonata_jqueryui_js.js
-            - assetic/sonata_formatter_js.js
+            - '%exim.theme.path.web%/assetic/sonata_admin_js.js'
+            - '%exim.theme.path.web%/assetic/sonata_jqueryui_js.js'
+            - '%exim.theme.path.web%/assetic/sonata_formatter_js.js'
             - bundles/sonataformatter/vendor/ckeditor/ckeditor.js
 
             # Default admin assets

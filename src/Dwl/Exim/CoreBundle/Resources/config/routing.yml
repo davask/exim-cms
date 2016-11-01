@@ -1,3 +1,7 @@
-# dwl_exim_core_homepage:
-#     path:     /hello/{name}
-#     defaults: { _controller: DwlEximCoreBundle:Default:index }
+dwl_exim_core_block_views:
+    path:     /themes/[^/]+/views
+    defaults: { _controller: DwlEximCoreBundle:Block:index }
+
+dwl_exim_core_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: DwlEximCoreBundle:Default:index }

@@ -1,0 +1,11 @@
+{% include '@lcdd/sonata/page/head/stylesheets.html.twig' %}
+{%- if app.user and is_granted('ROLE_EXIM_ADMIN') %}
+<!-- exim exim_theme_styles -->
+{% endif %}
+{% block exim_theme_styles %}
+    <link rel="stylesheet" href="{{ theme.path.web }}/assets/css/front.css?v={{theme.assets.version}}" media="all">
+{# exim space fix -#}
+{% endblock %}
+{% if app.user and is_granted('ROLE_EXIM_ADMIN') -%}
+<!-- /exim-->
+{% endif %}
