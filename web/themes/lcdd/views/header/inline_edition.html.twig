@@ -26,3 +26,6 @@ data-page-editor='{{ {
     {% endif %}
     {% endif %}
 {%- endif %}
+{%- if theme.demo -%}
+    {%- include "@lcdd/Block/demo.html.twig" %}
+{%- endif %}

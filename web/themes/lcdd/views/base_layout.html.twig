@@ -23,13 +23,12 @@ file that was distributed with this source code.
 
     {% include '@lcdd/head/favicon.html.twig' %}
     {% include '@lcdd/head/stylesheets.html.twig' %}
-    {% include '@lcdd/head/javascripts.html.twig' %}
 
 </head>
 {% endblock %}
 
 {%- block sonata_page_body_tag -%}
-<body class="sonata-bc">
+<body class="{{ theme.name }}">
     {% include "@lcdd/Block/_facebook_sdk.html.twig" %}
     {#% include "SonataSeoBundle:Block:_google_plus_sdk.html.twig" %#}
 {%- endblock -%}
@@ -47,8 +46,7 @@ file that was distributed with this source code.
 
             {%- include '@lcdd/header/inline_edition.html.twig' %}
 
-            {%- include "@lcdd/Block/demo.html.twig" %}
-    <header class="sonata-bc sonata-page-top-bar navbar navbar-exim" role="banner" {% include '@lcdd/header/inline_edition.html.twig' with { 'part' : 'attribut' } %}>
+    <header class="navbar" role="banner" {% include '@lcdd/header/inline_edition.html.twig' with { 'part' : 'attribut' } %}>
         <div class="container">
             <ul class="nav navbar-nav">
                 {% include '@lcdd/header/admin.html.twig' %}
@@ -76,6 +74,7 @@ file that was distributed with this source code.
 {% block sonata_page_asset_footer %}
     {% block page_asset_footer %} {# Deprecated block #}
         {% include '@lcdd/footer/javascripts.html.twig' %}
+        {% include '@lcdd/head/javascripts.html.twig' %}
     {% endblock %}
 {% endblock %}
 

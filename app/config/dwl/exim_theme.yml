@@ -3,139 +3,28 @@
 #    - liip/imagine-bundle
 #    - knplabs/knp-gaufrette-bundle
 # configuration :
-#    - exim config need to be called after all other bundles and before app bundles
+#    - exim config & appKernel need to be called after all other bundles and before app bundles
 
 parameters:
     # theme details
     exim.theme.name: lcdd
-    exim.theme.assets.version: '1.0'
+    exim.theme.assets.version.css: '1.0'
+    exim.theme.assets.version.js: '1.0'
+    exim.theme.assets.version.img: '1.0'
     exim.theme.front.css:
-        - '//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css'
-        - '%exim.theme.path.root%/assets/css/sonata_legacy.css'
-        - '%exim.theme.path.root%/assets/css/lcdd.css'
+        - 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css'
+        - '%exim.theme.path.root%/assets/legacy/compass/scss/sonata_legacy.scss'
         - '%exim.theme.path.root%/assets/compass/scss/front.scss'
         - '%exim.theme.path.root%/assets/compass/scss/style.scss'
     exim.theme.admin.css:
-        - '//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css'
-        - '//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'
+        - 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css'
+        - 'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'
     exim.theme.front.js:
-        - //cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js
-        - //cdnjs.cloudflare.com/ajax/libs/sizzle/2.2.0/sizzle.min.js
-        - //maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js
+        - 'https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js'
+        - 'https://cdnjs.cloudflare.com/ajax/libs/sizzle/2.2.0/sizzle.min.js'
+        - 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js'
 
 
     # Assetic
     # assetic.filter.compass.images_dir: '%kernel.root_dir%/../web/images'
     # assetic.filter.compass.http_path:  '/images'
-
-
-twig:
-    paths:
-        '%exim.theme.path.root%/views': '%exim.theme.name%'
-    globals:
-        theme:
-            name: '%exim.theme.name%'
-            path:
-                web: '%exim.theme.path.web%'
-                public: '%exim.theme.path.public%'
-                private: '%exim.theme.path.private%'
-            assets:
-                version: '%exim.theme.assets.version%'
-                javascripts: '%exim.theme.front.js%'
-
-assetic:
-    debug : false # '%kernel.debug%'
-    use_controller : '%kernel.debug%'
-    write_to : '%exim.theme.path.root%'
-    filters :
-        cssrewrite:
-            style: 'compressed'
-        sass:
-            bin: '/usr/local/bin/sass'
-            apply_to: '\.sass$'
-            style: 'compressed'
-        compass:
-            bin: '/usr/local/bin/compass'
-            apply_to: '\.scss$'
-            style: 'compressed'
-    assets:
-        admin_css:
-            inputs: '%exim.theme.admin.css%'
-            output: 'assets/css/admin.css'
-        front_css:
-            inputs: '%exim.theme.front.css%'
-            output: 'assets/css/front.css'
-        front_js:
-            inputs: '%exim.theme.front.js%'
-            output: 'assets/css/front.js'
-
-
-        sonata_front_js:
-            inputs:
-                # - %kernel.root_dir%/../web/bundles/sonatacore/vendor/jquery/dist/jquery.js # deactivate
-                # - %kernel.root_dir%/../web/bundles/sonatacore/vendor/bootstrap/dist/js/bootstrap.js # deactivate
-                - %kernel.root_dir%/../web/bundles/sonataproduct/js/product.js
-                - %kernel.root_dir%/../web/bundles/sonatacore/js/base.js
-                - %kernel.root_dir%/../web/bundles/sonatacore/vendor/select2/select2.min.js
-                - %kernel.root_dir%/../web/bundles/sonatademo/js/demo.js
-            filters:
-                - yui_js
-
-        sonata_admin_css:
-            inputs:
-                # - %kernel.root_dir%/../web/bundles/sonatacore/vendor/bootstrap/dist/css/bootstrap.min.css
-                # - %kernel.root_dir%/../web/bundles/sonatacore/vendor/components-font-awesome/css/font-awesome.min.css
-                - %kernel.root_dir%/../web/bundles/sonatacore/vendor/ionicons/css/ionicons.min.css
-                - %kernel.root_dir%/../web/bundles/sonataadmin/vendor/admin-lte/dist/css/AdminLTE.css
-                - %kernel.root_dir%/../web/bundles/sonataadmin/vendor/iCheck/skins/square/blue.css
-                - %kernel.root_dir%/../web/bundles/sonataadmin/vendor/jqueryui/themes/flick/jquery-ui.min.css
-                - %kernel.root_dir%/../web/bundles/sonatacore/vendor/select2/select2.css
-                - %kernel.root_dir%/../web/bundles/sonatacore/vendor/select2/select2-bootstrap.css
-                - %kernel.root_dir%/../web/bundles/sonataadmin/vendor/x-editable/dist/bootstrap3-editable/css/bootstrap-editable.css
-                - %kernel.root_dir%/../web/bundles/sonatacore/vendor/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css
-                - %kernel.root_dir%/../web/bundles/sonataadmin/css/styles.css
-                - %kernel.root_dir%/../web/bundles/sonataadmin/css/layout.css
-                - %kernel.root_dir%/../web/bundles/sonataadmin/css/tree.css
-                - %kernel.root_dir%/../web/bundles/sonatapage/sonata-page.back.css
-
-            filters:
-                - cssrewrite
-                - yui_css
-
-# http://www.reussir-mon-ecommerce.fr/2012/08/15/manipuler-les-images-avec-symfony2-et-liipimaginebundle/
-# https://www.youtube.com/watch?v=8QUam-fBtd0
-# https://www.opensky.com/
-# http://www.slideshare.net/kriswallsmith/introducing-assetic-asset-management-for-php-53
-liip_imagine:
-    resolvers:
-        theme:
-            web_path:
-                web_root: '%exim.theme.web.root%'
-                cache_prefix: '%exim.theme.path.web%/assets/img'
-    loaders:
-        theme:
-            filesystem:
-                data_root: '%exim.theme.path.root%/media'
-    cache:                theme
-    data_loader:          theme
-    filter_sets:
-        src: ~
-        thumb:
-            filters:
-                thumbnail:
-                    size: [120, 90]
-                    mode: outbound
-                background:
-                    size: [124, 94]
-                    position: center
-                    color: '#000000'
-
-# knp_gaufrette:
-#     adapters:
-#         media:
-#             local:
-#                 directory: '%kernel.root_dir%/../web'
-#     filesystems:
-#             media:
-#                 adapter:    media
-#                 alias:      media_filesystem

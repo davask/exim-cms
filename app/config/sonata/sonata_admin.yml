@@ -214,7 +214,7 @@ sonata_admin:
             - '%exim.theme.path.web%/assetic/sonata_admin_css.css'
             - '%exim.theme.path.web%/assetic/sonata_formatter_css.css'
             - '%exim.theme.path.web%/assetic/sonata_jqueryui_css.css'
-            - bundles/sonataadmin/vendor/admin-lte/dist/css/skins/skin-blue-light.min.css
+            - 'bundles/sonataadmin/vendor/admin-lte/dist/css/skins/skin-blue-light.min.css'
 
             # Default admin assets
 #            - bundles/sonatacore/vendor/bootstrap/dist/css/bootstrap.min.css

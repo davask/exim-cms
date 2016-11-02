@@ -1,0 +1,44 @@
+@import "params";
+
+body.#{$theme} {
+
+    /*******************************\
+        $NAVBAR
+    \*******************************/
+    header{
+        &.navbar {
+        }
+    }
+    /*******************************\
+        $NAVBAR
+    \*******************************/
+    .page-header {
+        background-color: $blue_dark;
+        border-color: transparent;
+        min-height: 80px;
+        padding-top: 15px;
+        margin-top: 0;
+        a {
+            color: #fff;
+        }
+    }
+
+    /*******************************\
+        $FOOTER
+    \*******************************/
+    footer {
+
+        .page-footer {
+          // background-color: $blue_dark;
+        }
+        .page-footer, a {
+          color: $white;
+        }
+
+        .navbar-dropdown a {
+            color:$text_dark;
+        }
+    }
+
+}
+

@@ -48,6 +48,7 @@ imports:
 
     # Sonata e-commerce bundles
     - { resource: dwl/exim_theme.yml }
+    - { resource: dwl/exim_core.yml }
 
 framework:
     #esi:             ~

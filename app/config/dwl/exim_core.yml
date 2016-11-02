@@ -1,0 +1,127 @@
+twig:
+    paths:
+        '%exim.theme.path.root%/views': '%exim.theme.name%'
+    globals:
+        theme:
+            demo: false # '%kernel.debug%'
+            name: '%exim.theme.name%'
+            path:
+                web: '%exim.theme.path.web%'
+                public: '%exim.theme.path.public%'
+                private: '%exim.theme.path.private%'
+            assets:
+                version:
+                    css: '%exim.theme.assets.version.css%'
+                    js: '%exim.theme.assets.version.js%'
+                    img: '%exim.theme.assets.version.img%'
+                javascripts: '%exim.theme.front.js%'
+
+assetic:
+    # debug : '%kernel.debug%'
+    debug : false # '%kernel.debug%'
+    use_controller : '%kernel.debug%'
+    write_to : '%exim.theme.path.root%'
+    filters :
+        # cssrewrite:
+            # style: 'compressed'
+        sass:
+            bin: '/usr/local/bin/sass'
+            apply_to: '\.sass$'
+            # style: 'compressed'
+        compass:
+            bin: '/usr/local/bin/compass'
+            apply_to: '\.scss$'
+            # style: 'compressed'
+    assets:
+        sonata_front_js:
+            inputs:
+                # - %kernel.root_dir%/../web/bundles/sonatacore/vendor/jquery/dist/jquery.js # deactivate
+                # - %kernel.root_dir%/../web/bundles/sonatacore/vendor/bootstrap/dist/js/bootstrap.js # deactivate
+                - %kernel.root_dir%/../web/bundles/sonataproduct/js/product.js
+                - %kernel.root_dir%/../web/bundles/sonatacore/js/base.js
+                - %kernel.root_dir%/../web/bundles/sonatacore/vendor/select2/select2.min.js
+                - %kernel.root_dir%/../web/bundles/sonatademo/js/demo.js
+            filters:
+                - yui_js
+
+        sonata_admin_css:
+            inputs:
+                # - %kernel.root_dir%/../web/bundles/sonatacore/vendor/bootstrap/dist/css/bootstrap.min.css
+                # - %kernel.root_dir%/../web/bundles/sonatacore/vendor/components-font-awesome/css/font-awesome.min.css
+                - %kernel.root_dir%/../web/bundles/sonatacore/vendor/ionicons/css/ionicons.min.css
+                - %kernel.root_dir%/../web/bundles/sonataadmin/vendor/admin-lte/dist/css/AdminLTE.css
+                - %kernel.root_dir%/../web/bundles/sonataadmin/vendor/iCheck/skins/square/blue.css
+                - %kernel.root_dir%/../web/bundles/sonataadmin/vendor/jqueryui/themes/flick/jquery-ui.min.css
+                - %kernel.root_dir%/../web/bundles/sonatacore/vendor/select2/select2.css
+                - %kernel.root_dir%/../web/bundles/sonatacore/vendor/select2/select2-bootstrap.css
+                - %kernel.root_dir%/../web/bundles/sonataadmin/vendor/x-editable/dist/bootstrap3-editable/css/bootstrap-editable.css
+                - %kernel.root_dir%/../web/bundles/sonatacore/vendor/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css
+                - %kernel.root_dir%/../web/bundles/sonataadmin/css/styles.css
+                - %kernel.root_dir%/../web/bundles/sonataadmin/css/layout.css
+                - %kernel.root_dir%/../web/bundles/sonataadmin/css/tree.css
+                - %kernel.root_dir%/../web/bundles/sonatapage/sonata-page.back.css
+
+            filters:
+                - cssrewrite
+                - yui_css
+
+        sonata_front_css:
+            inputs:
+                # - %kernel.root_dir%/../web/bundles/sonatacore/vendor/bootstrap/dist/css/bootstrap.min.css
+                - %kernel.root_dir%/../web/bundles/sonatacore/vendor/select2/select2.css
+                - %kernel.root_dir%/../web/bundles/mopabootstrap/css/datepicker.css
+                - %kernel.root_dir%/../web/bundles/sonatademo/css/demo.css
+
+        admin_css:
+            inputs: '%exim.theme.admin.css%'
+            output: 'assetic/admin.css'
+            filters:
+                - yui_css
+        front_css:
+            inputs: '%exim.theme.front.css%'
+            output: 'assetic/front.css'
+            filters:
+                - yui_css
+        front_js:
+            inputs: '%exim.theme.front.js%'
+            output: 'assetic/front.js'
+            filters:
+                - yui_js
+
+# http://www.reussir-mon-ecommerce.fr/2012/08/15/manipuler-les-images-avec-symfony2-et-liipimaginebundle/
+# https://www.youtube.com/watch?v=8QUam-fBtd0
+# https://www.opensky.com/
+# http://www.slideshare.net/kriswallsmith/introducing-assetic-asset-management-for-php-53
+liip_imagine:
+    resolvers:
+        theme:
+            web_path:
+                web_root: '%exim.theme.web.root%'
+                cache_prefix: '%exim.theme.path.web%/assets/img'
+    loaders:
+        theme:
+            filesystem:
+                data_root: '%exim.theme.path.root%/media'
+    cache:                theme
+    data_loader:          theme
+    filter_sets:
+        src: ~
+        thumb:
+            filters:
+                thumbnail:
+                    size: [120, 90]
+                    mode: outbound
+                background:
+                    size: [124, 94]
+                    position: center
+                    color: '#000000'
+
+# knp_gaufrette:
+#     adapters:
+#         media:
+#             local:
+#                 directory: '%kernel.root_dir%/../web'
+#     filesystems:
+#             media:
+#                 adapter:    media
+#                 alias:      media_filesystem

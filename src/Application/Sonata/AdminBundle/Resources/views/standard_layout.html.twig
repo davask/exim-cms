@@ -34,9 +34,9 @@ file that was distributed with this source code.
     {% include '@lcdd/head/favicon.html.twig' %}
 
 {% block stylesheets %}
-    <link rel="stylesheet" href="{{ theme.path.web }}/assets/css/admin.css?v={{theme.assets.version}}" media="all">
+    <link rel="stylesheet" href="{{ theme.path.web }}/assets/admin.css?v={{theme.assets.version}}" media="all">
     {% for stylesheet in sonata_admin.adminPool.getOption('stylesheets', []) %}
-    <link rel="stylesheet" href="{{ asset(stylesheet) }}">
+    <link rel="stylesheet" href="{{ asset(stylesheet) }}?v={{theme.assets.version}}">
     {% endfor %}
 {% endblock %}
 

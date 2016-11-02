@@ -23,18 +23,6 @@ class AppKernel extends Kernel
     {
         $bundles = array(
 
-            // APP
-            new AppBundle\AppBundle(),
-            // EXIM CORE
-            new Dwl\Exim\CoreBundle\DwlEximCoreBundle(),
-
-            // EXIM DEPENDENCIES
-            new Liip\ImagineBundle\LiipImagineBundle(),
-            new Knp\Bundle\GaufretteBundle\KnpGaufretteBundle(),
-            new Application\Sonata\AdminBundle\ApplicationSonataAdminBundle(),
-            new Application\Sonata\PageBundle\ApplicationSonataPageBundle(),
-            new Application\Sonata\SeoBundle\ApplicationSonataSeoBundle(),
-
             // SYMFONY STANDARD EDITION
             new Symfony\Bundle\FrameworkBundle\FrameworkBundle(),
             new Symfony\Bundle\SecurityBundle\SecurityBundle(),
@@ -112,6 +100,18 @@ class AppKernel extends Kernel
             new Sonata\TimelineBundle\SonataTimelineBundle(),
 
             new Mopa\Bundle\BootstrapBundle\MopaBootstrapBundle(),
+
+            // EXIM DEPENDENCIES
+            new Liip\ImagineBundle\LiipImagineBundle(),
+            new Knp\Bundle\GaufretteBundle\KnpGaufretteBundle(),
+            new Application\Sonata\AdminBundle\ApplicationSonataAdminBundle(),
+            new Application\Sonata\PageBundle\ApplicationSonataPageBundle(),
+            new Application\Sonata\SeoBundle\ApplicationSonataSeoBundle(),
+            new Application\Sonata\BasketBundle\ApplicationSonataBasketBundle(),
+            // EXIM CORE
+            new Dwl\Exim\CoreBundle\DwlEximCoreBundle(),
+            // APP
+            new AppBundle\AppBundle(),
 
         );
 

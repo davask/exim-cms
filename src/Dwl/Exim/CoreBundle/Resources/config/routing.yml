@@ -1,6 +1,12 @@
 dwl_exim_core_block_views:
     path:     /themes/[^/]+/views
     defaults: { _controller: DwlEximCoreBundle:Block:index }
+dwl_exim_core_block_scss_raw:
+    path:     /themes/[^/]+/assets/compass
+    defaults: { _controller: DwlEximCoreBundle:Block:index }
+dwl_exim_core_block_css_raw:
+    path:     /themes/[^/]+/assets/css
+    defaults: { _controller: DwlEximCoreBundle:Block:index }
 
 dwl_exim_core_homepage:
     path:     /hello/{name}
