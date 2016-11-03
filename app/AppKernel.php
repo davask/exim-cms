@@ -104,12 +104,17 @@ class AppKernel extends Kernel
             // EXIM DEPENDENCIES
             new Liip\ImagineBundle\LiipImagineBundle(),
             new Knp\Bundle\GaufretteBundle\KnpGaufretteBundle(),
+
+            // EXIM THEME DEPENDENCIES
             new Application\Sonata\AdminBundle\ApplicationSonataAdminBundle(),
             new Application\Sonata\PageBundle\ApplicationSonataPageBundle(),
+            new Application\Sonata\BlockBundle\ApplicationSonataBlockBundle(),
             new Application\Sonata\SeoBundle\ApplicationSonataSeoBundle(),
             new Application\Sonata\BasketBundle\ApplicationSonataBasketBundle(),
+
             // EXIM CORE
             new Dwl\Exim\CoreBundle\DwlEximCoreBundle(),
+
             // APP
             new AppBundle\AppBundle(),
 

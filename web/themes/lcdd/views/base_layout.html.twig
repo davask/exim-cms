@@ -21,15 +21,15 @@ file that was distributed with this source code.
     {{ sonata_seo_metadatas() }}
     {#<base href="{{ url('page_slug', { 'path': '/' }) }}">#}
 
-    {% include '@lcdd/head/favicon.html.twig' %}
-    {% include '@lcdd/head/stylesheets.html.twig' %}
+    {% include '@theme/head/favicon.html.twig' %}
+    {% include '@theme/head/stylesheets.html.twig' %}
 
 </head>
 {% endblock %}
 
 {%- block sonata_page_body_tag -%}
 <body class="{{ theme.name }}">
-    {% include "@lcdd/Block/_facebook_sdk.html.twig" %}
+    {% include "@theme/Block/_facebook_sdk.html.twig" %}
     {#% include "SonataSeoBundle:Block:_google_plus_sdk.html.twig" %#}
 {%- endblock -%}
 
@@ -44,14 +44,14 @@ file that was distributed with this source code.
     {% block page_top_bar %} {# Deprecated block #}
         {% if sonata_page.isEditor or ( app.user and is_granted('ROLE_PREVIOUS_ADMIN') ) %}
 
-            {%- include '@lcdd/header/inline_edition.html.twig' %}
+            {%- include '@theme/header/inline_edition.html.twig' %}
 
-    <header class="navbar" role="banner" {% include '@lcdd/header/inline_edition.html.twig' with { 'part' : 'attribut' } %}>
+    <header class="navbar" role="banner" {% include '@theme/header/inline_edition.html.twig' with { 'part' : 'attribut' } %}>
         <div class="container">
             <ul class="nav navbar-nav">
-                {% include '@lcdd/header/admin.html.twig' %}
-                {% include '@lcdd/header/edition.html.twig' %}
-                {% include '@lcdd/header/switch.html.twig' %}
+                {% include '@theme/header/admin.html.twig' %}
+                {% include '@theme/header/edition.html.twig' %}
+                {% include '@theme/header/switch.html.twig' %}
             </ul>
         </div>
     </header>
@@ -73,8 +73,8 @@ file that was distributed with this source code.
 
 {% block sonata_page_asset_footer %}
     {% block page_asset_footer %} {# Deprecated block #}
-        {% include '@lcdd/footer/javascripts.html.twig' %}
-        {% include '@lcdd/head/javascripts.html.twig' %}
+        {% include '@theme/footer/javascripts.html.twig' %}
+        {% include '@theme/head/javascripts.html.twig' %}
     {% endblock %}
 {% endblock %}
 

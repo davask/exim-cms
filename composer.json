@@ -5,7 +5,12 @@
     "license": "MIT",
 
     "autoload": {
-        "psr-0": { "": "src/" }
+        "psr-0": {
+            "": "src/"
+        },
+        "psr-4": {
+            "": "web/themes/lcdd/src/"
+        }
     },
 
     "minimum-stability": "stable",
@@ -84,7 +89,8 @@
         "matthiasnoback/symfony-dependency-injection-test": "~0.7",
         "phpunit/phpunit": "~4.2",
         "sensio/generator-bundle": "~2.4",
-        "symfony/phpunit-bridge": "2.7.*@dev"
+        "symfony/phpunit-bridge": "2.7.*@dev",
+        "symfony/var-dumper": "^3.1"
     },
 
     "scripts": {

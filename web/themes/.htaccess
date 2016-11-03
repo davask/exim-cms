@@ -1,0 +1,6 @@
+<IfModule mod_rewrite.c>
+    ### START DwlEximCore Conf ###
+    # 301 Redirect Entire Directory
+    RedirectMatch 301 /themes/bundles(.*) /bundles/$1
+    ### DwlEximCore Conf END ###
+</IfModule>

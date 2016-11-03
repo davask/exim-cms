@@ -36,6 +36,7 @@ class DwlEximCoreExtension extends Extension implements PrependExtensionInterfac
         $params['exim.theme.path.public'] = 'bundles/dwleximcore' . $params['exim.theme.path.web'];
         $params['exim.theme.path.internal'] = $params['exim.theme.path.root'];
         $params['exim.theme.path.private'] = 'DwlEximCoreBundle:themes/%exim.theme.name%';
+        $params['exim.theme.path.upload'] = $params['exim.theme.path.root'] . '/uploads/media';
 
         foreach ($params as $key => $value) {
             if ($container->hasParameter($key)) {

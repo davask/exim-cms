@@ -1102,7 +1102,7 @@ CONTENT
             'page' => $global,
             'code' => 'footer',
         ), function ($container) {
-            $container->setSetting('layout', '<div class="row page-footer well">{{ CONTENT }}</div>');
+            $container->setSetting('layout', '<div class="row page-footer">{{ CONTENT }}</div>');
         }));
 
         $footer->setName('The footer container');

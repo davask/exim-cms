@@ -122,41 +122,6 @@ sonata_page:
                      B: content_bottom
                      F: footer
 
-        3columns:
-            path: 'AppBundle::3_columns_layout.html.twig'
-            name: '3 columns layout'
-            containers:
-                 header:
-                     name: Header
-                 content_top:
-                     name: Top content
-                 left_col:
-                     name: Left content
-                 right_col:
-                     name: Right content
-                 center_col:
-                     name: Center content
-                 content_bottom:
-                     name: Bottom content
-                 footer:
-                     name: Footer
-            matrix:
-                 layout: |
-                     HHHHHHHH
-                     TTTTTTTT
-                     LLCCCCRR
-                     BBBBBBBB
-                     FFFFFFFF
-
-                 mapping:
-                     H: header
-                     T: content_top
-                     L: left_col
-                     R: right_col
-                     C: center_col
-                     B: content_bottom
-                     F: footer
-
     page_defaults:
         homepage:
             decorate: false
