@@ -31,7 +31,7 @@ file that was distributed with this source code.
 {% endblock %}
     {#<base href="{{ url('page_slug', { 'path': '/' }) }}">#}
 
-    {% include '@theme/head/favicon.html.twig' %}
+    {% include '@theme/Template/Head/favicon.html.twig' %}
 
 {% block stylesheets %}
     <link rel="stylesheet" href="{{ theme.path.web }}/assetic/admin.css?v={{theme.assets.version.css}}" media="all">

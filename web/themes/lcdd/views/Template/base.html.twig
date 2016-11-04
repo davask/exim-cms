@@ -1,0 +1,98 @@
+{% extends '@theme/Template/global.html.twig' %}
+
+{% block bodyClass %} base{% endblock %}
+
+{% block sonata_page_top_bar %}
+{% include "@theme/Block/_facebook_sdk.html.twig" %}
+{#% include "SonataSeoBundle:Block:_google_plus_sdk.html.twig" %#}
+{{ parent() }}
+{% endblock %}
+
+
+{% block sonata_page_container %}
+    <div class="page-header">
+        {{ sonata_page_render_container('header', 'global') }}
+    </div>
+    <div class="container">
+        <div class="content">
+
+    {% block sonata_page_breadcrumb %}
+            <div class="row">
+                {% if sonata_seo_context is not defined %}
+                    {% set sonata_seo_context = 'homepage' %}
+                {% endif %}
+                {{ sonata_block_render_event('breadcrumb', { 'context': sonata_seo_context, 'current_uri': app.request.requestUri }) }}
+            </div>
+    {% endblock %}
+
+    {% if page is defined %}
+            <div class="row">
+                {% if page.name != 'Home' %}
+                    {{ sonata_page_render_container('content_top', 'global') }}
+                {% endif %}
+                {{ sonata_page_render_container('content_top', page) }}
+            </div>
+    {% endif %}
+
+            <div class="row">
+    {% block page_content %}
+                <div class="col-sm-12">
+                    {{ page.name }}
+                </div>
+        {% if page is defined %}
+                <div class="col-sm-12">
+                    {% if page.name != 'Home'%}
+                        {{ sonata_page_render_container('content_search', 'global') }}
+                    {% endif %}
+                    {{ sonata_page_render_container('content_search', page) }}
+                </div>
+        {% endif %}
+
+
+        {#% if page is defined %}
+                <div class="col-md-4">
+                    {% if page.name != 'Home'%}
+                        {{ sonata_page_render_container('left_col', 'global') }}
+                    {% endif %}
+                    {{ sonata_page_render_container('left_col', page) }}
+                </div>
+                <div class="col-md-4">
+                    {% if page.name != 'Home'%}
+                        {{ sonata_page_render_container('center_col', 'global') }}
+                    {% endif %}
+                    {{ sonata_page_render_container('center_col', page) }}
+                </div>
+                <div class="col-md-4">
+                    {% if page.name != 'Home'%}
+                        {{ sonata_page_render_container('right_col', 'global') }}
+                    {% endif %}
+                    {{ sonata_page_render_container('right_col', page) }}
+                </div>
+                <div style="clear: both"></div>
+        {% endif %#}
+        {% if content is defined %}
+                {{ content|raw }}
+        {% else %}
+            {% set content = block('content') %}
+            {% if content|length > 0 %}
+                {{ content|raw }}
+            {% elseif page is defined %}
+                {{ sonata_page_render_container('content', page) }}
+            {% endif %}
+        {% endif %}
+    {% endblock %}
+            </div>
+
+    {% if page is defined %}
+            <div class="row">
+                {{ sonata_page_render_container('content_bottom', page) }}
+
+        {% if page.name != 'Home'%}
+                {{ sonata_page_render_container('content_bottom', 'global') }}
+        {% endif %}
+            </div>
+    {% endif %}
+        </div>
+
+    </div>
+{% endblock %}

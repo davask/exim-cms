@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html {{ sonata_seo_html_attributes() }}>
+    <head {{ sonata_seo_head_attributes() }}>
+        <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+        {{ sonata_seo_title() }}
+        {{ sonata_seo_metadatas() }}
+        {% include '@theme/Template/Head/favicon.html.twig' %}
+        {% include '@theme/Template/Head/stylesheets.html.twig' %}
+    </head>
+
+    <body class="{{ theme.name }}{% block bodyClass %} global{% endblock %}">
+
+        {% include "@theme/Template/Block/separator.html.twig" with { bname: 'sonata_page_top_bar' } %}{% block sonata_page_top_bar %}
+
+            {% if sonata_page.isEditor or ( app.user and is_granted('ROLE_PREVIOUS_ADMIN') ) %}
+
+        {%- include '@theme/Template/Header/inline_edition.html.twig' %}
+
+        <header class="navbar" role="banner" {% include '@theme/Template/Header/inline_edition.html.twig' with { 'part' : 'attribut' } %}>
+            <div class="container">
+                <ul class="nav navbar-nav">
+                    {% include '@theme/Template/Header/admin.html.twig' %}
+                    {% include '@theme/Template/Header/edition.html.twig' %}
+                    {% include '@theme/Template/Header/switch.html.twig' %}
+                </ul>
+            </div>
+        </header>
+
+            {% endif %}
+        {% endblock %}{% include "@theme/Template/Block/separator.html.twig" %}
+
+        {% include "@theme/Template/Block/separator.html.twig" with { bname: 'sonata_page_container' } %}{% block sonata_page_container %}
+        {% endblock %}{% include "@theme/Template/Block/separator.html.twig" %}
+
+        <footer class="row">
+            {% include "@theme/Template/Block/separator.html.twig" with { bname: 'footer' } %}{% block footer %}
+            {{ sonata_page_render_container('global_footer', 'global') }}
+            {% endblock %}{% include "@theme/Template/Block/separator.html.twig" %}
+
+            {% include "@theme/Template/Block/separator.html.twig" with { bname: 'sonata_page_asset_footer' } %}{% block sonata_page_asset_footer %}
+
+            {% include '@theme/Template/Footer/javascripts.html.twig' %}
+            {% include '@theme/Template/Head/javascripts.html.twig' %}
+
+            {% endblock %}{% include "@theme/Template/Block/separator.html.twig" %}
+        </footer>
+
+    </body>
+</html>

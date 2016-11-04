@@ -127,45 +127,119 @@ liip_imagine:
 #                 alias:      media_filesystem
 
 sonata_page:
+    # default_template: default
     templates:
-        3columns:
-            path: '@theme/3_columns_layout.html.twig'
-            name: '3 columns layout'
+        # global:
+        #     path: '@theme/Template/global.html.twig'
+        #     name: 'Global layout'
+        #     containers:
+        #          header:
+        #              name: Header
+        #          content:
+        #              name: Global Content
+        #          footer:
+        #              name: Footer
+        #     matrix:
+        #          layout: |
+        #              HHHHHHHH
+        #              CCCCCCCC
+        #              FFFFFFFF
+
+        #          mapping:
+        #              H: header
+        #              C: content
+        #              F: footer
+        index:
+            path: '@theme/Template/index.html.twig'
+            name: 'Index layout'
             containers:
-                 header:
-                     name: Header
-                 content_top:
-                     name: Top content
-                 left_col:
-                     name: Left content
-                 right_col:
-                     name: Right content
-                 center_col:
-                     name: Center content
-                 content_bottom:
-                     name: Bottom content
-                 footer:
-                     name: Footer
+                header:
+                    name: Header
+                header_top:
+                    name: Header Top
+                header_menu:
+                    name: Header Menu
+                content_search:
+                    name: Home Search
+                content_top:
+                    name: Content Top
+                content:
+                    name: Content
+                content_bottom:
+                    name: Content Bottom
+                bottom_newsletter:
+                    name: Bottom Newsletter
+                bottom_embed:
+                    name: Bottom Embed
+                footer:
+                    name: Footer
             matrix:
                  layout: |
                      HHHHHHHH
+                     KKKKKKKK
+                     MMMMSSSS
                      TTTTTTTT
-                     LLCCCCRR
+                     CCCCCCCC
                      BBBBBBBB
+                     NNNNEEEE
                      FFFFFFFF
 
                  mapping:
-                     H: header
-                     T: content_top
-                     L: left_col
-                     R: right_col
-                     C: center_col
-                     B: content_bottom
-                     F: footer
+                    H: header
+                    K: header_top
+                    M: header_menu
+                    S: content_search
+                    T: content_top
+                    C: content
+                    B: content_bottom
+                    N: bottom_newsletter
+                    E: bottom_embed
+                    F: footer
 
+        # default:
+        #     path: '@theme/Template/index.html.twig'
+        #     name: '1 column layout - default'
+        #     containers:
+        #          header:
+        #              name: Header
+        #          content_search:
+        #              name: Home Search
+        #          footer:
+        #              name: Footer
+        #     matrix:
+        #          layout: |
+        #              HHHHHHHH
+        #              SSSSSSSS
+        #              FFFFFFFF
+
+        #          mapping:
+        #              H: header
+        #              S: content_search
+        #              F: footer
+
+        # 2columns:
+        #     path: '@theme/Template/index.html.twig'
+        #     name: '2 columns layout'
+        #     containers:
+        #          header:
+        #              name: Header
+        #          content_search:
+        #              name: Home Search
+        #          footer:
+        #              name: Footer
+        #     matrix:
+        #          layout: |
+        #              HHHHHHHH
+        #              SSSSSSSS
+        #              FFFFFFFF
+
+        #          mapping:
+        #              H: header
+        #              S: content_search
+        #              F: footer
 sonata_media:
     filesystem:
         # define where the uploaded file will be stored
         local:
-            directory:  %exim.theme.path.upload%
+            directory:  '%exim.theme.path.upload%'
             create:     true

@@ -8,6 +8,7 @@
 parameters:
     # theme details
     exim.theme.name: lcdd
+    exim.theme.host: dev.lachainedudroit.fr
     exim.theme.assets.version.css: '1.0'
     exim.theme.assets.version.js: '1.0'
     exim.theme.assets.version.img: '1.0'
