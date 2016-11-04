@@ -127,6 +127,11 @@ liip_imagine:
 #                 alias:      media_filesystem
 
 sonata_page:
+    class:
+        site:     Application\Sonata\PageBundle\Entity\Site
+        snapshot: Application\Sonata\PageBundle\Entity\Snapshot
+        page:     Application\Sonata\PageBundle\Entity\Page
+        block:    Application\Sonata\PageBundle\Entity\Block
     # default_template: default
     templates:
         # global:
