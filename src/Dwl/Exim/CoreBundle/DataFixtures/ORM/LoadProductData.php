@@ -9,13 +9,13 @@
  * file that was distributed with this source code.
  */
 
-namespace Sonata\Bundle\DemoBundle\DataFixtures\ORM;
+namespace Dwl\Exim\CoreBundle\DataFixtures\ORM;
 
-use AppBundle\Entity\Media\GalleryHasMedia;
-use AppBundle\Entity\Commerce\Delivery;
-use AppBundle\Entity\Commerce\Package;
-use AppBundle\Entity\Commerce\ProductCategory;
-use AppBundle\Entity\Commerce\ProductCollection;
+use Dwl\Exim\CoreBundle\Entity\Media\GalleryHasMedia;
+use Dwl\Exim\CoreBundle\Entity\Commerce\Delivery;
+use Dwl\Exim\CoreBundle\Entity\Commerce\Package;
+use Dwl\Exim\CoreBundle\Entity\Commerce\ProductCategory;
+use Dwl\Exim\CoreBundle\Entity\Commerce\ProductCollection;
 use Sonata\Bundle\DemoBundle\Entity\Goodie;
 use Sonata\Bundle\DemoBundle\Entity\Travel;
 use Sonata\ClassificationBundle\Model\CategoryInterface;

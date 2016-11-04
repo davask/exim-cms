@@ -29,9 +29,15 @@ if(empty($theme)) {
     $theme = 'exim';
 }
 
+if(!empty($debug) && $debug = 'true') {
+    $nodebug = '';
+} else {
+    $nodebug = ' --no-debug';
+}
+
 $output->writeln('');
 $output->writeln(sprintf('<info>Theme      : %s</info>', $theme));
-for ($i=0; $i < 4; $i++) {
+for ($i=0; $i < 3; $i++) {
     if(empty($superadmin[$i])) {
         unset($superadmin);
         break;
@@ -41,13 +47,11 @@ if(empty($superadmin)) {
     $superadmin[] = 'superadmin';
     $superadmin[] = 'superadmin@localhost';
     $superadmin[] = 'superadmin';
-    $superadmin[] = 'ROLE_SUPER_ADMIN';
 }
 
 $output->writeln(sprintf('<info>Super admin: %s</info>', $superadmin[0]));
 $output->writeln(sprintf('<info>email      : %s</info>', $superadmin[1]));
 $output->writeln(sprintf('<info>password   : %s</info>', $superadmin[2]));
-$output->writeln(sprintf('<info>Role       : %s</info>', $superadmin[3]));
 
 // does the parent directory have a parameters.yml file
 if (is_file(__DIR__.'/../../parameters.demo.yml')) {
@@ -141,23 +145,25 @@ $commandsToExecute = array(
     array(function(OutputInterface $output) use ($fs) {
         return $fs->exists("app/config/parameters.yml");
     }, 'Check for app/config/parameters.yml file', false),
-    array($bin . ' ./app/console cache:create-cache-class --env=prod --no-debug','Creating the class cache', false),
+    array($bin . ' ./app/console cache:create-cache-class --env=prod' . $nodebug,'Creating the class cache', false),
     array($bin . ' ./app/console doctrine:database:drop --force','Dropping the database', true),
     array($bin . ' ./app/console doctrine:database:create','Creating the database', false),
     array($bin . ' ./app/console doctrine:schema:update --force','Creating the database\'s schema', false),
-    array($bin . '  -d max_execution_time=600 ./app/console doctrine:fixtures:load --verbose --env=dev --no-debug --no-interaction','Loading fixtures', false),
+    array($bin . '  -d max_execution_time=600 ./app/console doctrine:fixtures:load --verbose --env=dev' . $nodebug . ' --no-interaction','Loading fixtures', false),
     array($bin . ' ./app/console sonata:news:sync-comments-count','Sonata - News: updating comments count', false),
-    array($bin . ' ./app/console sonata:page:update-core-routes --site=all --no-debug','Sonata - Page: updating core route', false),
-    array($bin . ' ./app/console sonata:page:create-snapshots --site=all --no-debug','Sonata - Page: creating snapshots from pages', false),
+    array($bin . ' ./app/console sonata:page:update-core-routes --site=all' . $nodebug,'Sonata - Page: updating core route', false),
+    array($bin . ' ./app/console sonata:page:create-snapshots --site=all' . $nodebug,'Sonata - Page: creating snapshots from pages', false),
     array($bin . ' ./app/console assets:install --symlink web','Configure assets', false),
     array($bin . ' ./app/console sonata:admin:setup-acl','Security: setting up ACL', false),
-    array($bin . ' ./app/console sonata:admin:generate-object-acl --no-debug','Security: generating object ACL', false),
+    array($bin . ' ./app/console sonata:admin:generate-object-acl' . $nodebug,'Security: generating object ACL', false),
 );
 
 if(!empty($superadmin)) {
     $commandsToExecute[] = array($bin . ' ./app/console fos:user:create ' . $superadmin[0] . ' ' . $superadmin[1] . ' ' . $superadmin[2],'User: generating super admin', false);
-    $commandsToExecute[] = array($bin . ' ./app/console fos:user:promote ' . $superadmin[0] . ' ' . $superadmin[3],'User: promote super admin', false);
+    $commandsToExecute[] = array($bin . ' ./app/console fos:user:promote ' . $superadmin[0] . ' ROLE_SUPER_ADMIN','User: promote super admin', false);
 }
+$commandsToExecute[] = array($bin . ' ./app/console cache:clear','Clear cache env dev', false),
+$commandsToExecute[] = array($bin . ' ./app/console cache:clear --env=prod','Clear cache env prod', false),
 
 $success = execute_commands($commandsToExecute, $output);
 

@@ -9,16 +9,16 @@
  * file that was distributed with this source code.
  */
 
-namespace Sonata\Bundle\DemoBundle\DataFixtures\ORM;
+namespace Dwl\Exim\CoreBundle\DataFixtures\ORM;
 
-use AppBundle\Entity\Commerce\Address;
-use AppBundle\Entity\Commerce\Customer;
-use AppBundle\Entity\Commerce\Invoice;
-use AppBundle\Entity\Commerce\OrderElement;
-use AppBundle\Entity\Commerce\Transaction;
-use AppBundle\Entity\Commerce\Order;
-use AppBundle\Entity\Commerce\Delivery;
-use AppBundle\Entity\User\User;
+use Dwl\Exim\CoreBundle\Entity\Commerce\Address;
+use Dwl\Exim\CoreBundle\Entity\Commerce\Customer;
+use Dwl\Exim\CoreBundle\Entity\Commerce\Invoice;
+use Dwl\Exim\CoreBundle\Entity\Commerce\OrderElement;
+use Dwl\Exim\CoreBundle\Entity\Commerce\Transaction;
+use Dwl\Exim\CoreBundle\Entity\Commerce\Order;
+use Dwl\Exim\CoreBundle\Entity\Commerce\Delivery;
+use Dwl\Exim\CoreBundle\Entity\User\User;
 use Sonata\Component\Basket\Basket;
 use Sonata\Component\Basket\BasketInterface;
 use Sonata\Component\Invoice\InvoiceInterface;

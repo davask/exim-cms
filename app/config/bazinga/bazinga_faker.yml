@@ -1,8 +1,8 @@
 bazinga_faker:
     orm: doctrine
-    locale: en_GB
+    locale: fr_FR
     entities:
-        AppBundle\Entity\Commerce\Order:
+        Dwl\Exim\CoreBundle\Entity\Commerce\Order:
             number: 50
             custom_formatters:
                 status:
@@ -76,9 +76,9 @@ bazinga_faker:
                     method: randomNumber
                 locale:
                     method: languageCode
-                    
-                    
-        AppBundle\Entity\Commerce\Invoice:
+
+
+        Dwl\Exim\CoreBundle\Entity\Commerce\Invoice:
             number: 50
             custom_formatters:
                 status:

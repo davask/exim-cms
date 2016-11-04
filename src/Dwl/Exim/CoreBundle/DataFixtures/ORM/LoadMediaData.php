@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Sonata\Bundle\DemoBundle\DataFixtures\ORM;
+namespace Dwl\Exim\CoreBundle\DataFixtures\ORM;
 
 use Sonata\MediaBundle\Model\GalleryInterface;
 use Sonata\MediaBundle\Model\MediaInterface;
@@ -113,7 +113,7 @@ class LoadMediaData extends AbstractFixture implements ContainerAwareInterface, 
      */
     public function addMedia(GalleryInterface $gallery, MediaInterface $media)
     {
-        $galleryHasMedia = new \AppBundle\Entity\Media\GalleryHasMedia();
+        $galleryHasMedia = new \Dwl\Exim\CoreBundle\Entity\Media\GalleryHasMedia();
         $galleryHasMedia->setMedia($media);
         $galleryHasMedia->setPosition(count($gallery->getGalleryHasMedias()) + 1);
         $galleryHasMedia->setEnabled(true);

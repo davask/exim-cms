@@ -1,14 +1,14 @@
 sonata_product:
     class:
-        product:            AppBundle\Entity\Commerce\Product
-        package:            AppBundle\Entity\Commerce\Package
-        product_category:   AppBundle\Entity\Commerce\ProductCategory
-        product_collection: AppBundle\Entity\Commerce\ProductCollection
-        delivery:           AppBundle\Entity\Commerce\Delivery
-        category:           AppBundle\Entity\Classification\Category
-        collection:         AppBundle\Entity\Classification\Collection
-        media:              AppBundle\Entity\Media\Media
-        gallery:            AppBundle\Entity\Media\Gallery
+        product:            Dwl\Exim\CoreBundle\Entity\Commerce\Product
+        package:            Dwl\Exim\CoreBundle\Entity\Commerce\Package
+        product_category:   Dwl\Exim\CoreBundle\Entity\Commerce\ProductCategory
+        product_collection: Dwl\Exim\CoreBundle\Entity\Commerce\ProductCollection
+        delivery:           Dwl\Exim\CoreBundle\Entity\Commerce\Delivery
+        category:           Dwl\Exim\CoreBundle\Entity\Classification\Category
+        collection:         Dwl\Exim\CoreBundle\Entity\Classification\Collection
+        media:              Dwl\Exim\CoreBundle\Entity\Media\Media
+        gallery:            Dwl\Exim\CoreBundle\Entity\Media\Gallery
 
     products:
         # Goodies
@@ -25,10 +25,10 @@ sonata_product:
 
     seo:
         product:
-            site:         '@sonataproject'
-            creator:      '@th0masr'
-            domain:       'http://demo.sonata-project.org'
-            media_prefix: 'http://demo.sonata-project.org'
+            site:         '@eximproject'
+            creator:      '@davask'
+            domain:       'http://sonata.davaskweblimited.com'
+            media_prefix: 'http://sonata.davaskweblimited.com'
             media_format: 'reference'
 
 

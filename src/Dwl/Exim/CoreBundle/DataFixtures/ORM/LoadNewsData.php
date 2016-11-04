@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Sonata\Bundle\DemoBundle\DataFixtures\ORM;
+namespace Dwl\Exim\CoreBundle\DataFixtures\ORM;
 
 use Doctrine\Common\DataFixtures\OrderedFixtureInterface;
 use Doctrine\Common\DataFixtures\AbstractFixture;
