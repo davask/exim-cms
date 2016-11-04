@@ -201,26 +201,34 @@ sonata_page:
                     E: bottom_embed
                     F: footer
 
-        # default:
-        #     path: '@theme/Template/index.html.twig'
-        #     name: '1 column layout - default'
-        #     containers:
-        #          header:
-        #              name: Header
-        #          content_search:
-        #              name: Home Search
-        #          footer:
-        #              name: Footer
-        #     matrix:
-        #          layout: |
-        #              HHHHHHHH
-        #              SSSSSSSS
-        #              FFFFFFFF
+        default:
+            path: '@theme/Template/index.html.twig'
+            name: 'Index layout - default'
+            containers:
+                 header:
+                     name: Header
+                 content_top:
+                     name: Top content
+                 content:
+                     name: Main content
+                 content_bottom:
+                     name: Bottom content
+                 footer:
+                     name: Footer
+            matrix:
+                 layout: |
+                     HHHHHHHH
+                     TTTTTTTT
+                     CCCCCCCC
+                     BBBBBBBB
+                     FFFFFFFF
 
-        #          mapping:
-        #              H: header
-        #              S: content_search
-        #              F: footer
+                 mapping:
+                     H: header
+                     T: content_top
+                     C: content
+                     B: content_bottom
+                     F: footer
 
         # 2columns:
         #     path: '@theme/Template/index.html.twig'
