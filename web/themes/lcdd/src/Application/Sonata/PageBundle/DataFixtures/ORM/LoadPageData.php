@@ -271,7 +271,7 @@ CONTENT
         $homepage->setEnabled(true);
         $homepage->setDecorate(0);
         $homepage->setRequestMethod('GET|POST|HEAD|DELETE|PUT');
-        $homepage->setTemplateCode('2columns');
+        $homepage->setTemplateCode('index');
         $homepage->setRouteName(PageInterface::PAGE_ROUTE_CMS_NAME);
         $homepage->setSite($site);
 

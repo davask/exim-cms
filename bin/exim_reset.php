@@ -49,9 +49,27 @@ if(empty($superadmin)) {
     $superadmin[] = 'superadmin';
 }
 
+$output->writeln("");
 $output->writeln(sprintf('<info>Super admin: %s</info>', $superadmin[0]));
 $output->writeln(sprintf('<info>email      : %s</info>', $superadmin[1]));
 $output->writeln(sprintf('<info>password   : %s</info>', $superadmin[2]));
+
+for ($i=0; $i < 3; $i++) {
+    if(empty($admin[$i])) {
+        unset($admin);
+        break;
+    }
+}
+
+$output->writeln("");
+if(empty($admin)) {
+    $output->writeln('<info>Admin      : No</info>');
+} else {
+    $output->writeln(sprintf('<info>Admin      : %s</info>', $admin[0]));
+    $output->writeln(sprintf('<info>email      : %s</info>', $admin[1]));
+    $output->writeln(sprintf('<info>password   : %s</info>', $admin[2]));
+}
+
 
 // does the parent directory have a parameters.yml file
 if (is_file(__DIR__.'/../../parameters.demo.yml')) {
@@ -162,8 +180,12 @@ if(!empty($superadmin)) {
     $commandsToExecute[] = array($bin . ' ./app/console fos:user:create ' . $superadmin[0] . ' ' . $superadmin[1] . ' ' . $superadmin[2],'User: generating super admin', false);
     $commandsToExecute[] = array($bin . ' ./app/console fos:user:promote ' . $superadmin[0] . ' ROLE_SUPER_ADMIN','User: promote super admin', false);
 }
-$commandsToExecute[] = array($bin . ' ./app/console cache:clear','Clear cache env dev', false),
-$commandsToExecute[] = array($bin . ' ./app/console cache:clear --env=prod','Clear cache env prod', false),
+if(!empty($admin)) {
+    $commandsToExecute[] = array($bin . ' ./app/console fos:user:create ' . $admin[0] . ' ' . $admin[1] . ' ' . $admin[2],'User: generating super admin', false);
+    $commandsToExecute[] = array($bin . ' ./app/console fos:user:promote ' . $admin[0] . ' ROLE_ADMIN','User: promote super admin', false);
+}
+// $commandsToExecute[] = array($bin . ' ./app/console cache:clear','Clear cache env dev', false),
+// $commandsToExecute[] = array($bin . ' ./app/console cache:clear --env=prod','Clear cache env prod', false),
 
 $success = execute_commands($commandsToExecute, $output);
 

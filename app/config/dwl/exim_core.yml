@@ -134,29 +134,9 @@ sonata_page:
         block:    Application\Sonata\PageBundle\Entity\Block
     # default_template: default
     templates:
-        # global:
-        #     path: '@theme/Template/global.html.twig'
-        #     name: 'Global layout'
-        #     containers:
-        #          header:
-        #              name: Header
-        #          content:
-        #              name: Global Content
-        #          footer:
-        #              name: Footer
-        #     matrix:
-        #          layout: |
-        #              HHHHHHHH
-        #              CCCCCCCC
-        #              FFFFFFFF
-
-        #          mapping:
-        #              H: header
-        #              C: content
-        #              F: footer
-        index:
-            path: '@theme/Template/index.html.twig'
-            name: 'Index layout'
+        global:
+            path: '@theme/Template/global.html.twig'
+            name: 'Global layout'
             containers:
                 header:
                     name: Header
@@ -202,8 +182,8 @@ sonata_page:
                     F: footer
 
         default:
-            path: '@theme/Template/index.html.twig'
-            name: 'Index layout - default'
+            path: '@theme/Template/default.html.twig'
+            name: 'Default layout - default'
             containers:
                  header:
                      name: Header
@@ -228,6 +208,27 @@ sonata_page:
                      T: content_top
                      C: content
                      B: content_bottom
+                     F: footer
+
+        index:
+            path: '@theme/Template/index.html.twig'
+            name: 'Index layout - default'
+            containers:
+                 header:
+                     name: Header
+                 content_search:
+                     name: Home Search
+                 footer:
+                     name: Footer
+            matrix:
+                 layout: |
+                     HHHHHHHH
+                     SSSSSSSS
+                     FFFFFFFF
+
+                 mapping:
+                     H: header
+                     S: content_search
                      F: footer
 
         # 2columns:
