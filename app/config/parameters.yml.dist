@@ -16,27 +16,27 @@ parameters:
     secret:             ThisTokenIsNotSoSecretChangeIt
 
     # Sonata Admin Options
-    sonata_admin.title:             Sonata Project
-    sonata_admin.logo_title:        /bundles/sonataadmin/logo_title.png
+    sonata_admin.title:      'eXim Project'
+    sonata_admin.logo_title: '%exim.theme.path.web%/media/images/logo-admin.png'
 
     # Sonata Seo Options
-    sonata_seo.title: 'La chaine du droit'
-    sonata_seo.baseline: 'La chaine du droit : le droit de savoir'
+    sonata_seo.title: 'eXim Project'
+    sonata_seo.baseline: 'eXim Project - a Sonata Project Fork'
 
     # Sonata News Options
-    sonata_news.blog_title:         My Awesome Blog
+    sonata_news.blog_title:         eXim Blog
     sonata_news.blog_link:          http://awesome-blog.ltd
-    sonata_news.blog_description:   My Awesome blog description
+    sonata_news.blog_description:   My eXim blog description
     sonata_news.salt:               ThisTokenIsNotSoSecretChangeIt
     sonata_news.comment.enabled:     false
     sonata_news.comment.emails:     [mail@example.org]
     sonata_news.comment.email_from: no-reply@example.org
 
     # Sonata Media options
-    sonata_media.cdn.host:          http://demo.sonata-project.org/uploads/media
+    sonata_media.cdn.host:          http://sonata.davaskweblimited.com/uploads/media
 
     # Sonata User Options
-    sonata_user.google_authenticator.server:  demo.sonata-project.org
+    sonata_user.google_authenticator.server:  sonata.davaskweblimited.com
 
     # Sonata Page Options
     sonata_page.varnish.command: if [ ! -r "/etc/varnish/secret" ]; then echo "VALID ERROR :/"; else varnishadm -S /etc/varnish/secret -T 127.0.0.1:6082 {{ COMMAND }} "{{ EXPRESSION }}"; fi; # you need to adapt this line to work with your configuration
