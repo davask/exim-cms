@@ -252,7 +252,7 @@ sonata_page:
         #              S: content_search
         #              F: footer
 sonata_media:
-    default_context: lcdd
+    # default_context: lcdd
     contexts:
         lcdd:  # the default context is mandatory
             download:
@@ -282,6 +282,9 @@ doctrine:
                 mappings:
                     ApplicationSonataBasketBundle: ~
                     ApplicationSonataBlockBundle: ~
+                    ApplicationSonataClassificationBundle: ~
                     ApplicationSonataMediaBundle: ~
+                    ApplicationSonataNewsBundle: ~
                     ApplicationSonataPageBundle: ~
+                    ApplicationSonataProductBundle: ~
                     ApplicationSonataSeoBundle: ~

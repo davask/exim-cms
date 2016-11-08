@@ -109,8 +109,11 @@ class AppKernel extends Kernel
             new Application\Sonata\AdminBundle\ApplicationSonataAdminBundle(),
             new Application\Sonata\BasketBundle\ApplicationSonataBasketBundle(),
             new Application\Sonata\BlockBundle\ApplicationSonataBlockBundle(),
+            new Application\Sonata\ClassificationBundle\ApplicationSonataClassificationBundle(),
             new Application\Sonata\MediaBundle\ApplicationSonataMediaBundle(),
+            new Application\Sonata\NewsBundle\ApplicationSonataNewsBundle(),
             new Application\Sonata\PageBundle\ApplicationSonataPageBundle(),
+            new Application\Sonata\ProductBundle\ApplicationSonataProductBundle(),
             new Application\Sonata\SeoBundle\ApplicationSonataSeoBundle(),
 
             // EXIM CORE

@@ -38,8 +38,8 @@ class Engine
     protected $power;
 
     /**
-     * @var \Dwl\Exim\CoreBundle\Entity\Media\Media
-     * @ORM\ManyToOne(targetEntity="Dwl\Exim\CoreBundle\Entity\Media\Media", cascade={"persist"}, fetch="LAZY")
+     * @var \Application\Sonata\MediaBundle\Entity\Media
+     * @ORM\ManyToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Media", cascade={"persist"}, fetch="LAZY")
      */
     protected $media;
 

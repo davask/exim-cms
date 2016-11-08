@@ -36,7 +36,7 @@ fos_elastica:
                         updated_at:             { type: date }
 
                     persistence:
-                        model:                  Dwl\Exim\CoreBundle\Entity\News\Post
+                        model:                  Application\Sonata\NewsBundle\Entity\Post
                         provider:               ~
 
                 # comment:
@@ -123,7 +123,7 @@ fos_elastica:
                         updated_at:             { type: date }
 
                     persistence:
-                        model:    Dwl\Exim\CoreBundle\Entity\Media\Media
+                        model:    Application\Sonata\MediaBundle\Entity\Media
                         provider: ~
 
                 gallery:
@@ -136,7 +136,7 @@ fos_elastica:
                         created_at:             { type: date }
                         updated_at:             { type: date }
                     persistence:
-                        model:    Dwl\Exim\CoreBundle\Entity\Media\Gallery
+                        model:    Application\Sonata\MediaBundle\Entity\Gallery
                         provider: ~
 
                 # Page Bundle
@@ -255,7 +255,7 @@ fos_elastica:
                         updated_at:             { type: date }
 
                     persistence:
-                        model:    Dwl\Exim\CoreBundle\Entity\Classification\Collection
+                        model:    Application\Sonata\ClassificationBundle\Entity\Collection
                         provider: ~
 
                 tag:
@@ -268,7 +268,7 @@ fos_elastica:
                         updated_at:             { type: date }
 
                     persistence:
-                        model:    Dwl\Exim\CoreBundle\Entity\Classification\Tag
+                        model:    Application\Sonata\ClassificationBundle\Entity\Tag
                         provider: ~
 
                 category:
@@ -281,7 +281,7 @@ fos_elastica:
                         updated_at:             { type: date }
 
                     persistence:
-                        model:    Dwl\Exim\CoreBundle\Entity\Classification\Category
+                        model:    Application\Sonata\ClassificationBundle\Entity\Category
                         provider: ~
 
                 # Ecommerce Bundle
@@ -290,7 +290,7 @@ fos_elastica:
                     mappings:
                         name:     { boost: 5 }
                     persistence:
-                        model:    Dwl\Exim\CoreBundle\Entity\Product\Product
+                        model:    Application\Sonata\ProductBundle\Entity\Product
                         provider: ~
 
                 order:

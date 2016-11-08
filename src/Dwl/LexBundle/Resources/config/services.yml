@@ -1,0 +1,4 @@
+services:
+#    dwl_lex.example:
+#        class: Dwl\LexBundle\Example
+#        arguments: ["@service_id", "plain_value", %parameter%]

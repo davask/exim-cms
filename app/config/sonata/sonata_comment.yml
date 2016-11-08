@@ -6,4 +6,4 @@ sonata_comment:
     class:
         comment:  Dwl\Exim\CoreBundle\Entity\Comment\Comment # This is an optional value
         thread:   Dwl\Exim\CoreBundle\Entity\Comment\Thread   # This is an optional value
-        category: Dwl\Exim\CoreBundle\Entity\Classification\Category   # This is an optional value
+        category: Application\Sonata\ClassificationBundle\Entity\Category   # This is an optional value

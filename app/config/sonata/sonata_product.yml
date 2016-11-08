@@ -1,14 +1,14 @@
 sonata_product:
     class:
-        product:            Dwl\Exim\CoreBundle\Entity\Commerce\Product
-        package:            Dwl\Exim\CoreBundle\Entity\Commerce\Package
-        product_category:   Dwl\Exim\CoreBundle\Entity\Commerce\ProductCategory
-        product_collection: Dwl\Exim\CoreBundle\Entity\Commerce\ProductCollection
-        delivery:           Dwl\Exim\CoreBundle\Entity\Commerce\Delivery
-        category:           Dwl\Exim\CoreBundle\Entity\Classification\Category
-        collection:         Dwl\Exim\CoreBundle\Entity\Classification\Collection
-        media:              Dwl\Exim\CoreBundle\Entity\Media\Media
-        gallery:            Dwl\Exim\CoreBundle\Entity\Media\Gallery
+        product:            Application\Sonata\ProductBundle\Entity\Product
+        package:            Application\Sonata\ProductBundle\Entity\Package
+        product_category:   Application\Sonata\ProductBundle\Entity\ProductCategory
+        product_collection: Application\Sonata\ProductBundle\Entity\ProductCollection
+        delivery:           Application\Sonata\ProductBundle\Entity\Delivery
+        category:           Application\Sonata\ClassificationBundle\Entity\Category
+        collection:         Application\Sonata\ClassificationBundle\Entity\Collection
+        media:              Application\Sonata\MediaBundle\Entity\Media
+        gallery:            Application\Sonata\MediaBundle\Entity\Gallery
 
     products:
         # Goodies

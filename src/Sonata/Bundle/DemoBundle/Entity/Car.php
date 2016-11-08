@@ -74,8 +74,8 @@ abstract class Car
     protected $inspections;
 
     /**
-     * @var \Dwl\Exim\CoreBundle\Entity\Media\Media
-     * @ORM\ManyToOne(targetEntity="Dwl\Exim\CoreBundle\Entity\Media\Media", cascade={"persist"}, fetch="LAZY")
+     * @var \Application\Sonata\MediaBundle\Entity\Media
+     * @ORM\ManyToOne(targetEntity="Application\Sonata\MediaBundle\Entity\Media", cascade={"persist"}, fetch="LAZY")
      */
     protected $media;
 
@@ -211,7 +211,7 @@ abstract class Car
     }
 
     /**
-     * @return \Dwl\Exim\CoreBundle\Entity\Media\Media
+     * @return \Application\Sonata\MediaBundle\Entity\Media
      */
     public function getMedia()
     {
@@ -219,7 +219,7 @@ abstract class Car
     }
 
     /**
-     * @param \Dwl\Exim\CoreBundle\Entity\Media\Media $media
+     * @param \Application\Sonata\MediaBundle\Entity\Media $media
      */
     public function setMedia(MediaInterface $media = null)
     {

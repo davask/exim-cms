@@ -1,10 +1,10 @@
 sonata_classification:
     class:
-        tag:            Dwl\Exim\CoreBundle\Entity\Classification\Tag
-        category:       Dwl\Exim\CoreBundle\Entity\Classification\Category
-        context:        Dwl\Exim\CoreBundle\Entity\Classification\Context
-        collection:     Dwl\Exim\CoreBundle\Entity\Classification\Collection
-        media:          Dwl\Exim\CoreBundle\Entity\Media\Media
+        tag:            Application\Sonata\ClassificationBundle\Entity\Tag
+        category:       Application\Sonata\ClassificationBundle\Entity\Category
+        context:        Application\Sonata\ClassificationBundle\Entity\Context
+        collection:     Application\Sonata\ClassificationBundle\Entity\Collection
+        media:          Application\Sonata\MediaBundle\Entity\Media
 
 doctrine:
     orm:

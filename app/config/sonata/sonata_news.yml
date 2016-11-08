@@ -4,12 +4,12 @@
 sonata_news:
     class:
         # comment to disable
-        post:       Dwl\Exim\CoreBundle\Entity\News\Post
-        comment:    Dwl\Exim\CoreBundle\Entity\News\Comment
-        tag:        Dwl\Exim\CoreBundle\Entity\Classification\Tag
-        collection: Dwl\Exim\CoreBundle\Entity\Classification\Collection
+        post:       Application\Sonata\NewsBundle\Entity\Post
+        comment:    Application\Sonata\NewsBundle\Entity\Comment
+        tag:        Application\Sonata\ClassificationBundle\Entity\Tag
+        collection: Application\Sonata\ClassificationBundle\Entity\Collection
         user:       Dwl\Exim\CoreBundle\Entity\User\User
-        media:      Dwl\Exim\CoreBundle\Entity\Media\Media
+        media:      Application\Sonata\MediaBundle\Entity\Media
 
     title:        %sonata_news.blog_title%
     link:         %sonata_news.blog_link%
