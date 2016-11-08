@@ -107,10 +107,11 @@ class AppKernel extends Kernel
 
             // EXIM THEME DEPENDENCIES
             new Application\Sonata\AdminBundle\ApplicationSonataAdminBundle(),
-            new Application\Sonata\PageBundle\ApplicationSonataPageBundle(),
-            new Application\Sonata\BlockBundle\ApplicationSonataBlockBundle(),
-            new Application\Sonata\SeoBundle\ApplicationSonataSeoBundle(),
             new Application\Sonata\BasketBundle\ApplicationSonataBasketBundle(),
+            new Application\Sonata\BlockBundle\ApplicationSonataBlockBundle(),
+            new Application\Sonata\MediaBundle\ApplicationSonataMediaBundle(),
+            new Application\Sonata\PageBundle\ApplicationSonataPageBundle(),
+            new Application\Sonata\SeoBundle\ApplicationSonataSeoBundle(),
 
             // EXIM CORE
             new Dwl\Exim\CoreBundle\DwlEximCoreBundle(),

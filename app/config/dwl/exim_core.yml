@@ -252,8 +252,36 @@ sonata_page:
         #              S: content_search
         #              F: footer
 sonata_media:
+    default_context: lcdd
+    contexts:
+        lcdd:  # the default context is mandatory
+            download:
+                mode: http # X-Sendfile | http
+            providers:
+                - sonata.media.provider.dailymotion
+                - sonata.media.provider.youtube
+                - sonata.media.provider.image
+                - sonata.media.provider.file
+                - sonata.media.provider.vimeo
+
+            formats:
+                logo: { width: 134, quality: 100}
+                icon: { width: 90, quality: 100}
+                small: { width: 100, quality: 100}
+                big:   { width: 970 , quality: 100}
+
     filesystem:
         # define where the uploaded file will be stored
         local:
             directory:  '%exim.theme.path.upload%'
             create:     true
+doctrine:
+    orm:
+        entity_managers:
+            default:
+                mappings:
+                    ApplicationSonataBasketBundle: ~
+                    ApplicationSonataBlockBundle: ~
+                    ApplicationSonataMediaBundle: ~
+                    ApplicationSonataPageBundle: ~
+                    ApplicationSonataSeoBundle: ~
