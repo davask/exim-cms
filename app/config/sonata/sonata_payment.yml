@@ -1,7 +1,7 @@
 sonata_payment:
     class:
-        transaction: Dwl\Exim\CoreBundle\Entity\Commerce\Transaction
-        order:       Dwl\Exim\CoreBundle\Entity\Commerce\Order
+        transaction: Application\Sonata\PaymentBundle\Entity\Transaction
+        order:       Application\Sonata\OrderBundle\Entity\Order
 
     methods:
         pass: ~

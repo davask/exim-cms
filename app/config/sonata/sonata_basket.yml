@@ -2,7 +2,7 @@ sonata_basket:
     class:
         basket:         Application\Sonata\BasketBundle\Entity\Basket
         basket_element: Application\Sonata\BasketBundle\Entity\BasketElement
-        customer:       Dwl\Exim\CoreBundle\Entity\Commerce\Customer
+        customer:       Application\Sonata\CustomerBundle\Entity\Customer
 
     builder:            sonata.basket.builder.standard
     factory:            sonata.basket.entity.factory

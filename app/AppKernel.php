@@ -110,9 +110,13 @@ class AppKernel extends Kernel
             new Application\Sonata\BasketBundle\ApplicationSonataBasketBundle(),
             new Application\Sonata\BlockBundle\ApplicationSonataBlockBundle(),
             new Application\Sonata\ClassificationBundle\ApplicationSonataClassificationBundle(),
+            new Application\Sonata\CustomerBundle\ApplicationSonataCustomerBundle(),
+            new Application\Sonata\InvoiceBundle\ApplicationSonataInvoiceBundle(),
             new Application\Sonata\MediaBundle\ApplicationSonataMediaBundle(),
             new Application\Sonata\NewsBundle\ApplicationSonataNewsBundle(),
+            new Application\Sonata\OrderBundle\ApplicationSonataOrderBundle(),
             new Application\Sonata\PageBundle\ApplicationSonataPageBundle(),
+            new Application\Sonata\PaymentBundle\ApplicationSonataPaymentBundle(),
             new Application\Sonata\ProductBundle\ApplicationSonataProductBundle(),
             new Application\Sonata\SeoBundle\ApplicationSonataSeoBundle(),
 

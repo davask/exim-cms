@@ -39,4 +39,14 @@ abstract class Product extends BaseProduct
     {
         return $this->id;
     }
+
+    /**
+     * Set id
+     *
+     * @return int $id
+     */
+    public function setId()
+    {
+        return $this->id;
+    }
 }

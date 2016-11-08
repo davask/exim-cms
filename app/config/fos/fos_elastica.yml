@@ -298,7 +298,7 @@ fos_elastica:
                     mappings:
                         name:     { boost: 5 }
                     persistence:
-                        model:    Dwl\Exim\CoreBundle\Entity\Order
+                        model:    Application\Sonata\OrderBundle\Entity\Order
                         provider: ~
 
                 invoice:
@@ -306,7 +306,7 @@ fos_elastica:
                     mappings:
                         name:     { boost: 5 }
                     persistence:
-                        model:    Dwl\Exim\CoreBundle\Entity\Commerce\Invoice
+                        model:    Application\Sonata\InvoiceBundle\Entity\Invoice
                         provider: ~
 
                 transaction:
@@ -314,5 +314,5 @@ fos_elastica:
                     mappings:
                         name:     { boost: 5 }
                     persistence:
-                        model:    Dwl\Exim\CoreBundle\Entity\Commerce\Transaction
+                        model:    Application\Sonata\PaymentBundle\Entity\Transaction
                         provider: ~

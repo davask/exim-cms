@@ -113,7 +113,7 @@ class LoadMediaData extends AbstractFixture implements ContainerAwareInterface, 
      */
     public function addMedia(GalleryInterface $gallery, MediaInterface $media)
     {
-        $galleryHasMedia = new \Dwl\Exim\CoreBundle\Entity\Media\GalleryHasMedia();
+        $galleryHasMedia = new \Application\Sonata\MediaBundle\Entity\GalleryHasMedia();
         $galleryHasMedia->setMedia($media);
         $galleryHasMedia->setPosition(count($gallery->getGalleryHasMedias()) + 1);
         $galleryHasMedia->setEnabled(true);

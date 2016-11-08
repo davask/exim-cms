@@ -12,10 +12,10 @@ cmf_routing:
 
 sonata_page:
     class:
-        site:     Dwl\Exim\CoreBundle\Entity\Page\Site
-        snapshot: Dwl\Exim\CoreBundle\Entity\Page\Snapshot
-        page:     Dwl\Exim\CoreBundle\Entity\Page\Page
-        block:    Dwl\Exim\CoreBundle\Entity\Page\Block
+        site:     Application\Sonata\PageBundle\Entity\Site
+        snapshot: Application\Sonata\PageBundle\Entity\Snapshot
+        page:     Application\Sonata\PageBundle\Entity\Page
+        block:    Application\Sonata\PageBundle\Entity\Block
 
     multisite:             host_with_path # host
     is_inline_edition_on:  false # TODO : do not enable it it doesn t work, check why in front

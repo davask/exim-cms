@@ -29,6 +29,12 @@ if(empty($theme)) {
     $theme = 'exim';
 }
 
+if(!empty($show) && $show = 'true') {
+    $showoutput = true;
+} else {
+    $showoutput = false;
+}
+
 if(!empty($debug) && $debug = 'true') {
     $nodebug = '';
 } else {
@@ -153,36 +159,36 @@ if (extension_loaded('xdebug')) {
 }
 
 $commandsToExecute = array(
-    array($bin . ' ./bin/sonata-check.php','Checking Sonata Project\'s requirements', false),
+    array($bin . ' ./bin/sonata-check.php','Checking Sonata Project\'s requirements', $showoutput),
     array(function(OutputInterface $output) use ($fs) {
         $fs->remove("app/cache/prod");
         $fs->remove("app/cache/dev");
 
         return true;
-    }, 'Deleting prod and dev cache folders', false),
+    }, 'Deleting prod and dev cache folders', $showoutput),
     array(function(OutputInterface $output) use ($fs) {
         return $fs->exists("app/config/parameters.yml");
-    }, 'Check for app/config/parameters.yml file', false),
-    array($bin . ' ./app/console cache:create-cache-class --env=prod' . $nodebug,'Creating the class cache', false),
+    }, 'Check for app/config/parameters.yml file', $showoutput),
+    array($bin . ' ./app/console cache:create-cache-class --env=prod' . $nodebug,'Creating the class cache', $showoutput),
     array($bin . ' ./app/console doctrine:database:drop --force','Dropping the database', true),
-    array($bin . ' ./app/console doctrine:database:create','Creating the database', false),
-    array($bin . ' ./app/console doctrine:schema:update --force','Creating the database\'s schema', false),
-    array($bin . '  -d max_execution_time=600 ./app/console doctrine:fixtures:load --verbose --env=dev' . $nodebug . ' --no-interaction','Loading fixtures', false),
-    array($bin . ' ./app/console sonata:news:sync-comments-count','Sonata - News: updating comments count', false),
-    array($bin . ' ./app/console sonata:page:update-core-routes --site=all' . $nodebug,'Sonata - Page: updating core route', false),
-    array($bin . ' ./app/console sonata:page:create-snapshots --site=all' . $nodebug,'Sonata - Page: creating snapshots from pages', false),
-    array($bin . ' ./app/console assets:install --symlink web','Configure assets', false),
-    array($bin . ' ./app/console sonata:admin:setup-acl','Security: setting up ACL', false),
-    array($bin . ' ./app/console sonata:admin:generate-object-acl' . $nodebug,'Security: generating object ACL', false),
+    array($bin . ' ./app/console doctrine:database:create','Creating the database', $showoutput),
+    array($bin . ' ./app/console doctrine:schema:update --force','Creating the database\'s schema', $showoutput),
+    array($bin . '  -d max_execution_time=600 ./app/console doctrine:fixtures:load --verbose --env=dev' . $nodebug . ' --no-interaction','Loading fixtures', $showoutput),
+    array($bin . ' ./app/console sonata:news:sync-comments-count','Sonata - News: updating comments count', $showoutput),
+    array($bin . ' ./app/console sonata:page:update-core-routes --site=all' . $nodebug,'Sonata - Page: updating core route', $showoutput),
+    array($bin . ' ./app/console sonata:page:create-snapshots --site=all' . $nodebug,'Sonata - Page: creating snapshots from pages', $showoutput),
+    array($bin . ' ./app/console assets:install --symlink web','Configure assets', $showoutput),
+    array($bin . ' ./app/console sonata:admin:setup-acl','Security: setting up ACL', $showoutput),
+    array($bin . ' ./app/console sonata:admin:generate-object-acl' . $nodebug,'Security: generating object ACL', $showoutput),
 );
 
 if(!empty($superadmin)) {
-    $commandsToExecute[] = array($bin . ' ./app/console fos:user:create ' . $superadmin[0] . ' ' . $superadmin[1] . ' ' . $superadmin[2],'User: generating super admin', false);
-    $commandsToExecute[] = array($bin . ' ./app/console fos:user:promote ' . $superadmin[0] . ' ROLE_SUPER_ADMIN','User: promote super admin', false);
+    $commandsToExecute[] = array($bin . ' ./app/console fos:user:create ' . $superadmin[0] . ' ' . $superadmin[1] . ' ' . $superadmin[2],'User: generating super admin', $showoutput);
+    $commandsToExecute[] = array($bin . ' ./app/console fos:user:promote ' . $superadmin[0] . ' ROLE_SUPER_ADMIN','User: promote super admin', $showoutput);
 }
 if(!empty($admin)) {
-    $commandsToExecute[] = array($bin . ' ./app/console fos:user:create ' . $admin[0] . ' ' . $admin[1] . ' ' . $admin[2],'User: generating super admin', false);
-    $commandsToExecute[] = array($bin . ' ./app/console fos:user:promote ' . $admin[0] . ' ROLE_ADMIN','User: promote super admin', false);
+    $commandsToExecute[] = array($bin . ' ./app/console fos:user:create ' . $admin[0] . ' ' . $admin[1] . ' ' . $admin[2],'User: generating super admin', $showoutput);
+    $commandsToExecute[] = array($bin . ' ./app/console fos:user:promote ' . $admin[0] . ' ROLE_ADMIN','User: promote super admin', $showoutput);
 }
 // $commandsToExecute[] = array($bin . ' ./app/console cache:clear','Clear cache env dev', false),
 // $commandsToExecute[] = array($bin . ' ./app/console cache:clear --env=prod','Clear cache env prod', false),
