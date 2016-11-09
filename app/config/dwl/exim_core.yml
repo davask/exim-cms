@@ -126,6 +126,15 @@ liip_imagine:
 #                 adapter:    media
 #                 alias:      media_filesystem
 
+cmf_routing:
+    chain:
+        routers_by_id:
+            # enable the DynamicRouter with high priority to allow overwriting configured routes with content
+            # cmf_routing.dynamic_router: 200
+            # enable the symfony default router with a lower priority
+            sonata.page.router: 150
+            router.default: 100
+
 sonata_page:
     class:
         site:     Application\Sonata\PageBundle\Entity\Site
@@ -251,8 +260,14 @@ sonata_page:
         #              H: header
         #              S: content_search
         #              F: footer
+
+sonata_block:
+    menus:
+        "SonataDemoBundle:Builder:mainMenu": "Main Menu"
+        "SonataDemoBundle:Builder:footerMenu": "Footer Menu"
+
 sonata_media:
-    # default_context: lcdd
+    default_context: lcdd
     contexts:
         lcdd:  # the default context is mandatory
             download:
@@ -288,3 +303,5 @@ doctrine:
                     ApplicationSonataPageBundle: ~
                     ApplicationSonataProductBundle: ~
                     ApplicationSonataSeoBundle: ~
+
+

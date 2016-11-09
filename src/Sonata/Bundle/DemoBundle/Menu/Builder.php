@@ -120,6 +120,19 @@ class Builder extends ContainerAware
 
     public function footerMenu(FactoryInterface $factory, array $options)
     {
-        return $this->mainMenu($factory, array_merge($options, array('is_footer' => true)));
+        $menuOptions = array_merge($options, array(
+            'childrenAttributes' => array('class' => 'list-inline'),
+        ));
+
+        $menu = $factory->createItem('footer', $menuOptions);
+
+        $menu->addChild('À propos', array('route' => 'sonata_news_home'));
+        $menu->addChild('Devenir intervenant', array('route' => 'sonata_news_home'));
+        $menu->addChild('Contact', array('route' => 'sonata_news_home'));
+        $menu->addChild('FAQ', array('route' => 'sonata_news_home'));
+        $menu->addChild('Mentions légales', array('route' => 'sonata_news_home'));
+        $menu->addChild('CGU', array('route' => 'sonata_news_home'));
+
+        return $menu;
     }
 }

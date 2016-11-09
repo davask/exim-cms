@@ -92,7 +92,7 @@ class LoadPageData extends AbstractFixture implements ContainerAwareInterface, O
         $header->addChildren($text = $blockManager->create());
 
         $text->setType('sonata.block.service.text');
-        $text->setSetting('content', '<div class"col-sm-3"><a href="/"><img src="/themes/lcdd/media/images/logo-header.png" alt="logo de la chaine du droit"></a></div>');
+        $text->setSetting('content', '<div class="col-sm-3"><a href="/"><img src="/themes/lcdd/media/images/logo-header.png" alt="logo de la chaine du droit"></a></div>');
         $text->setPosition(1);
         $text->setEnabled(true);
         $text->setPage($global);
@@ -105,7 +105,7 @@ class LoadPageData extends AbstractFixture implements ContainerAwareInterface, O
             $container->setSetting('layout', '<div class="col-sm-3">{{ CONTENT }}</div>');
         }));
 
-        $headerTop->setPosition(1);
+        $headerTop->setPosition(3);
 
         $header->addChildren($headerTop);
 
@@ -127,20 +127,22 @@ class LoadPageData extends AbstractFixture implements ContainerAwareInterface, O
             'enabled' => true,
             'page' => $global,
             'code' => 'header-menu',
-        )));
+        ), function ($container) {
+            $container->setSetting('layout', '<div class="col-sm-6">{{ CONTENT }}</div>');
+        }));
 
         $headerMenu->setPosition(2);
 
         $header->addChildren($headerMenu);
 
         $headerMenu->setName('The header menu container');
-        $headerMenu->setPosition(3);
+        $headerMenu->setPosition(1);
         $headerMenu->addChildren($menu = $blockManager->create());
 
         $menu->setType('sonata.block.service.menu');
         $menu->setSetting('menu_name', 'SonataDemoBundle:Builder:mainMenu');
         $menu->setSetting('safe_labels', true);
-        $menu->setPosition(3);
+        $menu->setPosition(2);
         $menu->setEnabled(true);
         $menu->setPage($global);
 
@@ -149,7 +151,7 @@ class LoadPageData extends AbstractFixture implements ContainerAwareInterface, O
             'page' => $global,
             'code' => 'footer',
         ), function ($container) {
-            $container->setSetting('layout', '<div class="row page-footer">{{ CONTENT }}</div>');
+            $container->setSetting('layout', '<div class="page-footer clearfix">{{ CONTENT }}</div>');
         }));
 
         $footer->setName('The footer container');
@@ -160,7 +162,7 @@ class LoadPageData extends AbstractFixture implements ContainerAwareInterface, O
             'page' => $global,
             'code' => 'content',
         ), function ($container) {
-            $container->setSetting('layout', '<div class="col-sm-3">{{ CONTENT }}</div>');
+            $container->setSetting('layout', '<div class="col-xs-12 text-center">{{ CONTENT }}</div>');
         }));
 
         $footer->addChildren($footerLinksLeft = $blockInteractor->createNewContainer(array(
@@ -168,7 +170,7 @@ class LoadPageData extends AbstractFixture implements ContainerAwareInterface, O
             'page' => $global,
             'code' => 'content',
         ), function ($container) {
-            $container->setSetting('layout', '<div class="col-sm-2 col-sm-offset-3">{{ CONTENT }}</div>');
+            $container->setSetting('layout', '<div class="col-xs-12 text-center">{{ CONTENT }}</div>');
         }));
 
         $footer->addChildren($footerLinksCenter = $blockInteractor->createNewContainer(array(
@@ -176,7 +178,7 @@ class LoadPageData extends AbstractFixture implements ContainerAwareInterface, O
             'page' => $global,
             'code' => 'content',
         ), function ($container) {
-            $container->setSetting('layout', '<div class="col-sm-2">{{ CONTENT }}</div>');
+            $container->setSetting('layout', '<div class="col-xs-12 text-center">{{ CONTENT }}</div>');
         }));
 
         $footer->addChildren($footerLinksRight = $blockInteractor->createNewContainer(array(
@@ -184,7 +186,15 @@ class LoadPageData extends AbstractFixture implements ContainerAwareInterface, O
             'page' => $global,
             'code' => 'content',
         ), function ($container) {
-            $container->setSetting('layout', '<div class="col-sm-2">{{ CONTENT }}</div>');
+            $container->setSetting('layout', '<div class="col-xs-12 text-center">{{ CONTENT }}</div>');
+        }));
+
+        $footer->addChildren($footerLinksRight = $blockInteractor->createNewContainer(array(
+            'enabled' => true,
+            'page' => $global,
+            'code' => 'content',
+        ), function ($container) {
+            $container->setSetting('layout', '<div class="col-xs-12 text-center">{{ CONTENT }}</div>');
         }));
 
         // Footer left: add a simple text block

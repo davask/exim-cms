@@ -10,14 +10,14 @@
 
 
 {% block sonata_page_container %}
-    <div class="page-header">
+    <div class="row page-header">
         {{ sonata_page_render_container('header', 'global') }}
     </div>
-    <div class="container">
+    <div class="row">
         <div class="content">
 
     {% block sonata_page_breadcrumb %}
-            <div class="row">
+            <div>
                 {% if sonata_seo_context is not defined %}
                     {% set sonata_seo_context = 'homepage' %}
                 {% endif %}
@@ -25,28 +25,30 @@
             </div>
     {% endblock %}
 
-    {% if page is defined %}
-            <div class="row">
+    {% block page_content_top %}
+        {% if page is defined %}
+            <div>
                 {% if page.name != 'Home' %}
                     {{ sonata_page_render_container('content_top', 'global') }}
                 {% endif %}
                 {{ sonata_page_render_container('content_top', page) }}
             </div>
-    {% endif %}
+        {% endif %}
+    {% endblock %}
 
-            <div class="row">
-    {% block page_content %}
-                <div class="col-sm-12">
-                    {{ page.name }}
-                </div>
+            <div>
+    {% block page_content_search %}
+
         {% if page is defined %}
-                <div class="col-sm-12">
+                <div class="col-sm-12 text-center">
                     {% if page.name != 'Home'%}
                         {{ sonata_page_render_container('content_search', 'global') }}
                     {% endif %}
                     {{ sonata_page_render_container('content_search', page) }}
                 </div>
         {% endif %}
+
+    {% endblock %}
 
 
         {#% if page is defined %}
@@ -70,6 +72,8 @@
                 </div>
                 <div style="clear: both"></div>
         {% endif %#}
+
+    {% block page_content %}
         {% if content is defined %}
                 {{ content|raw }}
         {% else %}
@@ -83,15 +87,17 @@
     {% endblock %}
             </div>
 
-    {% if page is defined %}
-            <div class="row">
+    {% block page_content_bottom %}
+        {% if page is defined %}
+            <div>
                 {{ sonata_page_render_container('content_bottom', page) }}
 
         {% if page.name != 'Home'%}
                 {{ sonata_page_render_container('content_bottom', 'global') }}
         {% endif %}
             </div>
-    {% endif %}
+        {% endif %}
+    {% endblock %}
         </div>
 
     </div>
