@@ -71,6 +71,10 @@ abstract class BaseBlockAdmin extends AbstractAdmin
     {
         $block = parent::getNewInstance();
         $block->setType($this->getPersistentParameter('type'));
+        if(is_null($block->getType())) {
+            $block->setType('sonata.page.block.container');
+
+        }
 
         return $this->loadBlockDefaults($block);
     }
