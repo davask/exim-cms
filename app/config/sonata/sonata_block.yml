@@ -91,4 +91,3 @@ sonata_block:
         sonata.formatter.block.formatter:
 
         sonata.seo.block.breadcrumb.homepage:
-        sonata.block.service.cutsom:
