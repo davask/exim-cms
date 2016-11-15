@@ -46,9 +46,21 @@ imports:
     - { resource: sonata/sonata_customer.yml }
     - { resource: sonata/sonata_basket.yml }
 
-    # Sonata e-commerce bundles
-    - { resource: dwl/exim_theme.yml }
+    # Exim Parameters
+    # - { resource: dwl/exim_theme_parameters.yml }
+    - { resource: ../../web/themes/lcdd/app/config/dwl/exim_theme_parameters.yml }
+
+    # Exim Front Bundles
+    - { resource: dwl/exim_twig.yml }
+    - { resource: dwl/exim_assetic.yml }
+
+    # Exim Core Bundles
+    - { resource: dwl/exim_block.yml }
     - { resource: dwl/exim_core.yml }
+
+    # Exim Feature Bundles
+    - { resource: dwl/exim_page.yml }
+    - { resource: dwl/exim_media.yml }
 
 framework:
     #esi:             ~

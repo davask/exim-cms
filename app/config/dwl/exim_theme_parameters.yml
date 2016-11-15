@@ -7,8 +7,17 @@
 
 parameters:
     # theme details
-    exim.theme.name: lcdd
-    exim.theme.host: dev.lachainedudroit.fr
+
+    # Sonata Admin Options
+    sonata_admin.title:      'eXim Project'
+    sonata_admin.logo_title: '%exim.theme.path.web%/media/images/logo-admin.png'
+
+    # Sonata Seo Options
+    sonata_seo.title: 'eXim Project'
+    sonata_seo.baseline: 'eXim Project - a Sonata Project Fork'
+
+    exim.theme.name: exim
+    exim.theme.host: dev.davaskweblimited.com
     exim.theme.assets.version.css: '1.0'
     exim.theme.assets.version.js: '1.0'
     exim.theme.assets.version.img: '1.0'

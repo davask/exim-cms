@@ -1,0 +1,17 @@
+twig:
+    paths:
+        '%exim.theme.path.root%/views': theme
+    globals:
+        theme:
+            demo: false # '%kernel.debug%'
+            name: '%exim.theme.name%'
+            path:
+                web: '%exim.theme.path.web%'
+                public: '%exim.theme.path.public%'
+                private: '%exim.theme.path.private%'
+            assets:
+                version:
+                    css: '%exim.theme.assets.version.css%'
+                    js: '%exim.theme.assets.version.js%'
+                    img: '%exim.theme.assets.version.img%'
+                javascripts: '%exim.theme.front.js%'

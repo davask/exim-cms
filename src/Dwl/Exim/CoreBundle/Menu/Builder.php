@@ -8,7 +8,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Sonata\Bundle\DemoBundle\Menu;
+namespace Dwl\Exim\CoreBundle\Menu;
 
 use Knp\Menu\FactoryInterface;
 use Symfony\Component\DependencyInjection\ContainerAware;
@@ -126,9 +126,24 @@ class Builder extends ContainerAware
 
         $menu = $factory->createItem('footer', $menuOptions);
 
-        $menu->addChild('Nos intervenants', array('route' => 'sonata_news_home'));
-        $menu->addChild('Vos questions', array('route' => 'sonata_news_home'));
-        $menu->addChild('Contact', array('route' => 'sonata_news_home'));
+        $menu->addChild('Nos intervenants', array(
+            'route' => 'page_slug',
+            'routeParameters' => array(
+                'path' => '/',
+            ),
+        ));
+        $menu->addChild('Vos questions', array(
+            'route' => 'page_slug',
+            'routeParameters' => array(
+                'path' => '/',
+            ),
+        ));
+        $menu->addChild('Contact', array(
+            'route' => 'page_slug',
+            'routeParameters' => array(
+                'path' => '/',
+            ),
+        ));
 
         return $menu;
     }
@@ -141,12 +156,42 @@ class Builder extends ContainerAware
 
         $menu = $factory->createItem('footer', $menuOptions);
 
-        $menu->addChild('À propos', array('route' => 'sonata_news_home'));
-        $menu->addChild('Devenir intervenant', array('route' => 'sonata_news_home'));
-        $menu->addChild('Contact', array('route' => 'sonata_news_home'));
-        $menu->addChild('FAQ', array('route' => 'sonata_news_home'));
-        $menu->addChild('Mentions légales', array('route' => 'sonata_news_home'));
-        $menu->addChild('CGU', array('route' => 'sonata_news_home'));
+        $menu->addChild('À propos', array(
+            'route' => 'page_slug',
+            'routeParameters' => array(
+                'path' => '/',
+            ),
+        ));
+        $menu->addChild('Devenir intervenant', array(
+            'route' => 'page_slug',
+            'routeParameters' => array(
+                'path' => '/',
+            ),
+        ));
+        $menu->addChild('Contact', array(
+            'route' => 'page_slug',
+            'routeParameters' => array(
+                'path' => '/',
+            ),
+        ));
+        $menu->addChild('FAQ', array(
+            'route' => 'page_slug',
+            'routeParameters' => array(
+                'path' => '/',
+            ),
+        ));
+        $menu->addChild('Mentions légales', array(
+            'route' => 'page_slug',
+            'routeParameters' => array(
+                'path' => '/',
+            ),
+        ));
+        $menu->addChild('CGU', array(
+            'route' => 'page_slug',
+            'routeParameters' => array(
+                'path' => '/',
+            ),
+        ));
 
         return $menu;
     }

@@ -1,0 +1,79 @@
+sonata_media:
+    default_context: lcdd
+    contexts:
+        lcdd:  # the default context is mandatory
+            download:
+                mode: http # X-Sendfile | http
+            providers:
+                - sonata.media.provider.dailymotion
+                - sonata.media.provider.youtube
+                - sonata.media.provider.image
+                - sonata.media.provider.file
+                - sonata.media.provider.vimeo
+
+            formats:
+                logo:
+                    width: 134
+                    quality: 100
+                icon:
+                    width: 90
+                    quality: 100
+                small:
+                    width: 100
+                    quality: 100
+                big:
+                    width: 970
+                    quality: 100
+
+    filesystem:
+        # define where the uploaded file will be stored
+        local:
+            directory:  '%exim.theme.path.upload%'
+            create:     true
+
+# http://www.reussir-mon-ecommerce.fr/2012/08/15/manipuler-les-images-avec-symfony2-et-liipimaginebundle/
+# https://www.youtube.com/watch?v=8QUam-fBtd0
+# https://www.opensky.com/
+# http://www.slideshare.net/kriswallsmith/introducing-assetic-asset-management-for-php-53
+liip_imagine:
+    resolvers:
+        theme:
+            web_path:
+                web_root: '%exim.theme.web.root%'
+                cache_prefix: '%exim.theme.path.web%/assets/img'
+    loaders:
+        theme:
+            filesystem:
+                data_root: '%exim.theme.path.root%/media'
+    cache:                theme
+    data_loader:          theme
+    filter_sets:
+        src: ~
+        thumb:
+            filters:
+                thumbnail:
+                    size: [120, 90]
+                    mode: outbound
+                background:
+                    size: [124, 94]
+                    position: center
+                    color: '#000000'
+
+# knp_gaufrette:
+#     adapters:
+#         media:
+#             local:
+#                 directory: '%kernel.root_dir%/../web'
+#     filesystems:
+#             media:
+#                 adapter:    media
+#                 alias:      media_filesystem
+
+doctrine:
+    orm:
+        entity_managers:
+            default:
+                mappings:
+                    ApplicationSonataMediaBundle: ~
+
+

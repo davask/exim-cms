@@ -1,0 +1,146 @@
+cmf_routing:
+    chain:
+        routers_by_id:
+            # enable the DynamicRouter with high priority to allow overwriting configured routes with content
+            # cmf_routing.dynamic_router: 200
+            # enable the symfony default router with a lower priority
+            sonata.page.router: 150
+            router.default: 100
+
+sonata_page:
+    class:
+        site:     Application\Sonata\PageBundle\Entity\Site
+        snapshot: Application\Sonata\PageBundle\Entity\Snapshot
+        page:     Application\Sonata\PageBundle\Entity\Page
+        block:    Application\Sonata\PageBundle\Entity\Block
+    # default_template: default
+    templates:
+        global:
+            path: '@theme/Template/global.html.twig'
+            name: 'Global layout'
+            containers:
+                header:
+                    name: Header
+                header_top:
+                    name: Header Top
+                header_menu:
+                    name: Header Menu
+                content_search:
+                    name: Home Search
+                content_top:
+                    name: Content Top
+                content:
+                    name: Content
+                content_bottom:
+                    name: Content Bottom
+                bottom_newsletter:
+                    name: Bottom Newsletter
+                bottom_embed:
+                    name: Bottom Embed
+                footer:
+                    name: Footer
+            matrix:
+                 layout: |
+                     HHHHHHHH
+                     KKKKKKKK
+                     MMMMSSSS
+                     TTTTTTTT
+                     CCCCCCCC
+                     BBBBBBBB
+                     NNNNEEEE
+                     FFFFFFFF
+
+                 mapping:
+                    H: header
+                    K: header_top
+                    M: header_menu
+                    S: content_search
+                    T: content_top
+                    C: content
+                    B: content_bottom
+                    N: bottom_newsletter
+                    E: bottom_embed
+                    F: footer
+
+        default:
+            path: '@theme/Template/default.html.twig'
+            name: 'Default layout - default'
+            containers:
+                 header:
+                     name: Header
+                 content_top:
+                     name: Top content
+                 content:
+                     name: Main content
+                 content_bottom:
+                     name: Bottom content
+                 footer:
+                     name: Footer
+            matrix:
+                 layout: |
+                     HHHHHHHH
+                     TTTTTTTT
+                     CCCCCCCC
+                     BBBBBBBB
+                     FFFFFFFF
+
+                 mapping:
+                     H: header
+                     T: content_top
+                     C: content
+                     B: content_bottom
+                     F: footer
+
+        index:
+            path: '@theme/Template/index.html.twig'
+            name: 'Index layout - default'
+            containers:
+                 header:
+                     name: Header
+                 content_search:
+                     name: Home Search
+                 footer:
+                     name: Footer
+            matrix:
+                 layout: |
+                     HHHHHHHH
+                     SSSSSSSS
+                     FFFFFFFF
+
+                 mapping:
+                     H: header
+                     S: content_search
+                     F: footer
+
+        # 2columns:
+        #     path: '@theme/Template/index.html.twig'
+        #     name: '2 columns layout'
+        #     containers:
+        #          header:
+        #              name: Header
+        #          content_search:
+        #              name: Home Search
+        #          footer:
+        #              name: Footer
+        #     matrix:
+        #          layout: |
+        #              HHHHHHHH
+        #              SSSSSSSS
+        #              FFFFFFFF
+
+        #          mapping:
+        #              H: header
+        #              S: content_search
+        #              F: footer
+
+    templates_admin:
+        compose:                    ApplicationSonataPageBundle:PageAdmin:compose.html.twig
+
+doctrine:
+    orm:
+        entity_managers:
+            default:
+                mappings:
+                    ApplicationSonataPageBundle: ~
+
+

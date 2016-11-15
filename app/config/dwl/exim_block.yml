@@ -1,0 +1,12 @@
+sonata_block:
+    menus:
+        "DwlEximCoreBundle:Builder:mainMenu": "Main Menu"
+        "DwlEximCoreBundle:Builder:footerMenu": "Footer Menu"
+
+doctrine:
+    orm:
+        entity_managers:
+            default:
+                mappings:
+                    ApplicationSonataBlockBundle: ~
+

@@ -18,6 +18,8 @@ body.#{$theme} {
         min-height: 80px;
         padding-top: 15px;
         margin-top: 0;
+        margin-bottom:0;
+        line-height: 40px;
         a {
             color: #fff;
         }
@@ -29,7 +31,10 @@ body.#{$theme} {
     footer {
 
         .page-footer {
-          background-color: $blue_dark;
+            background-color: $blue_dark;
+            > div, > ul {
+                margin-top: 20px;
+            }
         }
         .page-footer, a {
           color: $white;
