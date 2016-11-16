@@ -1,5 +1,6 @@
 sonata_block:
     menus:
+        "DwlEximCoreBundle:Builder:headerMenu": "Header Menu"
         "DwlEximCoreBundle:Builder:mainMenu": "Main Menu"
         "DwlEximCoreBundle:Builder:footerMenu": "Footer Menu"
 

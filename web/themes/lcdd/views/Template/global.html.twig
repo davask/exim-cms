@@ -1,14 +1,19 @@
 <!DOCTYPE html>
-<html {{ sonata_seo_html_attributes() }}>
+<html class="no-js" {{ sonata_seo_html_attributes() }}>
     <head {{ sonata_seo_head_attributes() }}>
-        <!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge"><![endif]-->
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
         {{ sonata_seo_title() }}
         {{ sonata_seo_metadatas() }}
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         {% include '@theme/Template/Head/favicon.html.twig' %}
         {% include '@theme/Template/Head/stylesheets.html.twig' %}
     </head>
 
     <body class="{{ theme.name }} container-fluid{% block bodyClass %} global{% endblock %}">
+        <!--[if lt IE 9]>
+            <p class="row browserupgrade">Vous utilisez un navigateur <strong>obsol&egrave;te</strong>. Merci de le <a href="http://browsehappy.com/">mettre-&agrave;-jour</a> afin d'am&eacute;liorer votre experience.</p>
+        <![endif]-->
 
         {% include "@theme/Template/Block/separator.html.twig" with { bname: 'sonata_page_top_bar' } %}{% block sonata_page_top_bar %}
 
@@ -16,14 +21,30 @@
 
         {%- include '@theme/Template/Header/inline_edition.html.twig' %}
 
-        <header class="row navbar" role="banner" {% include '@theme/Template/Header/inline_edition.html.twig' with { 'part' : 'attribut' } %}>
-            <div class="container">
-                <ul class="nav navbar-nav">
-                    {% include '@theme/Template/Header/admin.html.twig' %}
-                    {% include '@theme/Template/Header/edition.html.twig' %}
-                    {% include '@theme/Template/Header/switch.html.twig' %}
-                </ul>
-            </div>
+        <header class="row navbar navbar-admin" role="banner" {% include '@theme/Template/Header/inline_edition.html.twig' with { 'part' : 'attribut' } %}>
+            <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#exim-navbar-collapse" aria-expanded="false">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                  </button>
+                  <a class="navbar-brand" href="#">
+                    Admin
+                  </a>
+                </div>
+
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse" id="exim-navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        {% include '@theme/Template/Header/admin.html.twig' %}
+                        {% include '@theme/Template/Header/edition.html.twig' %}
+                        {% include '@theme/Template/Header/switch.html.twig' %}
+                    </ul>
+                </div><!-- /.navbar-collapse -->
+            </div><!-- /.container-fluid -->
         </header>
 
             {% endif %}

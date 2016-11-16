@@ -118,10 +118,15 @@ class Builder extends ContainerAware
     //     return $menu;
     // }
 
+    public function headerMenu(FactoryInterface $factory, array $options)
+    {
+        return $this->mainMenu($factory, $options);
+    }
+
     public function mainMenu(FactoryInterface $factory, array $options)
     {
         $menuOptions = array_merge($options, array(
-            'childrenAttributes' => array('class' => 'list-inline'),
+            'childrenAttributes' => array('class' => 'header-menu nav navbar-nav navbar-right'),
         ));
 
         $menu = $factory->createItem('footer', $menuOptions);
@@ -151,7 +156,7 @@ class Builder extends ContainerAware
     public function footerMenu(FactoryInterface $factory, array $options)
     {
         $menuOptions = array_merge($options, array(
-            'childrenAttributes' => array('class' => 'list-inline'),
+            'childrenAttributes' => array('class' => 'footer-menu nav navbar-nav'),
         ));
 
         $menu = $factory->createItem('footer', $menuOptions);

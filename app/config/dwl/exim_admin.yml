@@ -1,0 +1,3 @@
+sonata_admin:
+    templates:
+        knp_menu_template:           ApplicationSonataAdminBundle:Menu:sonata_menu.html.twig

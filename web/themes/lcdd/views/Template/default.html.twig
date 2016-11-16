@@ -10,42 +10,61 @@
 
 
 {% block sonata_page_container %}
-    <div class="row page-header">
-        {{ sonata_page_render_container('header', 'global') }}
-    </div>
-    <div class="row">
-        <div class="content">
+    <nav class="row navbar navbar-lcdd">
+
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#lcdd-navbar-collapse" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="{{ url('page_slug', { 'path': '/' }) }}">
+                <img src="/themes/lcdd/media/images/logo-header.png" alt="logo de la chaine du droit">
+              </a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="lcdd-navbar-collapse">
+              {{ sonata_page_render_container('header', 'global') }}
+            </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+
+    <div class="row content">
 
     {% block sonata_page_breadcrumb %}
-            <div>
-                {% if sonata_seo_context is not defined %}
-                    {% set sonata_seo_context = 'homepage' %}
-                {% endif %}
-                {{ sonata_block_render_event('breadcrumb', { 'context': sonata_seo_context, 'current_uri': app.request.requestUri }) }}
-            </div>
+        <div>
+            {% if sonata_seo_context is not defined %}
+                {% set sonata_seo_context = 'homepage' %}
+            {% endif %}
+            {{ sonata_block_render_event('breadcrumb', { 'context': sonata_seo_context, 'current_uri': app.request.requestUri }) }}
+        </div>
     {% endblock %}
 
     {% block page_content_top %}
         {% if page is defined %}
-            <div>
-                {% if page.name != 'Home' %}
-                    {{ sonata_page_render_container('content_top', 'global') }}
-                {% endif %}
-                {{ sonata_page_render_container('content_top', page) }}
-            </div>
+        <div>
+            {% if page.name != 'Home' %}
+                {{ sonata_page_render_container('content_top', 'global') }}
+            {% endif %}
+            {{ sonata_page_render_container('content_top', page) }}
+        </div>
         {% endif %}
     {% endblock %}
 
-            <div>
+        <div>
     {% block page_content_search %}
 
         {% if page is defined %}
-                <div class="col-sm-12 text-center">
-                    {% if page.name != 'Home'%}
-                        {{ sonata_page_render_container('content_search', 'global') }}
-                    {% endif %}
-                    {{ sonata_page_render_container('content_search', page) }}
-                </div>
+        <div class="text-center">
+            {% if page.name != 'Home'%}
+                {{ sonata_page_render_container('content_search', 'global') }}
+            {% endif %}
+            {{ sonata_page_render_container('content_search', page) }}
+        </div>
         {% endif %}
 
     {% endblock %}
@@ -75,30 +94,29 @@
 
     {% block page_content %}
         {% if content is defined %}
-                {{ content|raw }}
+            {{ content|raw }}
         {% else %}
             {% set content = block('content') %}
             {% if content|length > 0 %}
-                {{ content|raw }}
+            {{ content|raw }}
             {% elseif page is defined %}
-                {{ sonata_page_render_container('content', page) }}
+            {{ sonata_page_render_container('content', page) }}
             {% endif %}
         {% endif %}
     {% endblock %}
-            </div>
+        </div>
 
     {% block page_content_bottom %}
         {% if page is defined %}
-            <div>
-                {{ sonata_page_render_container('content_bottom', page) }}
+        <div>
+            {{ sonata_page_render_container('content_bottom', page) }}
 
         {% if page.name != 'Home'%}
-                {{ sonata_page_render_container('content_bottom', 'global') }}
+            {{ sonata_page_render_container('content_bottom', 'global') }}
         {% endif %}
-            </div>
+        </div>
         {% endif %}
     {% endblock %}
-        </div>
 
     </div>
 {% endblock %}

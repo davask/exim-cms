@@ -1,13 +1,27 @@
 @import "params";
 
+/* overriding */
 body.#{$theme} {
     .navbar {
+        height:auto;
+        min-height:auto;
+    }
+}
+/* admin */
+body.#{$theme} {
+    header.navbar-admin {
         background-color: $color_boston_blue_approx;
         border-color: $color_calypso_approx;
         margin-bottom: 0;
         //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
         border-radius: 0;
+
+        a {
+            padding: 5px 15px;
+        }
+
         .navbar-brand {
+            height:auto;
             color: $white;
             &:focus {
                 color: $color_celeste_approx;
@@ -117,59 +131,59 @@ body.#{$theme} {
             margin: 8px;
         }
     }
-    @media(max-width:767px) {
-        .navbar-exim .navbar-nav .open .dropdown-menu {
-            > {
-                .dropdown-header {
-                    border-color: $color_calypso_approx;
-                }
-                .active > a {
-                    color: $color_celeste_approx;
-                    background-color: $color_calypso_approx;
-                    &:focus {
-                        color: $color_celeste_approx;
-                        background-color: $color_calypso_approx;
-                    }
-                    &:hover {
-                        color: $color_celeste_approx;
-                        background-color: $color_calypso_approx;
-                    }
-                }
-                .disabled > a {
-                    color: $color_mine_shaft_approx;
-                    background-color: transparent;
-                    &:focus {
-                        color: $color_mine_shaft_approx;
-                        background-color: transparent;
-                    }
-                    &:hover {
-                        color: $color_mine_shaft_approx;
-                        background-color: transparent;
-                    }
-                }
-            }
-            .divider {
-                background-color: $color_calypso_approx;
-            }
-            > li > a {
-                color: $white;
-                &:focus {
-                    color: $color_celeste_approx;
-                    background-color: transparent;
-                }
-                &:hover {
-                    color: $color_celeste_approx;
-                    background-color: transparent;
-                }
-            }
-        }
-    }
-    fieldset[disabled] .navbar-exim .btn-link {
-        &:focus {
-            color: $color_mine_shaft_approx;
-        }
-        &:hover {
-            color: $color_mine_shaft_approx;
-        }
-    }
+    // @media(max-width:767px) {
+    //     .navbar-#{$theme} .navbar-nav .open .dropdown-menu {
+    //         > {
+    //             .dropdown-header {
+    //                 border-color: $color_calypso_approx;
+    //             }
+    //             .active > a {
+    //                 color: $color_celeste_approx;
+    //                 background-color: $color_calypso_approx;
+    //                 &:focus {
+    //                     color: $color_celeste_approx;
+    //                     background-color: $color_calypso_approx;
+    //                 }
+    //                 &:hover {
+    //                     color: $color_celeste_approx;
+    //                     background-color: $color_calypso_approx;
+    //                 }
+    //             }
+    //             .disabled > a {
+    //                 color: $color_mine_shaft_approx;
+    //                 background-color: transparent;
+    //                 &:focus {
+    //                     color: $color_mine_shaft_approx;
+    //                     background-color: transparent;
+    //                 }
+    //                 &:hover {
+    //                     color: $color_mine_shaft_approx;
+    //                     background-color: transparent;
+    //                 }
+    //             }
+    //         }
+    //         .divider {
+    //             background-color: $color_calypso_approx;
+    //         }
+    //         > li > a {
+    //             color: $white;
+    //             &:focus {
+    //                 color: $color_celeste_approx;
+    //                 background-color: transparent;
+    //             }
+    //             &:hover {
+    //                 color: $color_celeste_approx;
+    //                 background-color: transparent;
+    //             }
+    //         }
+    //     }
+    // }
+    // fieldset[disabled] .navbar-#{$theme} .btn-link {
+    //     &:focus {
+    //         color: $color_mine_shaft_approx;
+    //     }
+    //     &:hover {
+    //         color: $color_mine_shaft_approx;
+    //     }
+    // }
 }

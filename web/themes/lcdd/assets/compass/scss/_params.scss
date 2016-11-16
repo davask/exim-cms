@@ -1,14 +1,29 @@
-//colors
+// theme name
 $theme: lcdd;
 
+// colors
+
+/* B&W */
 $white: #ffffff;
 $black: #000000;
-$blue_dark: #113f59;
+
+/* TEXT */
 $text_dark: #333333;
 
-$color_calypso_approx: #307197;
+/* LCDD BLUE */
+$blue_light_extra: #20d6c7;
+$blue_light: #709ab2;
+$blue_dark: #113f59;
 
+/* LCDD ORANGE */
+$orange_dark: #ff6600;
+
+/* LCDD RED */
+$red_dark: #d54f58;
+
+/* LEGACY COLOR */
+$color_calypso_approx: #307197;
 $color_celeste_approx: #cccccc;
-$color_mine_shaft_approx: #333333;
+$color_mine_shaft_approx: $text_dark;
 $color_boston_blue_approx: #3c8dbc;
 $color_woodsmoke_approx: #101010;

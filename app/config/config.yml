@@ -59,6 +59,7 @@ imports:
     - { resource: dwl/exim_core.yml }
 
     # Exim Feature Bundles
+    - { resource: dwl/exim_admin.yml }
     - { resource: dwl/exim_page.yml }
     - { resource: dwl/exim_media.yml }
 

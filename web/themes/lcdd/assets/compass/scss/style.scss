@@ -2,47 +2,216 @@
 
 body.#{$theme} {
 
+    height: 100%;
+    background: $blue_dark;
+
+
     /*******************************\
-        $NAVBAR
+        $GENERIC
     \*******************************/
-    header{
-        &.navbar {
+    a {
+        color: $white;
+        text-decoration: none;
+        &:hover {
+            color: $orange_dark;
         }
     }
+
+    .browserupgrade {
+        text-align:center;
+        background:$orange_dark;
+        margin-bottom:0;
+        a:hover {
+            color: darken( $white, 10% );
+        }
+    }
+
+    /*******************************\
+        $BUTTON
+    \*******************************/
+    .btn {
+        border: 0;
+        padding: 5px 15px;
+    }
+
+    .btn-primary {
+        background: $blue_light_extra;
+        border-radius: 0;
+        &:hover {
+            color: $white;
+            background: lighten( $blue_light_extra, 20% );
+        }
+    }
+
+    .btn-secondary {
+        background: $red_dark;
+        border-radius: 0;
+        &:hover {
+            color: $white;
+            background: lighten( $red_dark, 10% );
+        }
+    }
+
+    /*******************************\
+        $MENU
+    \*******************************/
+    .header-menu, .footer-menu {
+        // li.active>a,
+        li > a:hover  {
+            background: transparent;
+            color:$orange_dark;
+        }
+    }
+
+    .header-menu {
+        @media(max-width:767px) {
+            text-align: center;
+        }
+
+    }
+
+    .header-account {
+        .btn {
+            margin-top: 10px;
+            @media(max-width:767px) {
+                margin-left: 15px;
+                margin-right: 15px;
+            }
+        }
+        @media(min-width:768px) {
+            > li:first-child {
+                margin-right: 15px;
+            }
+        }
+    }
+
     /*******************************\
         $NAVBAR
     \*******************************/
-    .page-header {
+    .navbar-lcdd {
         background-color: $blue_dark;
         border-color: transparent;
-        min-height: 80px;
-        padding-top: 15px;
-        margin-top: 0;
+        border-radius: 0;
+        border:0;
         margin-bottom:0;
-        line-height: 40px;
+        padding-top: 10px;
+        padding-bottom: 10px;
         a {
-            color: #fff;
+            text-transform: uppercase;
+        }
+
+        .navbar-brand img {
+            margin-top: -8px;
+        }
+        .container-fluid {
+            max-width: 1366px;
+        }
+        .navbar-toggle {
+            border-color: $blue_light;
+            background-color: $blue_dark;
+            &:focus {
+                background-color: lighten($blue_dark, 10%);
+            }
+            &:hover {
+                background-color: lighten($blue_dark, 10%);
+            }
+            .icon-bar {
+                background-color: $blue_light;
+            }
         }
     }
+
 
     /*******************************\
         $FOOTER
     \*******************************/
     footer {
 
-        .page-footer {
-            background-color: $blue_dark;
-            > div, > ul {
-                margin-top: 20px;
-            }
-        }
         .page-footer, a {
-          color: $white;
+          color: $blue_light;
         }
 
-        .navbar-dropdown a {
-            color:$text_dark;
+        .page-footer {
+            background-color: $blue_dark;
+
+            > div, > ul {
+                margin-top: 20px;
+                margin-left:0;
+                margin-right:0;
+            }
+            > div:first-child {
+                margin-top: 60px;
+            }
+
+            .footer-partner {
+                margin-top: 40px;
+                margin-bottom: 20px;
+
+                p {
+                    padding-bottom: 30px;
+                    margin-bottom: 15px;
+                    background: url("/themes/#{$theme}/media/decoration/footer-partner-border.png") 50% 100% no-repeat;
+                }
+
+                .sonata-media-block-media-container {
+                    display: inline-block;
+                    margin: 0 15px;
+                }
+            }
+
+            .footer-menu {
+                @media(min-width:768px) {
+                    &.navbar-nav{
+                        margin-bottom: 20px;
+                        float:none;
+                        > li {
+                            float: none;
+                            display: inline-block;
+                            a {
+                                padding: 0 15px;
+                            }
+                        }
+                    }
+                    li {
+                        border-left: 1px solid $blue_light;
+                        margin-left: -4px;
+                        &:first-child {
+                            border-left: none;
+                            margin-left: 0;
+                        }
+                    }
+                }
+            }
+
+            .footer-social {
+                margin-bottom: 60px;
+
+                li {
+                    a {
+                        display: block;
+                        background: $blue_light;
+                        border-radius: 50%;
+                        width: 24px;
+                        height: 24px;
+                        line-height: 24px;
+
+                        i {
+                            color:$blue_dark;
+                        }
+
+                        &:hover {
+                            background: $orange_dark;
+                        }
+                    }
+                }
+            }
+
         }
+
+    }
+
+    > .content {
+        background: $white;
     }
 
 }
