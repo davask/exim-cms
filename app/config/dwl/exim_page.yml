@@ -8,11 +8,11 @@ cmf_routing:
             router.default: 100
 
 sonata_page:
-    class:
-        site:     Application\Sonata\PageBundle\Entity\Site
-        snapshot: Application\Sonata\PageBundle\Entity\Snapshot
-        page:     Application\Sonata\PageBundle\Entity\Page
-        block:    Application\Sonata\PageBundle\Entity\Block
+    # class:
+    #     site:     Application\Sonata\PageBundle\Entity\Site
+    #     snapshot: Application\Sonata\PageBundle\Entity\Snapshot
+    #     page:     Application\Sonata\PageBundle\Entity\Page
+    #     block:    Application\Sonata\PageBundle\Entity\Block
     # default_template: default
     templates:
         global:
@@ -20,7 +20,9 @@ sonata_page:
             name: 'Global layout'
             containers:
                 header:
-                    name: Header
+                    name: En-tete
+                header_connexion:
+                    name: Header connexion
                 header_top:
                     name: Header Top
                 header_menu:
@@ -38,11 +40,12 @@ sonata_page:
                 bottom_embed:
                     name: Bottom Embed
                 footer:
-                    name: Footer
+                    name: Pied de page
             matrix:
                  layout: |
                      HHHHHHHH
                      KKKKKKKK
+                     cccccccc
                      MMMMSSSS
                      TTTTTTTT
                      CCCCCCCC
@@ -52,6 +55,7 @@ sonata_page:
 
                  mapping:
                     H: header
+                    c: header_connexion
                     K: header_top
                     M: header_menu
                     S: content_search
@@ -66,51 +70,51 @@ sonata_page:
             path: '@theme/Template/default.html.twig'
             name: 'Default layout - default'
             containers:
-                 header:
-                     name: Header
-                 content_top:
-                     name: Top content
                  content:
                      name: Main content
-                 content_bottom:
-                     name: Bottom content
                  footer:
                      name: Footer
             matrix:
                  layout: |
-                     HHHHHHHH
-                     TTTTTTTT
                      CCCCCCCC
-                     BBBBBBBB
                      FFFFFFFF
 
                  mapping:
-                     H: header
-                     T: content_top
                      C: content
-                     B: content_bottom
                      F: footer
 
         index:
             path: '@theme/Template/index.html.twig'
             name: 'Index layout - default'
             containers:
-                 header:
-                     name: Header
                  content_search:
-                     name: Home Search
-                 footer:
-                     name: Footer
+                     name: Moteur de recherche
+                 content_concept:
+                     name: Concept
+                 content_video:
+                     name: Videos
+                 content_question:
+                     name: Questions
+                 content_category:
+                     name: Questions
+                 content_person:
+                     name: Intervenants
             matrix:
                  layout: |
-                     HHHHHHHH
-                     SSSSSSSS
-                     FFFFFFFF
+                     ssssssssssss
+                     iiiiiiiiiiii
+                     vvvvvvvvvvvv
+                     qqqqqqqqqqqq
+                     cccccccccccc
+                     pppppppppppp
 
                  mapping:
-                     H: header
-                     S: content_search
-                     F: footer
+                     s: content_search
+                     i: content_concept
+                     v: content_video
+                     q: content_question
+                     c: content_category
+                     p: content_person
 
         # 2columns:
         #     path: '@theme/Template/index.html.twig'
@@ -134,7 +138,7 @@ sonata_page:
         #              F: footer
 
     templates_admin:
-        compose:                    ApplicationSonataPageBundle:PageAdmin:compose.html.twig
+        compose:                    SonataPageBundle:PageAdmin:compose.html.twig
 
 doctrine:
     orm:

@@ -7,6 +7,6 @@ doctrine:
                     ApplicationSonataClassificationBundle: ~
                     ApplicationSonataNewsBundle: ~
                     ApplicationSonataProductBundle: ~
-                    ApplicationSonataSeoBundle: ~
+                    SonataSeoBundle: ~
 
 

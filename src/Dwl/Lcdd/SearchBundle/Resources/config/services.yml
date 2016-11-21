@@ -1,0 +1,52 @@
+parameters:
+    dwl.lcdd.block.search.class: Dwl\Lcdd\SearchBundle\Block\SearchBlockService
+    dwl.lcdd.admin.search.class: Dwl\Lcdd\SearchBundle\Admin\ORM\SearchAdmin
+    dwl.lcdd.admin.search.controller: 'DwlLcddSearchBundle:SearchAdmin'
+    dwl.lcdd.admin.search.translation_domain: DwlLcddSearchBundle
+
+services:
+    dwl.lcdd.block.search:
+        class: %dwl.lcdd.block.search.class%
+        tags:
+            -
+              name: sonata.block
+        arguments:
+            - dwl.lcdd.block.search
+            - '@templating'
+            - '@service_container'
+            - '@sonata.media.manager.media'
+
+    dwl.lcdd.admin.search:
+        class: %dwl.lcdd.admin.search.class%
+        tags:
+            -
+              name: sonata.admin
+              manager_type: orm
+              group: sonata_media
+              label_catalogue: '%dwl.lcdd.admin.search.translation_domain%'
+              label: media
+              label_translator_strategy: sonata.admin.label.strategy.underscore
+        arguments:
+            - ''
+            - '%sonata.media.admin.media.entity%'
+            - '%dwl.lcdd.admin.search.controller%'
+            - '@sonata.media.pool'
+            - '@sonata.classification.manager.category'
+        calls:
+            -
+              - setModelManager
+              -
+                - '@sonata.media.admin.media.manager'
+            -
+              - setTranslationDomain
+              -
+                - '%dwl.lcdd.admin.search.translation_domain%'
+            -
+              - setTemplates
+              -
+                -
+                  inner_list_row: 'DwlLcddSearchBundle:SearchAdmin:inner_row_media.html.twig'
+                  outer_list_rows_mosaic: 'DwlLcddSearchBundle:SearchAdmin:list_outer_rows_mosaic.html.twig'
+                  base_list_field: 'SonataAdminBundle:CRUD:base_list_flat_field.html.twig'
+                  list: 'DwlLcddSearchBundle:SearchAdmin:list.html.twig'
+                  edit: 'DwlLcddSearchBundle:SearchAdmin:edit.html.twig'

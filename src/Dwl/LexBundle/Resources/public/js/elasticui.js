@@ -866,7 +866,7 @@ var elasticui;
     (function (widgets) {
         var directives;
         (function (directives) {
-            // The widgets show how to create reusable components on top of ElasticUI. 
+            // The widgets show how to create reusable components on top of ElasticUI.
             // You can also directly use the directive.template html in your front-end (see docs/widgets.md for more info)
             var ChecklistDirective = (function () {
                 function ChecklistDirective($parse) {
@@ -905,7 +905,7 @@ var elasticui;
     (function (widgets) {
         var directives;
         (function (directives) {
-            // The widgets show how to create reusable components on top of ElasticUI. 
+            // The widgets show how to create reusable components on top of ElasticUI.
             // You can also directly use the directive.template html in your front-end (see docs/widgets.md for more info)
             var SimplePagingDirective = (function () {
                 function SimplePagingDirective() {
@@ -934,7 +934,7 @@ var elasticui;
     (function (widgets) {
         var directives;
         (function (directives) {
-            // The widgets show how to create reusable components on top of ElasticUI. 
+            // The widgets show how to create reusable components on top of ElasticUI.
             // You can also directly use the directive.template html in your front-end (see docs/widgets.md for more info)
             var SingleselectDirective = (function () {
                 function SingleselectDirective($parse) {
@@ -1272,7 +1272,7 @@ var elasticui;
     (function (widgets) {
         var directives;
         (function (directives) {
-            // The widgets show how to create reusable components on top of ElasticUI. 
+            // The widgets show how to create reusable components on top of ElasticUI.
             // You can also directly use the directive.template html in your front-end (see docs/widgets.md for more info)
             var SearchboxDirective = (function () {
                 function SearchboxDirective($parse) {

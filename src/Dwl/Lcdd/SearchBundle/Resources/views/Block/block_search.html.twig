@@ -1,0 +1,104 @@
+{% set lcddSearchFields = ["'_all'"] %}
+{#
+{% set lcddSearchFields = ["'ARTICLE.CONTEXTE.TEXTE.TITRE_TXT.$t'"] %}
+{% set lcddSearchFields = lcddSearchFields | merge(["'ARTICLE.CONTEXTE.TEXTE.TM.TITRE_TM.$t'"]) %}
+
+
+              'ARTICLE.CONTEXTE.TEXTE.TM.TM.TITRE_TM.$t'
+              'ARTICLE.CONTEXTE.TEXTE.TM.TM.TM.TITRE_TM.$t'
+              'ARTICLE.CONTEXTE.TEXTE.TM.TM.TM.TM.TITRE_TM.$t'
+              'ARTICLE.CONTEXTE.TEXTE.TM.TM.TM.TM.TM.TITRE_TM.$t'
+              'ARTICLE.CONTEXTE.TEXTE.TM.TM.TM.TM.TM.TM.TITRE_TM.$t'
+              'ARTICLE.CONTEXTE.TEXTE.TM.TM.TM.TM.TM.TM.TM.TITRE_TM.$t'
+              'ARTICLE.CONTEXTE.TEXTE.TM.TM.TM.TM.TM.TM.TM.TM.TITRE_TM.$t'
+              'ARTICLE.CONTEXTE.TEXTE.TM.TM.TM.TM.TM.TM.TM.TM.TM.TITRE_TM.$t'
+              'ARTICLE.CONTEXTE.TEXTE.@nature'
+              'ARTICLE.META.META_COMMUN.NATURE.$t'
+              'ARTICLE.META.META_SPEC.META_ARTICLE.NUM.$t'
+              'ARTICLE.BLOC_TEXTUEL.CONTENU.$t'
+              'ARTICLE.BLOC_TEXTUEL.CONTENU.p'
+              'ARTICLE.BLOC_TEXTUEL.CONTENU.p.$t'
+              'ARTICLE.BLOC_TEXTUEL.CONTENU.div.$t'
+              'ARTICLE.BLOC_TEXTUEL.CONTENU.div.p'
+              'ARTICLE.BLOC_TEXTUEL.CONTENU.table.tbody.tr'
+
+              'ARTICLE.META.META_COMMUN.ID.$t'
+              '_score'
+              'ARTICLE.CONTEXTE.TEXTE.@cid'
+
+              'ARTICLE.META.META_SPEC.META_ARTICLE.DATE_DEBUT.$t'
+              'ARTICLE.META.META_SPEC.META_ARTICLE.DATE_FIN.$t'
+              'ARTICLE.BLOC_TEXTUEL.CONTENU.br'
+              'ARTICLE.NOTA.CONTENU.$t'
+              'ARTICLE.NOTA.CONTENU.p.$t'
+              'ARTICLE.META.META_SPEC.META_ARTICLE.ETAT.$t'
+              'ARTICLE.CONTEXTE.TEXTE.TM.TITRE_TM.@id'
+              'ARTICLE.CONTEXTE.TEXTE.TM.TM.TITRE_TM.@id'
+              'ARTICLE.CONTEXTE.TEXTE.TM.TM.TM.TITRE_TM.@id'
+              'ARTICLE.CONTEXTE.TEXTE.TM.TM.TM.TM.TITRE_TM.@id'
+              'ARTICLE.CONTEXTE.TEXTE.TM.TM.TM.TM.TM.TITRE_TM.@id'
+              'ARTICLE.CONTEXTE.TEXTE.TM.TM.TM.TM.TM.TM.TITRE_TM.@id'
+              'ARTICLE.CONTEXTE.TEXTE.TM.TM.TM.TM.TM.TM.TM.TITRE_TM.@id'
+              'ARTICLE.CONTEXTE.TEXTE.TM.TM.TM.TM.TM.TM.TM.TM.TITRE_TM.@id'
+              'ARTICLE.CONTEXTE.TEXTE.TM.TM.TM.TM.TM.TM.TM.TM.TM.TITRE_TM.@id'
+#}
+{% extends sonata_block.templates.block_base %}
+
+{% block block %}
+<div class="dwl-search-block">
+    <div class="dwl-search-block-search-text col-sm-offset-3 col-sm-6">
+    {% if settings.title %}
+        <h2 class="dwl-search-block-search-title">{{ settings.title }}</h2>
+        {% if settings.sub_title %}
+        <h3 class="dwl-search-block-search-sub_title">{{ settings.sub_title }}</h3>
+        {% endif %}
+    {% endif %}
+        <form ng-app="leges" eui-index="'legi'" class="dwl-search-block-search-form form-inline">
+          <div class="form-group">
+              <lcdd-search class="input-group" field="{{ lcddSearchFields | join(',') }}" eui-highlight="ejs.Highlight(field).preTags('<mark class=text-success>').postTags('</mark>')"></lcdd-search>
+          </div>
+
+          <div class="dwl-search-block-results panel-group" id="dwl-search-block-results-accordion" role="tablist" aria-multiselectable="true">
+              <div class="panel panel-default" ng-repeat="doc in indexVM.results.hits.hits" ng-cloack>
+                {% include 'DwlLcddSearchBundle:Block:block_result.html.twig' %}
+              </div>
+          </div>
+
+        </form>
+    </div>
+    <div class="dwl-search-block-media-container">
+    {% if media and settings.format %}
+        {% media media, settings.format with { 'class': 'img-responsive ' ~ settings.class, 'width': '100%', 'height': '' } %}
+        <div class="shadow"></div>
+    {% else %}
+        {# no media selected or format defined... #}
+    {% endif %}
+    </div>
+</div>
+{% block exim_page_asset_footer %}
+{{ parent() }}
+<script src="//code.angularjs.org/1.2.16/angular.js"></script>
+<script src="//code.angularjs.org/1.2.25/angular-sanitize.js"></script>
+<script src="/bundles/dwllcddsearch{{ asset('js/elastic.js') }}"></script>
+<script src="/bundles/dwllcddsearch{{ asset('js/elasticsearch.angular.js') }}"></script>
+<script src="/bundles/dwllcddsearch{{ asset('js/elasticui.js') }}"></script>
+<script>
+    angular
+        .module('leges', ['elasticui', 'ngSanitize'])
+        .filter('nquote',function() {
+            return function(input) {
+                if (input) {
+                    return input.replace(/&#39;|U\+0027/g, '\'');
+                }
+            }
+        })
+        .config(function($interpolateProvider){
+            $interpolateProvider
+                .startSymbol('{[{')
+                .endSymbol('}]}');
+        })
+        .constant('euiHost', 'http://163.172.35.42:9200'); // ACTION: change to cluster address
+</script>
+{% endblock %}
+
+{% endblock %}

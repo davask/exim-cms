@@ -1,0 +1,3 @@
+dwl_lcdd_search_homepage:
+    path:     /lcdd/{name}
+    defaults: { _controller: DwlLcddSearchBundle:Default:index }

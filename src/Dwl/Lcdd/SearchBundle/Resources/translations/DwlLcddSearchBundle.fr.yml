@@ -1,0 +1,45 @@
+dwl:
+  lcdd:
+    block:
+      search: Moteur de recherche
+    search:
+      message: "Note : Ce site est une démonstration d'eXim. Aucune commande passée sur ce site ne sera traitée."
+
+form:
+  label_author_name: Auteur
+  label_binary_content: Fichier/Référence
+  label_category: Catégorie
+  label_cdn_is_flushable: À rafraîchir sur le CDN
+  label_class: Classes CSS
+  label_content: Contenu
+  label_context: Contexte
+  label_copyright: Copyright
+  label_default_format: Format
+  label_description: Description
+  label_enabled: Actif
+  label_format: Format
+  label_gallery: Galerie
+  label_gallery_has_medias: Médias
+  label_media: Média
+  label_mode: Mode
+  label_mode_admin: Admin
+  label_mode_public: Public
+  label_name: Nom
+  label_number: Nombre
+  label_order: Ordre
+  label_order_created_at: Créé à
+  label_order_name: Nom
+  label_order_updated_at: Mis à jour à
+  label_orientation: Orientation
+  label_orientation_left: Gauche
+  label_orientation_right: Droite
+  label_pause_time: Durée de pause
+  label_position: Position
+  label_provider_reference: Référence du type
+  label_sort: Tri
+  label_sort_asc: Ascendant
+  label_sort_desc: Descendant
+  label_start_paused: Démarrer en pause
+  label_title: Titre
+  label_sub_title: Sous-titre
+  label_wrap: Encapsuleur HTML

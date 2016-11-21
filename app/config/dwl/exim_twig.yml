@@ -15,3 +15,5 @@ twig:
                     js: '%exim.theme.assets.version.js%'
                     img: '%exim.theme.assets.version.img%'
                 javascripts: '%exim.theme.front.js%'
+            admin:
+                skin: '%exim.theme.admin.skin%'

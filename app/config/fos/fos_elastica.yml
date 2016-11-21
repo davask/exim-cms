@@ -158,7 +158,7 @@ fos_elastica:
                         updated_at:             { type: date }
 
                     persistence:
-                        model:    Application\Sonata\PageBundle\Entity\Site
+                        model:    Sonata\PageBundle\Entity\Site
                         provider: ~
 
                 page:
@@ -190,7 +190,7 @@ fos_elastica:
                         updated_at:             { type: date }
 
                     persistence:
-                        model:    Application\Sonata\PageBundle\Entity\Page
+                        model:    Sonata\PageBundle\Entity\Page
                         provider: ~
 
 #                snapshot:
@@ -198,7 +198,7 @@ fos_elastica:
 #                    mappings:
 #                        name:     { boost: 5 }
 #                    persistence:
-#                        model:    Application\Sonata\PageBundle\Entity\Snapshot
+#                        model:    Sonata\PageBundle\Entity\Snapshot
 #                        provider: ~
 #
                 block:
@@ -215,7 +215,7 @@ fos_elastica:
                         updated_at:             { type: date }
 
                     persistence:
-                        model:    Application\Sonata\PageBundle\Entity\Block
+                        model:    Sonata\PageBundle\Entity\Block
                         provider: ~
 
                 snapshot:
@@ -240,7 +240,7 @@ fos_elastica:
                         updated_at:             { type: date }
 
                     persistence:
-                        model:    Application\Sonata\PageBundle\Entity\Snapshot
+                        model:    Sonata\PageBundle\Entity\Snapshot
                         provider: ~
 
                 # Classification Bundle

@@ -1,3 +1,163 @@
 sonata_admin:
-    templates:
-        knp_menu_template:           ApplicationSonataAdminBundle:Menu:sonata_menu.html.twig
+    title:      %exim_admin.title%
+    title_logo: %exim_admin.logo_title%
+    options:
+        html5_validate: false # does not use html5 validation
+        pager_links: 5        # pager max links to display
+        use_bootlint: false # %kernel.debug%
+
+    dashboard:
+        blocks:
+            -
+                roles: [ROLE_SUPER_ADMIN]
+                class:    col-lg-3 col-xs-6
+                position: top
+                type:     sonata.admin.block.stats
+                settings:
+                    code:  sonata.order.admin.order
+                    icon:  fa-shopping-cart
+                    text:  New Orders
+                    color: bg-red
+                    filters:
+                        status: { type: 3, value: 0 } # 3 => NumberType::TYPE_EQUAL
+
+            -
+                roles: [ROLE_SUPER_ADMIN]
+                class:    col-lg-3 col-xs-6
+                position: top
+                type:     sonata.admin.block.stats
+                settings:
+                    code:  sonata.customer.admin.customer
+                    icon:  fa-users
+                    text:  Customers
+                    color: bg-green
+
+            -
+                roles: [ROLE_SUPER_ADMIN]
+                class:    col-lg-3 col-xs-6
+                position: top
+                type:     sonata.admin.block.stats
+                settings:
+                    code:  sonata.page.admin.page
+                    icon:  fa-magic
+                    text:  Edited Pages
+                    color: bg-yellow
+                    filters:
+                        edited: { value: 1 }
+
+            -
+                roles: [ROLE_SUPER_ADMIN]
+                position: left
+                type: sonata.block.service.text
+                settings:
+                    content: "<div class='panel panel-default'><div class='panel-heading'><h3 class='panel-title'>Bonjour!</h3></div><div class='panel-body'>Bientot le site la chaine du droit</div></div>"
+
+            -
+                roles: [ROLE_SUPER_ADMIN]
+                position: left
+                type: sonata.news.block.recent_posts
+                settings:
+                    title: Recent Posts
+                    number: 7
+                    mode: admin
+            -
+                roles: [ROLE_SUPER_ADMIN]
+                position: right
+                type: sonata.order.block.recent_orders
+                settings:
+                    title: Recent Orders
+                    number: 5
+                    mode: admin
+            -
+                roles: [ROLE_SUPER_ADMIN]
+                position: right
+                type: sonata.customer.block.recent_customers
+                settings:
+                    title: Recent Customers
+                    number: 5
+                    mode: admin
+
+        groups:
+            sonata.admin.group.content:
+                roles: [ROLE_SUPER_ADMIN]
+                label:           sonata_content
+                label_catalogue: SonataDemoBundle
+                icon:            '<i class="fa fa-th"></i>'
+                items:
+                    - sonata.news.admin.post
+                    - sonata.media.admin.media
+                    - sonata.media.admin.gallery
+
+            sonata.admin.group.comment:
+                roles: [ROLE_SUPER_ADMIN]
+                label:           Conversation
+                label_catalogue: SonataNewsBundle
+                icon:            '<i class="fa fa-comments"></i>'
+                items:
+                    - sonata.comment.admin.thread
+                    - sonata.news.admin.comment
+
+            sonata.admin.group.ecommerce:
+                roles: [ROLE_SUPER_ADMIN]
+                label:           sonata_ecommerce
+                label_catalogue: SonataAdminBundle
+                icon:            '<i class="fa fa-dollar"></i>'
+                items:
+                    - sonata.customer.admin.customer
+                    - sonata.invoice.admin.invoice
+                    - sonata.order.admin.order
+                    - sonata.product.admin.product
+
+            sonata.admin.group.classification:
+                roles: [ROLE_SUPER_ADMIN]
+                label:           sonata_classification
+                label_catalogue: SonataClassificationBundle
+                icon:            '<i class="fa fa-tags"></i>'
+                items:
+                    - sonata.classification.admin.category
+                    - sonata.classification.admin.tag
+                    - sonata.classification.admin.collection
+                    - sonata.classification.admin.context
+
+            sonata.admin.group.site_builder:
+                roles: [ROLE_SUPER_ADMIN]
+                label:           Site Builder
+                label_catalogue: SonataPageBundle
+                icon:            '<i class="fa fa-puzzle-piece"></i>'
+                items:
+                    - sonata.page.admin.site
+                    - sonata.page.admin.page
+                    - sonata.page.admin.block
+
+            sonata.admin.group.administration:
+                roles: [ROLE_SUPER_ADMIN]
+                label:           sonata_administration
+                label_catalogue: SonataAdminBundle
+                icon:            '<i class="fa fa-cogs"></i>'
+                items:
+                    - sonata.user.admin.user
+                    - sonata.user.admin.group
+                    - sonata.notification.admin.message
+
+            sonata.admin.group.lcdd:
+                roles: [ROLE_SUPER_ADMIN]
+                label: LCDD
+                icon:  '<i class="fa fa-play-circle"></i>'
+                items:
+                    - sonata.demo.admin.car
+                    - sonata.demo.admin.engine
+                    - sonata.demo.admin.color
+                    - sonata.demo.admin.material
+
+    assets:
+        stylesheets:
+            - '%exim.theme.path.web%/assetic/sonata_admin_css.css'
+            - '%exim.theme.path.web%/assetic/sonata_formatter_css.css'
+            - '%exim.theme.path.web%/assetic/sonata_jqueryui_css.css'
+            - 'bundles/sonataadmin/vendor/admin-lte/dist/css/skins/%exim.theme.admin.skin%.min.css'
+
+        javascripts:
+            - '%exim.theme.path.web%/assetic/sonata_admin_js.js'
+            - '%exim.theme.path.web%/assetic/sonata_jqueryui_js.js'
+            - '%exim.theme.path.web%/assetic/sonata_formatter_js.js'
+            - bundles/sonataformatter/vendor/ckeditor/ckeditor.js

@@ -18,7 +18,7 @@ file that was distributed with this source code.
             <a href="{{ path('sonata_user_profile_show') }}" class="btn btn-primary">{{ user.username }}</a>
         </li>
         <li>
-            <a href="{{ path('fos_user_security_logout') }}" class="btn btn-secondary" title="{{ 'link_logout' | trans({}, "ApplicationSonataUserBundle") }}">X</a>
+            <a href="{{ path('fos_user_security_logout') }}" class="btn btn-secondary" title="{{ 'link_logout' | trans({}, "ApplicationSonataUserBundle") }}">{{ 'link_logout'|trans({}, 'ApplicationSonataUserBundle') }}</a>
         </li>
         {% else %}
         <li>

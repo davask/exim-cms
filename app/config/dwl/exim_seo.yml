@@ -1,0 +1,38 @@
+#
+# more information can be found here https://sonata-project.org/bundles/page
+#
+
+# TODO : How to add automatically to all Title page -> tree parent title, site title
+sonata_seo:
+    encoding:             UTF-8
+    page:
+        default:          sonata.seo.page.default
+        title:            Bienvenue
+        metas:
+            name:
+                keywords:               chaine, droit, comprendre, loi francaise
+                description:            Comprendre la loi francaise
+                robots:                 index, follow
+                viewport:               'width=device-width, initial-scale=1'
+
+            property:
+                # Facebook application settings
+                #'fb:app_id':          XXXXXX
+                #'fb:admins':          admin1, admin2
+
+                # Open Graph information
+                # see http://developers.facebook.com/docs/opengraphprotocol/#types or http://ogp.me/
+                'og:site_name':         '%exim_seo.title%'
+                'og:description':       '%exim_seo.baseline%'
+
+            http-equiv:
+                'Content-Type':         'text/html; charset=utf-8'
+                'X-Ua-Compatible':      ie=edge
+
+            charset:
+                utf-8:                  ''
+
+        head:
+            'xmlns': '' # remove sonata xmlns attribute
+            'class': 'no-js'
+            'lang': '%locale%'

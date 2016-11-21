@@ -1,0 +1,103 @@
+$white:#ffffff;
+$text:#333333;
+$border:#66afe9;
+$resources:'/bundles/dwllcddsearch';
+
+.dwl-search-block {
+    h2 {
+        font-size:44px;
+        color: $white;
+        margin-bottom:0;
+    }
+    h3 {
+        color: darken($white, 10%);
+        margin-top:0;
+        margin-bottom:45px;
+    }
+}
+
+.dwl-search-block-search-input {
+    border: none;
+    &:hover, &:focus {
+        box-shadow: none;
+    }
+}
+
+.dwl-search-block-media-container {
+    position:relative;
+    z-index:0;
+    .shadow {
+        position:absolute;
+        top:0;
+        left:0;
+        width:100%;
+        height:100%;
+        z-index:1;
+        background: transparent url("#{$resources}/images/shadow-25p.png") 0 0 repeat;
+    }
+}
+
+.dwl-search-block-search-text {
+    position: absolute;
+    top: 50%;
+    z-index:2;
+}
+.dwl-search-block-search-form {
+    max-width:620px;
+    margin: 0 auto;
+    .form-group, .input-group {
+        width: 100%;
+    }
+    .input-group-btn {
+        width:40px !important;
+    }
+    .form-group {
+        background: transparent url("#{$resources}/images/light-25p.png") 0 0 repeat;
+        padding:5px;
+    }
+    .input-group {
+        background:$white;
+        border: 1px solid darken($white, 10%);
+        &:hover, &:focus {
+            border-color: $border;
+            outline: 0;
+            -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);
+            box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);
+
+        }
+    }
+    .btn:focus {
+        outline: none !important;
+    }
+}
+
+.dwl-search-block-results {
+    margin-top: -6px;
+    z-index: 1;
+    position: relative;
+    margin: -6px 5px;
+    border: 1px solid darken($white, 10%);
+    border-top: 0;
+
+    > div {
+        background: $white;
+        border-bottom: 1px solid darken($white, 10%);
+    }
+
+    a {
+        color:$text !important;
+    }
+
+    &.panel-group .panel+.panel {
+        margin-top:0;
+    }
+    &.panel-group .panel {
+        border-radius:0;
+    }
+
+    .panel-default>.panel-heading {
+        background: $white;
+        padding: 2px 15px;
+        text-align: left;
+    }
+}

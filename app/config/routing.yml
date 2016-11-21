@@ -1,3 +1,7 @@
+dwl_lcdd_search:
+    resource: "@DwlLcddSearchBundle/Resources/config/routing.yml"
+    prefix:   /
+
 dwl_exim_core:
     resource: "@DwlEximCoreBundle/Resources/config/routing.yml"
     prefix:   /

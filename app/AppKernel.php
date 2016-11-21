@@ -44,13 +44,13 @@ class AppKernel extends Kernel
             // SONATA FEATURE
             new FOS\UserBundle\FOSUserBundle(),
             new Sonata\UserBundle\SonataUserBundle('FOSUserBundle'),
-            new Sonata\PageBundle\SonataPageBundle(),
+            new Sonata\PageBundle\SonataPageBundle(), // 3.x-addBlock2Admin
             new Sonata\NewsBundle\SonataNewsBundle(),
-            new Sonata\MediaBundle\SonataMediaBundle(),
+            new Sonata\MediaBundle\SonataMediaBundle(), // 3.x-addResponsiveness
 
             new Ivory\CKEditorBundle\IvoryCKEditorBundle(),
 
-            new Sonata\AdminBundle\SonataAdminBundle(),
+            new Sonata\AdminBundle\SonataAdminBundle(), // 3.x-addBlock2Admin
             new Sonata\DoctrineORMAdminBundle\SonataDoctrineORMAdminBundle(),
 
             // Disable this if you don't want the audit on entities
@@ -79,8 +79,8 @@ class AppKernel extends Kernel
             new Sonata\IntlBundle\SonataIntlBundle(),
             new Sonata\FormatterBundle\SonataFormatterBundle(),
             new Sonata\CacheBundle\SonataCacheBundle(),
-            new Sonata\BlockBundle\SonataBlockBundle(),
-            new Sonata\SeoBundle\SonataSeoBundle(),
+            new Sonata\BlockBundle\SonataBlockBundle(), // 3.x-addBlock2Admin
+            new Sonata\SeoBundle\SonataSeoBundle(), // 2.x-exim
             new Sonata\ClassificationBundle\SonataClassificationBundle(),
             new Sonata\NotificationBundle\SonataNotificationBundle(),
             new Sonata\DatagridBundle\SonataDatagridBundle(),
@@ -106,9 +106,7 @@ class AppKernel extends Kernel
             new Knp\Bundle\GaufretteBundle\KnpGaufretteBundle(),
 
             // EXIM THEME DEPENDENCIES
-            new Application\Sonata\AdminBundle\ApplicationSonataAdminBundle(),
             new Application\Sonata\BasketBundle\ApplicationSonataBasketBundle(),
-            new Application\Sonata\BlockBundle\ApplicationSonataBlockBundle(),
             new Application\Sonata\ClassificationBundle\ApplicationSonataClassificationBundle(),
             new Application\Sonata\CustomerBundle\ApplicationSonataCustomerBundle(),
             new Application\Sonata\InvoiceBundle\ApplicationSonataInvoiceBundle(),
@@ -118,7 +116,6 @@ class AppKernel extends Kernel
             new Application\Sonata\PageBundle\ApplicationSonataPageBundle(),
             new Application\Sonata\PaymentBundle\ApplicationSonataPaymentBundle(),
             new Application\Sonata\ProductBundle\ApplicationSonataProductBundle(),
-            new Application\Sonata\SeoBundle\ApplicationSonataSeoBundle(),
             new Application\Sonata\UserBundle\ApplicationSonataUserBundle(),
 
             // EXIM CORE
@@ -126,6 +123,9 @@ class AppKernel extends Kernel
 
             // APP
             new AppBundle\AppBundle(),
+
+            // LCDD
+            new Dwl\Lcdd\SearchBundle\DwlLcddSearchBundle()
 
         );
 

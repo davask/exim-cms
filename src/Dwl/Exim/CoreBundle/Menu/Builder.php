@@ -120,11 +120,6 @@ class Builder extends ContainerAware
 
     public function headerMenu(FactoryInterface $factory, array $options)
     {
-        return $this->mainMenu($factory, $options);
-    }
-
-    public function mainMenu(FactoryInterface $factory, array $options)
-    {
         $menuOptions = array_merge($options, array(
             'childrenAttributes' => array('class' => 'header-menu nav navbar-nav navbar-right'),
         ));

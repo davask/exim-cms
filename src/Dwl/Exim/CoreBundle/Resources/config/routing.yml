@@ -9,5 +9,5 @@ dwl_exim_core_private_src:
     defaults: { _controller: DwlEximCoreBundle:Block:index }
 
 dwl_exim_core_homepage:
-    path:     /hello/{name}
+    path:     /exim/{name}
     defaults: { _controller: DwlEximCoreBundle:Default:index }

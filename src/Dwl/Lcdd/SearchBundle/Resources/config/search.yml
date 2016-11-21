@@ -1,0 +1,7 @@
+# add in config.yml
+# - { resource: '%kernel.root_dir%/../src/Dwl/Lcdd/SearchBundle/Resources/config/search.yml' }
+# add in your global/base html.twig file just before the closing </body> tag
+# {% block exim_page_asset_footer %}{% endbock %}
+parameters:
+    exim.lcdd.search.resources: '%kernel.root_dir%/../src/Dwl/Lcdd/SearchBundle/Resources/public'
+    exim.lcdd.search.styles: '%exim.lcdd.search.resources%/scss/block_search.scss'

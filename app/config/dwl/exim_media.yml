@@ -24,6 +24,9 @@ sonata_media:
                 big:
                     width: 970
                     quality: 100
+                responsive:
+                    width: 1200
+                    quality: 100
 
     filesystem:
         # define where the uploaded file will be stored

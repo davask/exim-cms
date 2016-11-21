@@ -9,12 +9,12 @@ parameters:
     # theme details
 
     # Sonata Admin Options
-    sonata_admin.title: 'La chaine du droit'
-    sonata_admin.logo_title: '%exim.theme.path.web%/media/images/icon-full.png'
+    exim_admin.title: 'La chaine du droit'
+    exim_admin.logo_title: '%exim.theme.path.web%/media/images/icon-full.png'
 
     # Sonata Seo Options
-    sonata_seo.title: 'La Chainde du Droit'
-    sonata_seo.baseline: 'Comprendre le droit'
+    exim_seo.title: 'La Chainde du Droit'
+    exim_seo.baseline: 'Comprendre le droit'
 
     exim.theme.name: lcdd
     exim.theme.host: dev.lachainedudroit.fr
@@ -25,8 +25,9 @@ parameters:
         - 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css'
         - 'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'
         - '%exim.theme.path.root%/assets/legacy/compass/scss/sonata_legacy.scss'
-        - '%exim.theme.path.root%/assets/compass/scss/front.scss'
+        - '%exim.theme.path.root%/assets/compass/scss/front_admin.scss'
         - '%exim.theme.path.root%/assets/compass/scss/style.scss'
+        - '%exim.lcdd.search.styles%'
     exim.theme.admin.css:
         - 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css'
         - 'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'
@@ -35,6 +36,7 @@ parameters:
         - 'https://cdnjs.cloudflare.com/ajax/libs/sizzle/2.2.0/sizzle.min.js'
         - 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js'
 
+    exim.theme.admin.skin: 'skin-blue-light'
 
     # Assetic
     # assetic.filter.compass.images_dir: '%kernel.root_dir%/../web/images'

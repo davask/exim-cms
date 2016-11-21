@@ -56,12 +56,16 @@ imports:
 
     # Exim Core Bundles
     - { resource: dwl/exim_block.yml }
+    - { resource: dwl/exim_seo.yml }
     - { resource: dwl/exim_core.yml }
 
     # Exim Feature Bundles
     - { resource: dwl/exim_admin.yml }
     - { resource: dwl/exim_page.yml }
     - { resource: dwl/exim_media.yml }
+
+    # Lcdd Parameters + Bundles
+    - { resource: ../../src/Dwl/Lcdd/SearchBundle/Resources/config/search.yml }
 
 framework:
     #esi:             ~

@@ -1,11 +1,8 @@
 <!DOCTYPE html>
-<html class="no-js" {{ sonata_seo_html_attributes() }}>
+<html {{ sonata_seo_html_attributes() }}>
     <head {{ sonata_seo_head_attributes() }}>
-        <meta charset="utf-8">
-        <meta http-equiv="x-ua-compatible" content="ie=edge">
-        {{ sonata_seo_title() }}
+        {{ sonata_seo_title({'extension':'dns'}) }}
         {{ sonata_seo_metadatas() }}
-        <meta name="viewport" content="width=device-width, initial-scale=1">
         {% include '@theme/Template/Head/favicon.html.twig' %}
         {% include '@theme/Template/Head/stylesheets.html.twig' %}
     </head>
@@ -38,7 +35,7 @@
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="exim-navbar-collapse">
-                    <ul class="nav navbar-nav">
+                    <ul class="nav navbar-nav text-center">
                         {% include '@theme/Template/Header/admin.html.twig' %}
                         {% include '@theme/Template/Header/edition.html.twig' %}
                         {% include '@theme/Template/Header/switch.html.twig' %}
@@ -58,13 +55,16 @@
             {{ sonata_page_render_container('footer', 'global') }}
             {% endblock %}{% include "@theme/Template/Block/separator.html.twig" %}
 
-            {% include "@theme/Template/Block/separator.html.twig" with { bname: 'sonata_page_asset_footer' } %}{% block sonata_page_asset_footer %}
-
-            {% include '@theme/Template/Footer/javascripts.html.twig' %}
-            {% include '@theme/Template/Head/javascripts.html.twig' %}
-
-            {% endblock %}{% include "@theme/Template/Block/separator.html.twig" %}
         </footer>
+
+        {% include "@theme/Template/Block/separator.html.twig" with { bname: 'sonata_page_asset_footer' } %}{% block sonata_page_asset_footer %}
+
+        {% include '@theme/Template/Footer/javascripts.html.twig' %}
+        {% include '@theme/Template/Head/javascripts.html.twig' %}
+
+        {% endblock %}{% include "@theme/Template/Block/separator.html.twig" %}
+        {% include "@theme/Template/Block/separator.html.twig" with { bname: 'exim_page_asset_footer' } %}{% block exim_page_asset_footer %}
+        {% endblock %}{% include "@theme/Template/Block/separator.html.twig" %}
 
     </body>
 </html>

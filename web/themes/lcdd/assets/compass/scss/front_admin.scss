@@ -1,0 +1,146 @@
+@import "params";
+
+/* overriding */
+body.#{$theme} {
+    .navbar {
+        height:auto;
+        min-height:auto;
+    }
+}
+/* admin */
+body.#{$theme} {
+
+    header.navbar-admin {
+        background-color: $color_boston_blue_approx;
+        border-color: $color_calypso_approx;
+        margin-bottom: 0;
+        //Instead of the line below you could use @include border-radius($radius, $vertical-radius)
+        border-radius: 0;
+
+        a {
+            padding: 5px 15px;
+        }
+
+        .navbar-brand {
+            height:auto;
+            color: $white;
+            &:focus {
+                color: $grey;
+                background-color: $transparent;
+            }
+            &:hover {
+                color: $grey;
+                background-color: $transparent;
+            }
+        }
+        .navbar-text {
+            color: $white;
+        }
+        .navbar-nav {
+            > {
+                .active > a {
+                    color: $grey;
+                    background-color: $color_calypso_approx;
+                    &:focus {
+                        color: $grey;
+                        background-color: $color_calypso_approx;
+                    }
+                    &:hover {
+                        color: $grey;
+                        background-color: $color_calypso_approx;
+                    }
+                }
+                .disabled > a {
+                    color: $color_mine_shaft_approx;
+                    background-color: $transparent;
+                    &:focus {
+                        color: $color_mine_shaft_approx;
+                        background-color: $transparent;
+                    }
+                    &:hover {
+                        color: $color_mine_shaft_approx;
+                        background-color: $transparent;
+                    }
+                }
+                .open > a {
+                    color: $grey;
+                    background-color: $color_calypso_approx;
+                    &:focus {
+                        color: $grey;
+                        background-color: $color_calypso_approx;
+                    }
+                    &:hover {
+                        color: $grey;
+                        background-color: $color_calypso_approx;
+                    }
+                }
+            }
+            > li > a {
+                color: $white;
+                &:focus {
+                    color: $grey;
+                    background-color: $transparent;
+                }
+                &:hover {
+                    color: $grey;
+                    background-color: $transparent;
+                }
+            }
+        }
+        .navbar-toggle {
+            background-color: $transparent;
+            border-color: $transparent;
+            border:none;
+            border-radius:0;
+            padding:0;
+            .icon-bar {
+                background-color: $white;
+            }
+            &:focus, &:hover {
+                .icon-bar {
+                    background-color: $grey;
+                }
+            }
+        }
+        #exim-navbar-collapse {
+            .dropdown-menu {
+                a {
+                    text-align:center;
+                }
+            }
+        }
+        .navbar-collapse {
+            border-color: $color_woodsmoke_approx;
+        }
+        .navbar-form {
+            border-color: $color_woodsmoke_approx;
+        }
+        .navbar-link {
+            color: $white;
+            &:hover {
+                color: $grey;
+            }
+        }
+        .btn-link {
+            color: $white;
+            &:focus {
+                color: $grey;
+            }
+            &:hover {
+                color: $grey;
+            }
+        }
+        .btn-link[disabled] {
+            &:focus {
+                color: $color_mine_shaft_approx;
+            }
+            &:hover {
+                color: $color_mine_shaft_approx;
+            }
+        }
+        form.form-inline {
+            margin: 8px;
+        }
+    }
+
+}
