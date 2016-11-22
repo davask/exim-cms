@@ -46,25 +46,13 @@
 
 {% block block %}
 <div class="dwl-search-block">
-    <div class="dwl-search-block-search-text col-sm-offset-3 col-sm-6">
+    <div class="dwl-search-block-search-hero-text col-sm-offset-1 col-sm-10 col-md-offset-3 col-md-6">
     {% if settings.title %}
         <h2 class="dwl-search-block-search-title">{{ settings.title }}</h2>
         {% if settings.sub_title %}
         <h3 class="dwl-search-block-search-sub_title">{{ settings.sub_title }}</h3>
         {% endif %}
     {% endif %}
-        <form ng-app="leges" eui-index="'legi'" class="dwl-search-block-search-form form-inline">
-          <div class="form-group">
-              <lcdd-search class="input-group" field="{{ lcddSearchFields | join(',') }}" eui-highlight="ejs.Highlight(field).preTags('<mark class=text-success>').postTags('</mark>')"></lcdd-search>
-          </div>
-
-          <div class="dwl-search-block-results panel-group" id="dwl-search-block-results-accordion" role="tablist" aria-multiselectable="true">
-              <div class="panel panel-default" ng-repeat="doc in indexVM.results.hits.hits" ng-cloack>
-                {% include 'DwlLcddSearchBundle:Block:block_result.html.twig' %}
-              </div>
-          </div>
-
-        </form>
     </div>
     <div class="dwl-search-block-media-container">
     {% if media and settings.format %}
@@ -73,6 +61,18 @@
     {% else %}
         {# no media selected or format defined... #}
     {% endif %}
+    </div>
+    <div class="dwl-search-block-search-hero-form col-sm-offset-1 col-sm-10 col-md-offset-3 col-md-6">
+        <form ng-app="leges" eui-index="'legi'" class="dwl-search-block-search-form form-inline">
+          <div class="form-group">
+              <lcdd-search class="input-group" field="{{ lcddSearchFields | join(',') }}" eui-highlight="ejs.Highlight(field).preTags('<mark class=text-success>').postTags('</mark>')"></lcdd-search>
+              <div class="dwl-search-block-results panel-group" id="dwl-search-block-results-accordion" role="tablist" aria-multiselectable="true">
+                  <div class="panel panel-default" ng-repeat="doc in indexVM.results.hits.hits" ng-cloack>
+                    {% include 'DwlLcddSearchBundle:Block:block_result.html.twig' %}
+                  </div>
+              </div>
+          </div>
+        </form>
     </div>
 </div>
 {% block exim_page_asset_footer %}

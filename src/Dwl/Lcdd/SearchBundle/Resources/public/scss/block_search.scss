@@ -4,15 +4,23 @@ $border:#66afe9;
 $resources:'/bundles/dwllcddsearch';
 
 .dwl-search-block {
+    position:relative;
     h2 {
-        font-size:44px;
+        font-size:28px;
         color: $white;
         margin-bottom:0;
+        @media (min-width: 1024px) {
+            font-size:44px;
+        }
     }
     h3 {
+        font-size:14px;
         color: darken($white, 10%);
         margin-top:0;
         margin-bottom:45px;
+        @media (min-width: 1024px) {
+            font-size:24px;
+        }
     }
 }
 
@@ -37,11 +45,48 @@ $resources:'/bundles/dwllcddsearch';
     }
 }
 
-.dwl-search-block-search-text {
-    position: absolute;
-    top: 50%;
+.dwl-search-block-search-hero-text,
+.dwl-search-block-search-hero-form {
     z-index:2;
+    @media (max-width: 767px) {
+        width: 100%;
+    }
 }
+.dwl-search-block-search-hero-text {
+    position: absolute;
+    top: 15%;
+
+    @media (max-width: 767px) and (orientation: portrait) {
+        top: 20%;
+    }
+
+    @media (min-width: 768px) {
+        top: 25%;
+    }
+    @media (min-width: 1200px) {
+        top: 30%;
+    }
+}
+
+.dwl-search-block-search-hero-form {
+
+    z-index:3;
+    position: absolute;
+    top: 45%;
+
+    @media (max-width: 767px) and (orientation: portrait) {
+        position: relative;
+    }
+
+    @media (min-width: 768px) {
+        top: 50%;
+    }
+
+    @media (min-width: 1200px) {
+        top: 45%;
+    }
+}
+
 .dwl-search-block-search-form {
     max-width:620px;
     margin: 0 auto;
@@ -54,6 +99,8 @@ $resources:'/bundles/dwllcddsearch';
     .form-group {
         background: transparent url("#{$resources}/images/light-25p.png") 0 0 repeat;
         padding:5px;
+        margin-bottom: 0;
+        position:relative;
     }
     .input-group {
         background:$white;
@@ -72,12 +119,18 @@ $resources:'/bundles/dwllcddsearch';
 }
 
 .dwl-search-block-results {
-    margin-top: -6px;
     z-index: 1;
-    position: relative;
-    margin: -6px 5px;
+    top: 40px;
+    left: 0;
+    padding: 0 5px;
+    width:100%;
+    position: absolute;
     border: 1px solid darken($white, 10%);
     border-top: 0;
+
+    &:last-child {
+        border:none;
+    }
 
     > div {
         background: $white;
