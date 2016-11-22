@@ -1311,7 +1311,10 @@ var elasticui;
                     // var queryMatch = 'ejs.MultiMatch().query(querystring).fields([field])'; // src : https://github.com/YousefED/ElasticUI/issues/84
                     directive.template = '\
 <input type="text" class="dwl-search-block-search-input form-control" placeholder="Vous avez une question ?" \
-    eui-query="' + queryMatch + '" ng-model="querystring" eui-enabled="querystring.length > 2" />\
+    eui-query="' + queryMatch + '" ng-model="querystring" \
+    eui-highlight="ejs.Highlight(field).preTags(\'<b>\').postTags(\'</b>\')" \
+    eui-enabled="true" \
+    />\
 <span class="input-group-btn">\
 <button class="btn btn-link" type="button"><i class="fa fa-search"></i></button>\
 </span>\

@@ -63,11 +63,11 @@
     {% endif %}
     </div>
     <div class="dwl-search-block-search-hero-form col-sm-offset-1 col-sm-10 col-md-offset-3 col-md-6">
-        <form ng-app="leges" eui-index="'legi'" class="dwl-search-block-search-form form-inline">
+        <form ng-app="leges" eui-index="'legi'" class="dwl-search-block-search-form form-inline" ng-cloack>
           <div class="form-group">
-              <lcdd-search class="input-group" field="{{ lcddSearchFields | join(',') }}" eui-highlight="ejs.Highlight(field).preTags('<mark class=text-success>').postTags('</mark>')"></lcdd-search>
+              <lcdd-search class="input-group" field="{{ lcddSearchFields | join(',') }}"></lcdd-search>
               <div class="dwl-search-block-results panel-group" id="dwl-search-block-results-accordion" role="tablist" aria-multiselectable="true">
-                  <div class="panel panel-default" ng-repeat="doc in indexVM.results.hits.hits" ng-cloack>
+                  <div class="panel panel-default" ng-repeat="doc in indexVM.results.hits.hits">
                     {% include 'DwlLcddSearchBundle:Block:block_result.html.twig' %}
                   </div>
               </div>
