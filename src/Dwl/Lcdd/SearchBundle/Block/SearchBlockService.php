@@ -146,10 +146,14 @@ class SearchBlockService extends BaseBlockService
             }
         }
 
+        $questionForm = $this->container->get( 'dwl.lcdd.block.search.form.question' );
+        $question = $this->container->get( 'dwl.lcdd.block.search.form.entity.question' );
+        $questionForm->setData( $question );
         return $this->renderResponse($blockContext->getTemplate(), array(
             'media' => $blockContext->getSetting('mediaId'),
             'block' => $blockContext->getBlock(),
             'settings' => $blockContext->getSettings(),
+            'questionForm' => $questionForm->createView(),
         ), $response);
     }
 

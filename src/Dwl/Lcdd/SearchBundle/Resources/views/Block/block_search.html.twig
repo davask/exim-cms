@@ -62,43 +62,32 @@
         {# no media selected or format defined... #}
     {% endif %}
     </div>
-    <div class="dwl-search-block-search-hero-form col-sm-offset-1 col-sm-10 col-md-offset-3 col-md-6">
-        <form ng-app="leges" eui-index="'legi'" class="dwl-search-block-search-form form-inline" ng-cloack>
-          <div class="form-group">
+    <div id="dwl-search-block-search-home-form"
+         class="dwl-search-block-search-hero-form col-sm-offset-1 col-sm-10 col-md-offset-3 col-md-6"
+         ng-controller="formCtrl"
+         eui-index="'legi'" ng-cloack>
+        <form class="dwl-search-block-search-form form-inline">
+          <div class="form-group" ng-mouseleave="hide()" ng-mouseenter="show()">
               <lcdd-search class="input-group" field="{{ lcddSearchFields | join(',') }}"></lcdd-search>
               <div class="dwl-search-block-results panel-group" id="dwl-search-block-results-accordion" role="tablist" aria-multiselectable="true">
-                  <div class="panel panel-default" ng-repeat="doc in indexVM.results.hits.hits">
+                  <div class="panel panel-default" ng-repeat="doc in indexVM.results.hits.hits" ng-init="dictum=doc._source.ARTICLE">
                     {% include 'DwlLcddSearchBundle:Block:block_result.html.twig' %}
                   </div>
               </div>
           </div>
         </form>
+        {% form_theme questionForm 'bootstrap_3_layout.html.twig' %}
+        <form ng-if="true || (!indexVM.loading && indexVM.query.query().length && !indexVM.results.hits.hits.length)"
+            class="dwl-search-block-question-form" target="_blank"
+            action="{{ path('dwl_lcdd_search_question_submit') }}" method="POST" {{ form_enctype(questionForm) }}>
+            {{ form_widget(questionForm) }}
+        </form>
     </div>
+    <script type="text/javascript">
+      var lcdd = {};
+      lcdd['elastic'] = {};
+      lcdd['elastic']['request'] = '{{ lcdd.elastic.request }}';
+      lcdd['elastic']['index'] = '{{ lcdd.elastic.index }}';
+    </script>
 </div>
-{% block exim_page_asset_footer %}
-{{ parent() }}
-<script src="//code.angularjs.org/1.2.16/angular.js"></script>
-<script src="//code.angularjs.org/1.2.25/angular-sanitize.js"></script>
-<script src="/bundles/dwllcddsearch{{ asset('js/elastic.js') }}"></script>
-<script src="/bundles/dwllcddsearch{{ asset('js/elasticsearch.angular.js') }}"></script>
-<script src="/bundles/dwllcddsearch{{ asset('js/elasticui.js') }}"></script>
-<script>
-    angular
-        .module('leges', ['elasticui', 'ngSanitize'])
-        .filter('nquote',function() {
-            return function(input) {
-                if (input) {
-                    return input.replace(/&#39;|U\+0027/g, '\'');
-                }
-            }
-        })
-        .config(function($interpolateProvider){
-            $interpolateProvider
-                .startSymbol('{[{')
-                .endSymbol('}]}');
-        })
-        .constant('euiHost', 'http://163.172.35.42:9200'); // ACTION: change to cluster address
-</script>
-{% endblock %}
-
 {% endblock %}

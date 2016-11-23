@@ -8,7 +8,7 @@ sonata_news:
         comment:    Application\Sonata\NewsBundle\Entity\Comment
         tag:        Application\Sonata\ClassificationBundle\Entity\Tag
         collection: Application\Sonata\ClassificationBundle\Entity\Collection
-        user:       Dwl\Exim\CoreBundle\Entity\User\User
+        user:       Application\Sonata\UserBundle\Entity\User
         media:      Application\Sonata\MediaBundle\Entity\Media
 
     title:        %sonata_news.blog_title%

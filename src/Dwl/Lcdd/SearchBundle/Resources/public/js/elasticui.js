@@ -1296,37 +1296,6 @@ var elasticui;
             directives.SearchboxDirective = SearchboxDirective;
             directives.directives.directive('euiSearchbox', SearchboxDirective);
 
-            var LcddSearchDirective = (function () {
-                function LcddSearchDirective($parse) {
-                    var directive = {};
-                    directive.restrict = 'E';
-                    directive.scope = true;
-                    directive.link = {
-                        'pre': function (scope, element, attrs) {
-                            elasticui.util.AngularTool.setupBinding($parse, scope, attrs, ["field"]);
-                        }
-                    };
-                    // TODO: should be debounced
-                    var queryMatch = 'ejs.MatchQuery(field, querystring)';
-                    // var queryMatch = 'ejs.MultiMatch().query(querystring).fields([field])'; // src : https://github.com/YousefED/ElasticUI/issues/84
-                    directive.template = '\
-<input type="text" class="dwl-search-block-search-input form-control" placeholder="Vous avez une question ?" \
-    eui-query="' + queryMatch + '" ng-model="querystring" \
-    eui-highlight="ejs.Highlight(field).preTags(\'<b>\').postTags(\'</b>\')" \
-    eui-enabled="true" \
-    />\
-<span class="input-group-btn">\
-<button class="btn btn-link" type="button"><i class="fa fa-search"></i></button>\
-</span>\
-';
-                    return directive;
-                }
-                LcddSearchDirective.$inject = ['$parse'];
-                return LcddSearchDirective;
-            })();
-            directives.LcddSearchDirective = LcddSearchDirective;
-            directives.directives.directive('lcddSearch', LcddSearchDirective);
-
         })(directives = widgets.directives || (widgets.directives = {}));
     })(widgets = elasticui.widgets || (elasticui.widgets = {}));
 })(elasticui || (elasticui = {}));

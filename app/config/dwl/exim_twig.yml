@@ -14,6 +14,11 @@ twig:
                     css: '%exim.theme.assets.version.css%'
                     js: '%exim.theme.assets.version.js%'
                     img: '%exim.theme.assets.version.img%'
-                javascripts: '%exim.theme.front.js%'
+                css:
+                    vendor: '%exim.theme.front.css.vendor%'
+                    extra: '%exim.theme.front.css.extra%'
+                js:
+                    vendor: '%exim.theme.front.js.vendor%'
+                    extra: '%exim.theme.front.js.extra%'
             admin:
                 skin: '%exim.theme.admin.skin%'

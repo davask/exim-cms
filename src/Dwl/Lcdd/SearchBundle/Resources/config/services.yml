@@ -5,6 +5,24 @@ parameters:
     dwl.lcdd.admin.search.translation_domain: DwlLcddSearchBundle
 
 services:
+    dwl.lcdd.block.search.form.question:
+        factory_method: createNamed
+        factory_service: form.factory
+        class: Symfony\Component\Form\Form
+        arguments:
+            - question                                    # name of the form
+            - dwl_lcdd_searchbundle_question              # alias of the form type
+            - null                                        # data to bind, this is where your entity could go if you have that defined as a service
+            - { validation_groups: [Default] }            # validation groups
+
+    dwl.lcdd.block.search.form.type.question:
+        class: Dwl\Lcdd\SearchBundle\Form\QuestionType
+        tags:
+            - { name: form.type, alias: dwl_lcdd_searchbundle_question }
+
+    dwl.lcdd.block.search.form.entity.question:
+        class: Dwl\Lcdd\SearchBundle\Entity\Question
+
     dwl.lcdd.block.search:
         class: %dwl.lcdd.block.search.class%
         tags:

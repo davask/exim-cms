@@ -9,7 +9,7 @@
  * file that was distributed with this source code.
  */
 
-namespace Dwl\Exim\CoreBundle\DataFixtures\ORM;
+namespace Application\Sonata\OrderBundle\DataFixtures\ORM;
 
 use Application\Sonata\CustomerBundle\Entity\Address;
 use Application\Sonata\CustomerBundle\Entity\Customer;
@@ -18,7 +18,7 @@ use Application\Sonata\OrderBundle\Entity\OrderElement;
 use Application\Sonata\PaymentBundle\Entity\Transaction;
 use Application\Sonata\OrderBundle\Entity\Order;
 use Application\Sonata\ProductBundle\Entity\Delivery;
-use Dwl\Exim\CoreBundle\Entity\User\User;
+use Application\Sonata\UserBundle\Entity\User;
 use Sonata\Component\Basket\Basket;
 use Sonata\Component\Basket\BasketInterface;
 use Sonata\Component\Invoice\InvoiceInterface;

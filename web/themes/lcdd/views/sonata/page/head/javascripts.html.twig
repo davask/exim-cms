@@ -1,4 +1,4 @@
-{%- if app.user and is_granted('ROLE_EXIM_ADMIN') %}
+{%- if app.user and is_granted('ROLE_SUPER_ADMIN') %}
 <!-- exim sonata_page_javascripts -->
 {% endif %}
 
@@ -15,7 +15,7 @@
     var basket_update_confirmation_message = "{{ 'sonata_basket_update_confirmation'|trans({}, 'SonataDemoBundle')|escape('js') }}";
 </script>
 
-{% if app.user and is_granted('ROLE_EXIM_ADMIN') -%}
+{% if app.user and is_granted('ROLE_SUPER_ADMIN') -%}
 <!-- /exim-->
 {% endif %}
 {% if page is defined %}

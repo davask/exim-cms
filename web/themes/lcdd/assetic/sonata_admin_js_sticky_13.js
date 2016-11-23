@@ -1,0 +1,7 @@
+/*!
+Waypoints Sticky Element Shortcut - 4.0.0
+Copyright © 2011-2015 Caleb Troughton
+Licensed under the MIT license.
+https://github.com/imakewebthings/waypoints/blog/master/licenses.txt
+*/
+(function(){var c=window.jQuery;var a=window.Waypoint;function b(d){this.options=c.extend({},a.defaults,b.defaults,d);this.element=this.options.element;this.$element=c(this.element);this.createWrapper();this.createWaypoint()}b.prototype.createWaypoint=function(){var d=this.options.handler;this.waypoint=new a(c.extend({},this.options,{element:this.wrapper,handler:c.proxy(function(g){var e=this.options.direction.indexOf(g)>-1;var f=e?this.$element.outerHeight(true):"";this.$wrapper.height(f);this.$element.toggleClass(this.options.stuckClass,e);if(d){d.call(this,g)}},this)}))};b.prototype.createWrapper=function(){if(this.options.wrapper){this.$element.wrap(this.options.wrapper)}this.$wrapper=this.$element.parent();this.wrapper=this.$wrapper[0]};b.prototype.destroy=function(){if(this.$element.parent()[0]===this.wrapper){this.waypoint.destroy();this.$element.removeClass(this.options.stuckClass);if(this.options.wrapper){this.$element.unwrap()}}};b.defaults={wrapper:'<div class="sticky-wrapper" />',stuckClass:"stuck",direction:"down right"};a.Sticky=b}());

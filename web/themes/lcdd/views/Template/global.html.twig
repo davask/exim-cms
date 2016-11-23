@@ -5,6 +5,7 @@
         {{ sonata_seo_metadatas() }}
         {% include '@theme/Template/Head/favicon.html.twig' %}
         {% include '@theme/Template/Head/stylesheets.html.twig' %}
+        {% include '@theme/Template/Head/javascripts.html.twig' %}
     </head>
 
     <body class="{{ theme.name }} container-fluid{% block bodyClass %} global{% endblock %}">
@@ -60,10 +61,9 @@
         {% include "@theme/Template/Block/separator.html.twig" with { bname: 'sonata_page_asset_footer' } %}{% block sonata_page_asset_footer %}
 
         {% include '@theme/Template/Footer/javascripts.html.twig' %}
-        {% include '@theme/Template/Head/javascripts.html.twig' %}
 
         {% endblock %}{% include "@theme/Template/Block/separator.html.twig" %}
-        {% include "@theme/Template/Block/separator.html.twig" with { bname: 'exim_page_asset_footer' } %}{% block exim_page_asset_footer %}
+        {% include "@theme/Template/Block/separator.html.twig" with { bname: 'exim_page_asset_footer' } %}{% block exim_page_asset_footer %}test
         {% endblock %}{% include "@theme/Template/Block/separator.html.twig" %}
 
     </body>

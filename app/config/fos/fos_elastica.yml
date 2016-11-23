@@ -85,7 +85,7 @@ fos_elastica:
                         updated_at:             { type: date }
 
                     persistence:
-                        model:                  Dwl\Exim\CoreBundle\Entity\User\User
+                        model:                  Application\Sonata\UserBundle\Entity\User
                         provider:               ~
 
                 group:
@@ -94,7 +94,7 @@ fos_elastica:
                         name:                   { boost: 5 }
                         roles:                  ~
                     persistence:
-                        model:                  Dwl\Exim\CoreBundle\Entity\User\Group
+                        model:                  Application\Sonata\UserBundle\Entity\Group
                         provider:               ~
 
                 # Media Bundle

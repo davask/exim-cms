@@ -1,0 +1,23 @@
+# add in config.yml
+# - { resource: '%kernel.root_dir%/../src/Dwl/Lcdd/SearchBundle/Resources/config/search.yml' }
+# add in your global/base html.twig file just before the closing </body> tag
+# {% block exim_page_asset_footer %}{% endbock %}
+parameters:
+    exim.lcdd.search.resources: '%kernel.root_dir%/../src/Dwl/Lcdd/SearchBundle/Resources/public'
+    exim.lcdd.search.styles:
+      - '%exim.lcdd.search.resources%/scss/block_search.scss'
+    exim.lcdd.search.javascript:
+      - '%exim.lcdd.search.resources%/js/elasticsearch.angular.js'
+      - '%exim.lcdd.search.resources%/js/search.elasticui.js'
+      - '%exim.lcdd.search.resources%/js/search.angular.js'
+      - '%exim.lcdd.search.resources%/js/search.form.jquery.js'
+    exim.lcdd.search.vendor.javascript:
+      - '//code.angularjs.org/1.2.16/angular.js'
+      - '//code.angularjs.org/1.2.25/angular-sanitize.js'
+      - '/bundles/dwllcddsearch/vendor/elastic.js/dist/elastic.min.js'
+
+
+    lcdd.elastic.host: 163.172.35.42
+    lcdd.elastic.port: 9200
+    lcdd.elastic.request: 'http://%lcdd.elastic.host%:%lcdd.elastic.port%'
+    lcdd.elastic.index: 'legi'

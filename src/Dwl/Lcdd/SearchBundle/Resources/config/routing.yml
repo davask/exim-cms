@@ -1,3 +1,15 @@
-dwl_lcdd_search_homepage:
-    path:     /lcdd/{name}
-    defaults: { _controller: DwlLcddSearchBundle:Default:index }
+dwl_lcdd_search_question_submit:
+    path:     /lcdd/question/submit
+    methods:
+        - POST
+    defaults:
+        _controller: DwlLcddSearchBundle:Question:Submit
+        qualified: false
+        _format: html
+        _scheme: http
+    requirements:
+        question: .+
+        qualified: true|false
+        _locale: fr
+        _format: html|json
+        _scheme: http|https

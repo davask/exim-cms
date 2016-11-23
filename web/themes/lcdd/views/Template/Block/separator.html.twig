@@ -1,4 +1,4 @@
-{% if app.user and is_granted('ROLE_EXIM_ADMIN') %}
+{% if app.user and is_granted('ROLE_SUPER_ADMIN') %}
     {%- if bname is defined -%}
 <!-- exim {{bname}} -->
 {# exim space fix #}

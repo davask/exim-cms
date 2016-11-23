@@ -33,12 +33,12 @@ file that was distributed with this source code.
     {#% include "SonataSeoBundle:Block:_google_plus_sdk.html.twig" %#}
 {%- endblock -%}
 
-{% if app.user and is_granted('ROLE_EXIM_ADMIN') -%}
+{% if app.user and is_granted('ROLE_SUPER_ADMIN') -%}
 <!-- exim sonata_page_top_bar -->
 {% endif %}
 {% block sonata_page_top_bar %}
 
-    {%- if app.user and is_granted('ROLE_EXIM_ADMIN') -%}
+    {%- if app.user and is_granted('ROLE_SUPER_ADMIN') -%}
     <!-- exim page_top_bar -->
     {% endif %}
     {% block page_top_bar %} {# Deprecated block #}
@@ -58,12 +58,12 @@ file that was distributed with this source code.
 
         {% endif %}
     {% endblock %}
-    {%- if app.user and is_granted('ROLE_EXIM_ADMIN') -%}
+    {%- if app.user and is_granted('ROLE_SUPER_ADMIN') -%}
     <!-- /exim-->
 {# exim space fix -#}
     {% endif -%}
 {% endblock %}
-{% if app.user and is_granted('ROLE_EXIM_ADMIN') -%}
+{% if app.user and is_granted('ROLE_SUPER_ADMIN') -%}
 <!-- /exim-->
 {%- endif %}
 

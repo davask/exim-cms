@@ -1,0 +1,10 @@
+fos_elastica:
+    clients:
+        lcdd:
+            host: %lcdd.elastic.host%
+            port: %lcdd.elastic.port%
+    indexes:
+        sonata_admin:
+            client: lcdd
+        lcdd:
+            client: lcdd

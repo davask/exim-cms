@@ -1,0 +1,1 @@
+angular.module("leges",["elasticui","ngSanitize"]).filter("nquote",function(){return function(a){if(a){return a.replace(/&#39;|U\+0027/g,"'")}}}).config(function(a){a.startSymbol("{[{").endSymbol("}]}")}).constant("euiHost","{{ lcdd.elastic.request }}");

@@ -1,38 +1,59 @@
 <div class="panel-heading" role="tab"
-    id="heading_{[{ doc._source.ARTICLE.CONTEXTE.TEXTE['@cid'] }]}_{[{ doc._source.ARTICLE.META.META_COMMUN.ID.$t }]}">
+    id="heading_{[{ cid }]}_{[{ did }]}"
+    ng-init="
+        dc=dictum.CONTEXTE;
+        dct=dc.TEXTE;
+        cid=dct['@cid'];
+        titre=dct.TITRE_TXT.$t;
+
+        dbc=dictum.BLOC_TEXTUEL.CONTENU;
+
+        dm=dictum.META;
+        dmm=dm.META_COMMUN;
+        did=dmm.ID.$t;
+        nature=dmm.NATURE.$t;
+        num=dm.META_SPEC.META_ARTICLE.NUM.$t;
+    ">
   <h4 class="panel-title">
-    <a role="button" data-toggle="collapse" data-parent="#dwl-search-block-results-accordion" href="#collapse_{[{ doc._source.ARTICLE.CONTEXTE.TEXTE['@cid'] }]}_{[{ doc._source.ARTICLE.META.META_COMMUN.ID.$t }]}" aria-expanded="false" aria-controls="collapse_{[{ doc._source.ARTICLE.CONTEXTE.TEXTE['@cid'] }]}_{[{ doc._source.ARTICLE.META.META_COMMUN.ID.$t }]}">
-      <span class="caret"></span>&nbsp;{[{ doc._source.ARTICLE.CONTEXTE.TEXTE.TITRE_TXT.$t }]} - {[{ doc._source.ARTICLE.META.META_COMMUN.NATURE.$t }]}&nbsp;{[{ doc._source.ARTICLE.META.META_SPEC.META_ARTICLE.NUM.$t }]}
+    <a role="button" data-toggle="collapse" data-parent="#dwl-search-block-results-accordion" href="#collapse_{[{ cid }]}_{[{ did }]}" aria-expanded="false" aria-controls="collapse_{[{ cid }]}_{[{ did }]}">
+      <span class="caret"></span>&nbsp;{[{ titre | nquote }]} - {[{ nature | nquote }]}&nbsp;{[{ num | nquote }]}
     </a>
   </h4>
 </div>
-<div id="collapse_{[{ doc._source.ARTICLE.CONTEXTE.TEXTE['@cid'] }]}_{[{ doc._source.ARTICLE.META.META_COMMUN.ID.$t }]}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading_{[{ doc._source.ARTICLE.CONTEXTE.TEXTE['@cid'] }]}_{[{ doc._source.ARTICLE.META.META_COMMUN.ID.$t }]}">
+<div id="collapse_{[{ cid }]}_{[{ did }]}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading_{[{ cid }]}_{[{ did }]}">
   <div class="panel-body">
-    CODEX : {[{ doc._source.ARTICLE.CONTEXTE.TEXTE['@cid'] }]}<br/>
-    DICTUM : {[{ doc._source.ARTICLE.META.META_COMMUN.ID.$t }]}
-    <hr/>
-    <p>{[{doc._source.ARTICLE.BLOC_TEXTUEL.CONTENU.$t | nquote}]}</p>
-    <p>{[{ doc._source.ARTICLE.BLOC_TEXTUEL.CONTENU.p.$t | nquote }]}</p>
-    <p ng-repeat="p in doc._source.ARTICLE.BLOC_TEXTUEL.CONTENU.p">
+    <p ng-if="dbc.$t">{[{ dbc.$t | nquote }]}</p>
+    <p ng-if="dbc.p.$t">{[{ dbc.p.$t | nquote }]}</p>
+    <p ng-repeat="p in dbc.p" ng-if="dbc.p">
+        <span>{[{ p.$t | nquote}]}</span>
+    </p>
+    <p ng-if="dbc.div.$t">{[{ dbc.div.$t | nquote }]}</p>
+    <p ng-repeat="p in dbc.div.p" ng-if="dbc.div.p">
         <span>{[{p.$t | nquote}]}</span>
     </p>
-    <p>{[{doc._source.ARTICLE.BLOC_TEXTUEL.CONTENU.div.$t | nquote}]}</p>
-    <p ng-repeat="p in doc._source.ARTICLE.BLOC_TEXTUEL.CONTENU.div.p">
-        <span>{[{p.$t | nquote}]}</span>
-    </p>
-    <table>
-        <tbody ng-repeat="tr in doc._source.ARTICLE.BLOC_TEXTUEL.CONTENU.table.tbody.tr">
+    <table ng-if="dbc.table.tbody.tr">
+        <tbody ng-repeat="tr in dbc.table.tbody.tr">
             <tr>{[{tr.$t | nquote}]}</tr>
         </tbody>
     </table>
+{%- if app.user and is_granted('ROLE_ADMIN') -%}
     <hr/>
-    <a target="_blank" href="//www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte={[{ doc._source.ARTICLE.CONTEXTE.TEXTE['@cid'] }]}&idArticle={[{ doc._source.ARTICLE.META.META_COMMUN.ID.$t }]}"/>
-        Legifrance : {[{ doc._source.ARTICLE.CONTEXTE.TEXTE.TITRE_TXT.$t }]} - {[{ doc._source.ARTICLE.META.META_COMMUN.NATURE.$t }]}&nbsp;{[{ doc._source.ARTICLE.META.META_SPEC.META_ARTICLE.NUM.$t }]}
+    CODEX : {[{ cid }]} - DICTUM : {[{ did }]}
+    <br/>
+    <br/>
+    <a target="_blank" href="//www.legifrance.gouv.fr/affichCodeArticle.do?cidTexte={[{ cid }]}&idArticle={[{ did }]}"/>
+        Legifrance : {[{ titre }]} - {[{ nature }]}&nbsp;{[{ num }]}&nbsp;<i class="fa fa-external-link" aria-hidden="true"></i>
     </a>
     <br/>
-    <a target="_blank" href="http://163.172.35.42:5601/app/kibana?#/discover/All-leges?_g=(refreshInterval:(display:Off,pause:!f,value:0),time:(from:now-15m,mode:quick,to:now))&_a=(columns:!(_index,'ARTICLE.CONTEXTE.TEXTE.@cid','ARTICLE.META.META_COMMUN.ID.$t',_score,'ARTICLE.CONTEXTE.TEXTE.TITRE_TXT.$t','ARTICLE.CONTEXTE.TEXTE.TM.TITRE_TM.$t','ARTICLE.CONTEXTE.TEXTE.TM.TM.TITRE_TM.$t','ARTICLE.CONTEXTE.TEXTE.TM.TM.TM.TITRE_TM.$t','ARTICLE.CONTEXTE.TEXTE.TM.TM.TM.TM.TITRE_TM.$t','ARTICLE.CONTEXTE.TEXTE.TM.TM.TM.TM.TM.TITRE_TM.$t','ARTICLE.CONTEXTE.TEXTE.TM.TM.TM.TM.TM.TM.TITRE_TM.$t','ARTICLE.CONTEXTE.TEXTE.TM.TM.TM.TM.TM.TM.TM.TITRE_TM.$t','ARTICLE.CONTEXTE.TEXTE.TM.TM.TM.TM.TM.TM.TM.TM.TITRE_TM.$t','ARTICLE.CONTEXTE.TEXTE.TM.TM.TM.TM.TM.TM.TM.TM.TM.TITRE_TM.$t','ARTICLE.CONTEXTE.TEXTE.@nature','ARTICLE.META.META_COMMUN.NATURE.$t','ARTICLE.META.META_SPEC.META_ARTICLE.NUM.$t','ARTICLE.META.META_SPEC.META_ARTICLE.DATE_DEBUT.$t','ARTICLE.META.META_SPEC.META_ARTICLE.DATE_FIN.$t','ARTICLE.BLOC_TEXTUEL.CONTENU.$t',ARTICLE.BLOC_TEXTUEL.CONTENU.p,'ARTICLE.BLOC_TEXTUEL.CONTENU.p.$t','ARTICLE.BLOC_TEXTUEL.CONTENU.div.$t',ARTICLE.BLOC_TEXTUEL.CONTENU.div.p,ARTICLE.BLOC_TEXTUEL.CONTENU.table.tbody.tr,ARTICLE.BLOC_TEXTUEL.CONTENU.br,'ARTICLE.NOTA.CONTENU.$t','ARTICLE.NOTA.CONTENU.p.$t','ARTICLE.META.META_SPEC.META_ARTICLE.ETAT.$t','ARTICLE.CONTEXTE.TEXTE.TM.TITRE_TM.@id','ARTICLE.CONTEXTE.TEXTE.TM.TM.TITRE_TM.@id','ARTICLE.CONTEXTE.TEXTE.TM.TM.TM.TITRE_TM.@id','ARTICLE.CONTEXTE.TEXTE.TM.TM.TM.TM.TITRE_TM.@id','ARTICLE.CONTEXTE.TEXTE.TM.TM.TM.TM.TM.TITRE_TM.@id','ARTICLE.CONTEXTE.TEXTE.TM.TM.TM.TM.TM.TM.TITRE_TM.@id','ARTICLE.CONTEXTE.TEXTE.TM.TM.TM.TM.TM.TM.TM.TITRE_TM.@id','ARTICLE.CONTEXTE.TEXTE.TM.TM.TM.TM.TM.TM.TM.TM.TITRE_TM.@id','ARTICLE.CONTEXTE.TEXTE.TM.TM.TM.TM.TM.TM.TM.TM.TM.TITRE_TM.@id'),filters:!(),index:legi,interval:auto,query:(query_string:(analyze_wildcard:!t,query:{[{ doc._source.ARTICLE.META.META_COMMUN.ID.$t }]})),sort:!('{[{ doc._source.ARTICLE.META.META_COMMUN.ID.$t }]}',asc))"/>
-        Elasticsearch : {[{ doc._source.ARTICLE.CONTEXTE.TEXTE.TITRE_TXT.$t }]} - {[{ doc._source.ARTICLE.META.META_COMMUN.NATURE.$t }]}&nbsp;{[{ doc._source.ARTICLE.META.META_SPEC.META_ARTICLE.NUM.$t }]}
+    <a target="_blank" href="http://163.172.35.42:5601/app/kibana?#/discover/All-leges?_g=(refreshInterval:(display:Off,pause:!f,value:0),time:(from:now-15m,mode:quick,to:now))&_a=(columns:!(_index,'ARTICLE.CONTEXTE.TEXTE.@cid','ARTICLE.META.META_COMMUN.ID.$t',_score,'ARTICLE.CONTEXTE.TEXTE.TITRE_TXT.$t','ARTICLE.CONTEXTE.TEXTE.TM.TITRE_TM.$t','ARTICLE.CONTEXTE.TEXTE.TM.TM.TITRE_TM.$t','ARTICLE.CONTEXTE.TEXTE.TM.TM.TM.TITRE_TM.$t','ARTICLE.CONTEXTE.TEXTE.TM.TM.TM.TM.TITRE_TM.$t','ARTICLE.CONTEXTE.TEXTE.TM.TM.TM.TM.TM.TITRE_TM.$t','ARTICLE.CONTEXTE.TEXTE.TM.TM.TM.TM.TM.TM.TITRE_TM.$t','ARTICLE.CONTEXTE.TEXTE.TM.TM.TM.TM.TM.TM.TM.TITRE_TM.$t','ARTICLE.CONTEXTE.TEXTE.TM.TM.TM.TM.TM.TM.TM.TM.TITRE_TM.$t','ARTICLE.CONTEXTE.TEXTE.TM.TM.TM.TM.TM.TM.TM.TM.TM.TITRE_TM.$t','ARTICLE.CONTEXTE.TEXTE.@nature','ARTICLE.META.META_COMMUN.NATURE.$t','ARTICLE.META.META_SPEC.META_ARTICLE.NUM.$t','ARTICLE.META.META_SPEC.META_ARTICLE.DATE_DEBUT.$t','ARTICLE.META.META_SPEC.META_ARTICLE.DATE_FIN.$t','ARTICLE.BLOC_TEXTUEL.CONTENU.$t',ARTICLE.BLOC_TEXTUEL.CONTENU.p,'ARTICLE.BLOC_TEXTUEL.CONTENU.p.$t','ARTICLE.BLOC_TEXTUEL.CONTENU.div.$t',ARTICLE.BLOC_TEXTUEL.CONTENU.div.p,ARTICLE.BLOC_TEXTUEL.CONTENU.table.tbody.tr,ARTICLE.BLOC_TEXTUEL.CONTENU.br,'ARTICLE.NOTA.CONTENU.$t','ARTICLE.NOTA.CONTENU.p.$t','ARTICLE.META.META_SPEC.META_ARTICLE.ETAT.$t','ARTICLE.CONTEXTE.TEXTE.TM.TITRE_TM.@id','ARTICLE.CONTEXTE.TEXTE.TM.TM.TITRE_TM.@id','ARTICLE.CONTEXTE.TEXTE.TM.TM.TM.TITRE_TM.@id','ARTICLE.CONTEXTE.TEXTE.TM.TM.TM.TM.TITRE_TM.@id','ARTICLE.CONTEXTE.TEXTE.TM.TM.TM.TM.TM.TITRE_TM.@id','ARTICLE.CONTEXTE.TEXTE.TM.TM.TM.TM.TM.TM.TITRE_TM.@id','ARTICLE.CONTEXTE.TEXTE.TM.TM.TM.TM.TM.TM.TM.TITRE_TM.@id','ARTICLE.CONTEXTE.TEXTE.TM.TM.TM.TM.TM.TM.TM.TM.TITRE_TM.@id','ARTICLE.CONTEXTE.TEXTE.TM.TM.TM.TM.TM.TM.TM.TM.TM.TITRE_TM.@id'),filters:!(),index:legi,interval:auto,query:(query_string:(analyze_wildcard:!t,query:{[{ did }]})),sort:!('{[{ did }]}',asc))"/>
+        Elasticsearch : {[{ titre }]} - {[{ nature }]}&nbsp;{[{ num }]}&nbsp;<i class="fa fa-external-link" aria-hidden="true"></i>
     </a>
+{%- endif -%}
+{%- if false and app.user and is_granted('ROLE_SUPER_ADMIN') -%}
+    <div style="color:#aaaaaa; margin-bottom:20px;">
+        {[{ doc | json }]}<br/>
+    </div>
+{%- endif -%}
 
   </div>
 </div>

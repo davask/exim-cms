@@ -85,9 +85,6 @@ class AppKernel extends Kernel
             new Sonata\NotificationBundle\SonataNotificationBundle(),
             new Sonata\DatagridBundle\SonataDatagridBundle(),
 
-            // Search Integration
-            //new FOS\ElasticaBundle\FOSElasticaBundle(),
-
             // CMF Integration
             new Symfony\Cmf\Bundle\RoutingBundle\CmfRoutingBundle(),
 
@@ -117,12 +114,18 @@ class AppKernel extends Kernel
             new Application\Sonata\PaymentBundle\ApplicationSonataPaymentBundle(),
             new Application\Sonata\ProductBundle\ApplicationSonataProductBundle(),
             new Application\Sonata\UserBundle\ApplicationSonataUserBundle(),
+            new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
+
 
             // EXIM CORE
             new Dwl\Exim\CoreBundle\DwlEximCoreBundle(),
 
             // APP
             new AppBundle\AppBundle(),
+
+            // LCDD DEPENDENCIES
+            // Search Integration
+            new FOS\ElasticaBundle\FOSElasticaBundle(),
 
             // LCDD
             new Dwl\Lcdd\SearchBundle\DwlLcddSearchBundle()

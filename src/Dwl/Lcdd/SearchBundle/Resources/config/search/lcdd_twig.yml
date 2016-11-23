@@ -1,0 +1,8 @@
+twig:
+    globals:
+        lcdd:
+            elastic:
+                host: '%lcdd.elastic.host%'
+                port: '%lcdd.elastic.port%'
+                request: '%lcdd.elastic.request%'
+                index: '%lcdd.elastic.index%'
