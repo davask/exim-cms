@@ -73,6 +73,7 @@ imports:
 
     - { resource: ../../src/Dwl/Lcdd/SearchBundle/Resources/config/search/lcdd_assetic.yml }
 
+    - { resource: ../../src/Dwl/Lcdd/SearchBundle/Resources/config/search/lcdd_stof.yml }
     - { resource: ../../src/Dwl/Lcdd/SearchBundle/Resources/config/search/lcdd_fos_elastica.yml }
     - { resource: ../../src/Dwl/Lcdd/SearchBundle/Resources/config/search/lcdd_twig.yml }
 

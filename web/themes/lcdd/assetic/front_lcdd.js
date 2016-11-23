@@ -33617,16 +33617,39 @@ angular
 
 angular.bootstrap(document.getElementById('dwl-search-block-search-home-form'), ['leges']);
 
-var postForm = function(b, c) {
-    var a = {};
-    jQuery.each(b.serializeArray(), function(d, e) { a[e.name] = e.value });
-    jQuery.ajax({ type: b.attr("method"), url: b.attr("action"), data: a, success: function(d) { c(d) } })
+var postForm = function($form, callback) {
+  /*
+   * Get all form values
+   */
+  var values = {};
+  $.each( $form.serializeArray(), function(i, field) {
+    values[field.name] = field.value;
+  });
+
+  /*
+   * Throw the form values to the server!
+   */
+  $.ajax({
+    type        : $form.attr( 'method' ),
+    url         : $form.attr( 'action' ),
+    data        : values,
+    success     : function(data) {
+      callback( data );
+    }
+  });
 };
 jQuery(document).ready(function() {
-    var a = ['[ name="{{ questionForm.vars.full_name }}"]'];
-    jQuery(a.join(",")).submit(function(b) {
-        b.preventDefault();
-        postForm($(this), function(c) { console.log(c) });
-        return false
-    })
+    var forms = [
+        '[ name="' + lcdd.form.name + '"]'
+    ];
+
+    // $( forms.join(',') ).submit( function( e ){
+    //     e.preventDefault();
+
+    //     postForm( $(this), function( response ){
+    //         console.log(response);
+    //     });
+
+    //     return false;
+    // });
 });

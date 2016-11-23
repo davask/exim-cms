@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 use Dwl\Lcdd\SearchBundle\Entity\Question;
 use Dwl\Lcdd\SearchBundle\Form\QuestionType;
@@ -14,8 +15,6 @@ class QuestionController extends Controller
 {
     public function SubmitAction(Request $request)
     {
-
-        dump($request);
 
         // is it an Ajax request?
         $isAjax = $request->isXmlHttpRequest();
@@ -30,9 +29,13 @@ class QuestionController extends Controller
 
         if ( $request->isMethod( 'POST' ) ) {
 
-          $questionForm->bind( $request );
+          $questionForm->handleRequest($request);
 
-          if ( $questionForm->isValid( ) ) {
+          if ( $questionForm->isValid() ) {
+
+            $em = $this->getDoctrine()->getEntityManager();
+            $em->persist($questionForm->getData());
+            $em->flush();
 
             $viewDatas['success'] = true;
 
@@ -53,7 +56,7 @@ class QuestionController extends Controller
             }
 
             $viewDatas['language'] = $language;
-            $viewDatas['questionString'] = $newQuestion->getQuestion() != '' ? $newQuestion->getQuestion() : 'No question';
+            $viewDatas['questionString'] = $newQuestion->getQuestion();
             $viewDatas['isQualified'] = $newQuestion->getQualified() ? 'Yes' : 'No';
 
             return $this->render('DwlLcddSearchBundle:Question:submit.html.twig', $viewDatas);

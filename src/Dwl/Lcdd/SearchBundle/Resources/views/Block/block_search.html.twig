@@ -78,7 +78,8 @@
         </form>
         {% form_theme questionForm 'bootstrap_3_layout.html.twig' %}
         <form ng-if="true || (!indexVM.loading && indexVM.query.query().length && !indexVM.results.hits.hits.length)"
-            class="dwl-search-block-question-form" target="_blank"
+            class="dwl-search-block-question-form"
+            name="{{ questionForm.vars.full_name }}" target="_blank"
             action="{{ path('dwl_lcdd_search_question_submit') }}" method="POST" {{ form_enctype(questionForm) }}>
             {{ form_widget(questionForm) }}
         </form>
@@ -88,6 +89,8 @@
       lcdd['elastic'] = {};
       lcdd['elastic']['request'] = '{{ lcdd.elastic.request }}';
       lcdd['elastic']['index'] = '{{ lcdd.elastic.index }}';
+      lcdd['form'] = {};
+      lcdd['form']['name'] = '{{ questionForm.vars.full_name }}';
     </script>
 </div>
 {% endblock %}

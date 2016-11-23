@@ -77,7 +77,7 @@ class Question
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -100,7 +100,7 @@ class Question
     /**
      * Get question
      *
-     * @return string 
+     * @return string
      */
     public function getQuestion()
     {
@@ -123,7 +123,7 @@ class Question
     /**
      * Get qualified
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getQualified()
     {
@@ -146,7 +146,7 @@ class Question
     /**
      * Get date_create
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDateCreate()
     {
@@ -169,7 +169,7 @@ class Question
     /**
      * Get date_update
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDateUpdate()
     {
@@ -192,7 +192,7 @@ class Question
     /**
      * Get qualifiedQuestion
      *
-     * @return \Dwl\Lcdd\SearchBundle\Entity\Question 
+     * @return \Dwl\Lcdd\SearchBundle\Entity\Question
      */
     public function getQualifiedQuestion()
     {
@@ -225,7 +225,7 @@ class Question
     /**
      * Get unqualifiedQuestions
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getUnqualifiedQuestions()
     {
