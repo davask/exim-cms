@@ -28,7 +28,15 @@ jQuery(document).ready(function() {
         e.preventDefault();
 
         postForm( $(this), function( response ){
-            console.log(response);
+            var c = 'text-warning';
+            if (response.success === true) {
+                c = 'text-success';
+            }
+            jQuery('.result', e.currentTarget).noty({
+                text: response.message,
+                timeout: 2000,
+                type: response.success ? 'success':'warning'
+            });
         });
 
         return false;

@@ -83,6 +83,7 @@
             name="{{ questionForm.vars.full_name }}" target="_blank"
             action="{{ path('dwl_lcdd_search_question_submit') }}" method="POST" {{ form_enctype(questionForm) }}>
             {{ form_widget(questionForm) }}
+            <span class="result"></span>
         </form>
     </div>
     <script type="text/javascript">

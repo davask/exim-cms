@@ -33643,13 +33643,21 @@ jQuery(document).ready(function() {
         '[ name="' + lcdd.form.name + '"]'
     ];
 
-    // $( forms.join(',') ).submit( function( e ){
-    //     e.preventDefault();
+    $( forms.join(',') ).submit( function( e ){
+        e.preventDefault();
 
-    //     postForm( $(this), function( response ){
-    //         console.log(response);
-    //     });
+        postForm( $(this), function( response ){
+            var c = 'text-warning';
+            if (response.success === true) {
+                c = 'text-success';
+            }
+            jQuery('.result', e.currentTarget).noty({
+                text: response.message,
+                timeout: 2000,
+                type: response.success ? 'success':'warning'
+            });
+        });
 
-    //     return false;
-    // });
+        return false;
+    });
 });
