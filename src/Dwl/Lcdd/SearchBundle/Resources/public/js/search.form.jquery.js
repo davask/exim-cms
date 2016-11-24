@@ -24,13 +24,13 @@ jQuery(document).ready(function() {
         '[ name="' + lcdd.form.name + '"]'
     ];
 
-    // $( forms.join(',') ).submit( function( e ){
-    //     e.preventDefault();
+    $( forms.join(',') ).submit( function( e ){
+        e.preventDefault();
 
-    //     postForm( $(this), function( response ){
-    //         console.log(response);
-    //     });
+        postForm( $(this), function( response ){
+            console.log(response);
+        });
 
-    //     return false;
-    // });
+        return false;
+    });
 });

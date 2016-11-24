@@ -22,22 +22,24 @@ class QuestionType extends AbstractType
             ->add('question', TextareaType::class, array(
                 'attr' => array(
                      "class" => "dwl-search-block-question-input form-control",
-                     "placeholder" => "Votre question",
+                     "placeholder" => "_f._q.your_question",
                 ),
-                'label' => 'Suggérer une nouvelle question',
+                'label' => '_f._q.suggest_new',
                 'label_attr' => array(
                      "class" => "h3",
                 ),
+                'translation_domain' => 'DwlLcddSearchBundle',
             ))
             ->add('_format', HiddenType::class, array(
-                'data' => 'html',
+                'data' => 'json',
                 'mapped' => false,
             ))
             ->add('submit', SubmitType::class, array(
-                'label' => 'Soumettre',
+                'label' => '_f._q.submit',
                 'attr' => array(
                     'class' => 'btn btn-question',
                 ),
+                'translation_domain' => 'DwlLcddSearchBundle',
             ))
         ;
     }

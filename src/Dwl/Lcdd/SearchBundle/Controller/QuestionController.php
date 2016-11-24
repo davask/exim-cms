@@ -16,16 +16,21 @@ class QuestionController extends Controller
     public function SubmitAction(Request $request)
     {
 
+        $t = $translator = $this->get('translator');
+
         // is it an Ajax request?
         $isAjax = $request->isXmlHttpRequest();
 
         // what's the preferred language of the user?
-        $language = $request->getPreferredLanguage(array('en', 'fr'));
+        $language = $request->getLocale();
 
         $viewDatas = array();
+        $viewDatas['success'] = false;
+        $viewDatas['message'] = $t->trans('_q._s.none', array(), 'DwlLcddSearchBundle');
 
         $questionForm = $this->container->get( 'dwl.lcdd.block.search.form.question' );
         $newQuestion = $this->container->get( 'dwl.lcdd.block.search.form.entity.question' );
+
 
         if ( $request->isMethod( 'POST' ) ) {
 
@@ -33,15 +38,19 @@ class QuestionController extends Controller
 
           if ( $questionForm->isValid() ) {
 
-            $em = $this->getDoctrine()->getEntityManager();
-            $em->persist($questionForm->getData());
-            $em->flush();
+            $doctrine = $this->getDoctrine();
+            $em = $doctrine->getEntityManager();
+            $repository = $doctrine->getRepository('DwlLcddSearchBundle:Question');
+            $newQuestion = $questionForm->getData();
 
-            $viewDatas['success'] = true;
-
-          } else {
-
-            $viewDatas['success'] = false;
+            if (!$repository->findOneByQuestion($newQuestion->getQuestion())) {
+                $em->persist($newQuestion);
+                $em->flush();
+                $viewDatas['success'] = true;
+                $viewDatas['message'] = $t->trans('_q._s.thanks', array(), 'DwlLcddSearchBundle');
+            } else {
+                $viewDatas['message'] = $t->trans('_q._s.already', array(), 'DwlLcddSearchBundle');
+            }
 
           }
 
@@ -57,7 +66,9 @@ class QuestionController extends Controller
 
             $viewDatas['language'] = $language;
             $viewDatas['questionString'] = $newQuestion->getQuestion();
-            $viewDatas['isQualified'] = $newQuestion->getQualified() ? 'Yes' : 'No';
+            $viewDatas['isQualified'] = $newQuestion->getQualified() ? $t->trans('_g.yes', array(), 'DwlLcddSearchBundle') : $t->trans('_g.no', array(), 'DwlLcddSearchBundle');
+            $viewDatas['success'] = $viewDatas['success'] ? $t->trans('_g.yes', array(), 'DwlLcddSearchBundle') : $t->trans('_g.no', array(), 'DwlLcddSearchBundle');
+            $viewDatas['message'] = $viewDatas['message'];
 
             return $this->render('DwlLcddSearchBundle:Question:submit.html.twig', $viewDatas);
         }

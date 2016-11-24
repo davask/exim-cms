@@ -5,41 +5,102 @@ dwl:
     search:
       message: "Note : Ce site est une démonstration d'eXim. Aucune commande passée sur ce site ne sera traitée."
 
+
+# generic:
+_g:
+  yes: 'Oui'
+  no: 'Non'
+
+# question:
+_q:
+  # submit:
+  _s:
+    none: 'Pas de question.'
+    thanks: 'Merci pour votre question!'
+    already: 'Votre question a déjà été posée.'
+# form
+_f:
+  # question:
+  _q:
+    submit: 'Soumettre'
+    suggest_new: 'Suggérer une nouvelle question'
+    your_question: 'Votre question'
+#
+
+# SonataMediaBundle
+label:
+  size: Taille
+  length: Longueur
+  width: Largeur
+  height: Hauteur
+  content_type: Type de contenu
+  copyright: Copyright
+  author_name: Auteur
+  cdn: CDN
+  to_be_flushed: À vider
+  flushed_at: Vidé le
+  public_url: URL publique
+  name: Nom
+  file: Fichier
+  author: Auteur
+  enabled: Actif
+  cdn_is_flushable: À rafraîchir sur le CDN
+  cdn_flush_identifier: CDN flush identifier
+  video_reference: Changer la video
+  description: Description
+  select_context: "Contexte : "
+  select_provider: "Type : "
+  protected_download_url: URL protégée
+  protected_download_url_notice: Attention
+  edit_with_pixlr: Editer ce media avec Pixlr
+  pixlr_warning: "\n                        <span class=\"label label-warning\">Important</span> vous allez envoyer le média sur un <strong>service externe</strong>. <br />\n                        Si vous travaillez sur des éléments confidentiels, il ne faut pas utiliser ce service.\n                    "
+  pixlr_express_editor: "\n                        <strong style=\"color: white\">Editeur rapide</strong> <br />\n                        Interface simple pour l'edition rapide\n                    "
+  pixlr_advanced_editor: "\n                        <strong style=\"color: white\">Editeur avancé</strong> <br />\n                        Pour utilisateurs expérimentés\n                    "
+
+title:
+  media_preview: Visualiser
+  media_thumbnail: Vignette
+  informations: Information
+  formats: Formats
+
+title_select_provider: Sélectionner un type
+no_provider_available: Pas de type disponible
+
 form:
+  label_enabled: Actif
+  label_media: Média
+  label_position: Position
+  label_context: Contexte
+  label_name: Nom
+  label_default_format: Format
+  label_gallery_has_medias: Médias
   label_author_name: Auteur
+  label_cdn_is_flushable: À rafraîchir sur le CDN
+  label_description: Description
+  label_copyright: Copyright
   label_binary_content: Fichier/Référence
   label_category: Catégorie
-  label_cdn_is_flushable: À rafraîchir sur le CDN
-  label_class: Classes CSS
+  label_provider_reference: Référence du type
+  label_title: Titre
   label_content: Contenu
-  label_context: Contexte
-  label_copyright: Copyright
-  label_default_format: Format
-  label_description: Description
-  label_enabled: Actif
-  label_format: Format
-  label_gallery: Galerie
-  label_gallery_has_medias: Médias
-  label_media: Média
-  label_mode: Mode
-  label_mode_admin: Admin
-  label_mode_public: Public
-  label_name: Nom
-  label_number: Nombre
-  label_order: Ordre
-  label_order_created_at: Créé à
-  label_order_name: Nom
-  label_order_updated_at: Mis à jour à
   label_orientation: Orientation
+  label_gallery: Galerie
+  label_format: Format
+  label_pause_time: Durée de pause
+  label_start_paused: Démarrer en pause
+  label_wrap: Encapsuleur HTML
   label_orientation_left: Gauche
   label_orientation_right: Droite
-  label_pause_time: Durée de pause
-  label_position: Position
-  label_provider_reference: Référence du type
+  label_mode: Mode
+  label_number: Nombre
+  label_order: Ordre
+  label_order_name: Nom
+  label_order_created_at: Créé à
+  label_order_updated_at: Mis à jour à
   label_sort: Tri
   label_sort_asc: Ascendant
   label_sort_desc: Descendant
-  label_start_paused: Démarrer en pause
-  label_title: Titre
-  label_sub_title: Sous-titre
-  label_wrap: Encapsuleur HTML
+  label_mode_public: Public
+  label_mode_admin: Admin
+  label_class: Classes CSS
+

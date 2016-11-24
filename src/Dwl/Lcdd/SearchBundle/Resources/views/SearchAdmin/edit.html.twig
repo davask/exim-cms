@@ -27,7 +27,7 @@ file that was distributed with this source code.
                 {% block sonata_media_show_reference %}
                     <div class="box box-primary">
                         <div class="box-header">
-                            <h3 class="box-title">{{ 'title.media_preview'|trans({}, 'SonataMediaBundle') }}</h3>
+                            <h3 class="box-title">{{ 'title.media_preview'|trans({}, 'DwlLcddSearchBundle') }}</h3>
                             {% if sonata_media.pixlr and sonata_media.pixlr.isEditable(object) %}
                                 <div class="box-tools pull-right">
                                     <button class="btn btn-sm btn-default pixlr-link"
@@ -35,7 +35,7 @@ file that was distributed with this source code.
                                             data-toggle="modal"
                                             data-target="#pixlr-modal"
                                             >
-                                        <i class="fa fa-pencil-square-o"></i> {{ "label.edit_with_pixlr"|trans({}, "SonataMediaBundle") }}
+                                        <i class="fa fa-pencil-square-o"></i> {{ "label.edit_with_pixlr"|trans({}, 'DwlLcddSearchBundle') }}
                                     </button>
                                 </div>
                             {% endif %}
@@ -49,30 +49,30 @@ file that was distributed with this source code.
 
                             <table class="table">
                                 <tr>
-                                    <th>{{ 'label.size'|trans({}, 'SonataMediaBundle') }}</th>
+                                    <th>{{ 'label.size'|trans({}, 'DwlLcddSearchBundle') }}</th>
                                     <td>{{ object.width|number_format_decimal }}px x {{ object.height|number_format_decimal }}px
                                         {% if object.size > 0 %}({{ object.size|number_format_decimal }}o){% endif %}</td>
                                 </tr>
                                 <tr>
-                                    <th>{{ 'label.content_type'|trans({}, 'SonataMediaBundle') }}</th>
+                                    <th>{{ 'label.content_type'|trans({}, 'DwlLcddSearchBundle') }}</th>
                                     <td>{{ object.contenttype }}</td>
                                 </tr>
                                 <tr>
-                                    <th>{{ 'label.cdn'|trans({}, 'SonataMediaBundle') }}</th>
+                                    <th>{{ 'label.cdn'|trans({}, 'DwlLcddSearchBundle') }}</th>
                                     <td>
                                         {% if object.cdnisflushable %}
-                                            {{ 'label.to_be_flushed'|trans({}, 'SonataMediaBundle') }}
+                                            {{ 'label.to_be_flushed'|trans({}, 'DwlLcddSearchBundle') }}
                                         {% else %}
-                                            {{ 'label.flushed_at'|trans({}, 'SonataMediaBundle') }}
+                                            {{ 'label.flushed_at'|trans({}, 'DwlLcddSearchBundle') }}
                                             {{ object.cdnflushat|date }}
                                         {% endif %}
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th><a href="{{ path('sonata_media_download', {'id': object|sonata_urlsafeid }) }}">{{ 'label.protected_download_url'|trans({}, 'SonataMediaBundle') }}</a></th>
+                                    <th><a href="{{ path('sonata_media_download', {'id': object|sonata_urlsafeid }) }}">{{ 'label.protected_download_url'|trans({}, 'DwlLcddSearchBundle') }}</a></th>
                                     <td>
                                         <input type="text" class="form-control" onClick="this.select();" readonly="readonly" value="{{ path('sonata_media_download', {'id': object|sonata_urlsafeid }) }}" />
-                                        <span class="label label-warning">{{ 'label.protected_download_url_notice'|trans({}, 'SonataMediaBundle') }}</span> {{ sonata_media.pool.downloadStrategy(object).description|raw }}
+                                        <span class="label label-warning">{{ 'label.protected_download_url_notice'|trans({}, 'DwlLcddSearchBundle') }}</span> {{ sonata_media.pool.downloadStrategy(object).description|raw }}
                                     </td>
                                 </tr>
                                 <tr>
@@ -109,12 +109,12 @@ file that was distributed with this source code.
     </div>
 
     {% if sonata_media.pixlr and sonata_media.pixlr.isEditable(object) %}
-        <div class="modal fade" id="pixlr-modal" tabindex="-1" role="dialog" aria-labelledby="{{ "label.edit_with_pixlr"|trans({}, "SonataMediaBundle")}}" aria-hidden="true">
+        <div class="modal fade" id="pixlr-modal" tabindex="-1" role="dialog" aria-labelledby="{{ "label.edit_with_pixlr"|trans({}, 'DwlLcddSearchBundle')}}" aria-hidden="true">
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        <h4 class="modal-title" id="myModalLabel">{{ "label.edit_with_pixlr"|trans({}, "SonataMediaBundle")}}</h4>
+                        <h4 class="modal-title" id="myModalLabel">{{ "label.edit_with_pixlr"|trans({}, 'DwlLcddSearchBundle')}}</h4>
                     </div>
                     <div class="modal-body" id="pixlr-modal-body">
                     </div>
