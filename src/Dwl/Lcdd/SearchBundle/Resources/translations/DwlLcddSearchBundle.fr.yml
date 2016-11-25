@@ -27,6 +27,7 @@ _f:
     your_question: 'Votre question'
     inline: En ligne
     block: Bloque
+    bottom: Bas de page
 #
 
 # SonataMediaBundle
@@ -110,4 +111,5 @@ form:
   label_sub_title: Sous-titre
   label_block_class: Classes CSS (en bloque)
   label_inline_class: Classes CSS (en ligne)
+  label_bottom_class: Classes CSS (en bas de page)
   label_img_class: Classes CSS (image)

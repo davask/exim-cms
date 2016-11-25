@@ -13,8 +13,8 @@ use Sonata\AdminBundle\Datagrid\DatagridMapper;
  */
 class QuestionAdmin extends Admin
 {
-    protected $baseRouteName = 'lcdd_question';
-    protected $baseRoutePattern = 'lcdd';
+    protected $baseRouteName = 'admin_lcdd_search_question';
+    protected $baseRoutePattern = 'lcdd/search/question';
 
     /**
      * {@inheritdoc}

@@ -7,6 +7,43 @@ $resources:'/bundles/dwllcddsearch';
 
 .dwl-search-block {
     position:relative;
+
+    &.bottom-search {
+        clear: both;
+    }
+    &.header-search {
+        .dwl-search-block-search-hero-form {
+            position: relative;
+            min-width: 310px;
+        }
+        .dwl-search-block-search-form {
+            .form-group {
+                background: none;
+            }
+        }
+        a {
+            color: $text;
+        }
+    }
+    &.bottom-search {
+        background:$yellow;
+        .dwl-search-block-search-hero-form {
+            position:relative;
+        }
+        .dwl-search-block-media-container {
+            .shadow {
+                background: transparent url("#{$resources}/images/light-25p.png") 0 0 repeat;
+            }
+        }
+        .dwl-search-block-question-form {
+            background: none;
+            @media (min-width: 768px) {
+                padding: 80px 90px;
+            }
+            max-width: initial;
+            text-align:center;
+        }
+    }
 }
 
 .dwl-search-block-search-input {
@@ -91,11 +128,6 @@ $resources:'/bundles/dwllcddsearch';
     @media (min-width: 1200px) {
         top: 45%;
     }
-}
-
-.header-search .dwl-search-block-search-hero-form {
-    position: relative;
-    min-width: 310px;
 }
 
 .dwl-search-block-search-form,

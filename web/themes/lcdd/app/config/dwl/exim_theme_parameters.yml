@@ -24,6 +24,7 @@ parameters:
     exim.theme.admin.css:
         - 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css'
         - 'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'
+        - '%exim.theme.path.root%/assets/compass/scss/admin.scss'
     exim.theme.front.js: []
 
     exim.theme.vendor_front.css:

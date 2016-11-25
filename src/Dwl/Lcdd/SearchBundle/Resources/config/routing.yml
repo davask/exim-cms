@@ -12,12 +12,26 @@ dwl_lcdd_search_question_submit:
     options:
         expose: true
 
+dwl_lcdd_search_question:
+    path:     /recherche/{question}
+    methods:
+        - POST
+        - GET
+    defaults:
+        _controller: DwlLcddSearchBundle:Question:Search
+    requirements:
+        question: .*
+        _locale: fr
+    options:
+        expose: true
+
 dwl_lcdd_question:
     path:     /question/{id}
     defaults:
         _controller: DwlLcddSearchBundle:Question:Show
     requirements:
-        id: \d
+        id: \d+
         _locale: fr
     options:
         expose: true
+

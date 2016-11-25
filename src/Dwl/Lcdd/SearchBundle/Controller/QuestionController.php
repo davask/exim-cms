@@ -13,8 +13,28 @@ use Dwl\Lcdd\SearchBundle\Form\QuestionType;
 
 class QuestionController extends Controller
 {
+    public function SearchAction(Request $request){
+        $t = $translator = $this->get('translator');
+
+        $doctrine = $this->getDoctrine();
+        $repository = $doctrine->getRepository('DwlLcddSearchBundle:Question');
+        $userQuestion = '';
+        $qs = array();
+        $userQuestion = $request->request->get('question');
+        dump($userQuestion);
+        if (!empty($userQuestion)) {
+            $qs = $repository->findLikeByQuestion($userQuestion);
+        } else {
+            $qs = $repository->findAll();
+        }
+
+        return $this->render('DwlLcddSearchBundle:Question:search.html.twig', array(
+            'question' => $userQuestion,
+            'qs' => $qs,
+        ));
+    }
+
     public function ShowAction(Request $request, $id){
-        dump($request);
         $t = $translator = $this->get('translator');
 
         $doctrine = $this->getDoctrine();

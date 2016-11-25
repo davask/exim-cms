@@ -1,0 +1,9 @@
+{% trans_default_domain "DwlLcddSearchBundle" %}
+<div class="col-sm-12">
+<h1>Question : {{question}} ({{qs | length}} questions)</h1>
+{% for q in qs %}
+<p>{{q.question}}<a href="{{ path('dwl_lcdd_question', { id: q.id }) }}" title="{[{ q.question }]}">
+  <span class="badge">{% if not q.qualified %}Non {%endif%}Qualifi&eacute;</span>
+</a></p>
+{% endfor %}
+</div>

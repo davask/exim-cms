@@ -93,6 +93,7 @@ class SearchBlockService extends BaseBlockService
             'sub_title' => false,
             'block_class' => 'col-sm-offset-1 col-sm-10 col-md-offset-3 col-md-6',
             'inline_class' => 'header-search nav navbar-nav navbar-right',
+            'bottom_class' => 'row bottom-search clearfix',
             'img_class' => '',
             'context' => false,
             'mediaId' => null,
@@ -111,6 +112,11 @@ class SearchBlockService extends BaseBlockService
             $this->load($block);
         }
 
+        if (empty($block->getSetting('mediaId'))) {
+            $block->setSetting('mediaId', null);
+        }
+
+        dump($block->getSetting('mediaId'));
         $formatChoices = $this->getFormatChoices($block->getSetting('mediaId'));
 
         $formMapper->add('settings', 'sonata_type_immutable_array', array(
@@ -120,6 +126,7 @@ class SearchBlockService extends BaseBlockService
                     'choices' => array(
                         'inline' => '_f._q.inline',
                         'block' => '_f._q.block',
+                        'bottom' => '_f._q.bottom',
                     ),
                     'expanded' => true,
                     'multiple' => false,
@@ -140,6 +147,10 @@ class SearchBlockService extends BaseBlockService
                 array('block_class', 'text', array(
                     'required' => false,
                     'label' => 'form.label_block_class',
+                )),
+                array('bottom_class', 'text', array(
+                    'required' => false,
+                    'label' => 'form.label_bottom_class',
                 )),
                 array('img_class', 'text', array(
                     'required' => false,

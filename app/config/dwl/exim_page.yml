@@ -72,19 +72,27 @@ sonata_page:
 
         default:
             path: '@theme/Template/default.html.twig'
-            name: 'Default layout - default'
+            name: 'Lcdd layout - default'
             containers:
+                 content_top:
+                     name: Content Top
                  content:
                      name: Main content
+                 content_bottom:
+                     name: Content Bottom
                  footer:
                      name: Footer
             matrix:
                  layout: |
+                     TTTTTTTT
                      CCCCCCCC
+                     BBBBBBBB
                      FFFFFFFF
 
                  mapping:
+                     T: content_top
                      C: content
+                     B: content_bottom
                      F: footer
 
         index:

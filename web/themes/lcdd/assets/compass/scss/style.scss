@@ -24,6 +24,11 @@ body.#{$theme} {
             color: $orange_dark;
         }
     }
+    .content {
+        a {
+            color: $text_dark;
+        }
+    }
 
     .browserupgrade {
         text-align:center;

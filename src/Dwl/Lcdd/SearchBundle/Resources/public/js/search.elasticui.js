@@ -1288,21 +1288,20 @@ var elasticui;
                     var queryMatch = 'ejs.MatchQuery(field, querystring)';
                     // var queryMatch = 'ejs.MultiMatch().query(querystring).fields([field])'; // src : https://github.com/YousefED/ElasticUI/issues/84
                     directive.template = '\
-<input type="text" class="dwl-search-block-search-input form-control" placeholder="Vous avez une question ?" \
+<input type="text" class="dwl-search-block-search-input form-control" placeholder="{[{placeholder}]}" \
     eui-query="' + queryMatch + '" ng-model="querystring" \
     eui-highlight="ejs.Highlight(\'question\').preTags(\'<b>\').postTags(\'</b>\')" \
     eui-filter="ejs.TermsFilter(\'qualified\', \'true\')"\
     eui-enabled="true" \
+    name="question" \
     />\
-    <span class="input-group-btn" ng-if="userQuestion.length && !isSubmitingNewQuestion && allowDisplay" >\
+    <span class="input-group-btn" ng-if="userQuestion.length && !isSubmitingNewQuestion && allowDisplay && isBlockDisplay" >\
     <button class="btn btn-link" type="button" ng-click="submitNewQuestion();">Soumettre</button>\
     </span>\
+    <span class="input-group-btn" ng-if="userQuestion.length && !isSubmitingNewQuestion && allowDisplay && isInlineDisplay">\
+    <button class="btn btn-link" type="button" ng-click="searchQuestion();"><i class="fa fa-search"></i></a>\
+    </span>\
 ';
-/*
-<span class="input-group-btn">\
-<button class="btn btn-link" type="button"><i class="fa fa-search"></i></button>\
-</span>\
-*/
                     return directive;
                 }
                 LcddSearchDirective.$inject = ['$parse'];

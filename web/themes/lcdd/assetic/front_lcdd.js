@@ -33563,21 +33563,20 @@ var elasticui;
                     var queryMatch = 'ejs.MatchQuery(field, querystring)';
                     // var queryMatch = 'ejs.MultiMatch().query(querystring).fields([field])'; // src : https://github.com/YousefED/ElasticUI/issues/84
                     directive.template = '\
-<input type="text" class="dwl-search-block-search-input form-control" placeholder="Vous avez une question ?" \
+<input type="text" class="dwl-search-block-search-input form-control" placeholder="{[{placeholder}]}" \
     eui-query="' + queryMatch + '" ng-model="querystring" \
     eui-highlight="ejs.Highlight(\'question\').preTags(\'<b>\').postTags(\'</b>\')" \
     eui-filter="ejs.TermsFilter(\'qualified\', \'true\')"\
     eui-enabled="true" \
+    name="question" \
     />\
-    <span class="input-group-btn" ng-if="userQuestion.length && !isSubmitingNewQuestion && allowDisplay" >\
+    <span class="input-group-btn" ng-if="userQuestion.length && !isSubmitingNewQuestion && allowDisplay && isBlockDisplay" >\
     <button class="btn btn-link" type="button" ng-click="submitNewQuestion();">Soumettre</button>\
     </span>\
+    <span class="input-group-btn" ng-if="userQuestion.length && !isSubmitingNewQuestion && allowDisplay && isInlineDisplay">\
+    <button class="btn btn-link" type="button" ng-click="searchQuestion();"><i class="fa fa-search"></i></a>\
+    </span>\
 ';
-/*
-<span class="input-group-btn">\
-<button class="btn btn-link" type="button"><i class="fa fa-search"></i></button>\
-</span>\
-*/
                     return directive;
                 }
                 LcddSearchDirective.$inject = ['$parse'];
@@ -33606,7 +33605,9 @@ if(typeof(lcdd) != 'undefined' && typeof(lcdd.elastic) != 'undefined' && typeof(
               .startSymbol('{[{')
               .endSymbol('}]}');
       })
-      .controller("formCtrl", ['$scope', '$window', '$log', '$http', 'euiHost', function($scope, $window, $log, $http) {
+      .constant('euiHost', lcdd.elastic.request)
+      .constant('lcdd', lcdd)
+      .controller("formCtrl", ['$scope', '$window', '$log', '$http', 'lcdd', function($scope, $window, $log, $http, lcdd) {
 
           $scope.userQuestion = '';
           $scope.$watch('indexVM.query.query()', function(newVal, oldVal){
@@ -33629,6 +33630,21 @@ if(typeof(lcdd) != 'undefined' && typeof(lcdd.elastic) != 'undefined' && typeof(
               $scope.showResultsList();
             }
           });
+
+          $scope.isBlockDisplay = false;
+          $scope.isInlineDisplay = false;
+          if (lcdd.search.display != 'inline') {
+            $scope.placeholder = 'Vous avez une question ?';
+            $scope.isBlockDisplay = true;
+          } else {
+            $scope.placeholder = 'Rechercher ...';
+            $scope.isInlineDisplay = true;
+          }
+
+          $scope.isAllwaysSubmitingNewQuestion = false;
+          if (lcdd.search.display == 'bottom') {
+            $scope.isAllwaysSubmitingNewQuestion = true;
+          }
 
           $scope.isSubmitingNewQuestion = false;
           $scope.submitNewQuestion = function() {
@@ -33665,10 +33681,8 @@ if(typeof(lcdd) != 'undefined' && typeof(lcdd.elastic) != 'undefined' && typeof(
 
               var $form = $window.jQuery('[name="'+$window.lcdd.form.name+'"]');
               var values = {};
-              // $.each( $form.serializeArray(), function(i, field) {
-              //     values[field.name] = field.value;
-              // });
-              // values[$window.lcdd.form.name+'[submit]'] = null;
+              var notyTarget = '[name="'+$window.lcdd.form.name+'"] .result';
+              // var notyTarget = 'document';
 
               var req = {
                 method: $form.attr( 'method' ),
@@ -33681,13 +33695,13 @@ if(typeof(lcdd) != 'undefined' && typeof(lcdd.elastic) != 'undefined' && typeof(
                 if (response.data.success === true) {
                     c = 'text-success';
                 }
-                $window.jQuery('.result', '[name="'+$window.lcdd.form.name+'"]').noty({
+                $window.jQuery(notyTarget).noty({
                     text: response.data.message,
                     timeout: 2000,
                     type: response.data.success ? 'success':'warning'
                 });
               }, function(response){
-                $window.jQuery('.result', '[name="'+$window.lcdd.form.name+'"]').noty({
+                $window.jQuery(notyTarget).noty({
                     text: response.data.message,
                     timeout: 2000,
                     type: 'error'
@@ -33699,13 +33713,16 @@ if(typeof(lcdd) != 'undefined' && typeof(lcdd.elastic) != 'undefined' && typeof(
           $scope.showQuestion = function(id) {
             return Routing.generate('dwl_lcdd_question', { id: id });
           };
+          $scope.searchQuestion = function() {
+            var $form = $window.jQuery('[name="'+$window.lcdd.form.header_name+'"]');
+            $form.submit();
+          };
 
       }])
       .config(['$httpProvider', function($httpProvider) {
           $httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
           $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
-      }])
-      .constant('euiHost', lcdd.elastic.request);
+      }]);
   jQuery(document).ready(function(){
     jQuery('[name="'+lcdd.form.name+'"] .btn-question').attr('ng-click','initForm()');
     angular.bootstrap(document.getElementsByClassName('dwl-search-block'), ['leges']);

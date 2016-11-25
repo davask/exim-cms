@@ -4,6 +4,8 @@ namespace Dwl\Lcdd\SearchBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
 
+use Dwl\Lcdd\SearchBundle\Entity\Question;
+
 /**
  * QuestionRepository
  *
@@ -12,4 +14,17 @@ use Doctrine\ORM\EntityRepository;
  */
 class QuestionRepository extends EntityRepository
 {
+    public function findLikeByQuestion($question) {
+
+        $qs = $this->getEntityManager()
+            ->createQueryBuilder()
+            ->select('q')
+            ->from('\Dwl\Lcdd\SearchBundle\Entity\Question', 'q')
+            ->where('q.question LIKE :question')
+            ->setParameter('question', $question)
+            ->getQuery()
+            ->getResult();
+
+        return $qs;
+    }
 }

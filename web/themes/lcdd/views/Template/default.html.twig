@@ -30,7 +30,7 @@
         <div class="collapse navbar-collapse" id="lcdd-navbar-collapse">
             {{ sonata_page_render_container('header_connexion', 'global') }}
             {{ sonata_page_render_container('header_menu', 'global') }}
-            {% if page.name != 'Home' %}
+            {% if page.name not in ['Home','dwl_lcdd_search_question'] %}
             {{ sonata_page_render_container('header_search', 'global') }}
             {% endif %}
         </div><!-- /.navbar-collapse -->

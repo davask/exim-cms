@@ -133,9 +133,9 @@ class Builder extends ContainerAware
             ),
         ));
         $menu->addChild('Vos questions', array(
-            'route' => 'page_slug',
+            'route' => 'dwl_lcdd_search_question',
             'routeParameters' => array(
-                'path' => '/',
+                'question' => '',
             ),
         ));
         $menu->addChild('Contact', array(
