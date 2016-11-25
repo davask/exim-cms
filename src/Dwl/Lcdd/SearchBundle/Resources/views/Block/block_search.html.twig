@@ -6,21 +6,23 @@
 
 {% block block %}
 <div class="dwl-search-block">
-    <div class="dwl-search-block-search-hero-text col-sm-offset-1 col-sm-10 col-md-offset-3 col-md-6">
-    {% if settings.title %}
-        <h2 class="dwl-search-block-search-title">{{ settings.title }}</h2>
-        {% if settings.sub_title %}
-        <h3 class="dwl-search-block-search-sub_title">{{ settings.sub_title }}</h3>
-        {% endif %}
-    {% endif %}
-    </div>
-    <div class="dwl-search-block-media-container">
-    {% if media and settings.format %}
-        {% media media, settings.format with { 'class': 'img-responsive ' ~ settings.class, 'width': '100%', 'height': '' } %}
-        <div class="shadow"></div>
-    {% else %}
-        {# no media selected or format defined... #}
-    {% endif %}
+    <div class="dwl-search-block-search-hero-text-container">
+      <div class="dwl-search-block-search-hero-text col-sm-offset-1 col-sm-10 col-md-offset-3 col-md-6">
+      {% if settings.title %}
+          <h2 class="dwl-search-block-search-title">{{ settings.title }}</h2>
+          {% if settings.sub_title %}
+          <h3 class="dwl-search-block-search-sub_title">{{ settings.sub_title }}</h3>
+          {% endif %}
+      {% endif %}
+      </div>
+      <div class="dwl-search-block-media-container">
+      {% if media and settings.format %}
+          {% media media, settings.format with { 'class': 'img-responsive ' ~ settings.class, 'width': '100%', 'height': '' } %}
+          <div class="shadow"></div>
+      {% else %}
+          {# no media selected or format defined... #}
+      {% endif %}
+      </div>
     </div>
     <div id="dwl-search-block-search-home-form"
          class="dwl-search-block-search-hero-form col-sm-offset-1 col-sm-10 col-md-offset-3 col-md-6"

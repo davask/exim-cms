@@ -13,6 +13,21 @@ use Dwl\Lcdd\SearchBundle\Form\QuestionType;
 
 class QuestionController extends Controller
 {
+    public function ShowAction(Request $request, $id){
+        dump($request);
+        $t = $translator = $this->get('translator');
+
+        $doctrine = $this->getDoctrine();
+        $repository = $doctrine->getRepository('DwlLcddSearchBundle:Question');
+        $question = $repository->findOneById($id);
+
+        return $this->render('DwlLcddSearchBundle:Question:show.html.twig', array(
+            'id' => $question->getId(),
+            'question' => $question->getQuestion(),
+            'qualified' => $question->getQualified() ? 'Qualifie' : 'Non qualifie',
+        ));
+    }
+
     public function SubmitAction(Request $request)
     {
 

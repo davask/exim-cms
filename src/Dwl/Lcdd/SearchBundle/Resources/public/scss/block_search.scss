@@ -30,6 +30,9 @@ $resources:'/bundles/dwllcddsearch';
     }
 }
 
+.dwl-search-block-search-hero-text-container {
+    position: relative;
+}
 .dwl-search-block-search-hero-text,
 .dwl-search-block-search-hero-form {
     z-index:2;
@@ -163,7 +166,10 @@ $resources:'/bundles/dwllcddsearch';
 
 .dwl-search-block-question-form {
     background:$yellow;
-    padding: 20px 80px;
+    padding: 10px 10px;
+    @media (min-width: 768px) {
+        padding: 20px 80px;
+    }
     label.h3 {
         display: block;
         margin-bottom:38px;

@@ -1,4 +1,4 @@
-<a href="#question_{[{ question.id }]}" title="{[{ question.question }]}">
-  {[{ question.question }]}
+<a href="{[{ showQuestion(question.id) }]}" title="{[{ question.question }]}">
+  <span ng-bind-html="doc.highlight.question"></span>
   <span class="badge">{[{ question.id }]}</span>
 </a>

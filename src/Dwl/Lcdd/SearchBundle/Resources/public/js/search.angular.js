@@ -104,6 +104,10 @@ if(typeof(lcdd) != 'undefined' && typeof(lcdd.elastic) != 'undefined' && typeof(
 
           };
 
+          $scope.showQuestion = function(id) {
+            return Routing.generate('dwl_lcdd_question', { id: id });
+          };
+
       }])
       .config(['$httpProvider', function($httpProvider) {
           $httpProvider.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
@@ -112,6 +116,6 @@ if(typeof(lcdd) != 'undefined' && typeof(lcdd.elastic) != 'undefined' && typeof(
       .constant('euiHost', lcdd.elastic.request);
   jQuery(document).ready(function(){
     jQuery('[name="'+lcdd.form.name+'"] .btn-question').attr('ng-click','initForm()');
-    angular.bootstrap(document.getElementById('dwl-search-block-search-home-form'), ['leges']);
+    angular.bootstrap(document.getElementsByClassName('dwl-search-block'), ['leges']);
   });
 }

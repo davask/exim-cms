@@ -11,3 +11,13 @@ dwl_lcdd_search_question_submit:
         _locale: fr
     options:
         expose: true
+
+dwl_lcdd_question:
+    path:     /question/{id}
+    defaults:
+        _controller: DwlLcddSearchBundle:Question:Show
+    requirements:
+        id: \d
+        _locale: fr
+    options:
+        expose: true
