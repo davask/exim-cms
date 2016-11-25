@@ -93,6 +93,11 @@ $resources:'/bundles/dwllcddsearch';
     }
 }
 
+.header-search .dwl-search-block-search-hero-form {
+    position: relative;
+    min-width: 310px;
+}
+
 .dwl-search-block-search-form,
 .dwl-search-block-question-form {
     max-width:620px;
@@ -125,6 +130,9 @@ $resources:'/bundles/dwllcddsearch';
     .btn:focus {
         outline: none !important;
     }
+}
+.dwl-search-block-search-form-inline {
+
 }
 
 .dwl-search-block-results {

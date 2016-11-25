@@ -25,6 +25,8 @@ _f:
     submit: 'Soumettre'
     suggest_new: 'Suggérer une nouvelle question'
     your_question: 'Votre question'
+    inline: En ligne
+    block: Bloque
 #
 
 # SonataMediaBundle
@@ -86,6 +88,7 @@ form:
   label_orientation: Orientation
   label_gallery: Galerie
   label_format: Format
+  label_display: Affichage
   label_pause_time: Durée de pause
   label_start_paused: Démarrer en pause
   label_wrap: Encapsuleur HTML
@@ -104,3 +107,7 @@ form:
   label_mode_admin: Admin
   label_class: Classes CSS
 
+  label_sub_title: Sous-titre
+  label_block_class: Classes CSS (en bloque)
+  label_inline_class: Classes CSS (en ligne)
+  label_img_class: Classes CSS (image)

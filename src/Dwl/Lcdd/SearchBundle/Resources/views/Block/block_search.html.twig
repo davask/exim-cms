@@ -5,7 +5,8 @@
 {% set lcddSearchFields = ["'question'"] %}
 
 {% block block %}
-<div class="dwl-search-block">
+<div class="dwl-search-block {% if settings.display == 'inline' and settings.inline_class != '' %} {{ settings.inline_class }}{% endif %}">
+    {% if settings.display == 'block' %}
     <div class="dwl-search-block-search-hero-text-container">
       <div class="dwl-search-block-search-hero-text col-sm-offset-1 col-sm-10 col-md-offset-3 col-md-6">
       {% if settings.title %}
@@ -17,21 +18,22 @@
       </div>
       <div class="dwl-search-block-media-container">
       {% if media and settings.format %}
-          {% media media, settings.format with { 'class': 'img-responsive ' ~ settings.class, 'width': '100%', 'height': '' } %}
+          {% media media, settings.format with { 'class': 'img-responsive ' ~ settings.img_class, 'width': '100%', 'height': '' } %}
           <div class="shadow"></div>
       {% else %}
           {# no media selected or format defined... #}
       {% endif %}
       </div>
     </div>
+    {% endif %}
     <div id="dwl-search-block-search-home-form"
-         class="dwl-search-block-search-hero-form col-sm-offset-1 col-sm-10 col-md-offset-3 col-md-6"
+         class="dwl-search-block-search-hero-form{% if settings.display == 'block' and settings.block_class != ''  %} {{ settings.block_class }}{% endif %}"
          ng-controller="formCtrl"
          eui-index="'{{ lcdd.elastic.index }}'"
          ng-init="indexVM.autoLoad=false;"
          ng-mouseleave="hideDisplay()" ng-mouseenter="showDisplay()"
          ng-cloak>
-        <form class="dwl-search-block-search-form form-inline">
+        <form class="dwl-search-block-search-form form-inline {% if settings.display == 'inline' %} dwl-search-block-search-form-inline{% endif %}">
           <div class="form-group">
               <lcdd-search class="input-group" field="{{ lcddSearchFields | join(',') }}"></lcdd-search>
               <div class="dwl-search-block-results panel-group" id="dwl-search-block-results-accordion" role="tablist" aria-multiselectable="true" ng-if="!isSubmitingNewQuestion && allowDisplay">
@@ -39,6 +41,7 @@
               </div>
           </div>
         </form>
+    {% if settings.display == 'block' %}
         {% form_theme questionForm 'bootstrap_3_layout.html.twig' %}
         <form ng-if="isSubmitingNewQuestion && allowDisplay"
             class="dwl-search-block-question-form"
@@ -49,6 +52,7 @@
             {{ form_widget(questionForm) }}
             <span class="result"></span>
         </form>
+    {% endif %}
     </div>
     <script type="text/javascript">
       var lcdd = {};
@@ -56,6 +60,7 @@
       lcdd['elastic']['request'] = '{{ lcdd.elastic.request }}';
       lcdd['form'] = {};
       lcdd['form']['name'] = '{{ questionForm.vars.full_name }}';
+      lcdd['search']['display'] = '{{ settings.display }}';
     </script>
 </div>
 {% endblock %}

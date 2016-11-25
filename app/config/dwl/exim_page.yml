@@ -21,6 +21,8 @@ sonata_page:
             containers:
                 header:
                     name: En-tete
+                header_search:
+                    name: Header search
                 header_connexion:
                     name: Header connexion
                 header_top:
@@ -43,24 +45,26 @@ sonata_page:
                     name: Pied de page
             matrix:
                  layout: |
-                     HHHHHHHH
-                     KKKKKKKK
-                     cccccccc
-                     MMMMSSSS
-                     TTTTTTTT
-                     CCCCCCCC
-                     BBBBBBBB
-                     NNNNEEEE
-                     FFFFFFFF
+                     hhhhhhhhhhhh
+                     hhhhhhmmmmmm
+                     sssssscccccc
+                     tttttttttttt
+                     TTTTTTTTTTTT
+                     CCCCCCCCCCCC
+                     SSSSSSSSSSSS
+                     BBBBBBBBBBBB
+                     NNNNNNEEEEEE
+                     FFFFFFFFFFFF
 
                  mapping:
-                    H: header
+                    h: header
+                    m: header_menu
+                    s: header_search
                     c: header_connexion
-                    K: header_top
-                    M: header_menu
-                    S: content_search
+                    t: header_top
                     T: content_top
                     C: content
+                    S: content_search
                     B: content_bottom
                     N: bottom_newsletter
                     E: bottom_embed

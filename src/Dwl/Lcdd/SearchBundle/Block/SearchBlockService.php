@@ -27,6 +27,9 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Templating\EngineInterface;
 
+use Symfony\Component\Form\FormEvents;
+use Symfony\Component\Form\FormEvent;
+
 /**
  * PageExtension.
  *
@@ -85,9 +88,12 @@ class SearchBlockService extends BaseBlockService
     {
         $resolver->setDefaults(array(
             'media' => false,
+            'display' => 'inline',
             'title' => false,
             'sub_title' => false,
-            'class' => 'img-responsive',
+            'block_class' => 'col-sm-offset-1 col-sm-10 col-md-offset-3 col-md-6',
+            'inline_class' => 'header-search nav navbar-nav navbar-right',
+            'img_class' => '',
             'context' => false,
             'mediaId' => null,
             'format' => false,
@@ -100,6 +106,7 @@ class SearchBlockService extends BaseBlockService
      */
     public function buildEditForm(FormMapper $formMapper, BlockInterface $block)
     {
+
         if (!$block->getSetting('mediaId') instanceof MediaInterface) {
             $this->load($block);
         }
@@ -108,6 +115,16 @@ class SearchBlockService extends BaseBlockService
 
         $formMapper->add('settings', 'sonata_type_immutable_array', array(
             'keys' => array(
+                array('display', 'choice', array(
+                    'required' => true,
+                    'choices' => array(
+                        'inline' => '_f._q.inline',
+                        'block' => '_f._q.block',
+                    ),
+                    'expanded' => true,
+                    'multiple' => false,
+                    'label' => 'form.label_display',
+                )),
                 array('title', 'text', array(
                     'required' => false,
                     'label' => 'form.label_title',
@@ -116,19 +133,47 @@ class SearchBlockService extends BaseBlockService
                     'required' => false,
                     'label' => 'form.label_sub_title',
                 )),
-                array('class', 'text', array(
+                array('inline_class', 'text', array(
                     'required' => false,
-                    'label' => 'form.label_class',
+                    'label' => 'form.label_inline_class',
+                )),
+                array('block_class', 'text', array(
+                    'required' => false,
+                    'label' => 'form.label_block_class',
+                )),
+                array('img_class', 'text', array(
+                    'required' => false,
+                    'label' => 'form.label_img_class',
                 )),
                 array($this->getMediaBuilder($formMapper), null, array()),
                 array('format', 'choice', array(
                     'required' => count($formatChoices) > 0,
+                    'disabled' => count($formatChoices) == 0,
                     'choices' => $formatChoices,
                     'label' => 'form.label_format',
                 )),
             ),
             'translation_domain' => 'DwlLcddSearchBundle',
         ));
+
+        // TODO : add event listener on block settings
+        // $formMapper->getFormBuilder()->addEventListener(FormEvents::PRE_SET_DATA, function (FormEvent $event) use ($formMapper) {
+        //     $form = $event->getForm();
+        //     dump($form);
+            // $form->add('settings', 'sonata_type_immutable_array', array(
+            //     'keys' => array(
+            //         array('inline_class', 'text', array(
+            //             'required' => false,
+            //             'label' => 'form.label_inline_class',
+            //         )),
+            //         array('block_class', 'text', array(
+            //             'required' => false,
+            //             'label' => 'form.label_block_class',
+            //         )),
+            //     ),
+            //     'translation_domain' => 'DwlLcddSearchBundle',
+            // ));
+        // });
     }
 
     /**
