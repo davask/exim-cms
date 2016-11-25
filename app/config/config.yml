@@ -16,7 +16,7 @@ imports:
     - { resource: fos/fos_comment.yml }
     - { resource: fos/fos_rest.yml }
     - { resource: fos/fos_user.yml }
-    - { resource: fos/fos_elastica.yml }
+    # - { resource: fos/fos_elastica.yml }
 
     #- { resource: bazinga/bazinga_hateos.yml }
 
@@ -50,7 +50,7 @@ imports:
     - { resource: sonata/sonata_basket.yml }
 
     # Exim Parameters
-    # - { resource: dwl/exim_theme_parameters.yml }
+    - { resource: dwl/exim_theme_parameters.yml }
     - { resource: ../../web/themes/lcdd/app/config/dwl/exim_theme_parameters.yml }
 
     # Exim Front Bundles
@@ -76,6 +76,7 @@ imports:
     - { resource: ../../src/Dwl/Lcdd/SearchBundle/Resources/config/search/lcdd_stof.yml }
     - { resource: ../../src/Dwl/Lcdd/SearchBundle/Resources/config/search/lcdd_fos_elastica.yml }
     - { resource: ../../src/Dwl/Lcdd/SearchBundle/Resources/config/search/lcdd_twig.yml }
+    - { resource: ../../src/Dwl/Lcdd/SearchBundle/Resources/config/search/lcdd_admin.yml }
 
 framework:
     #esi:             ~
@@ -87,7 +88,7 @@ framework:
     form:            ~
     csrf_protection: ~
     validation:      { enable_annotations: true }
-    #serializer:      { enable_annotations: true }
+    serializer:      { enable_annotations: true }
     templating:
         engines: ['twig']
         #assets_version: SomeVersionScheme

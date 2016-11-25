@@ -1,9 +1,9 @@
-dwl_lcdd_search:
-    resource: "@DwlLcddSearchBundle/Resources/config/routing.yml"
-    prefix:   /
-
 dwl_exim_core:
     resource: "@DwlEximCoreBundle/Resources/config/routing.yml"
+    prefix:   /
+
+dwl_lcdd_search:
+    resource: "@DwlLcddSearchBundle/Resources/config/routing.yml"
     prefix:   /
 
 # Internal routing configuration to handle ESI
@@ -29,3 +29,6 @@ _api:
 
 _liip_imagine:
     resource: "@LiipImagineBundle/Resources/config/routing.xml"
+
+fos_js_routing:
+    resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"

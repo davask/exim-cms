@@ -8,10 +8,6 @@
 parameters:
     # theme details
 
-    # Sonata Admin Options
-    exim_admin.title: 'La chaine du droit'
-    exim_admin.logo_title: '%exim.theme.path.web%/media/images/icon-full.png'
-
     # Sonata Seo Options
     exim_seo.title: 'La Chainde du Droit'
     exim_seo.baseline: 'Comprendre le droit'

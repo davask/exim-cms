@@ -139,16 +139,6 @@ sonata_admin:
                     - sonata.user.admin.group
                     - sonata.notification.admin.message
 
-            sonata.admin.group.lcdd:
-                roles: [ROLE_SUPER_ADMIN]
-                label: LCDD
-                icon:  '<i class="fa fa-play-circle"></i>'
-                items:
-                    - sonata.demo.admin.car
-                    - sonata.demo.admin.engine
-                    - sonata.demo.admin.color
-                    - sonata.demo.admin.material
-
     assets:
         stylesheets:
             - '%exim.theme.path.web%/assetic/sonata_admin_css.css'

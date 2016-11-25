@@ -614,7 +614,7 @@ var elasticui;
                         return _this.refresh(softRefresh);
                     },
                     error: null,
-                    autoLoad: false
+                    autoLoad: true
                 };
                 this.searchPromise = null;
                 this.refreshPromise = null;
@@ -1290,13 +1290,19 @@ var elasticui;
                     directive.template = '\
 <input type="text" class="dwl-search-block-search-input form-control" placeholder="Vous avez une question ?" \
     eui-query="' + queryMatch + '" ng-model="querystring" \
-    eui-highlight="ejs.Highlight([\'_all\']).preTags(\'<b>\').postTags(\'</b>\')" \
+    eui-highlight="ejs.Highlight(\'question\').preTags(\'<b>\').postTags(\'</b>\')" \
+    eui-filter="ejs.TermsFilter(\'qualified\', \'true\')"\
     eui-enabled="true" \
     />\
+    <span class="input-group-btn" ng-if="userQuestion.length && !isSubmitingNewQuestion && allowDisplay" >\
+    <button class="btn btn-link" type="button" ng-click="submitNewQuestion();">Soumettre</button>\
+    </span>\
+';
+/*
 <span class="input-group-btn">\
 <button class="btn btn-link" type="button"><i class="fa fa-search"></i></button>\
 </span>\
-';
+*/
                     return directive;
                 }
                 LcddSearchDirective.$inject = ['$parse'];

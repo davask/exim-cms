@@ -115,6 +115,7 @@ class AppKernel extends Kernel
             new Application\Sonata\ProductBundle\ApplicationSonataProductBundle(),
             new Application\Sonata\UserBundle\ApplicationSonataUserBundle(),
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
+            new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
 
 
             // EXIM CORE

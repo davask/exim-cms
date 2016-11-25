@@ -1,0 +1,5 @@
+<ul class="list-group">
+    <li class="list-group-item" ng-repeat="doc in indexVM.results.hits.hits" ng-init="question=doc._source">
+        {% include 'DwlLcddSearchBundle:Search:question_result.html.twig' %}
+    </li>
+</ul>

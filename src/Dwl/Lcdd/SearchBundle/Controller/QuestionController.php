@@ -31,7 +31,6 @@ class QuestionController extends Controller
         $questionForm = $this->container->get( 'dwl.lcdd.block.search.form.question' );
         $newQuestion = $this->container->get( 'dwl.lcdd.block.search.form.entity.question' );
 
-
         if ( $request->isMethod( 'POST' ) ) {
 
           $questionForm->handleRequest($request);

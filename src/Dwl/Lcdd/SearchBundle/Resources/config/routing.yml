@@ -5,11 +5,9 @@ dwl_lcdd_search_question_submit:
     defaults:
         _controller: DwlLcddSearchBundle:Question:Submit
         qualified: false
-        _format: html
-        _scheme: http
     requirements:
         question: .+
         qualified: true|false
         _locale: fr
-        _format: html|json
-        _scheme: http|https
+    options:
+        expose: true

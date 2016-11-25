@@ -1,0 +1,6 @@
+services:
+    dwl.lcdd.search.question:
+        class: Dwl\Lcdd\SearchBundle\Admin\QuestionAdmin
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: Lcdd, label: Questions }
+        arguments: ['', Dwl\Lcdd\SearchBundle\Entity\Question, '']

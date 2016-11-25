@@ -28,11 +28,8 @@ class QuestionType extends AbstractType
                 'label_attr' => array(
                      "class" => "h3",
                 ),
+                'data' => '{[{ userQuestion }]}',
                 'translation_domain' => 'DwlLcddSearchBundle',
-            ))
-            ->add('_format', HiddenType::class, array(
-                'data' => 'json',
-                'mapped' => false,
             ))
             ->add('submit', SubmitType::class, array(
                 'label' => '_f._q.submit',

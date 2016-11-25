@@ -1,49 +1,8 @@
-{% trans_default_domain "DwlLcddSearchBundle" %}
-{% set lcddSearchFields = ["'_all'"] %}
-{#
-{% set lcddSearchFields = ["'ARTICLE.CONTEXTE.TEXTE.TITRE_TXT.$t'"] %}
-{% set lcddSearchFields = lcddSearchFields | merge(["'ARTICLE.CONTEXTE.TEXTE.TM.TITRE_TM.$t'"]) %}
-
-
-              'ARTICLE.CONTEXTE.TEXTE.TM.TM.TITRE_TM.$t'
-              'ARTICLE.CONTEXTE.TEXTE.TM.TM.TM.TITRE_TM.$t'
-              'ARTICLE.CONTEXTE.TEXTE.TM.TM.TM.TM.TITRE_TM.$t'
-              'ARTICLE.CONTEXTE.TEXTE.TM.TM.TM.TM.TM.TITRE_TM.$t'
-              'ARTICLE.CONTEXTE.TEXTE.TM.TM.TM.TM.TM.TM.TITRE_TM.$t'
-              'ARTICLE.CONTEXTE.TEXTE.TM.TM.TM.TM.TM.TM.TM.TITRE_TM.$t'
-              'ARTICLE.CONTEXTE.TEXTE.TM.TM.TM.TM.TM.TM.TM.TM.TITRE_TM.$t'
-              'ARTICLE.CONTEXTE.TEXTE.TM.TM.TM.TM.TM.TM.TM.TM.TM.TITRE_TM.$t'
-              'ARTICLE.CONTEXTE.TEXTE.@nature'
-              'ARTICLE.META.META_COMMUN.NATURE.$t'
-              'ARTICLE.META.META_SPEC.META_ARTICLE.NUM.$t'
-              'ARTICLE.BLOC_TEXTUEL.CONTENU.$t'
-              'ARTICLE.BLOC_TEXTUEL.CONTENU.p'
-              'ARTICLE.BLOC_TEXTUEL.CONTENU.p.$t'
-              'ARTICLE.BLOC_TEXTUEL.CONTENU.div.$t'
-              'ARTICLE.BLOC_TEXTUEL.CONTENU.div.p'
-              'ARTICLE.BLOC_TEXTUEL.CONTENU.table.tbody.tr'
-
-              'ARTICLE.META.META_COMMUN.ID.$t'
-              '_score'
-              'ARTICLE.CONTEXTE.TEXTE.@cid'
-
-              'ARTICLE.META.META_SPEC.META_ARTICLE.DATE_DEBUT.$t'
-              'ARTICLE.META.META_SPEC.META_ARTICLE.DATE_FIN.$t'
-              'ARTICLE.BLOC_TEXTUEL.CONTENU.br'
-              'ARTICLE.NOTA.CONTENU.$t'
-              'ARTICLE.NOTA.CONTENU.p.$t'
-              'ARTICLE.META.META_SPEC.META_ARTICLE.ETAT.$t'
-              'ARTICLE.CONTEXTE.TEXTE.TM.TITRE_TM.@id'
-              'ARTICLE.CONTEXTE.TEXTE.TM.TM.TITRE_TM.@id'
-              'ARTICLE.CONTEXTE.TEXTE.TM.TM.TM.TITRE_TM.@id'
-              'ARTICLE.CONTEXTE.TEXTE.TM.TM.TM.TM.TITRE_TM.@id'
-              'ARTICLE.CONTEXTE.TEXTE.TM.TM.TM.TM.TM.TITRE_TM.@id'
-              'ARTICLE.CONTEXTE.TEXTE.TM.TM.TM.TM.TM.TM.TITRE_TM.@id'
-              'ARTICLE.CONTEXTE.TEXTE.TM.TM.TM.TM.TM.TM.TM.TITRE_TM.@id'
-              'ARTICLE.CONTEXTE.TEXTE.TM.TM.TM.TM.TM.TM.TM.TM.TITRE_TM.@id'
-              'ARTICLE.CONTEXTE.TEXTE.TM.TM.TM.TM.TM.TM.TM.TM.TM.TITRE_TM.@id'
-#}
 {% extends sonata_block.templates.block_base %}
+{% trans_default_domain "DwlLcddSearchBundle" %}
+
+{#% set lcddSearchFields = ["'_all'"] %#}
+{% set lcddSearchFields = ["'question'"] %}
 
 {% block block %}
 <div class="dwl-search-block">
@@ -66,21 +25,24 @@
     <div id="dwl-search-block-search-home-form"
          class="dwl-search-block-search-hero-form col-sm-offset-1 col-sm-10 col-md-offset-3 col-md-6"
          ng-controller="formCtrl"
-         eui-index="'legi'" ng-cloack>
+         eui-index="'{{ lcdd.elastic.index }}'"
+         ng-init="indexVM.autoLoad=false;"
+         ng-mouseleave="hideDisplay()" ng-mouseenter="showDisplay()"
+         ng-cloak>
         <form class="dwl-search-block-search-form form-inline">
-          <div class="form-group" ng-mouseleave="hide()" ng-mouseenter="show()">
+          <div class="form-group">
               <lcdd-search class="input-group" field="{{ lcddSearchFields | join(',') }}"></lcdd-search>
-              <div class="dwl-search-block-results panel-group" id="dwl-search-block-results-accordion" role="tablist" aria-multiselectable="true">
-                  <div class="panel panel-default" ng-repeat="doc in indexVM.results.hits.hits" ng-init="dictum=doc._source.ARTICLE">
-                    {% include 'DwlLcddSearchBundle:Block:block_result.html.twig' %}
-                  </div>
+              <div class="dwl-search-block-results panel-group" id="dwl-search-block-results-accordion" role="tablist" aria-multiselectable="true" ng-if="!isSubmitingNewQuestion && allowDisplay">
+                {% include 'DwlLcddSearchBundle:Search:question.html.twig' %}
               </div>
           </div>
         </form>
         {% form_theme questionForm 'bootstrap_3_layout.html.twig' %}
-        <form ng-if="true || (!indexVM.loading && indexVM.query.query().length && !indexVM.results.hits.hits.length)"
+        <form ng-if="isSubmitingNewQuestion && allowDisplay"
             class="dwl-search-block-question-form"
-            name="{{ questionForm.vars.full_name }}" target="_blank"
+            name="{{ questionForm.vars.full_name }}"
+            onsubmit="return false;"
+            target="_blank"
             action="{{ path('dwl_lcdd_search_question_submit') }}" method="POST" {{ form_enctype(questionForm) }}>
             {{ form_widget(questionForm) }}
             <span class="result"></span>
@@ -90,7 +52,6 @@
       var lcdd = {};
       lcdd['elastic'] = {};
       lcdd['elastic']['request'] = '{{ lcdd.elastic.request }}';
-      lcdd['elastic']['index'] = '{{ lcdd.elastic.index }}';
       lcdd['form'] = {};
       lcdd['form']['name'] = '{{ questionForm.vars.full_name }}';
     </script>

@@ -3,6 +3,10 @@
 # add in your global/base html.twig file just before the closing </body> tag
 # {% block exim_page_asset_footer %}{% endbock %}
 parameters:
+    # Sonata Admin Options
+    lcdd_admin.title: 'La chaine du droit'
+    lcdd_admin.logo_title: '%exim.theme.path.web%/media/images/icon-full.png'
+
     exim.lcdd.search.resources: '%kernel.root_dir%/../src/Dwl/Lcdd/SearchBundle/Resources/public'
     exim.lcdd.search.styles:
       - '%exim.lcdd.search.resources%/scss/block_search.scss'
@@ -10,7 +14,6 @@ parameters:
       - '%exim.lcdd.search.resources%/js/elasticsearch.angular.js'
       - '%exim.lcdd.search.resources%/js/search.elasticui.js'
       - '%exim.lcdd.search.resources%/js/search.angular.js'
-      - '%exim.lcdd.search.resources%/js/search.form.jquery.js'
     exim.lcdd.search.vendor.javascript:
       - '//code.angularjs.org/1.2.16/angular.js'
       - '//code.angularjs.org/1.2.25/angular-sanitize.js'
@@ -20,4 +23,4 @@ parameters:
     lcdd.elastic.host: 163.172.35.42
     lcdd.elastic.port: 9200
     lcdd.elastic.request: 'http://%lcdd.elastic.host%:%lcdd.elastic.port%'
-    lcdd.elastic.index: 'legi'
+    lcdd.elastic.index: 'lcdd'

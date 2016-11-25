@@ -614,7 +614,7 @@ var elasticui;
                         return _this.refresh(softRefresh);
                     },
                     error: null,
-                    autoLoad: false
+                    autoLoad: true
                 };
                 this.searchPromise = null;
                 this.refreshPromise = null;
