@@ -7,6 +7,8 @@ use Doctrine\Common\Collections\ArrayCollection;
 
 use Gedmo\Mapping\Annotation as Gedmo;
 
+use Dwl\Lcdd\SearchBundle\Component\Question\QuestionCategoryInterface as QuestionCategoryInterface;
+
 /**
  * Question
  *
@@ -64,13 +66,33 @@ class Question
      */
     private $date_update;
 
+    /* TODO: to move in a Model Class ? */
+
+    /**
+     * @var ArrayCollection
+     */
+    private $legalTags;
+
+    /**
+     * @var ArrayCollection
+     */
+    private $civilTags;
+
+    /**
+     * @var ArrayCollection
+     */
+    private $questionCategories;
+
     /**
      * Constructor
      */
     public function __construct()
     {
         $this->qualified = false;
-        $this->unqualifiedQuestions = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->unqualifiedQuestions = new ArrayCollection();
+        $this->legalTags = new ArrayCollection();
+        $this->civilTags = new ArrayCollection();
+        $this->questionCategories = new ArrayCollection();
     }
 
 
@@ -231,4 +253,214 @@ class Question
     {
         return $this->unqualifiedQuestions;
     }
+
+    /**
+     * Add legalTags
+     *
+     * @param \Application\Sonata\ClassificationBundle\Entity\Tag $legalTags
+     * @return Question
+     */
+    public function addLegalTag(\Application\Sonata\ClassificationBundle\Entity\Tag $legalTags)
+    {
+        $this->legalTags[] = $legalTags;
+
+        return $this;
+    }
+
+    /**
+     * Remove legalTags
+     *
+     * @param \Application\Sonata\ClassificationBundle\Entity\Tag $legalTags
+     */
+    public function removeLegalTag(\Application\Sonata\ClassificationBundle\Entity\Tag $legalTags)
+    {
+        $this->legalTags->removeElement($legalTags);
+    }
+
+    /**
+     * Get legalTags
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getLegalTags()
+    {
+        return $this->legalTags;
+    }
+
+    /**
+     * Add civilTags
+     *
+     * @param \Application\Sonata\ClassificationBundle\Entity\Tag $civilTags
+     * @return Question
+     */
+    public function addCivilTag(\Application\Sonata\ClassificationBundle\Entity\Tag $civilTags)
+    {
+        $this->civilTags[] = $civilTags;
+
+        return $this;
+    }
+
+    /**
+     * Remove civilTags
+     *
+     * @param \Application\Sonata\ClassificationBundle\Entity\Tag $civilTags
+     */
+    public function removeCivilTag(\Application\Sonata\ClassificationBundle\Entity\Tag $civilTags)
+    {
+        $this->civilTags->removeElement($civilTags);
+    }
+
+    /**
+     * Get civilTags
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getCivilTags()
+    {
+        return $this->civilTags;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function toArray()
+    {
+        $baseArrayRep = array(
+            'question' => $this->question,
+            'qualified' => $this->qualified,
+        );
+
+        return $baseArrayRep;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function fromArray($array)
+    {
+        $accessor = PropertyAccess::createPropertyAccessor();
+        foreach ($array as $key => $value) {
+            $accessor->setValue($this, $key, $value);
+        }
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function addQuestionCategorie(QuestionCategoryInterface $questionCategory)
+    {
+        $this->addQuestionCategory($questionCategory);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function removeQuestionCategorie(QuestionCategoryInterface $questionCategory)
+    {
+        $this->removeQuestionCategory($questionCategory);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function addQuestionCategory(QuestionCategoryInterface $questionCategory)
+    {
+        $questionCategory->setQuestion($this);
+
+        $this->questionCategories->add($questionCategory);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function removeQuestionCategory(QuestionCategoryInterface $questionCategory)
+    {
+        if ($this->questionCategories->contains($questionCategory)) {
+            $this->questionCategories->removeElement($questionCategory);
+        }
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getQuestionCategories()
+    {
+        return $this->questionCategories;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setQuestionCategories(ArrayCollection $questionCategories)
+    {
+        $this->questionCategories = $questionCategories;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getCategories()
+    {
+        $categories = new ArrayCollection();
+
+        foreach ($this->questionCategories as $questionCategory) {
+            if (!$categories->contains($questionCategory)) {
+                $categories->add($questionCategory->getCategory());
+            }
+        }
+
+        return $categories;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getMainCategory()
+    {
+        foreach ($this->getQuestionCategories() as $questionCategory) {
+            if ($questionCategory->getMain()) {
+                return $questionCategory->getCategory();
+            }
+        }
+    }
+
+    // /**
+    //  * {@inheritdoc}
+    //  */
+    // public function hasOneMainCategory()
+    // {
+    //     if ($this->getCategories()->count() == 0) {
+    //         return false;
+    //     }
+
+    //     $has = false;
+
+    //     foreach ($this->getQuestionCategories() as $questionCategory) {
+    //         if ($questionCategory->getMain()) {
+    //             if ($has) {
+    //                 $has = false;
+    //                 break;
+    //             }
+
+    //             $has = true;
+    //         }
+    //     }
+
+    //     return $has;
+    // }
+
+    // /**
+    //  * {@inheritdoc}
+    //  */
+    // public function validateOneMainCategory(ExecutionContextInterface $context)
+    // {
+    //     if ($this->getCategories()->count() == 0) {
+    //         return;
+    //     }
+
+    //     if (!$this->hasOneMainCategory()) {
+    //         $context->addViolation('dwl.lcdd.search.question.must_have_one_main_category');
+    //     }
+    // }
+
 }

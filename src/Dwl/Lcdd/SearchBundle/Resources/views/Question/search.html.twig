@@ -1,9 +1,45 @@
 {% trans_default_domain "DwlLcddSearchBundle" %}
-<div class="col-sm-12">
-<h1>Question : {{question}} ({{qs | length}} questions)</h1>
-{% for q in qs %}
-<p>{{q.question}}<a href="{{ path('dwl_lcdd_question', { id: q.id }) }}" title="{[{ q.question }]}">
-  <span class="badge">{% if not q.qualified %}Non {%endif%}Qualifi&eacute;</span>
-</a></p>
+<div class="col-sm-offset-3 col-sm-9">
+    <h1>{{ 'ps.title' | trans }}</h1>
+</div>
+<div class="col-sm-3">
+    <h3>{{ 'ps.filter.title' | trans }}</h3>
+</div>
+<div class="col-sm-9">
+
+  <!-- Nav tabs -->
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active">
+        <a href="#qualified_question" aria-controls="qualified_question" role="tab" data-toggle="tab">
+            {{ 'ps.content.tabs.qualified_question' | trans }}
+        </a>
+    </li>
+    <li role="presentation">
+        <a href="#unqualified_question" aria-controls="unqualified_question" role="tab" data-toggle="tab">
+            {{ 'ps.content.tabs.unqualified_question' | trans }}
+        </a>
+    </li>
+  </ul>
+
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <ul role="tabpanel" class="tab-pane active" id="qualified_question">
+{% for q in qs if q.qualified %}
+        <li>
+            {% include 'DwlLcddSearchBundle:Snippet:item_search.html.twig' %}
+        </li>
 {% endfor %}
+    </ul>
+    <ul role="tabpanel" class="tab-pane" id="unqualified_question">
+{% for q in qs if not q.qualified %}
+        <li>
+            {% include 'DwlLcddSearchBundle:Snippet:item_search.html.twig' %}
+        </li>
+{% endfor %}
+    </ul>
+  </div>
+
+    <h2></h2>
+    <h2></h2>
+    <h1>Question : {{question}} ({{qs | length}} questions)</h1>
 </div>

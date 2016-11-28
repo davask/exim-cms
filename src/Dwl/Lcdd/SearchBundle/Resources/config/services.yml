@@ -29,12 +29,13 @@ services:
             -
               name: sonata.block
         arguments:
-            - dwl.lcdd.block.search
+            - 'dwl.lcdd.block.search'
             - '@templating'
             - '@service_container'
             - '@sonata.media.manager.media'
 
-    dwl.lcdd.admin.search:
+    # override sonata.media.admin.media
+    sonata.media.admin.media:
         class: %dwl.lcdd.admin.search.class%
         tags:
             -

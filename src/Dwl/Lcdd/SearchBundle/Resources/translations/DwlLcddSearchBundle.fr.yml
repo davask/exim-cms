@@ -5,11 +5,23 @@ dwl:
     search:
       message: "Note : Ce site est une démonstration d'eXim. Aucune commande passée sur ce site ne sera traitée."
 
+# page search
+ps:
+  title: 'Résultats'
+  content:
+    tabs:
+      qualified_question: 'Questions traitées'
+      unqualified_question: 'Questions en attentes'
+  filter:
+    title: 'Précisez votre recherche'
+
 
 # generic:
 _g:
   yes: 'Oui'
   no: 'Non'
+  sort:
+    label: 'Trier'
 
 # question:
 _q:
@@ -28,7 +40,25 @@ _f:
     inline: En ligne
     block: Bloque
     bottom: Bas de page
-#
+
+# form question
+fq:
+    must_have_one_main_category: Une question doit avoir une catégorie définie comme principale
+
+list:
+  label_question: Question
+  label_qualified: Qualifié
+  label_date_create: Créé le
+form:
+  label_question: Question
+  label_qualified: Qualifié
+  label_tags: Mots-clés
+  label_legal_tags: Mots-clés légaux
+  label_civil_tags: Mots-clés civils
+  label_category: Catégorie
+  label_question_categories: Catégories
+  label_main: Catégorie principale
+  label_enabled: Active
 
 # SonataMediaBundle
 label:

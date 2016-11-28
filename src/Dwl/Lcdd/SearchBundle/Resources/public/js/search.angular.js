@@ -88,10 +88,12 @@ if(typeof(lcdd) != 'undefined' && typeof(lcdd.elastic) != 'undefined' && typeof(
 
           $scope.initForm = function () {
 
-              var $form = $window.jQuery('[name="'+$window.lcdd.form.name+'"]');
+              var $form = $window.jQuery($window.lcdd.form.name);
               var values = {};
-              var notyTarget = '[name="'+$window.lcdd.form.name+'"] .result';
+              var notyTarget = $window.lcdd.form.name + ' .result';
               // var notyTarget = 'document';
+
+              $log.log($form.length);
 
               var req = {
                 method: $form.attr( 'method' ),
@@ -133,7 +135,7 @@ if(typeof(lcdd) != 'undefined' && typeof(lcdd.elastic) != 'undefined' && typeof(
           $httpProvider.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=utf-8';
       }]);
   jQuery(document).ready(function(){
-    jQuery('[name="'+lcdd.form.name+'"] .btn-question').attr('ng-click','initForm()');
+    jQuery(lcdd.form.name+' .btn-question').attr('ng-click','initForm()');
     angular.bootstrap(document.getElementsByClassName('dwl-search-block'), ['leges']);
   });
 }

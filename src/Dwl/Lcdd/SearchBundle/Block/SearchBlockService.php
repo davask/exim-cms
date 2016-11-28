@@ -75,7 +75,7 @@ class SearchBlockService extends BaseBlockService
     public function getMediaAdmin()
     {
         if (!$this->mediaAdmin) {
-            $this->mediaAdmin = $this->container->get('dwl.lcdd.admin.search');
+            $this->mediaAdmin = $this->container->get('sonata.media.admin.media');
         }
 
         return $this->mediaAdmin;

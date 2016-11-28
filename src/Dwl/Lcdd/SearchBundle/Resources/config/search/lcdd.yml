@@ -1,0 +1,7 @@
+dwl_lcdd_search:
+  class:
+    tag: 'Application\\Sonata\\ClassificationBundle\\Entity\\Tag'
+    collection: 'Application\\Sonata\\ClassificationBundle\\Entity\\Collection'
+    question: 'Dwl\\Lcdd\\SearchBundle\\Entity\\Question'
+    media: 'Application\\Sonata\\MediaBundle\\Entity\\Media'
+    user: 'Application\\Sonata\\UserBundle\\Entity\\User'

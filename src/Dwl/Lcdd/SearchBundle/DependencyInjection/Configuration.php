@@ -20,6 +20,44 @@ class Configuration implements ConfigurationInterface
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('dwl_lcdd_search');
 
+        $rootNode
+            ->children()
+
+                ->arrayNode('table')
+                    ->addDefaultsIfNotSet()
+                    ->children()
+                        ->scalarNode('question_legaltag')->defaultValue('search__question_legaltag')->end()
+                        ->scalarNode('question_civiltag')->defaultValue('search__question_civiltag')->end()
+                        ->scalarNode('question_category')->defaultValue('search__question_category')->end()
+                    ->end()
+                ->end()
+
+                ->arrayNode('class')
+                    ->addDefaultsIfNotSet()
+                    ->children()
+                        ->scalarNode('tag')->defaultValue('Application\\Sonata\\ClassificationBundle\\Entity\\Tag')->end()
+                        ->scalarNode('category')->defaultValue('Application\\Sonata\\ClassificationBundle\\Entity\\Category')->end()
+                        ->scalarNode('question')->defaultValue('Dwl\\Lcdd\\SearchBundle\\Entity\\Question')->end()
+                        ->scalarNode('user')->defaultValue('Application\\Sonata\\UserBundle\\Entity\\User')->end()
+                    ->end()
+                ->end()
+
+                ->arrayNode('admin')
+                    ->addDefaultsIfNotSet()
+                    ->children()
+                        ->arrayNode('question')
+                            ->addDefaultsIfNotSet()
+                            ->children()
+                                ->scalarNode('class')->cannotBeEmpty()->defaultValue('Dwl\\Lcdd\\SearchBundle\\Admin\\SearchAdmin')->end()
+                                ->scalarNode('controller')->cannotBeEmpty()->defaultValue('SonataAdminBundle:CRUD')->end()
+                                ->scalarNode('translation')->cannotBeEmpty()->defaultValue('DwlLcddSearchBundle')->end()
+                            ->end()
+                        ->end()
+                    ->end()
+                ->end()
+
+            ->end()
+        ;
         // Here you should define the parameters that are allowed to
         // configure your bundle. See the documentation linked above for
         // more information on that topic.
