@@ -7,7 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 
 use Gedmo\Mapping\Annotation as Gedmo;
 
-use Dwl\Lcdd\SearchBundle\Component\Question\QuestionCategoryInterface as QuestionCategoryInterface;
+use Dwl\Lcdd\SearchBundle\Component\Question\QuestionCategoryInterface;
 
 /**
  * Question

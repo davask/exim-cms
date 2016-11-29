@@ -3,7 +3,6 @@
 namespace Dwl\Lcdd\SearchBundle\Component\Question;
 
 use Sonata\ClassificationBundle\Model\CategoryInterface;
-use Dwl\Lcdd\SearchBundle\Entity\Question as QuestionInterface;
 
 interface QuestionCategoryInterface
 {
