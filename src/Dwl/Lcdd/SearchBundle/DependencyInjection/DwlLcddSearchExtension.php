@@ -36,9 +36,9 @@ class DwlLcddSearchExtension extends Extension
         $loader->load('services.yml');
 
         $this->registerParameters($config, $container);
-        $this->registerDoctrineMapping($config, $container);
         $this->configureClass($config, $container);
         $this->configureAdmin($config, $container);
+        $this->registerDoctrineMapping($config, $container);
 
     }
 
@@ -79,6 +79,17 @@ class DwlLcddSearchExtension extends Extension
      */
     public function configureClass($config, ContainerBuilder $container)
     {
+        $container->setParameter('lcdd.search.question.question.class', $config['class']['question']);
+        $container->setParameter('lcdd.search.question.question_category.class', $config['class']['question_category']);
+        $container->setParameter('lcdd.search.question.category.class', $config['class']['category']);
+        $container->setParameter('lcdd.search.question.tag.class', $config['class']['tag']);
+
+        $container->setParameter('lcdd.search.question.admin.question.entity', $config['class']['question']);
+        $container->setParameter('lcdd.search.question.admin.question_category.entity', $config['class']['question_category']);
+        $container->setParameter('lcdd.search.question.admin.category.entity', $config['class']['category']);
+        $container->setParameter('lcdd.search.question.admin.tag.entity', $config['class']['tag']);
+
+
         // admin configuration
         $container->setParameter('lcdd.search.admin.question.entity', $config['class']['question']);
 
@@ -166,6 +177,7 @@ class DwlLcddSearchExtension extends Extension
         //     'orphanRemoval' => false,
         // ));
 
+
         $collector->addAssociation($config['class']['question'], 'mapManyToMany', array(
             'fieldName' => 'legalTags',
             'targetEntity' => $config['class']['tag'],
@@ -215,27 +227,52 @@ class DwlLcddSearchExtension extends Extension
         /*
          * QUESTION CATEGORY
          */
-        $collector->addAssociation($config['class']['question'], 'mapManyToMany', array(
-            'fieldName' => 'questionCategories',
-            'targetEntity' => $config['class']['category'],
-            'cascade' => array(
-                    1 => 'persist',
-                ),
-            'joinTable' => array(
-                    'name' => $config['table']['question_category'],
-                    'joinColumns' => array(
-                            array(
-                                'name' => 'question_id',
-                                'referencedColumnName' => 'id',
-                            ),
-                        ),
-                    'inverseJoinColumns' => array(
-                            array(
-                                'name' => 'category_id',
-                                'referencedColumnName' => 'id',
-                            ),
-                        ),
-                ),
+
+        $collector->addAssociation($config['class']['question_category'], 'mapManyToOne', array(
+             'fieldName' => 'question',
+             'targetEntity' => $config['class']['question'],
+             'cascade' => array(
+                'persist',
+             ),
+             'mappedBy' => null,
+             'inversedBy' => 'questionCategories',
+             'joinColumns' => array(
+                 array(
+                     'name' => 'question_id',
+                     'referencedColumnName' => 'id',
+                     'onDelete' => 'CASCADE',
+                     'onUpdate' => 'CASCADE',
+                 ),
+             ),
+             'orphanRemoval' => false,
+        ));
+
+        $collector->addAssociation($config['class']['question_category'], 'mapManyToOne', array(
+             'fieldName' => 'category',
+             'targetEntity' => $config['class']['category'],
+             'cascade' => array(
+                'persist',
+             ),
+             'mappedBy' => null,
+             'joinColumns' => array(
+                 array(
+                     'name' => 'category_id',
+                     'referencedColumnName' => 'id',
+                     'onDelete' => 'CASCADE',
+                     'onUpdate' => 'CASCADE',
+                 ),
+             ),
+             'orphanRemoval' => false,
+        ));
+
+        $collector->addAssociation($config['class']['product'], 'mapOneToMany', array(
+             'fieldName' => 'questionCategories',
+             'targetEntity' => $config['class']['question_category'],
+             'cascade' => array(
+                'persist',
+             ),
+             'mappedBy' => 'question',
+             'orphanRemoval' => false,
         ));
 
     }

@@ -8,8 +8,9 @@ use Symfony\Component\Validator\ExecutionContextInterface;
 
 use Application\Sonata\ClassificationBundle\Entity\Tag;
 
-interface Question
+interface QuestionInterface
 {
+
     /**
      * Get id
      *
@@ -80,32 +81,32 @@ interface Question
     /**
      * Set qualifiedQuestion
      *
-     * @param QuestionInterface $qualifiedQuestion
+     * @param \Dwl\Lcdd\SearchBundle\Entity\QuestionInterface $qualifiedQuestion
      * @return Question
      */
-    public function setQualifiedQuestion(QuestionInterface $qualifiedQuestion = null);
+    public function setQualifiedQuestion(\Dwl\Lcdd\SearchBundle\Entity\QuestionInterface $qualifiedQuestion = null);
 
     /**
      * Get qualifiedQuestion
      *
-     * @return QuestionInterface
+     * @return \Dwl\Lcdd\SearchBundle\Entity\QuestionInterface
      */
     public function getQualifiedQuestion();
 
     /**
      * Add unqualifiedQuestions
      *
-     * @param QuestionInterface $unqualifiedQuestions
+     * @param \Dwl\Lcdd\SearchBundle\Entity\QuestionInterface $unqualifiedQuestions
      * @return Question
      */
-    public function addUnqualifiedQuestion(QuestionInterface $unqualifiedQuestions);
+    public function addUnqualifiedQuestion(\Dwl\Lcdd\SearchBundle\Entity\QuestionInterface $unqualifiedQuestions);
 
     /**
      * Remove unqualifiedQuestions
      *
-     * @param QuestionInterface $unqualifiedQuestions
+     * @param \Dwl\Lcdd\SearchBundle\Entity\QuestionInterface $unqualifiedQuestions
      */
-    public function removeUnqualifiedQuestion(QuestionInterface $unqualifiedQuestions);
+    public function removeUnqualifiedQuestion(\Dwl\Lcdd\SearchBundle\Entity\QuestionInterface $unqualifiedQuestions);
 
     /**
      * Get unqualifiedQuestions
@@ -171,22 +172,22 @@ interface Question
     /**
      * {@inheritdoc}
      */
-    public function addQuestionCategorie(QuestionCategoryInterface $questionCategory);
+    public function addQuestionCategorie($questionCategory);
 
     /**
      * {@inheritdoc}
      */
-    public function removeQuestionCategorie(QuestionCategoryInterface $questionCategory);
+    public function removeQuestionCategorie($questionCategory);
 
     /**
      * {@inheritdoc}
      */
-    public function addQuestionCategory(QuestionCategoryInterface $questionCategory);
+    public function addQuestionCategory($questionCategory);
 
     /**
      * {@inheritdoc}
      */
-    public function removeQuestionCategory(QuestionCategoryInterface $questionCategory);
+    public function removeQuestionCategory($questionCategory);
 
     /**
      * {@inheritdoc}

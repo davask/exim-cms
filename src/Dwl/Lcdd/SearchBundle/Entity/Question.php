@@ -7,7 +7,8 @@ use Doctrine\Common\Collections\ArrayCollection;
 
 use Gedmo\Mapping\Annotation as Gedmo;
 
-use Dwl\Lcdd\SearchBundle\Component\Question\QuestionCategoryInterface;
+use Sonata\ClassificationBundle\Model\TagInterface;
+use Sonata\ClassificationBundle\Model\CategoryInterface;
 
 /**
  * Question
@@ -41,12 +42,20 @@ class Question
     private $qualified;
 
     /**
-     * @ORM\ManyToOne(targetEntity="\Dwl\Lcdd\SearchBundle\Entity\Question", inversedBy="unqualifiedQuestions")
+     * @var \Dwl\Lcdd\SearchBundle\Entity\Question
+     *
+     * @ORM\ManyToMany(targetEntity="\Dwl\Lcdd\SearchBundle\Entity\Question", mappedBy="unqualifiedQuestions")
      */
     private $qualifiedQuestion;
 
     /**
-     * @ORM\OneToMany(targetEntity="\Dwl\Lcdd\SearchBundle\Entity\Question", mappedBy="qualifiedQuestion")
+     * @var ArrayCollection
+     *
+     * @ORM\ManyToMany(targetEntity="\Dwl\Lcdd\SearchBundle\Entity\Question", inversedBy="qualifiedQuestion")
+     * @ORM\JoinTable(name="unqualified_questions__qualified_questions",
+     *      joinColumns={@ORM\JoinColumn(name="unqualified_question_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="qualified_question_id", referencedColumnName="id")}
+     * )
      */
     private $unqualifiedQuestions;
 
@@ -66,40 +75,71 @@ class Question
      */
     private $date_update;
 
-    /* TODO: to move in a Model Class ? */
-
     /**
      * @var ArrayCollection
+     *
+     * @ORM\ManyToMany(targetEntity="\Application\Sonata\ClassificationBundle\Entity\Tag")
+     * @ORM\JoinTable(name="questions__legal_tags",
+     *      joinColumns={@ORM\JoinColumn(name="question_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="tag_id", referencedColumnName="id")}
+     * )
      */
     private $legalTags;
 
     /**
      * @var ArrayCollection
+     *
+     * @ORM\ManyToMany(targetEntity="\Application\Sonata\ClassificationBundle\Entity\Tag")
+     * @ORM\JoinTable(name="questions__civil_tags",
+     *      joinColumns={@ORM\JoinColumn(name="question_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="tag_id", referencedColumnName="id")}
+     * )
      */
     private $civilTags;
 
     /**
      * @var ArrayCollection
+     *
+     * @ORM\ManyToMany(targetEntity="\Application\Sonata\ClassificationBundle\Entity\Category")
+     * @ORM\JoinTable(name="questions_categories",
+     *      joinColumns={@ORM\JoinColumn(name="question_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="category_id", referencedColumnName="id")}
+     * )
      */
-    private $questionCategories;
+    private $categories;
+
+    /**
+     * @var ArrayCollection
+     *
+     * @ORM\ManyToOne(targetEntity="\Application\Sonata\MediaBundle\Entity\Media")
+     * @ORM\JoinColumn(name="media_id", referencedColumnName="id")
+     */
+    private $media;
+
+    /**
+     * {@inheritdoc}
+     */
+    public function __toString()
+    {
+        return $this->getQuestion() ?: 'n/a';
+    }
 
     /**
      * Constructor
      */
     public function __construct()
     {
-        $this->qualified = false;
-        $this->unqualifiedQuestions = new ArrayCollection();
-        $this->legalTags = new ArrayCollection();
-        $this->civilTags = new ArrayCollection();
-        $this->questionCategories = new ArrayCollection();
+        $this->qualifiedQuestion = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->unqualifiedQuestions = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->legalTags = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->civilTags = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->categories = new \Doctrine\Common\Collections\ArrayCollection();
     }
-
 
     /**
      * Get id
      *
-     * @return integer
+     * @return integer 
      */
     public function getId()
     {
@@ -122,7 +162,7 @@ class Question
     /**
      * Get question
      *
-     * @return string
+     * @return string 
      */
     public function getQuestion()
     {
@@ -145,7 +185,7 @@ class Question
     /**
      * Get qualified
      *
-     * @return boolean
+     * @return boolean 
      */
     public function getQualified()
     {
@@ -168,7 +208,7 @@ class Question
     /**
      * Get date_create
      *
-     * @return \DateTime
+     * @return \DateTime 
      */
     public function getDateCreate()
     {
@@ -191,7 +231,7 @@ class Question
     /**
      * Get date_update
      *
-     * @return \DateTime
+     * @return \DateTime 
      */
     public function getDateUpdate()
     {
@@ -199,22 +239,32 @@ class Question
     }
 
     /**
-     * Set qualifiedQuestion
+     * Add qualifiedQuestion
      *
      * @param \Dwl\Lcdd\SearchBundle\Entity\Question $qualifiedQuestion
      * @return Question
      */
-    public function setQualifiedQuestion(\Dwl\Lcdd\SearchBundle\Entity\Question $qualifiedQuestion = null)
+    public function addQualifiedQuestion(\Dwl\Lcdd\SearchBundle\Entity\Question $qualifiedQuestion)
     {
-        $this->qualifiedQuestion = $qualifiedQuestion;
+        $this->qualifiedQuestion[] = $qualifiedQuestion;
 
         return $this;
     }
 
     /**
+     * Remove qualifiedQuestion
+     *
+     * @param \Dwl\Lcdd\SearchBundle\Entity\Question $qualifiedQuestion
+     */
+    public function removeQualifiedQuestion(\Dwl\Lcdd\SearchBundle\Entity\Question $qualifiedQuestion)
+    {
+        $this->qualifiedQuestion->removeElement($qualifiedQuestion);
+    }
+
+    /**
      * Get qualifiedQuestion
      *
-     * @return \Dwl\Lcdd\SearchBundle\Entity\Question
+     * @return \Doctrine\Common\Collections\Collection 
      */
     public function getQualifiedQuestion()
     {
@@ -247,7 +297,7 @@ class Question
     /**
      * Get unqualifiedQuestions
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return \Doctrine\Common\Collections\Collection 
      */
     public function getUnqualifiedQuestions()
     {
@@ -280,7 +330,7 @@ class Question
     /**
      * Get legalTags
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return \Doctrine\Common\Collections\Collection 
      */
     public function getLegalTags()
     {
@@ -313,7 +363,7 @@ class Question
     /**
      * Get civilTags
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return \Doctrine\Common\Collections\Collection 
      */
     public function getCivilTags()
     {
@@ -321,146 +371,58 @@ class Question
     }
 
     /**
-     * {@inheritdoc}
+     * Add categories
+     *
+     * @param \Application\Sonata\ClassificationBundle\Entity\Category $categories
+     * @return Question
      */
-    public function toArray()
+    public function addCategory(\Application\Sonata\ClassificationBundle\Entity\Category $categories)
     {
-        $baseArrayRep = array(
-            'question' => $this->question,
-            'qualified' => $this->qualified,
-        );
+        $this->categories[] = $categories;
 
-        return $baseArrayRep;
+        return $this;
     }
 
     /**
-     * {@inheritdoc}
+     * Remove categories
+     *
+     * @param \Application\Sonata\ClassificationBundle\Entity\Category $categories
      */
-    public function fromArray($array)
+    public function removeCategory(\Application\Sonata\ClassificationBundle\Entity\Category $categories)
     {
-        $accessor = PropertyAccess::createPropertyAccessor();
-        foreach ($array as $key => $value) {
-            $accessor->setValue($this, $key, $value);
-        }
+        $this->categories->removeElement($categories);
     }
 
     /**
-     * {@inheritdoc}
-     */
-    public function addQuestionCategorie(QuestionCategoryInterface $questionCategory)
-    {
-        $this->addQuestionCategory($questionCategory);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function removeQuestionCategorie(QuestionCategoryInterface $questionCategory)
-    {
-        $this->removeQuestionCategory($questionCategory);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function addQuestionCategory(QuestionCategoryInterface $questionCategory)
-    {
-        $questionCategory->setQuestion($this);
-
-        $this->questionCategories->add($questionCategory);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function removeQuestionCategory(QuestionCategoryInterface $questionCategory)
-    {
-        if ($this->questionCategories->contains($questionCategory)) {
-            $this->questionCategories->removeElement($questionCategory);
-        }
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getQuestionCategories()
-    {
-        return $this->questionCategories;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setQuestionCategories(ArrayCollection $questionCategories)
-    {
-        $this->questionCategories = $questionCategories;
-    }
-
-    /**
-     * {@inheritdoc}
+     * Get categories
+     *
+     * @return \Doctrine\Common\Collections\Collection 
      */
     public function getCategories()
     {
-        $categories = new ArrayCollection();
-
-        foreach ($this->questionCategories as $questionCategory) {
-            if (!$categories->contains($questionCategory)) {
-                $categories->add($questionCategory->getCategory());
-            }
-        }
-
-        return $categories;
+        return $this->categories;
     }
 
     /**
-     * {@inheritdoc}
+     * Set media
+     *
+     * @param \Application\Sonata\MediaBundle\Entity\Media $media
+     * @return Question
      */
-    public function getMainCategory()
+    public function setMedia(\Application\Sonata\MediaBundle\Entity\Media $media = null)
     {
-        foreach ($this->getQuestionCategories() as $questionCategory) {
-            if ($questionCategory->getMain()) {
-                return $questionCategory->getCategory();
-            }
-        }
+        $this->media = $media;
+
+        return $this;
     }
 
-    // /**
-    //  * {@inheritdoc}
-    //  */
-    // public function hasOneMainCategory()
-    // {
-    //     if ($this->getCategories()->count() == 0) {
-    //         return false;
-    //     }
-
-    //     $has = false;
-
-    //     foreach ($this->getQuestionCategories() as $questionCategory) {
-    //         if ($questionCategory->getMain()) {
-    //             if ($has) {
-    //                 $has = false;
-    //                 break;
-    //             }
-
-    //             $has = true;
-    //         }
-    //     }
-
-    //     return $has;
-    // }
-
-    // /**
-    //  * {@inheritdoc}
-    //  */
-    // public function validateOneMainCategory(ExecutionContextInterface $context)
-    // {
-    //     if ($this->getCategories()->count() == 0) {
-    //         return;
-    //     }
-
-    //     if (!$this->hasOneMainCategory()) {
-    //         $context->addViolation('dwl.lcdd.search.question.must_have_one_main_category');
-    //     }
-    // }
-
+    /**
+     * Get media
+     *
+     * @return \Application\Sonata\MediaBundle\Entity\Media 
+     */
+    public function getMedia()
+    {
+        return $this->media;
+    }
 }

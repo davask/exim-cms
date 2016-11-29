@@ -39,6 +39,7 @@ class Configuration implements ConfigurationInterface
                         ->scalarNode('category')->defaultValue('Application\\Sonata\\ClassificationBundle\\Entity\\Category')->end()
                         ->scalarNode('question')->defaultValue('Dwl\\Lcdd\\SearchBundle\\Entity\\Question')->end()
                         ->scalarNode('user')->defaultValue('Application\\Sonata\\UserBundle\\Entity\\User')->end()
+                        ->scalarNode('question_category')->defaultValue('Dwl\\Lcdd\\SearchBundle\\Entity\\QuestionCategory')->end()
                     ->end()
                 ->end()
 

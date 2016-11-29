@@ -8,6 +8,8 @@ use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+
 /**
  * @author David Asquiedge <contact@davaskweblimited.com>
  */
@@ -24,6 +26,10 @@ class QuestionAdmin extends Admin
         $showMapper
             ->add('question')
             ->add('qualified')
+            ->add('legalTags')
+            ->add('civilTags')
+            ->add('categories')
+            ->add('unqualifiedQuestions')
             ->add('date_create')
         ;
     }
@@ -36,7 +42,10 @@ class QuestionAdmin extends Admin
         $listMapper
             ->addIdentifier('question')
             ->add('qualified')
-            // ->add('questionCategories', null, array('associated_tostring' => 'getCategory'))
+            ->add('legalTags')
+            ->add('civilTags')
+            ->add('categories')
+            ->add('unqualifiedQuestions')
             ->add('date_create')
         ;
     }
@@ -49,7 +58,10 @@ class QuestionAdmin extends Admin
         $datagridMapper
             ->add('question')
             ->add('qualified')
-            // ->add('questionCategories.category', null, array('field_options' => array('expanded' => false, 'multiple' => true)))
+            ->add('unqualifiedQuestions')
+            ->add('legalTags', null, array('field_options' => array('expanded' => false, 'multiple' => true)))
+            ->add('civilTags', null, array('field_options' => array('expanded' => false, 'multiple' => true)))
+            ->add('categories', null, array('field_options' => array('expanded' => false, 'multiple' => true)))
         ;
     }
 
@@ -61,20 +73,39 @@ class QuestionAdmin extends Admin
         $formMapper
             ->add('question')
             ->add('qualified')
-            ->add('legalTags', 'sonata_type_model_autocomplete', array(
-                'property' => 'name',
-                'multiple' => 'true',
-                'required' => false,
+            ->add('qualifiedQuestion', EntityType::class, array(
+                'class' => 'DwlLcddSearchBundle:Question',
+                // 'choice_label' => 'question',
+                // 'multiple' => true,
+                // 'expanded' => true,
             ))
-            ->add('civilTags', 'sonata_type_model_autocomplete', array(
-                'property' => 'name',
-                'multiple' => 'true',
-                'required' => false,
+            ->add('unqualifiedQuestions', EntityType::class, array(
+                'class' => 'DwlLcddSearchBundle:Question',
+                // 'choice_label' => 'question',
+                'multiple' => true,
+                // 'expanded' => true,
             ))
-            ->add('questionCategories', 'sonata_type_model_autocomplete', array(
-                'property' => 'name',
-                'multiple' => 'true',
-                'required' => false,
+            ->add('legalTags', EntityType::class, array(
+                'class' => 'ApplicationSonataClassificationBundle:Tag',
+                // 'choice_label' => 'name',
+                'multiple' => true,
+                // 'expanded' => true,
+            ))
+            ->add('civilTags', EntityType::class, array(
+                'class' => 'ApplicationSonataClassificationBundle:Tag',
+                // 'choice_label' => 'name',
+                'multiple' => true,
+                // 'expanded' => true,
+            ))
+            ->add('categories', EntityType::class, array(
+                'class' => 'ApplicationSonataClassificationBundle:Category',
+                // 'choice_label' => 'name',
+                'multiple' => true,
+                // 'expanded' => true,
+            ))
+            ->add('media', EntityType::class, array(
+                'class' => 'ApplicationSonataMediaBundle:Media',
+                'choice_label' => 'name',
             ))
         ;
     }
@@ -104,13 +135,4 @@ class QuestionAdmin extends Admin
     //     }
     // }
 
-    /**
-     * {@inheritdoc}
-     */
-    public function getNewInstance()
-    {
-        $question = parent::getNewInstance();
-
-        return $question;
-    }
 }
