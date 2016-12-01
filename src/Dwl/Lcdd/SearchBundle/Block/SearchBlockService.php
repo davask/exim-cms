@@ -89,6 +89,7 @@ class SearchBlockService extends BaseBlockService
         $resolver->setDefaults(array(
             'media' => false,
             'display' => 'inline',
+            'ngcontroller' => 'formCtrl',
             'title' => false,
             'sub_title' => false,
             'block_class' => 'col-sm-offset-1 col-sm-10 col-md-offset-3 col-md-6',
@@ -108,62 +109,83 @@ class SearchBlockService extends BaseBlockService
     public function buildEditForm(FormMapper $formMapper, BlockInterface $block)
     {
 
-        if (!$block->getSetting('mediaId') instanceof MediaInterface) {
-            $this->load($block);
-        }
+        $blockSettings = $block->getSettings();
 
-        if (empty($block->getSetting('mediaId'))) {
-            $block->setSetting('mediaId', null);
-        }
+        $formSettings = array(
+            array('display', 'choice', array(
+                'required' => true,
+                'choices' => array(
+                    'inline' => '_f._q.inline',
+                    'block' => '_f._q.block',
+                    'bottom' => '_f._q.bottom',
+                ),
+                'expanded' => true,
+                'multiple' => false,
+                'label' => 'form.label_display',
+            )),
+        );
 
-        dump($block->getSetting('mediaId'));
-        $formatChoices = $this->getFormatChoices($block->getSetting('mediaId'));
+        if($blockSettings['display'] != 'inline') {
 
-        $formMapper->add('settings', 'sonata_type_immutable_array', array(
-            'keys' => array(
-                array('display', 'choice', array(
-                    'required' => true,
-                    'choices' => array(
-                        'inline' => '_f._q.inline',
-                        'block' => '_f._q.block',
-                        'bottom' => '_f._q.bottom',
-                    ),
-                    'expanded' => true,
-                    'multiple' => false,
-                    'label' => 'form.label_display',
-                )),
-                array('title', 'text', array(
-                    'required' => false,
-                    'label' => 'form.label_title',
-                )),
-                array('sub_title', 'text', array(
-                    'required' => false,
-                    'label' => 'form.label_sub_title',
-                )),
-                array('inline_class', 'text', array(
-                    'required' => false,
-                    'label' => 'form.label_inline_class',
-                )),
-                array('block_class', 'text', array(
-                    'required' => false,
-                    'label' => 'form.label_block_class',
-                )),
-                array('bottom_class', 'text', array(
+            if($blockSettings['display'] == 'bottom') {
+
+                $formSettings[] = array('bottom_class', 'text', array(
                     'required' => false,
                     'label' => 'form.label_bottom_class',
-                )),
-                array('img_class', 'text', array(
+                ));
+
+            } else if($blockSettings['display'] == 'block') {
+
+                $formSettings[] = array('title', 'text', array(
                     'required' => false,
-                    'label' => 'form.label_img_class',
-                )),
-                array($this->getMediaBuilder($formMapper), null, array()),
-                array('format', 'choice', array(
-                    'required' => count($formatChoices) > 0,
-                    'disabled' => count($formatChoices) == 0,
-                    'choices' => $formatChoices,
-                    'label' => 'form.label_format',
-                )),
-            ),
+                    'label' => 'form.label_title',
+                ));
+                $formSettings[] = array('sub_title', 'text', array(
+                    'required' => false,
+                    'label' => 'form.label_sub_title',
+                ));
+                $formSettings[] = array('block_class', 'text', array(
+                    'required' => false,
+                    'label' => 'form.label_block_class',
+                ));
+
+            }
+
+            $formSettings[] = array('img_class', 'text', array(
+                'required' => false,
+                'label' => 'form.label_img_class',
+            ));
+
+            if (!$block->getSetting('mediaId') instanceof MediaInterface) {
+                $this->load($block);
+            }
+
+            if (empty($block->getSetting('mediaId'))) {
+                $block->setSetting('mediaId', null);
+            }
+
+            $formatChoices = $this->getFormatChoices($block->getSetting('mediaId'));
+
+            $formSettings[] = array($this->getMediaBuilder($formMapper), null, array());
+
+            $formSettings[] = array('format', 'choice', array(
+                'required' => count($formatChoices) > 0,
+                'disabled' => count($formatChoices) == 0,
+                'choices' => $formatChoices,
+                'label' => 'form.label_format',
+            ));
+
+        } else {
+
+            $formSettings[] = array('inline_class', 'text', array(
+                'required' => false,
+                'label' => 'form.label_inline_class',
+            ));
+
+        }
+
+        $formMapper->add('settings', 'sonata_type_immutable_array', array(
+            'keys' => $formSettings,
             'translation_domain' => 'DwlLcddSearchBundle',
         ));
 

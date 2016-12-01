@@ -7,16 +7,18 @@ parameters:
     lcdd_admin.title: 'La chaine du droit'
     lcdd_admin.logo_title: '%exim.theme.path.web%/media/images/icon-full.png'
 
-    exim.lcdd.search.resources: '%kernel.root_dir%/../src/Dwl/Lcdd/SearchBundle/Resources/public'
+    exim.lcdd.search.resources: '%kernel.root_dir%/../src/Dwl/Lcdd/SearchBundle/Resources'
     exim.lcdd.search.styles:
-      - '%exim.lcdd.search.resources%/scss/block_search.scss'
+      - '%exim.lcdd.search.resources%/public/scss/block_search.scss'
+      - '%exim.lcdd.search.resources%/public/scss/page_search.scss'
     exim.lcdd.search.javascript:
-      - '%exim.lcdd.search.resources%/js/elasticsearch.angular.js'
-      - '%exim.lcdd.search.resources%/js/search.elasticui.js'
-      - '%exim.lcdd.search.resources%/js/search.angular.js'
+      - '%exim.lcdd.search.resources%/public/js/elasticsearch.angular.js'
+      - '%exim.lcdd.search.resources%/public/js/search.elasticui.js'
+      - '%exim.lcdd.search.resources%/public/js/search.angular.js'
     exim.lcdd.search.vendor.javascript:
       - '//code.angularjs.org/1.2.16/angular.js'
       - '//code.angularjs.org/1.2.25/angular-sanitize.js'
+      - '//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.3.0/ui-bootstrap-tpls.min.js'
       - '/bundles/dwllcddsearch/vendor/elastic.js/dist/elastic.min.js'
 
 
@@ -24,3 +26,6 @@ parameters:
     lcdd.elastic.port: 9200
     lcdd.elastic.request: 'http://%lcdd.elastic.host%:%lcdd.elastic.port%'
     lcdd.elastic.index: 'lcdd'
+    lcdd.search.host: dev.lachainedudroit.fr
+    lcdd.search.port: 80
+    lcdd.search.request: 'http://%lcdd.search.host%:%lcdd.search.port%'

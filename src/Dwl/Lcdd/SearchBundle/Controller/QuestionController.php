@@ -14,24 +14,42 @@ use Dwl\Lcdd\SearchBundle\Form\QuestionType;
 class QuestionController extends Controller
 {
     public function SearchAction(Request $request){
+
         $t = $translator = $this->get('translator');
 
         $doctrine = $this->getDoctrine();
-        $repository = $doctrine->getRepository('DwlLcddSearchBundle:Question');
-        $userQuestion = '';
-        $qs = array();
-        $userQuestion = $request->request->get('question');
-        dump($userQuestion);
-        if (!empty($userQuestion)) {
-            $qs = $repository->findLikeByQuestion($userQuestion);
+        $em = $doctrine->getEntityManager();
+        $questionRepository = $em->getRepository('DwlLcddSearchBundle:Question');
+
+        $userQuestion = $request->request->get('question', '');
+        $format = $request->request->get('format', 'html');
+
+        $viewDatas = array(
+            'userQuestion' => $userQuestion,
+        );
+
+        if($format == 'json') {
+
+            $qs = $questionRepository->findAllAsArray();
+            $viewDatas['qs'] = $qs;
+
+            return new JsonResponse( $viewDatas );
         } else {
-            $qs = $repository->findAll();
+
+            $qs = $questionRepository->findAll();
+            $viewDatas['qs'] = $qs;
+
+            $categoryRepository = $em->getRepository('ApplicationSonataClassificationBundle:Category');
+            $cs = $categoryRepository->findAll();
+            $viewDatas['cs'] = $cs;
+
+            $tagRepository = $em->getRepository('ApplicationSonataClassificationBundle:Tag');
+            $ts = $tagRepository->findAll();
+            $viewDatas['ts'] = $ts;
+
+            return $this->render('DwlLcddSearchBundle:Question:search.html.twig', $viewDatas);
         }
 
-        return $this->render('DwlLcddSearchBundle:Question:search.html.twig', array(
-            'question' => $userQuestion,
-            'qs' => $qs,
-        ));
     }
 
     public function ShowAction(Request $request, $id){

@@ -44,20 +44,17 @@ class Question
     /**
      * @var \Dwl\Lcdd\SearchBundle\Entity\Question
      *
-     * @ORM\ManyToMany(targetEntity="\Dwl\Lcdd\SearchBundle\Entity\Question", mappedBy="unqualifiedQuestions")
+     * @ORM\OneToMany(targetEntity="\Dwl\Lcdd\SearchBundle\Entity\Question", mappedBy="qualifiedQuestion")
      */
-    private $qualifiedQuestion;
+    private $unqualifiedQuestions;
 
     /**
      * @var ArrayCollection
      *
-     * @ORM\ManyToMany(targetEntity="\Dwl\Lcdd\SearchBundle\Entity\Question", inversedBy="qualifiedQuestion")
-     * @ORM\JoinTable(name="unqualified_questions__qualified_questions",
-     *      joinColumns={@ORM\JoinColumn(name="unqualified_question_id", referencedColumnName="id")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="qualified_question_id", referencedColumnName="id")}
-     * )
+     * @ORM\ManyToOne(targetEntity="\Dwl\Lcdd\SearchBundle\Entity\Question", inversedBy="unqualifiedQuestions")
+     * @ORM\JoinColumn(name="question_id", referencedColumnName="id")
      */
-    private $unqualifiedQuestions;
+    private $qualifiedQuestion;
 
     /**
      * @var \DateTime $date_create
@@ -129,7 +126,6 @@ class Question
      */
     public function __construct()
     {
-        $this->qualifiedQuestion = new \Doctrine\Common\Collections\ArrayCollection();
         $this->unqualifiedQuestions = new \Doctrine\Common\Collections\ArrayCollection();
         $this->legalTags = new \Doctrine\Common\Collections\ArrayCollection();
         $this->civilTags = new \Doctrine\Common\Collections\ArrayCollection();
@@ -239,39 +235,6 @@ class Question
     }
 
     /**
-     * Add qualifiedQuestion
-     *
-     * @param \Dwl\Lcdd\SearchBundle\Entity\Question $qualifiedQuestion
-     * @return Question
-     */
-    public function addQualifiedQuestion(\Dwl\Lcdd\SearchBundle\Entity\Question $qualifiedQuestion)
-    {
-        $this->qualifiedQuestion[] = $qualifiedQuestion;
-
-        return $this;
-    }
-
-    /**
-     * Remove qualifiedQuestion
-     *
-     * @param \Dwl\Lcdd\SearchBundle\Entity\Question $qualifiedQuestion
-     */
-    public function removeQualifiedQuestion(\Dwl\Lcdd\SearchBundle\Entity\Question $qualifiedQuestion)
-    {
-        $this->qualifiedQuestion->removeElement($qualifiedQuestion);
-    }
-
-    /**
-     * Get qualifiedQuestion
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getQualifiedQuestion()
-    {
-        return $this->qualifiedQuestion;
-    }
-
-    /**
      * Add unqualifiedQuestions
      *
      * @param \Dwl\Lcdd\SearchBundle\Entity\Question $unqualifiedQuestions
@@ -302,6 +265,29 @@ class Question
     public function getUnqualifiedQuestions()
     {
         return $this->unqualifiedQuestions;
+    }
+
+    /**
+     * Set qualifiedQuestion
+     *
+     * @param \Dwl\Lcdd\SearchBundle\Entity\Question $qualifiedQuestion
+     * @return Question
+     */
+    public function setQualifiedQuestion(\Dwl\Lcdd\SearchBundle\Entity\Question $qualifiedQuestion = null)
+    {
+        $this->qualifiedQuestion = $qualifiedQuestion;
+
+        return $this;
+    }
+
+    /**
+     * Get qualifiedQuestion
+     *
+     * @return \Dwl\Lcdd\SearchBundle\Entity\Question 
+     */
+    public function getQualifiedQuestion()
+    {
+        return $this->qualifiedQuestion;
     }
 
     /**

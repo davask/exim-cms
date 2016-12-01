@@ -13,10 +13,7 @@ dwl_lcdd_search_question_submit:
         expose: true
 
 dwl_lcdd_search_question:
-    path:     /recherche/{question}
-    methods:
-        - POST
-        - GET
+    path:     /recherche
     defaults:
         _controller: DwlLcddSearchBundle:Question:Search
     requirements:

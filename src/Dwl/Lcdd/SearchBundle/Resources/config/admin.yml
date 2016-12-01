@@ -1,5 +1,4 @@
 parameters:
-  dwl.lcdd.search.question.pool.class: 'Dwl\Lcdd\SearchBundle\Component\Question\Pool'
   dwl.lcdd.search.question.admin.question.class: 'Dwl\Lcdd\SearchBundle\Admin\QuestionAdmin'
   dwl.lcdd.search.question.admin.question.entity: 'Dwl\Lcdd\SearchBundle\Entity\Question'
   dwl.lcdd.search.question.admin.question.controller: 'SonataAdminBundle:CRUD'
@@ -20,6 +19,3 @@ services:
         # calls:
             # - [setQuestionPool, ['@dwl.lcdd.search.question.pool']]
             # - [addChild, ['@sonata.product.admin.product.category']]
-
-    dwl.lcdd.search.question.pool:
-        class: %dwl.lcdd.search.question.pool.class%

@@ -1,45 +1,81 @@
 {% trans_default_domain "DwlLcddSearchBundle" %}
-<div class="col-sm-offset-3 col-sm-9">
-    <h1>{{ 'ps.title' | trans }}</h1>
-</div>
-<div class="col-sm-3">
-    <h3>{{ 'ps.filter.title' | trans }}</h3>
-</div>
-<div class="col-sm-9">
-
-  <!-- Nav tabs -->
-  <ul class="nav nav-tabs" role="tablist">
-    <li role="presentation" class="active">
-        <a href="#qualified_question" aria-controls="qualified_question" role="tab" data-toggle="tab">
-            {{ 'ps.content.tabs.qualified_question' | trans }}
-        </a>
-    </li>
-    <li role="presentation">
-        <a href="#unqualified_question" aria-controls="unqualified_question" role="tab" data-toggle="tab">
-            {{ 'ps.content.tabs.unqualified_question' | trans }}
-        </a>
-    </li>
-  </ul>
-
-  <!-- Tab panes -->
-  <div class="tab-content">
-    <ul role="tabpanel" class="tab-pane active" id="qualified_question">
-{% for q in qs if q.qualified %}
-        <li>
-            {% include 'DwlLcddSearchBundle:Snippet:item_search.html.twig' %}
-        </li>
+<div class="dwl-search-page col-sm-12"
+    ng-controller="searchCtrl"
+    ng-init="initSettings('{{ userQuestion }}', '{{ path('dwl_lcdd_search_question') }}');">
+    <div class="row">
+        <div class="col-sm-offset-3 col-sm-3">
+            <h1>{{ 'ps.title' | trans }}</h1>
+        </div>
+        <div class="col-sm-6">
+            <div class="dwl-search-page-search form-group">
+                <div class="input-group" >
+                    <input type="text" class="dwl-search-page-search-input form-control" placeholder="Poser votre question" ng-model="userQuestion">
+                    <span class="input-group-btn" >
+                        <button class="btn btn-link" type="button" ng-click="userSearch();"><i class="fa fa-search"></i></button>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3">
+            <h3>{{ 'ps.filter.title' | trans }}</h3>
+            <h4>{{ 'Par Catégorie' | trans }}</h4>
+            <ul>
+{% for c in cs if c.enabled and c.context == 'lcdd' and c.name != 'lcdd' %}
+                <li class="checkbox">
+                    <label>
+                      <input type="checkbox" ng-model="categories[{{c.id}}]" ng-true-value="true" ng-false-value="false"> {{ c.name }}
+                    </label>
+                </li>
 {% endfor %}
-    </ul>
-    <ul role="tabpanel" class="tab-pane" id="unqualified_question">
-{% for q in qs if not q.qualified %}
-        <li>
-            {% include 'DwlLcddSearchBundle:Snippet:item_search.html.twig' %}
-        </li>
+            </ul>
+            <h4>{{ 'Par mots-cles' | trans }}</h4>
+            <ul>
+{% for t in ts if t.enabled and t.context == 'lcdd' %}
+                <li class="checkbox">
+                    <label>
+                      <input type="checkbox" ng-model="tags[{{t.id}}]" ng-true-value="true" ng-false-value="false"> {{ t.name }}
+                    </label>
+                </li>
 {% endfor %}
-    </ul>
-  </div>
+            </ul>
+        </div>
+        <div class="col-sm-9">
 
-    <h2></h2>
-    <h2></h2>
-    <h1>Question : {{question}} ({{qs | length}} questions)</h1>
+          <!-- Nav tabs -->
+          <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="active">
+                <a href="#qualified_question" aria-controls="qualified_question" role="tab" data-toggle="tab" ng-click="setType('qualified');">
+                    {{ 'ps.content.tabs.qualified_question' | trans }} ({[{ pagination.qualified.items.length }]})
+                </a>
+            </li>
+            <li role="presentation">
+                <a href="#unqualified_question" aria-controls="unqualified_question" role="tab" data-toggle="tab" ng-click="setType('unqualified');">
+                    {{ 'ps.content.tabs.unqualified_question' | trans }} ({[{ pagination.unqualified.items.length }]})
+                </a>
+            </li>
+          </ul>
+
+          <!-- Tab panes -->
+          <div class="tab-content">
+            <div role="tabpanel" class="tab-pane active" id="qualified_question">
+                <ul class="list-inline">
+                    <li ng-repeat="q in pagination.qualified.items=(questions | filter: { qualified: true, question: userQuestion }) | slice:start('qualified'):end('qualified')">
+                        {% include 'DwlLcddSearchBundle:Snippet:item_search.html.twig' %}
+                    </li>
+                </ul>
+              <ul uib-pagination total-items="pagination.qualified.totalItems" ng-model="pagination.qualified.currentPage" items-per-page="pagination.qualified.itemsPerPage" class="pagination-sm" boundary-link-numbers="true" rotate="false" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></ul>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="unqualified_question">
+              <ul>
+                <li ng-repeat="q in pagination.unqualified.items=(questions | filter: { qualified: false, question: userQuestion }) | slice:start('unqualified'):end('unqualified')">
+                    {% include 'DwlLcddSearchBundle:Snippet:item_search.html.twig' %}
+                </li>
+              </ul>
+              <ul uib-pagination total-items="pagination.unqualified.totalItems" ng-model="pagination.unqualified.currentPage" items-per-page="pagination.unqualified.itemsPerPage" class="pagination-sm" boundary-link-numbers="true" rotate="false" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></ul>
+            </div>
+          </div>
+        </div>
+    </div>
 </div>

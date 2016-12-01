@@ -1,4 +1,6 @@
 twig:
+    paths:
+        '%exim.lcdd.search.resources%/views': views
     globals:
         lcdd:
             elastic:
@@ -6,3 +8,7 @@ twig:
                 port: '%lcdd.elastic.port%'
                 request: '%lcdd.elastic.request%'
                 index: '%lcdd.elastic.index%'
+            search:
+                host: '%lcdd.search.host%'
+                port: '%lcdd.search.port%'
+                request: '%lcdd.search.request%'

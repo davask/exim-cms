@@ -44,20 +44,17 @@ class Question
     /**
      * @var \Dwl\Lcdd\SearchBundle\Entity\Question
      *
-     * @ORM\ManyToMany(targetEntity="\Dwl\Lcdd\SearchBundle\Entity\Question", mappedBy="unqualifiedQuestions")
+     * @ORM\OneToMany(targetEntity="\Dwl\Lcdd\SearchBundle\Entity\Question", mappedBy="qualifiedQuestion")
      */
-    private $qualifiedQuestion;
+    private $unqualifiedQuestions;
 
     /**
      * @var ArrayCollection
      *
-     * @ORM\ManyToMany(targetEntity="\Dwl\Lcdd\SearchBundle\Entity\Question", inversedBy="qualifiedQuestion")
-     * @ORM\JoinTable(name="unqualified_questions__qualified_questions",
-     *      joinColumns={@ORM\JoinColumn(name="unqualified_question_id", referencedColumnName="id")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="qualified_question_id", referencedColumnName="id")}
-     * )
+     * @ORM\ManyToOne(targetEntity="\Dwl\Lcdd\SearchBundle\Entity\Question", inversedBy="unqualifiedQuestions")
+     * @ORM\JoinColumn(name="question_id", referencedColumnName="id")
      */
-    private $unqualifiedQuestions;
+    private $qualifiedQuestion;
 
     /**
      * @var \DateTime $date_create

@@ -1,9 +1,4 @@
-$white:#ffffff;
-$yellow:#f3edd3;
-$text:#333333;
-$border:#66afe9;
-$blue:#20d6c7;
-$resources:'/bundles/dwllcddsearch';
+@import 'params';
 
 .dwl-search-block {
     position:relative;
@@ -43,13 +38,6 @@ $resources:'/bundles/dwllcddsearch';
             max-width: initial;
             text-align:center;
         }
-    }
-}
-
-.dwl-search-block-search-input {
-    border: none;
-    &:hover, &:focus {
-        box-shadow: none;
     }
 }
 
@@ -135,37 +123,6 @@ $resources:'/bundles/dwllcddsearch';
     max-width:620px;
     margin: 0 auto;
 }
-.dwl-search-block-search-form {
-    .form-group, .input-group {
-        width: 100%;
-    }
-    .input-group-btn {
-        width:40px !important;
-    }
-    .form-group {
-        background: transparent url("#{$resources}/images/light-25p.png") 0 0 repeat;
-        padding:5px;
-        margin-bottom: 0;
-        position:relative;
-    }
-    .input-group {
-        background:$white;
-        border: 1px solid darken($white, 10%);
-        &:hover, &:focus {
-            border-color: $border;
-            outline: 0;
-            -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);
-            box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);
-
-        }
-    }
-    .btn:focus {
-        outline: none !important;
-    }
-}
-.dwl-search-block-search-form-inline {
-
-}
 
 .dwl-search-block-results {
     z-index: 1;
@@ -227,4 +184,54 @@ $resources:'/bundles/dwllcddsearch';
     color:$white;
     font-weight:bold;
     text-transform: uppercase;
+}
+
+.list-group-item {
+  padding: 0;
+  text-align: left;
+  &:hover {
+    background:darken($white, 10%);
+  }
+  > a, > span {
+    display: block;
+    padding: 0 15px;
+  }
+  > span {
+    color:lighten($text, 25%);
+  }
+}
+
+.form-group, .input-group {
+    width: 100%;
+}
+.input-group-btn {
+    width:40px !important;
+}
+.form-group {
+    background: transparent url("#{$resources}/images/light-25p.png") 0 0 repeat;
+    padding:5px;
+    margin-bottom: 0;
+    position:relative;
+}
+.input-group {
+    background:$white;
+    border: 1px solid darken($white, 10%);
+    &:hover, &:focus {
+        border-color: $border;
+        outline: 0;
+        -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);
+        box-shadow: inset 0 1px 1px rgba(0,0,0,.075),0 0 8px rgba(102,175,233,.6);
+
+    }
+}
+.dwl-search-block-search-input,
+.dwl-search-page-search-input {
+    border: none;
+    &:hover, &:focus {
+        box-shadow: none;
+    }
+}
+
+.btn:focus {
+    outline: none !important;
 }

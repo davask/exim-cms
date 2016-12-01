@@ -8,7 +8,12 @@ use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 
+use Symfony\Bridge\Doctrine\Form\Type\EntityHidden;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Doctrine\ORM\EntityRepository;
+
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
 
 /**
  * @author David Asquiedge <contact@davaskweblimited.com>
@@ -17,6 +22,18 @@ class QuestionAdmin extends Admin
 {
     protected $baseRouteName = 'admin_lcdd_search_question';
     protected $baseRoutePattern = 'lcdd/search/question';
+
+    protected $datagridValues = array(
+
+        // display the first page (default = 1)
+        '_page' => 1,
+
+        // reverse order (default = 'ASC')
+        '_sort_order' => 'DESC',
+
+        // name of the ordered field (default = the model's id field, if any)
+        '_sort_by' => 'qualified',
+    );
 
     /**
      * {@inheritdoc}
@@ -41,7 +58,9 @@ class QuestionAdmin extends Admin
     {
         $listMapper
             ->addIdentifier('question')
-            ->add('qualified')
+            ->add('qualified', null, array(
+                'editable' => true
+            ))
             ->add('legalTags')
             ->add('civilTags')
             ->add('categories')
@@ -55,13 +74,49 @@ class QuestionAdmin extends Admin
      */
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
+        $question = $this->getSubject();
+
         $datagridMapper
             ->add('question')
             ->add('qualified')
-            ->add('unqualifiedQuestions')
-            ->add('legalTags', null, array('field_options' => array('expanded' => false, 'multiple' => true)))
-            ->add('civilTags', null, array('field_options' => array('expanded' => false, 'multiple' => true)))
-            ->add('categories', null, array('field_options' => array('expanded' => false, 'multiple' => true)))
+            ->add('unqualifiedQuestions', null, array('field_options' => array('expanded' => false,'multiple' => true)), null, array(
+                'class' => 'DwlLcddSearchBundle:Question',
+                // 'required'=> false,
+                'query_builder' => function(EntityRepository $repository) use ($question) {
+                    $qb = $repository->createQueryBuilder('q');
+                    return $qb
+                        ->where($qb->expr()->eq('q.qualified', '0'))
+                    ;
+                },
+            ))
+            ->add('legalTags', null, array('field_options' => array('expanded' => false,'multiple' => true)), null, array(
+                'class' => 'ApplicationSonataClassificationBundle:Tag',
+                'query_builder' => function(EntityRepository $repository) {
+                    $qb = $repository->createQueryBuilder('t');
+                    return $qb
+                        ->where($qb->expr()->eq('t.context', '\'lcdd\''))
+                    ;
+                },
+            ))
+            ->add('civilTags', null, array('field_options' => array('expanded' => false,'multiple' => true)), null, array(
+                'class' => 'ApplicationSonataClassificationBundle:Tag',
+                'query_builder' => function(EntityRepository $repository) {
+                    $qb = $repository->createQueryBuilder('t');
+                    return $qb
+                        ->where($qb->expr()->eq('t.context', '\'lcdd\''))
+                    ;
+                },
+            ))
+            ->add('categories', null, array('field_options' => array('expanded' => false,'multiple' => true)), null, array(
+                'class' => 'ApplicationSonataClassificationBundle:Category',
+                'query_builder' => function(EntityRepository $repository) {
+                    $qb = $repository->createQueryBuilder('c');
+                    return $qb
+                        ->where($qb->expr()->eq('c.context', '\'lcdd\''))
+                        ->andWhere($qb->expr()->neq('c.name', '\'lcdd\''))
+                    ;
+                },
+            ))
         ;
     }
 
@@ -70,42 +125,75 @@ class QuestionAdmin extends Admin
      */
     protected function configureFormFields(FormMapper $formMapper)
     {
+        $question = $this->getSubject();
+
         $formMapper
             ->add('question')
             ->add('qualified')
-            ->add('qualifiedQuestion', EntityType::class, array(
-                'class' => 'DwlLcddSearchBundle:Question',
-                // 'choice_label' => 'question',
-                // 'multiple' => true,
-                // 'expanded' => true,
-            ))
-            ->add('unqualifiedQuestions', EntityType::class, array(
-                'class' => 'DwlLcddSearchBundle:Question',
-                // 'choice_label' => 'question',
-                'multiple' => true,
-                // 'expanded' => true,
-            ))
+        ;
+
+        if($question->getQualified()) {
+            $formMapper
+                ->add('media', EntityType::class, array(
+                    'class' => 'ApplicationSonataMediaBundle:Media',
+                    'placeholder' => 'Choisissez une video',
+                    'required' => true,
+                    'query_builder' => function(EntityRepository $repository) {
+                        $qb = $repository->createQueryBuilder('m');
+                        return $qb
+                            ->where($qb->expr()->eq('m.providerName', '\'sonata.media.provider.vimeo\''))
+                        ;
+                    },
+                ))
+            ;
+        } else {
+            $formMapper
+                ->add('qualifiedQuestion', EntityType::class, array(
+                    'class' => 'DwlLcddSearchBundle:Question',
+                    'query_builder' => function(EntityRepository $repository) use ($question) {
+                        $qb = $repository->createQueryBuilder('q');
+                        return $qb
+                            ->where($qb->expr()->eq('q.qualified', '1'))
+                            ->andWhere($qb->expr()->neq('q.id', $question->getId()))
+                        ;
+                    },
+                ))
+            ;
+        }
+        $formMapper
             ->add('legalTags', EntityType::class, array(
                 'class' => 'ApplicationSonataClassificationBundle:Tag',
-                // 'choice_label' => 'name',
                 'multiple' => true,
-                // 'expanded' => true,
+                'required' => true,
+                'query_builder' => function(EntityRepository $repository) {
+                    $qb = $repository->createQueryBuilder('t');
+                    return $qb
+                        ->where($qb->expr()->eq('t.context', '\'lcdd\''))
+                    ;
+                },
             ))
             ->add('civilTags', EntityType::class, array(
                 'class' => 'ApplicationSonataClassificationBundle:Tag',
-                // 'choice_label' => 'name',
                 'multiple' => true,
-                // 'expanded' => true,
+                'required' => true,
+                'query_builder' => function(EntityRepository $repository) {
+                    $qb = $repository->createQueryBuilder('t');
+                    return $qb
+                        ->where($qb->expr()->eq('t.context', '\'lcdd\''))
+                    ;
+                },
             ))
             ->add('categories', EntityType::class, array(
                 'class' => 'ApplicationSonataClassificationBundle:Category',
-                // 'choice_label' => 'name',
                 'multiple' => true,
-                // 'expanded' => true,
-            ))
-            ->add('media', EntityType::class, array(
-                'class' => 'ApplicationSonataMediaBundle:Media',
-                'choice_label' => 'name',
+                'required' => true,
+                'query_builder' => function(EntityRepository $repository) {
+                    $qb = $repository->createQueryBuilder('c');
+                    return $qb
+                        ->where($qb->expr()->eq('c.context', '\'lcdd\''))
+                        ->andWhere($qb->expr()->neq('c.name', '\'lcdd\''))
+                    ;
+                },
             ))
         ;
     }

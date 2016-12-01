@@ -77,6 +77,8 @@ imports:
     - { resource: ../../src/Dwl/Lcdd/SearchBundle/Resources/config/search/lcdd_fos_elastica.yml }
     - { resource: ../../src/Dwl/Lcdd/SearchBundle/Resources/config/search/lcdd_twig.yml }
     - { resource: ../../src/Dwl/Lcdd/SearchBundle/Resources/config/search/lcdd_admin.yml }
+    - { resource: ../../src/Dwl/Lcdd/SearchBundle/Resources/config/search/lcdd_media.yml }
+    - { resource: ../../src/Dwl/Lcdd/SearchBundle/Resources/config/search/lcdd_page.yml }
 
 framework:
     #esi:             ~

@@ -1,4 +1,6 @@
-<a href="{[{ showQuestion(question.id) }]}" title="{[{ question.question }]}">
+<a href="{[{ showQuestion(question.id) }]}" title="{[{ question.question }]}" ng-if="question.qualified">
   <span ng-bind-html="doc.highlight.question"></span>
-  <span class="badge">{[{ question.id }]}</span>
+</a>
+<span ng-if="!question.qualified">
+  <span ng-bind-html="doc.highlight.question"></span><small> - attente d'une r&eacute;ponse </small>
 </a>

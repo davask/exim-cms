@@ -1291,7 +1291,6 @@ var elasticui;
 <input type="text" class="dwl-search-block-search-input form-control" placeholder="{[{placeholder}]}" \
     eui-query="' + queryMatch + '" ng-model="querystring" \
     eui-highlight="ejs.Highlight(\'question\').preTags(\'<b>\').postTags(\'</b>\')" \
-    eui-filter="ejs.TermsFilter(\'qualified\', \'true\')"\
     eui-enabled="true" \
     name="question" \
     />\

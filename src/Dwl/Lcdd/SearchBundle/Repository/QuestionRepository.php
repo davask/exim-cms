@@ -27,4 +27,20 @@ class QuestionRepository extends EntityRepository
 
         return $qs;
     }
+
+    public function findAllAsArray() {
+
+        $qs = $this->getEntityManager()
+            ->createQueryBuilder()
+            ->select('q', 'm', 'c', 'ct', 'lt')
+            ->from('\Dwl\Lcdd\SearchBundle\Entity\Question', 'q')
+            ->leftJoin('q.media', 'm')
+            ->leftJoin('q.categories', 'c')
+            ->leftJoin('q.civilTags', 'ct')
+            ->leftJoin('q.legalTags', 'lt')
+            ->getQuery()
+            ->getResult(\Doctrine\ORM\Query::HYDRATE_ARRAY);
+
+        return $qs;
+    }
 }

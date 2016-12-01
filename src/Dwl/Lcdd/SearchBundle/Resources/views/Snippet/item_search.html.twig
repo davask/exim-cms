@@ -1,2 +1,106 @@
-{{q.question}}<a href="{{ path('dwl_lcdd_question', { id: q.id }) }}" title="{[{ q.question }]}"><span class="badge">{% if not q.qualified %}Non {%endif%}Qualifi&eacute;</span>
-</a>
+<div>
+{#-
+media : {
+    "type": "video",
+    "version": "1.0",
+    "provider_name": "Vimeo",
+    "provider_url": "https://vimeo.com/",
+    "title": "Wingsuit Basejumping - The Need 4 Speed: The Art of Flight",
+    "author_name": "Phoenix Fly",
+    "author_url": "https://vimeo.com/phoenixfly",
+    "is_plus": "1",
+    "html": "<iframe src="https://player.vimeo.com/video/18150336" width="480" height="272" frameborder="0\" title=\"Wingsuit Basejumping - The Need 4 Speed: The Art of Flight\" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>",
+    "width": 480,
+    "height": 272,
+    "duration": 386,
+    "description": "The Need 4 Speed: The Art of Flight\nA collection of shots from flights made during the 2009-2010 season by the talented group of wingsuit basejumpers, while flying the V3, Hybrid LD2/Trango rigs and testing several new V-series wingsuit prototypes around Europe.\n\nFeel the need. The need for speed!\n\nA big thank you to Hybrid for sending us their compliments and allowing us use of their awesome track “Disappear Here”.\n\nFor more information, please go to the band's website : hybridsoundsystem.com\n\nITunes Link : itunes.apple.com/​gb/​album/​disappear-here/​id400409963\n\nAlso check out the original videoclip at http://vimeo.com/16165416\n\nAll footage was shot in High Definition Video\n\nCamera & Performers:\nJeannoel Itzstein\nRobert Pecnik\nEdo Senica\nMirko Schmidt\nJokke Sommer\nHalvor Angvik\nLuka Fornazaric\nFlorian\nEliv Ruud\nTom Erik Heiman\nLudovicWoerth\nTed Rudd\nDominik Loyen\n\nadditional camera by:\nDino Raffault\nMichael Theile\n\nediting by Jarno Cordia of www.airrebels.com\n\nFor more information check www.phoenix-fly.com and www.adrenalinbase.com\ncontact macca@phoenix-fly.com for press inquiries and footage requests.\n\nNOTE: For basic information on getting into wingsuit flying, wingsuit BASE jumping and relevant experience levels, see www.wingsuitschool.com",
+    "thumbnail_url": "http://i.vimeocdn.com/video/117311910_295x166.jpg",
+    "thumbnail_width": 295,
+    "thumbnail_height": 166,
+    "thumbnail_url_with_play_button": "http://i.vimeocdn.com/filter/overlay?src0=http%3A%2F%2Fi.vimeocdn.com%2Fvideo%2F117311910_295x166.jpg&src1=http%3A%2F%2Ff.vimeocdn.com%2Fp%2Fimages%2Fcrawler_play.png",
+    "upload_date": "2010-12-24 10:35:36",
+    "video_id": 18150336,
+    "uri": "/videos/18150336"
+}
+-#}
+    <img ng-if="q.media && q.qualified" ng-src="{[{q.media.providerMetadata.thumbnail_url_with_play_button}]}" alt="{[{q.media.providerMetadata.title}]}" class="img-responsive"/>
+    <img ng-if="!q.media && q.qualified" src="#" alt="{[{q.question}]}" class="empty img-responsive"/>
+    <ul ng-if="q.qualified" class="list-inline" ng-repeat="category in q.categories">
+        <li>{[{ category.name }]}</li>
+    </ul>
+    <a href="{[{ getPath(q.id) }]}" title="{[{ q.question }]}" ng-if="q.qualified">
+        {[{ q.question }]}
+    </a>
+    <span ng-if="!q.qualified">
+        {[{ q.question }]}<small> - attente d'une r&eacute;ponse </small>
+    </a>
+<div>
+{#% set diff = date( q.dateUpdate | date ).diff( date('now' | date) ) %}
+
+{% set diffString = [] %}
+{% set diffCount = {
+    'days': diff.days,
+    'h': diff.h,
+    'i': diff.i,
+    's': diff.s
+} %}
+{% set diffExt = {
+    'days': 'jour',
+    'h': 'heure',
+    'i': 'minute',
+    's': 'seconde'
+} %}
+{% for index in ['days', 'h', 'i', 's'] %}
+    {% if diffCount[index] > 0 %}
+        {% set s = diffCount[index] ~ ' ' ~ diffExt[index] %}
+        {% if diffCount[index] > 1 %}
+            {% set s = s ~ 's' %}
+        {% endif %}
+        {% set diffString = diffString | merge([s]) %}
+    {% endif %}
+{% endfor %}
+        {{ diffString | join(', ') }#}
+    </div>
+</div>
+{#
+<div>
+{% if q.media and q.qualified %}
+    {% media q.media, 'lcdd_square' with {'class': 'img-responsive img-rounded'} %}
+{% endif %}
+    <ul class="list-inline">
+{% for category in q.categories %}
+        <li>{{category}}</li>
+{% endfor %}
+    </ul>
+    <a href="{{ path('dwl_lcdd_question', { id: q.id }) }}" title="{[{ q.question }]}">
+        {{q.question}}<span class="badge">{% if not q.qualified %}Non {%endif%}Qualifi&eacute;</span>
+    </a>
+    <div>
+{% set diff = date( q.dateUpdate | date ).diff( date('now' | date) ) %}
+
+{% set diffString = [] %}
+{% set diffCount = {
+    'days': diff.days,
+    'h': diff.h,
+    'i': diff.i,
+    's': diff.s
+} %}
+{% set diffExt = {
+    'days': 'jour',
+    'h': 'heure',
+    'i': 'minute',
+    's': 'seconde'
+} %}
+{% for index in ['days', 'h', 'i', 's'] %}
+    {% if diffCount[index] > 0 %}
+        {% set s = diffCount[index] ~ ' ' ~ diffExt[index] %}
+        {% if diffCount[index] > 1 %}
+            {% set s = s ~ 's' %}
+        {% endif %}
+        {% set diffString = diffString | merge([s]) %}
+    {% endif %}
+{% endfor %}
+        {{ diffString | join(', ') }}
+    </div>
+</div>
+#}

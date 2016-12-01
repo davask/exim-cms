@@ -1,0 +1,29 @@
+sonata_media:
+    default_context: lcdd
+    contexts:
+        lcdd:  # the default context is mandatory
+            download:
+                mode: http # X-Sendfile | http
+            providers:
+                - sonata.media.provider.image
+                - sonata.media.provider.vimeo
+
+            formats:
+                logo:
+                    width: 134
+                    quality: 100
+                icon:
+                    width: 90
+                    quality: 100
+                small:
+                    width: 100
+                    quality: 100
+                big:
+                    width: 970
+                    quality: 100
+                responsive:
+                    width: 1200
+                    quality: 100
+                square:
+                    width: 224
+                    quality: 100
