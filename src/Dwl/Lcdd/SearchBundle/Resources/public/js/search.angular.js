@@ -173,21 +173,16 @@ angular
 
         $scope.pagination = {
           qualified : {
-            totalItems: 0,
             currentPage: 1,
             itemsPerPage: 20,
             items: []
           },
           unqualified : {
-            totalItems: 0,
             currentPage: 1,
             itemsPerPage: 20,
             items: [],
           }
         };
-
-        $scope.categories = [];
-        $scope.tags = [];
 
         $scope.start = function(type) {
           return (($scope.pagination[type].currentPage - 1) * $scope.pagination[type].itemsPerPage);
@@ -214,8 +209,127 @@ angular
             $scope.type=type;
         };
 
-        $scope.setPage = function (pageNo) {
-            $scope.pagination[$scope.type].currentPage = pageNo;
+        $scope.$watch('categories', function(newVal, oldVal) {
+            $scope.showAllCategories = true;
+            if(typeof(newVal) != 'undefined') {
+              for (var slug in newVal) {
+                if(newVal[slug]) {
+                  $scope.showAllCategories = false;
+                }
+              }
+            }
+        }, true);
+
+        $scope.$watch('tags', function(newVal, oldVal){
+            $scope.showAllTags = true;
+            if(typeof(newVal) != 'undefined') {
+              for (var slug in newVal) {
+                if(newVal[slug]) {
+                  $scope.showAllTags = false;
+                }
+              }
+            }
+        }, true);
+
+        var isPropExists = function (prop, needle, haystack){
+            for (var i=0; i < haystack.length; i++) {
+                if (haystack[i][prop] === needle) {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        $scope.filterCategories = function(question) {
+
+          var showQuestion = true;
+
+          if(!$scope.showAllCategories) {
+
+            if(!question.categories.length) {
+              showQuestion = false;
+            } else {
+              for (var slug in $scope.categories) {
+                if(!isPropExists('slug', slug, question.categories) && $scope.categories[slug]) {
+                    showQuestion = false;
+                }
+              }
+            }
+
+          }
+
+          return showQuestion;
+
+        };
+
+        $scope.dateDiff = function (date) {
+
+          var diff = [];
+          var questionDate = new Date(date.date);
+          var now = new Date();
+          var timeSince = Math.abs(now.getTime() - questionDate.getTime()) / 1000;
+
+          // calculate (and subtract) whole days
+          var days = Math.floor(timeSince / 86400);
+          timeSince -= days * 86400;
+          if(days) {
+            diff.push(days+' jour'+(days>1?'s':''));
+          } else {
+            diff.push('Aujourd\'hui');
+          }
+
+          // calculate (and subtract) whole hours
+          // var hours = Math.floor(timeSince / 3600) % 24;
+          // timeSince -= hours * 3600;
+          // if(hours) {
+          //   diff.push(hours+' heure'+(hours>1?'s':''));
+          // }
+
+          // calculate (and subtract) whole minutes
+          // var minutes = Math.floor(timeSince / 60) % 60;
+          // timeSince -= minutes * 60;
+          // if(minutes) {
+          //   diff.push(minutes+' minute'+(minutes>1?'s':''));
+          // }
+
+          // what's left is seconds
+          // var seconds = Math.floor(timeSince % 60);  // in theory the modulus is not required
+          // if(seconds) {
+          //   diff.push(seconds+' seconde'+(seconds>1?'s':''));
+          // }
+
+          return diff.join(', ');
+
+        };
+
+        $scope.filterTags = function(question) {
+
+          var showQuestion = true;
+
+          if(!$scope.showAllTags) {
+
+            if(!question.civilTags.length && !question.legalTags.length) {
+              showQuestion = false;
+            } else {
+
+              var qTags = question.civilTags.slice(0);
+              for (var il = 0; il < question.legalTags.length; il++) {
+                if(!isPropExists('slug', question.legalTags[il].slug, qTags)) {
+                  qTags.push(question.legalTags[il]);
+                }
+              }
+
+              for (var slug in $scope.tags) {
+                if(!isPropExists('slug', slug, qTags) && $scope.tags[slug]) {
+                    showQuestion = false;
+                }
+              }
+            }
+
+          }
+
+          return showQuestion;
+
         };
 
         $scope.getQuestions = function(){
@@ -231,11 +345,6 @@ angular
 
             $http(req).then(function(response){
 
-              $scope.pagination['qualified'].currentPage = 1;
-              $scope.pagination['qualified'].totalItems = 0;
-              $scope.pagination['unqualified'].currentPage = 1;
-              $scope.pagination['unqualified'].totalItems = 0;
-
               for (var i = 0; i < response.data.qs.length; i++) {
 
                 if(response.data.qs[i].qualified) {
@@ -245,9 +354,6 @@ angular
                 }
 
               }
-
-              $scope.pagination['qualified'].totalItems = $scope.pagination['qualified'].items.length;
-              $scope.pagination['unqualified'].totalItems = $scope.pagination['unqualified'].items.length;
 
               $scope.questions = response.data.qs;
 

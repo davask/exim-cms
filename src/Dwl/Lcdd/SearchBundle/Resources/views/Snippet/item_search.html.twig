@@ -23,17 +23,43 @@ media : {
     "uri": "/videos/18150336"
 }
 -#}
-    <img ng-if="q.media && q.qualified" ng-src="{[{q.media.providerMetadata.thumbnail_url_with_play_button}]}" alt="{[{q.media.providerMetadata.title}]}" class="img-responsive"/>
+    <a class="title" href="{[{ getPath(q.id) }]}" title="{[{ q.question }]}" ng-if="q.qualified">
+        <img ng-if="q.media && q.qualified" ng-src="{[{q.media.providerMetadata.thumbnail_url_with_play_button}]}" alt="{[{q.media.providerMetadata.title}]}" class="img-responsive"/>
+    </a>
     <img ng-if="!q.media && q.qualified" src="#" alt="{[{q.question}]}" class="empty img-responsive"/>
-    <ul ng-if="q.qualified" class="list-inline" ng-repeat="category in q.categories">
-        <li>{[{ category.name }]}</li>
-    </ul>
-    <a href="{[{ getPath(q.id) }]}" title="{[{ q.question }]}" ng-if="q.qualified">
-        {[{ q.question }]}
-    </a>
-    <span ng-if="!q.qualified">
-        {[{ q.question }]}<small> - attente d'une r&eacute;ponse </small>
-    </a>
+    <div>
+        <ul ng-if="q.qualified && (q.categories.length || q.civilTags.length || q.legalTags.length)" class="list-inline">
+            <li ng-if="q.categories.length">
+                <ul class="list-inline">
+                    {# <li><i class="fa fa-book" aria-hidden="true"></i></li> #}
+                    <li class="category" ng-repeat="category in q.categories">{[{ category.name }]}</li>
+                </ul>
+            </li>
+{#
+        <li ng-if="q.civilTags.length">
+            <ul class="list-inline">
+                <li><i class="fa fa-users" aria-hidden="true"></i></li>
+                <li class="tag" ng-repeat="tag in q.civilTags">{[{ tag.name }]}</li>
+            </ul>
+        </li>
+        <li ng-if="q.legalTags.length">
+            <ul class="list-inline">
+                <li><i class="fa fa-gavel" aria-hidden="true"></i></li>
+                <li class="tag" ng-repeat="tag in q.legalTags">{[{ tag.name }]}</li>
+            </ul>
+        </li>
+#}
+        </ul>
+        <a class="title" href="{[{ getPath(q.id) }]}" title="{[{ q.question }]}" ng-if="q.qualified">
+            {[{ q.question }]}
+        </a>
+        <span class="title" ng-if="!q.qualified">
+            {[{ q.question }]}<small> - attente d'une r&eacute;ponse </small>
+        </span>
+        <div class="date" ng-if="q.qualified">
+            {[{ dateDiff(q.date_update) }]}
+        </div>
+    <div>
 <div>
 {#% set diff = date( q.dateUpdate | date ).diff( date('now' | date) ) %}
 

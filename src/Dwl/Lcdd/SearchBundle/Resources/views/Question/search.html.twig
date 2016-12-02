@@ -25,7 +25,7 @@
 {% for c in cs if c.enabled and c.context == 'lcdd' and c.name != 'lcdd' %}
                 <li class="checkbox">
                     <label>
-                      <input type="checkbox" ng-model="categories[{{c.id}}]" ng-true-value="true" ng-false-value="false"> {{ c.name }}
+                      <input type="checkbox" ng-model="categories['{{c.slug}}']" ng-true-value="true" ng-false-value="false"> {{ c.name }}
                     </label>
                 </li>
 {% endfor %}
@@ -35,13 +35,13 @@
 {% for t in ts if t.enabled and t.context == 'lcdd' %}
                 <li class="checkbox">
                     <label>
-                      <input type="checkbox" ng-model="tags[{{t.id}}]" ng-true-value="true" ng-false-value="false"> {{ t.name }}
+                      <input type="checkbox" ng-model="tags['{{t.slug}}']" ng-true-value="true" ng-false-value="false"> {{ t.name }}
                     </label>
                 </li>
 {% endfor %}
             </ul>
         </div>
-        <div class="col-sm-9">
+        <div class="col-sm-9" ng-cloak>
 
           <!-- Nav tabs -->
           <ul class="nav nav-tabs" role="tablist">
@@ -60,20 +60,22 @@
           <!-- Tab panes -->
           <div class="tab-content">
             <div role="tabpanel" class="tab-pane active" id="qualified_question">
-                <ul class="list-inline">
-                    <li ng-repeat="q in pagination.qualified.items=(questions | filter: { qualified: true, question: userQuestion }) | slice:start('qualified'):end('qualified')">
-                        {% include 'DwlLcddSearchBundle:Snippet:item_search.html.twig' %}
-                    </li>
-                </ul>
-              <ul uib-pagination total-items="pagination.qualified.totalItems" ng-model="pagination.qualified.currentPage" items-per-page="pagination.qualified.itemsPerPage" class="pagination-sm" boundary-link-numbers="true" rotate="false" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></ul>
-            </div>
-            <div role="tabpanel" class="tab-pane" id="unqualified_question">
-              <ul>
-                <li ng-repeat="q in pagination.unqualified.items=(questions | filter: { qualified: false, question: userQuestion }) | slice:start('unqualified'):end('unqualified')">
+              <ul class="row list-inline">
+                <li class="question question-qualified col-sm-4" ng-repeat="q in pagination.qualified.items=(questions | filter: { qualified: true, question: userQuestion } | filter: filterCategories | filter: filterTags ) | slice:start('qualified'):end('qualified')">
                     {% include 'DwlLcddSearchBundle:Snippet:item_search.html.twig' %}
                 </li>
+                <li class="col-sm-12" ng-show="!pagination.qualified.items.length">{{ 'Aucune question n existe pour cette selection' | trans   }}</li>
               </ul>
-              <ul uib-pagination total-items="pagination.unqualified.totalItems" ng-model="pagination.unqualified.currentPage" items-per-page="pagination.unqualified.itemsPerPage" class="pagination-sm" boundary-link-numbers="true" rotate="false" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></ul>
+              <ul uib-pagination total-items="pagination.qualified.items.length" ng-model="pagination.qualified.currentPage" items-per-page="pagination.qualified.itemsPerPage" class="pagination-sm" boundary-link-numbers="true" rotate="false" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></ul>
+            </div>
+            <div role="tabpanel" class="tab-pane" id="unqualified_question">
+              <ul class="row">
+                <li class="col-sm-12" ng-repeat="q in pagination.unqualified.items=(questions | filter: { qualified: false, question: userQuestion } | filter: filterCategories | filter: filterTags ) | slice:start('unqualified'):end('unqualified')">
+                    {% include 'DwlLcddSearchBundle:Snippet:item_search.html.twig' %}
+                </li>
+                <li class="col-sm-12" ng-show="!pagination.unqualified.items.length">{{ 'Aucune question n existe pour cette selection' | trans   }}</li>
+              </ul>
+              <ul uib-pagination total-items="pagination.unqualified.items.length" ng-model="pagination.unqualified.currentPage" items-per-page="pagination.unqualified.itemsPerPage" class="pagination-sm" boundary-link-numbers="true" rotate="false" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></ul>
             </div>
           </div>
         </div>
