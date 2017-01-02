@@ -14,8 +14,8 @@ parameters:
 
     exim.theme.name: lcdd
     exim.theme.host: dev.lachainedudroit.fr
-    exim.theme.assets.version.css: '1.0'
-    exim.theme.assets.version.js: '1.0'
+    exim.theme.assets.version.css: '1.0.2'
+    exim.theme.assets.version.js: '1.0.2'
     exim.theme.assets.version.img: '1.0'
     exim.theme.front.css:
         - '%exim.theme.path.root%/assets/legacy/compass/scss/sonata_legacy.scss'
@@ -53,6 +53,7 @@ parameters:
     exim.theme.front.js.vendor: '%exim.theme.vendor_front.js%'
 
     exim.theme.admin.skin: 'skin-blue-light'
+    exim.theme.front.format: 'html'
 
     # Assetic
     # assetic.filter.compass.images_dir: '%kernel.root_dir%/../web/images'

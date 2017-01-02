@@ -1,0 +1,79 @@
+fos_user_profile_show:
+    path: "/"
+    methods: "GET"
+    defaults:
+        _controller: ApplicationSonataUserBundle:ProfileFOSUser1:show
+        _locale: fr
+        _format: 'html'
+    requirements:
+        _locale: fr
+        _format: html
+    options:
+        expose: true
+
+
+fos_user_profile_edit_authentication:
+    path: "/edit-authentication"
+    defaults:
+        _controller: ApplicationSonataUserBundle:ProfileFOSUser1:editAuthentication
+        _locale: fr
+        _format: 'html'
+    requirements:
+        _locale: fr
+        _format: html
+    options:
+        expose: true
+
+
+fos_user_profile_edit:
+    path: "/edit-profile"
+    defaults:
+        _controller: ApplicationSonataUserBundle:ProfileFOSUser1:editProfile
+        _locale: fr
+        _format: 'html'
+    requirements:
+        _locale: fr
+        _format: html
+    options:
+        expose: true
+
+
+sonata_user_profile_show:
+    path: "/"
+    methods: "GET"
+    defaults:
+        _controller: ApplicationSonataUserBundle:ProfileFOSUser1:show
+        _locale: fr
+        _format: 'html'
+    requirements:
+        _locale: fr
+        _format: html
+    options:
+        expose: true
+
+
+sonata_user_profile_edit_authentication:
+    path: "/edit-authentication"
+    defaults:
+        _controller: ApplicationSonataUserBundle:ProfileFOSUser1:editAuthentication
+        _locale: fr
+        _format: 'html'
+    requirements:
+        _locale: fr
+        _format: html
+    options:
+        expose: true
+
+
+sonata_user_profile_edit:
+    path: "/edit-profile"
+    defaults:
+        _controller: ApplicationSonataUserBundle:ProfileFOSUser1:editProfile
+        _locale: fr
+        _format: 'html'
+    requirements:
+        _locale: fr
+        _format: html
+    options:
+        expose: true
+

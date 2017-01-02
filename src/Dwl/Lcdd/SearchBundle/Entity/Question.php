@@ -5,10 +5,9 @@ namespace Dwl\Lcdd\SearchBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 
-use Gedmo\Mapping\Annotation as Gedmo;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
-use Sonata\ClassificationBundle\Model\TagInterface;
-use Sonata\ClassificationBundle\Model\CategoryInterface;
+use Gedmo\Mapping\Annotation as Gedmo;
 
 /**
  * Question
@@ -30,14 +29,22 @@ class Question
     /**
      * @var string
      *
-     * @ORM\Column(name="question", type="string", length=255, nullable=false)
+     * @ORM\Column(name="question", type="string", length=255)
      */
     private $question;
 
     /**
+     * @var string
+     *
+     * @Gedmo\Slug(fields={"question"})
+     * @ORM\Column(name="slug", type="string", length=255)
+     */
+    private $slug;
+
+    /**
      * @var boolean
      *
-     * @ORM\Column(name="qualified", type="boolean", nullable=false)
+     * @ORM\Column(name="qualified", type="boolean")
      */
     private $qualified;
 
@@ -114,6 +121,14 @@ class Question
     private $media;
 
     /**
+     * @var ArrayCollection
+     *
+     * @ORM\ManyToOne(targetEntity="\Application\Sonata\UserBundle\Entity\User")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     */
+    private $author;
+
+    /**
      * {@inheritdoc}
      */
     public function __toString()
@@ -126,6 +141,7 @@ class Question
      */
     public function __construct()
     {
+        $this->qualified = false;
         $this->unqualifiedQuestions = new \Doctrine\Common\Collections\ArrayCollection();
         $this->legalTags = new \Doctrine\Common\Collections\ArrayCollection();
         $this->civilTags = new \Doctrine\Common\Collections\ArrayCollection();
@@ -135,7 +151,7 @@ class Question
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -158,11 +174,34 @@ class Question
     /**
      * Get question
      *
-     * @return string 
+     * @return string
      */
     public function getQuestion()
     {
         return $this->question;
+    }
+
+    /**
+     * Set slug
+     *
+     * @param string $slug
+     * @return Question
+     */
+    public function setSlug($slug)
+    {
+        $this->slug = $slug;
+
+        return $this;
+    }
+
+    /**
+     * Get slug
+     *
+     * @return string
+     */
+    public function getSlug()
+    {
+        return $this->slug;
     }
 
     /**
@@ -181,7 +220,7 @@ class Question
     /**
      * Get qualified
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getQualified()
     {
@@ -204,7 +243,7 @@ class Question
     /**
      * Get date_create
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDateCreate()
     {
@@ -227,7 +266,7 @@ class Question
     /**
      * Get date_update
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDateUpdate()
     {
@@ -260,7 +299,7 @@ class Question
     /**
      * Get unqualifiedQuestions
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getUnqualifiedQuestions()
     {
@@ -283,7 +322,7 @@ class Question
     /**
      * Get qualifiedQuestion
      *
-     * @return \Dwl\Lcdd\SearchBundle\Entity\Question 
+     * @return \Dwl\Lcdd\SearchBundle\Entity\Question
      */
     public function getQualifiedQuestion()
     {
@@ -316,7 +355,7 @@ class Question
     /**
      * Get legalTags
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getLegalTags()
     {
@@ -349,7 +388,7 @@ class Question
     /**
      * Get civilTags
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getCivilTags()
     {
@@ -382,7 +421,7 @@ class Question
     /**
      * Get categories
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getCategories()
     {
@@ -405,10 +444,33 @@ class Question
     /**
      * Get media
      *
-     * @return \Application\Sonata\MediaBundle\Entity\Media 
+     * @return \Application\Sonata\MediaBundle\Entity\Media
      */
     public function getMedia()
     {
         return $this->media;
+    }
+
+    /**
+     * Set author
+     *
+     * @param \Application\Sonata\UserBundle\Entity\User $author
+     * @return Question
+     */
+    public function setAuthor(\Application\Sonata\UserBundle\Entity\User $author = null)
+    {
+        $this->author = $author;
+
+        return $this;
+    }
+
+    /**
+     * Get author
+     *
+     * @return \Application\Sonata\UserBundle\Entity\User 
+     */
+    public function getAuthor()
+    {
+        return $this->author;
     }
 }

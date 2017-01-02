@@ -22,3 +22,5 @@ twig:
                     extra: '%exim.theme.front.js.extra%'
             admin:
                 skin: '%exim.theme.admin.skin%'
+            front:
+                format: '%exim.theme.front.format%'

@@ -24,7 +24,8 @@ body.#{$theme} {
             color: $orange_dark;
         }
     }
-    .content {
+
+    .content, .navbar-admin {
         a {
             color: $text_dark;
         }
@@ -237,5 +238,36 @@ body.#{$theme} {
         background: $white;
     }
 
+    /*******************************\
+        $DEFAULT
+    \*******************************/
+    &.base {
+        .body-content {
+            max-width:1366px;
+            margin:0 auto;
+            padding:0 15px;
+        }
+    }
+
+    /*******************************\
+        $QUESTION
+    \*******************************/
+    &.question {
+        h1 {
+            display: inline;
+        }
+        .body-content {
+            max-width:none;
+            padding:0;
+            .content-media {
+                background: #f3edd3;
+            }
+            .content-embed {
+                max-width:1366px;
+                margin:0 auto;
+                padding:0 65px;
+            }
+        }
+    }
 }
 

@@ -1,14 +1,21 @@
 <!DOCTYPE html>
 <html {{ sonata_seo_html_attributes() }}>
     <head {{ sonata_seo_head_attributes() }}>
-        {{ sonata_seo_title({'extension':'dns'}) }}
+        {{ sonata_seo_title() }}
         {{ sonata_seo_metadatas() }}
         {% include '@theme/Template/Head/favicon.html.twig' %}
         {% include '@theme/Template/Head/stylesheets.html.twig' %}
         {% include '@theme/Template/Head/javascripts.html.twig' %}
     </head>
 
-    <body class="{{ theme.name }} container-fluid{% block bodyClass %} global{% endblock %}">
+    {%- if 'dwl_lcdd_get_' in page.name %}
+        {% set pageClass = page.name | replace({'dwl_lcdd_get_':''}) %}
+    {% elseif 'fos_user_' in page.name %}
+        {% set pageClass = page.name | replace({'fos_user_':''}) %}
+    {% else %}
+        {% set pageClass = '' %}
+    {% endif -%}
+    <body class="{{ theme.name }} {{ pageClass | default('npc') }} container-fluid{% block bodyClass %} global{% endblock %}">
         <!--[if lt IE 9]>
             <p class="row browserupgrade">Vous utilisez un navigateur <strong>obsol&egrave;te</strong>. Merci de le <a href="http://browsehappy.com/">mettre-&agrave;-jour</a> afin d'am&eacute;liorer votre experience.</p>
         <![endif]-->

@@ -31,6 +31,16 @@ class QuestionType extends AbstractType
                 'data' => '{[{ userQuestion }]}',
                 'translation_domain' => 'DwlLcddSearchBundle',
             ))
+            // ->add('slug')
+            // ->add('qualified')
+            // ->add('date_create')
+            // ->add('date_update')
+            // ->add('qualifiedQuestion')
+            // ->add('legalTags')
+            // ->add('civilTags')
+            // ->add('categories')
+            // ->add('media')
+            // ->add('author')
             ->add('submit', SubmitType::class, array(
                 'label' => '_f._q.submit',
                 'attr' => array(

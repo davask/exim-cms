@@ -10,3 +10,14 @@ doctrine:
                     SonataSeoBundle: ~
 
 
+stof_doctrine_extensions:
+    default_locale: fr_FR
+    orm:
+        default:
+            sluggable: true
+            timestampable: false # not needed: listeners are not enabled by default
+
+# services:
+#   dwl.helper.globalHelper:
+#     class: Dwl\Exim\CoreBundle\Helper\globalHelper
+#     arguments: ['@service_container']

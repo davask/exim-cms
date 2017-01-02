@@ -1,6 +1,7 @@
 {% extends '@theme/Template/global.html.twig' %}
 
-{% set lcddSeachUnsetPages = ['Home','search'] %}
+{% set lcddSearchUnsetPages = ['Home','search'] %}
+{% set lcddBreadcrumbUnsetPages = ['Home','search', 'dwl_lcdd_get_question'] %}
 
 {% block bodyClass %} base{% endblock %}
 
@@ -32,7 +33,7 @@
         <div class="collapse navbar-collapse" id="lcdd-navbar-collapse">
             {{ sonata_page_render_container('header_connexion', 'global') }}
             {{ sonata_page_render_container('header_menu', 'global') }}
-            {% if page.name not in lcddSeachUnsetPages %}
+            {% if page.name not in lcddSearchUnsetPages %}
             {{ sonata_page_render_container('header_search', 'global') }}
             {% endif %}
         </div><!-- /.navbar-collapse -->
@@ -42,7 +43,7 @@
 <div class="row content">
 
 {% block sonata_page_breadcrumb %}
-    {% if page.name not in lcddSeachUnsetPages %}
+    {% if page.name not in lcddBreadcrumbUnsetPages %}
     <div>
         {% if sonata_seo_context is not defined %}
                 {% set sonata_seo_context = 'homepage' %}
@@ -78,6 +79,7 @@
 {% endblock %}
 
 {% block page_content %}
+    <div class="body-content">
     {% if content is defined %}
         {{ content|raw }}
     {% else %}
@@ -88,6 +90,7 @@
         {{ sonata_page_render_container('content', page) }}
         {% endif %}
     {% endif %}
+    </div>
 {% endblock %}
         </div>
 

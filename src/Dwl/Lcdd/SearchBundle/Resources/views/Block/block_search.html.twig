@@ -18,7 +18,7 @@
             class="dwl-search-block-search-form form-inline {% if settings.display == 'inline' %} dwl-search-block-search-form-inline{% endif %}"
 {%- if settings.display == 'inline' %}
             name="header_{{ questionForm.vars.full_name }}"
-            action="{{ path('dwl_lcdd_search_question') }}"
+            action="{{ path('dwl_lcdd_search_question', { '_format': theme.front.format } ) }}"
             method="POST"
 {% endif -%}
 {%- if settings.display == 'bottom' %}
@@ -39,7 +39,7 @@
             name="{{ questionForm.vars.full_name }}"
             onsubmit="return false;"
             target="_blank"
-            action="{{ path('dwl_lcdd_search_question_submit') }}" method="POST" {{ form_enctype(questionForm) }}>
+            action="{{ path('dwl_lcdd_search_question_new') }}" method="POST" {{ form_enctype(questionForm) }}>
             {{ form_widget(questionForm) }}
             <span class="result"></span>
         </form>

@@ -33720,8 +33720,8 @@ angular
 
         };
 
-        $scope.showQuestion = function(id) {
-          return Routing.generate('dwl_lcdd_question', { id: id });
+        $scope.showQuestion = function(slug) {
+          return Routing.generate('dwl_lcdd_get_question', { slug: slug });
         };
         $scope.searchQuestion = function() {
           var $form = $window.jQuery('[name="header_'+$scope.form+'"]');
@@ -33791,8 +33791,8 @@ angular
             $scope.getQuestions();
         };
 
-        $scope.getPath = function(qid){
-          return $window.Routing.generate('dwl_lcdd_question', { id: qid });
+        $scope.getPath = function(slug){
+          return $window.Routing.generate('dwl_lcdd_get_question', { slug: slug });
         };
 
         $scope.setType = function(type){
@@ -33916,6 +33916,18 @@ angular
               }
             }
 
+          }
+
+          return showQuestion;
+
+        };
+
+        $scope.filterUnqualified = function(question) {
+
+          var showQuestion = true;
+
+          if(typeof(question.qualified_question) != 'undefined' && question.qualified_question.id != null) {
+              showQuestion = false;
           }
 
           return showQuestion;

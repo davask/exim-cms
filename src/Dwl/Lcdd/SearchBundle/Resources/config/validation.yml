@@ -1,0 +1,4 @@
+# Dwl\Lcdd\SearchBundle\Entity\Question:
+#   getters:
+#     question:
+#       - NotBlank:

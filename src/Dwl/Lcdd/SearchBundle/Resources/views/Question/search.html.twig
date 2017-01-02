@@ -1,7 +1,7 @@
 {% trans_default_domain "DwlLcddSearchBundle" %}
 <div class="dwl-search-page col-sm-12"
     ng-controller="searchCtrl"
-    ng-init="initSettings('{{ userQuestion }}', '{{ path('dwl_lcdd_search_question') }}');">
+    ng-init="initSettings('{{ userQuestion }}', '{{ path('dwl_lcdd_search_question', { '_format': 'json' } ) }}');">
     <div class="row">
         <div class="col-sm-offset-3 col-sm-3">
             <h1>{{ 'ps.title' | trans }}</h1>
@@ -70,7 +70,7 @@
             </div>
             <div role="tabpanel" class="tab-pane" id="unqualified_question">
               <ul class="row">
-                <li class="col-sm-12" ng-repeat="q in pagination.unqualified.items=(questions | filter: { qualified: false, question: userQuestion } | filter: filterCategories | filter: filterTags ) | slice:start('unqualified'):end('unqualified')">
+                <li class="col-sm-12" ng-repeat="q in pagination.unqualified.items=(questions | filter: { qualified: false, question: userQuestion } | filter: filterUnqualified | filter: filterCategories | filter: filterTags ) | slice:start('unqualified'):end('unqualified')">
                     {% include 'DwlLcddSearchBundle:Snippet:item_search.html.twig' %}
                 </li>
                 <li class="col-sm-12" ng-show="!pagination.unqualified.items.length">{{ 'Aucune question n existe pour cette selection' | trans   }}</li>

@@ -128,26 +128,30 @@ sonata_page:
                      c: content_category
                      p: content_person
 
-        # 2columns:
-        #     path: '@theme/Template/index.html.twig'
-        #     name: '2 columns layout'
-        #     containers:
-        #          header:
-        #              name: Header
-        #          content_search:
-        #              name: Home Search
-        #          footer:
-        #              name: Footer
-        #     matrix:
-        #          layout: |
-        #              HHHHHHHH
-        #              SSSSSSSS
-        #              FFFFFFFF
+        question:
+            path: '@theme/Template/question.html.twig'
+            name: 'Question layout'
+            containers:
+                 content_top:
+                     name: Content Top
+                 content:
+                     name: Main content
+                 content_bottom:
+                     name: Content Bottom
+                 footer:
+                     name: Footer
+            matrix:
+                 layout: |
+                     TTTTTTTT
+                     CCCCCCCC
+                     BBBBBBBB
+                     FFFFFFFF
 
-        #          mapping:
-        #              H: header
-        #              S: content_search
-        #              F: footer
+                 mapping:
+                     T: content_top
+                     C: content
+                     B: content_bottom
+                     F: footer
 
     templates_admin:
         compose:                    SonataPageBundle:PageAdmin:compose.html.twig

@@ -42,6 +42,7 @@ class QuestionAdmin extends Admin
     {
         $showMapper
             ->add('question')
+            ->add('author')
             ->add('qualified')
             ->add('legalTags')
             ->add('civilTags')
@@ -58,6 +59,8 @@ class QuestionAdmin extends Admin
     {
         $listMapper
             ->addIdentifier('question')
+            ->addIdentifier('author')
+            ->add('slug')
             ->add('qualified', null, array(
                 'editable' => true
             ))
@@ -78,6 +81,7 @@ class QuestionAdmin extends Admin
 
         $datagridMapper
             ->add('question')
+            ->add('author')
             ->add('qualified')
             ->add('unqualifiedQuestions', null, array('field_options' => array('expanded' => false,'multiple' => true)), null, array(
                 'class' => 'DwlLcddSearchBundle:Question',
@@ -129,6 +133,8 @@ class QuestionAdmin extends Admin
 
         $formMapper
             ->add('question')
+            ->add('author')
+            // ->add('slug')
             ->add('qualified')
         ;
 
@@ -142,6 +148,17 @@ class QuestionAdmin extends Admin
                         $qb = $repository->createQueryBuilder('m');
                         return $qb
                             ->where($qb->expr()->eq('m.providerName', '\'sonata.media.provider.vimeo\''))
+                        ;
+                    },
+                ))
+                ->add('unqualifiedQuestions', EntityType::class, array(
+                    'class' => 'DwlLcddSearchBundle:Question',
+                    'multiple' => true,
+                    'query_builder' => function(EntityRepository $repository) use ($question) {
+                        $qb = $repository->createQueryBuilder('q');
+                        return $qb
+                            ->where($qb->expr()->eq('q.qualified', '0'))
+                            ->andWhere($qb->expr()->neq('q.id', $question->getId()))
                         ;
                     },
                 ))

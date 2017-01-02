@@ -21,6 +21,8 @@ parameters:
     exim.theme.assets.version.css: '1.0'
     exim.theme.assets.version.js: '1.0'
     exim.theme.assets.version.img: '1.0'
+    exim.theme.front.format: 'html'
+
     exim.theme.front.css:
         - '%exim.theme.path.root%/assets/legacy/compass/scss/sonata_legacy.scss'
         - '%exim.theme.path.root%/assets/compass/scss/front.scss'
@@ -46,8 +48,8 @@ parameters:
     exim.theme.front.js.vendor:
         - 'front_vendor'
 
-
     exim.theme.admin.skin: 'skin-black'
+
 
     # Assetic
     # assetic.filter.compass.images_dir: '%kernel.root_dir%/../web/images'

@@ -13,7 +13,7 @@ sonata_user_resetting:
     prefix: /resetting
 
 sonata_user_profile:
-    resource: "@SonataUserBundle/Resources/config/routing/sonata_profile_1.xml"
+    resource: "@ApplicationSonataUserBundle/Resources/config/routing/exim_profile.yml"
     prefix: /profile
 
 sonata_user_register:
@@ -21,7 +21,7 @@ sonata_user_register:
     prefix: /register
 
 sonata_user_change_password:
-    resource: "@SonataUserBundle/Resources/config/routing/sonata_change_password_1.xml"
+    resource: "@ApplicationSonataUserBundle/Resources/config/routing/exim_change_password.yml"
     prefix: /profile
 
 sonata_cache_cache:

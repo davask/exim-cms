@@ -9,7 +9,7 @@
 {# exim space fix -#}
 <!-- exim extra styles -->
     {% for css in theme.assets.css.extra %}
-    <link rel="stylesheet" href="{{ theme.path.web }}/assetic/{{css}}.css?v={{theme.assets.version.css}}" media="all">
+    <link rel="stylesheet" href="{{ theme.path.web }}/assetic/{{css}}.css?v={{theme.assets.version.css}}{{ date().timestamp }}" media="all">
     {% endfor %}
 {# exim space fix -#}
 {% endblock %}
