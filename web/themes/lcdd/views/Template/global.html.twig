@@ -12,6 +12,8 @@
         {% set pageClass = page.name | replace({'dwl_lcdd_get_':''}) %}
     {% elseif 'fos_user_' in page.name %}
         {% set pageClass = page.name | replace({'fos_user_':''}) %}
+    {% elseif 'lcdd_speaker' in page.name %}
+        {% set pageClass = page.name | replace({'lcdd_':''}) %}
     {% else %}
         {% set pageClass = '' %}
     {% endif -%}
@@ -72,6 +74,7 @@
         {% endblock %}{% include "@theme/Template/Block/separator.html.twig" %}
         {% include "@theme/Template/Block/separator.html.twig" with { bname: 'exim_page_asset_footer' } %}{% block exim_page_asset_footer %}
         {% endblock %}{% include "@theme/Template/Block/separator.html.twig" %}
+        {% include "@theme/Template/Block/separator.html.twig" with { bname: 'exim_page_scripts' } %}{% block exim_page_scripts '' %}{% include "@theme/Template/Block/separator.html.twig" %}
 
     </body>
 </html>

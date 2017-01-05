@@ -168,6 +168,9 @@ jms_serializer:
             -
                 path: %kernel.root_dir%/../web/themes/%exim.theme.name%/vendor/sonata-project/media-bundle/Resources/config/serializer
                 namespace_prefix: 'Sonata\MediaBundle'
+            -
+                path: %kernel.root_dir%/../web/themes/%exim.theme.name%/src/Application/Sonata/UserBundle/Resources/config/serializer
+                namespace_prefix: 'Application\Sonata\UserBundle'
 
 # Assetic Configuration
 #assetic:

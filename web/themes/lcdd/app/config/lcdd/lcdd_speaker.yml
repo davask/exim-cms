@@ -1,0 +1,18 @@
+lcdd_speaker:
+    profile:
+        dashboard:
+            blocks:
+                -
+                    position: left
+                    type: sonata.block.service.text
+                    settings:
+                        content: "<h2>Welcome!</h2> <p>This is a sample speaker profile dashboard, feel free to override it in the configuration! Want to make this text dynamic? For instance display the user's name? Create a dedicated block and edit the configuration!</p>"
+        menu:
+            -
+                route: 'lcdd_speaker_all'
+                label: 'speaker_profile_all'
+                domain: 'ApplicationSonataUserBundle'
+            -
+                route: 'lcdd_speaker_show'
+                label: 'sonata_profile_title'
+                domain: 'SonataUserBundle'

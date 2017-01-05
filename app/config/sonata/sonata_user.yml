@@ -13,8 +13,8 @@ doctrine:
 # if you change the class configuration, please also alter the fos_user.yml file
 sonata_user:
     class:
-        user:  AppBundle\Entity\User\User
-        group: AppBundle\Entity\User\Group
+        user:  Application\Sonata\UserBundle\Entity\User
+        group: Application\Sonata\UserBundle\Entity\Group
 
     security_acl:             false
     table:

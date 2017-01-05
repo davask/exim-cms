@@ -6,6 +6,10 @@ dwl_lcdd_search:
     resource: "@DwlLcddSearchBundle/Resources/config/routing.yml"
     prefix:   /
 
+dwl_lcdd_speaker:
+    resource: "../../web/themes/lcdd/src/Application/Sonata/UserBundle/Resources/config/routing/routing_speaker.yml"
+    prefix:   /intervenant
+
 # Internal routing configuration to handle ESI
 #_internal:
 #   resource: "@FrameworkBundle/Resources/config/routing/internal.xml"

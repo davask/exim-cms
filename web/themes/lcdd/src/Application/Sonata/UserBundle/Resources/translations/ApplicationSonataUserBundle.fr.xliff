@@ -558,6 +558,21 @@
                 <source>title_user_resetting_reset</source>
                 <target>title_user_resetting_reset</target>
             </trans-unit>
+
+            <trans-unit id="speaker_all_title">
+                <source>speaker_all_title</source>
+                <target>Nos intervenants</target>
+            </trans-unit>
+
+            <trans-unit id="speaker_all_description">
+                <source>speaker_all_description</source>
+                <target><![CDATA[
+                    Avocats, juristes et professeurs d'université, les intervenants qui vous répondent sont tous de vrais professionnels du Droit.
+                    <br/>
+                    Découvrez leur carrière, leurs publications et leurs dernières vidéos.
+                ]]></target>
+            </trans-unit>
+
         </body>
     </file>
 </xliff>

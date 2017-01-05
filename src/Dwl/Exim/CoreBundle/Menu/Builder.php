@@ -129,7 +129,7 @@ class Builder extends ContainerAware
         $menu->addChild('Nos intervenants', array(
             'route' => 'page_slug',
             'routeParameters' => array(
-                'path' => '/',
+                'path' => '/intervenant/tous',
             ),
         ));
         $menu->addChild('Vos questions', array(

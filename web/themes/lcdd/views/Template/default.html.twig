@@ -2,6 +2,7 @@
 
 {% set lcddSearchUnsetPages = ['Home','search'] %}
 {% set lcddBreadcrumbUnsetPages = ['Home','search', 'dwl_lcdd_get_question'] %}
+{% set lcddBreadcrumbSetPages = [] %}
 
 {% block bodyClass %} base{% endblock %}
 
@@ -43,7 +44,7 @@
 <div class="row content">
 
 {% block sonata_page_breadcrumb %}
-    {% if page.name not in lcddBreadcrumbUnsetPages %}
+    {% if page.name in lcddBreadcrumbSetPages %}
     <div>
         {% if sonata_seo_context is not defined %}
                 {% set sonata_seo_context = 'homepage' %}
@@ -98,7 +99,6 @@
     {% if page is defined %}
         <div>
             {{ sonata_page_render_container('content_bottom', page) }}
-
         {% if page.name != 'Home'%}
             {{ sonata_page_render_container('content_bottom', 'global') }}
         {% endif %}

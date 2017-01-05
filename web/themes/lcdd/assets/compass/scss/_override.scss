@@ -1,0 +1,8 @@
+.carousel-control {
+    width: 50px;
+    &.left, &.right {
+      background-image: initial;
+      filter: initial;
+      background-repeat: initial;
+    }
+}

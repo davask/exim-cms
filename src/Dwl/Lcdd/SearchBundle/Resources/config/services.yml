@@ -69,3 +69,9 @@ services:
                   base_list_field: 'SonataAdminBundle:CRUD:base_list_flat_field.html.twig'
                   list: 'DwlLcddSearchBundle:SearchAdmin:list.html.twig'
                   edit: 'DwlLcddSearchBundle:SearchAdmin:edit.html.twig'
+
+    dwl.lcdd.question.listener:
+        class: Dwl\Lcdd\SearchBundle\EventListener\QuestionListener
+        tags:
+            - { name: doctrine.event_listener, event: prePersist }
+            - { name: doctrine.event_listener, event: preUpdate }

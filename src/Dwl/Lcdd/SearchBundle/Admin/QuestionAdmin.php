@@ -42,7 +42,7 @@ class QuestionAdmin extends Admin
     {
         $showMapper
             ->add('question')
-            ->add('author')
+            ->add('speaker')
             ->add('qualified')
             ->add('legalTags')
             ->add('civilTags')
@@ -59,7 +59,7 @@ class QuestionAdmin extends Admin
     {
         $listMapper
             ->addIdentifier('question')
-            ->addIdentifier('author')
+            ->addIdentifier('speaker')
             ->add('slug')
             ->add('qualified', null, array(
                 'editable' => true
@@ -81,7 +81,7 @@ class QuestionAdmin extends Admin
 
         $datagridMapper
             ->add('question')
-            ->add('author')
+            ->add('speaker')
             ->add('qualified')
             ->add('unqualifiedQuestions', null, array('field_options' => array('expanded' => false,'multiple' => true)), null, array(
                 'class' => 'DwlLcddSearchBundle:Question',
@@ -133,7 +133,7 @@ class QuestionAdmin extends Admin
 
         $formMapper
             ->add('question')
-            ->add('author')
+            ->add('speaker')
             // ->add('slug')
             ->add('qualified')
         ;

@@ -6,6 +6,8 @@ sonata_block:
     blocks:
 
         dwl.lcdd.block.search:
+        lcdd.speaker.block.menu:
+        lcdd.speaker.block.account:
 
         sonata.admin.block.stats:
             contexts:   [admin]

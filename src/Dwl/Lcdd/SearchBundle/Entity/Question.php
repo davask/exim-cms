@@ -9,6 +9,8 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 use Gedmo\Mapping\Annotation as Gedmo;
 
+use JMS\Serializer\Annotation\ExclusionPolicy;
+
 /**
  * Question
  *
@@ -123,10 +125,10 @@ class Question
     /**
      * @var ArrayCollection
      *
-     * @ORM\ManyToOne(targetEntity="\Application\Sonata\UserBundle\Entity\User")
-     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="\Application\Sonata\UserBundle\Entity\User", inversedBy="questions")
+     * @ORM\JoinColumn(name="fos_user_id", referencedColumnName="id")
      */
-    private $author;
+    private $speaker;
 
     /**
      * {@inheritdoc}
@@ -467,7 +469,7 @@ class Question
     /**
      * Get author
      *
-     * @return \Application\Sonata\UserBundle\Entity\User 
+     * @return \Application\Sonata\UserBundle\Entity\User
      */
     public function getAuthor()
     {

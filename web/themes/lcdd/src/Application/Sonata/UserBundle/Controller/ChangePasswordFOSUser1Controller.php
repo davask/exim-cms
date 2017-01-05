@@ -27,6 +27,40 @@ use Symfony\Component\HttpFoundation\Response;
  */
 class ChangePasswordFOSUser1Controller extends Controller
 {
+    private $doctrine;
+
+    private $em;
+
+    private $request;
+
+    private $_format;
+
+    private $translator;
+
+    private function postConstruct() {
+
+        $this->doctrine = $this->getDoctrine();
+        $this->em = $this->doctrine->getEntityManager();
+        $this->repo = $this->em->getRepository('ApplicationSonataUserBundle:User');
+
+        $this->request = $this->getRequest();
+        $this->_format = $this->request->attributes->get('_format', $this->getParameter('exim.theme.front.format'));
+
+        $this->translator = $this->get('translator');
+
+    }
+
+    /**
+     * @Rest\View
+     */
+    private function viewDatasRender($viewDatas, $_template = null) {
+        if($this->_format == 'json' || is_null($_template)) {
+            return $viewDatas;
+        } else {
+            return $this->render($_template, $viewDatas);
+        }
+    }
+
     /**
      * @return Response|RedirectResponse
      *
@@ -34,6 +68,8 @@ class ChangePasswordFOSUser1Controller extends Controller
      */
     public function changePasswordAction()
     {
+        $this->postConstruct();
+
         $user = $this->getUser();
         if (!is_object($user) || !$user instanceof UserInterface) {
             $this->createAccessDeniedException('This user does not have access to this section.');
@@ -49,10 +85,12 @@ class ChangePasswordFOSUser1Controller extends Controller
             return $this->redirect($this->getRedirectionUrl($user));
         }
 
-        return $this->render(
-            'ApplicationSonataUserBundle:ChangePassword:changePassword.html.'.$this->container->getParameter('fos_user.template.engine'),
-            array('form' => $form->createView())
+        $viewDatas = array(
+            'form' => $form->createView()
         );
+
+        return $this->viewDatasRender($viewDatas, 'ApplicationSonataUserBundle:ChangePassword:changePassword.html.'.$this->container->getParameter('fos_user.template.engine'));
+
     }
 
     /**
