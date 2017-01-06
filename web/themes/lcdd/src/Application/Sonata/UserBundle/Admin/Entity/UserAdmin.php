@@ -24,12 +24,12 @@ use Doctrine\ORM\EntityRepository;
 
 class UserAdmin extends AbstractAdmin
 {
-    const CLASS_CAT_AVATAR = 48;
-    const CLASS_CAT_POSITION = 52;
     /**
      * @var UserManagerInterface
      */
     protected $userManager;
+
+    protected $translationDomain = 'ApplicationSonataUserBundle'; // default is 'messages'
 
     /**
      * {@inheritdoc}
@@ -70,33 +70,6 @@ class UserAdmin extends AbstractAdmin
     }
 
     /**
-     * {@inheritdoc}
-     */
-    public function postUpdate($user)
-    {
-        $doctrine = $this->getConfigurationPool()->getContainer()->get('doctrine');
-        $em = $doctrine->getEntityManager();
-        $repo = $doctrine->getRepository($this->getClass());
-        $owner = $repo->findLcdd();
-        if(empty($owner) || $user->getId() == $owner->getId()) {
-            $owner = $repo->findOneById(1);
-        }
-        $toFlush = false;
-        foreach ($user->getQuestions() as $i => $question) {
-            dump($user->getGroups());
-            // if($user->getGroups() && $question->getQualified()) {
-            //     $toFlush = true;
-            //     $question->setSpeaker($owner);
-            //     $em->persist($question);
-            // }
-        }
-        if($toFlush) {
-            $em->flush();
-        }
-    }
-
-
-    /**
      * @param UserManagerInterface $userManager
      */
     public function setUserManager(UserManagerInterface $userManager)
@@ -121,7 +94,6 @@ class UserAdmin extends AbstractAdmin
             ->addIdentifier('username')
             ->add('email')
             ->add('groups')
-            ->add('position')
             ->add('enabled', null, array('editable' => true))
             ->add('locked', null, array('editable' => true))
             ->add('createdAt')
@@ -207,10 +179,6 @@ class UserAdmin extends AbstractAdmin
                 ->with('Keys', array('class' => 'col-md-4'))->end()
                 ->with('Roles', array('class' => 'col-md-12'))->end()
             ->end()
-            ->tab('Speaker')
-                ->with('Speaker', array('class' => 'col-md-6'))->end()
-                ->with('Videos', array('class' => 'col-md-6'))->end()
-            ->end()
         ;
 
         $now = new \DateTime();
@@ -277,37 +245,6 @@ class UserAdmin extends AbstractAdmin
                 ->with('Keys')
                     ->add('token', null, array('required' => false))
                     ->add('twoStepVerificationCode', null, array('required' => false))
-                ->end()
-            ->end()
-            ->tab('Speaker')
-                ->with('Speaker')
-                    ->add('position', null, array(
-                        'required' => false,
-                        'query_builder' => function(EntityRepository $repository) {
-                            $qb = $repository->createQueryBuilder('c');
-                            return $qb
-                                ->where($qb->expr()->eq('c.context', '\'lcdd\''))
-                                ->andWhere($qb->expr()->eq('c.parent', self::CLASS_CAT_POSITION))
-                            ;
-                        },
-                    ))
-                    ->add('avatar', null, array(
-                        'required' => true,
-                        'placeholder' => 'Choisissez votre avatar',
-                        'query_builder' => function(EntityRepository $repository) {
-                            $qb = $repository->createQueryBuilder('m');
-                            return $qb
-                                ->where($qb->expr()->eq('m.context', '\'lcdd\''))
-                                ->andWhere($qb->expr()->eq('m.category', self::CLASS_CAT_AVATAR))
-                            ;
-                        },
-                    ))
-                ->end()
-                ->with('Videos')
-                    ->add('questions', null, array(
-                        'disabled' => true,
-                        'multiple' => true,
-                    ))
                 ->end()
             ->end()
         ;

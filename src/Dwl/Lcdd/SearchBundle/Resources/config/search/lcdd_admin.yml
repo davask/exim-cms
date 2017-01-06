@@ -11,7 +11,3 @@ sonata_admin:
                 icon:  '<i class="fa fa-lcdd"><img src="/bundles/dwllcddsearch/images/favicon-16x16.png"/></i>'
                 items:
                     - dwl.lcdd.search.question
-                    # - sonata.demo.admin.car
-                    # - sonata.demo.admin.engine
-                    # - sonata.demo.admin.color
-                    # - sonata.demo.admin.material

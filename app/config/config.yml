@@ -68,6 +68,9 @@ imports:
     - { resource: dwl/exim_media.yml }
     - { resource: dwl/exim_user.yml }
 
+    # Exim e-commerce bundles
+    - { resource: dwl/exim_customer.yml }
+
     # Lcdd Parameters + Bundles
     - { resource: ../../src/Dwl/Lcdd/SearchBundle/Resources/config/search/lcdd_search_parameters.yml }
 
@@ -79,6 +82,7 @@ imports:
     - { resource: ../../src/Dwl/Lcdd/SearchBundle/Resources/config/search/lcdd_admin.yml }
     - { resource: ../../src/Dwl/Lcdd/SearchBundle/Resources/config/search/lcdd_media.yml }
     - { resource: ../../src/Dwl/Lcdd/SearchBundle/Resources/config/search/lcdd_page.yml }
+    - { resource: ../../src/Dwl/Lcdd/SpeakerBundle/Resources/config/speaker/admin.yml }
 
 framework:
     #esi:             ~

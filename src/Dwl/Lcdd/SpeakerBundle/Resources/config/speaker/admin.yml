@@ -1,0 +1,8 @@
+sonata_admin:
+
+    dashboard:
+
+        groups:
+            sonata.admin.group.lcdd:
+                items:
+                    - dwl.lcdd.speaker.speaker

@@ -34,34 +34,6 @@ class ApplicationSonataUserExtension extends Extension
 
         $bundles = $container->getParameter('kernel.bundles');
 
-        $loader = new YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
-
-        $loader->load('block.yml');
-        $loader->load('menu.yml');
-
-        $container->setParameter('lcdd.speaker.default_avatar', $config['profile']['default_avatar']);
-
-        $this->configureSpeaker($config, $container);
-        $this->configureMenu($config, $container);
     }
-
-    /**
-     * @param array            $config
-     * @param ContainerBuilder $container
-     */
-    public function configureSpeaker(array $config, ContainerBuilder $container)
-    {
-        $container->setParameter('lcdd.speaker.configuration.speaker_blocks', $config['profile']['dashboard']['blocks']);
-    }
-
-    /**
-     * @param array            $config
-     * @param ContainerBuilder $container
-     */
-    public function configureMenu(array $config, ContainerBuilder $container)
-    {
-        $container->getDefinition('lcdd.speaker.profile.menu_builder')->replaceArgument(2, $config['profile']['menu']);
-    }
-
 
 }

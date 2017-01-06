@@ -1,0 +1,27 @@
+lcdd_speaker_all:
+    pattern: "/tous.{_format}"
+    methods: "GET"
+    defaults:
+        _controller: DwlLcddSpeakerBundle:Default:all
+        _locale: fr
+        _format: '%exim.theme.front.format%'
+    requirements:
+        _locale: fr
+        _format: html|json
+    options:
+        expose: true
+
+lcdd_speaker_get:
+    pattern: "/{username}.{_format}"
+    methods: "GET"
+    defaults:
+        _controller: DwlLcddSpeakerBundle:Default:get
+        username: 'me'
+        _locale: fr
+        _format: '%exim.theme.front.format%'
+    requirements:
+        _locale: fr
+        _format: html|json
+    options:
+        expose: true
+

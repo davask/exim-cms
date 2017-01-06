@@ -129,7 +129,8 @@ class AppKernel extends Kernel
             new FOS\ElasticaBundle\FOSElasticaBundle(),
 
             // LCDD
-            new Dwl\Lcdd\SearchBundle\DwlLcddSearchBundle()
+            new Dwl\Lcdd\SearchBundle\DwlLcddSearchBundle(),
+            new Dwl\Lcdd\SpeakerBundle\DwlLcddSpeakerBundle(),
 
         );
 

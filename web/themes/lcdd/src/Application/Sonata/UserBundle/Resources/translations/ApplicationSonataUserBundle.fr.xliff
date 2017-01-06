@@ -2,6 +2,37 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
     <file source-language="en" datatype="plaintext" original="" >
         <body>
+
+            <trans-unit id="speaker_all_description">
+                <source>speaker_all_description</source>
+                <target><![CDATA[
+                    Avocats, juristes et professeurs d'université, les intervenants qui vous répondent sont tous de vrais professionnels du Droit.
+                    <br/>
+                    Découvrez leur carrière, leurs publications et leurs dernières vidéos.
+                ]]></target>
+            </trans-unit>
+
+            <trans-unit id="form.label_position">
+                <source>form.label_position</source>
+                <target>Position</target>
+            </trans-unit>
+            <trans-unit id="list.label_position">
+                <source>list.label_position</source>
+                <target>Position</target>
+            </trans-unit>
+
+            <trans-unit id="form.label_avatar">
+                <source>form.label_avatar</source>
+                <target>Avatar</target>
+            </trans-unit>
+
+            <trans-unit id="form.label_questions">
+                <source>form.label_questions</source>
+                <target><![CDATA[Questions trait&eacute;es]]></target>
+            </trans-unit>
+
+            <!-- original trans -->
+
             <trans-unit id="title_user_registration">
                 <source>title_user_registration</source>
                 <target>Inscription</target>
@@ -562,15 +593,6 @@
             <trans-unit id="speaker_all_title">
                 <source>speaker_all_title</source>
                 <target>Nos intervenants</target>
-            </trans-unit>
-
-            <trans-unit id="speaker_all_description">
-                <source>speaker_all_description</source>
-                <target><![CDATA[
-                    Avocats, juristes et professeurs d'université, les intervenants qui vous répondent sont tous de vrais professionnels du Droit.
-                    <br/>
-                    Découvrez leur carrière, leurs publications et leurs dernières vidéos.
-                ]]></target>
             </trans-unit>
 
         </body>

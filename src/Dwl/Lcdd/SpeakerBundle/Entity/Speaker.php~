@@ -1,0 +1,70 @@
+<?php
+
+namespace Dwl\Lcdd\SpeakerBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+
+use Gedmo\Mapping\Annotation as Gedmo;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+
+use Dwl\Lcdd\SpeakerBundle\Base\BaseSpeaker as BaseSpeaker;
+
+/**
+ * Speaker
+ *
+ * @ORM\Entity(repositoryClass="Dwl\Lcdd\SpeakerBundle\Repository\SpeakerRepository")
+ */
+class Speaker extends BaseSpeaker
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="career", type="string", length=1000)
+    private $career;
+     */
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set career
+     *
+     * @param string $career
+     * @return Speaker
+    public function setCareer($career)
+    {
+        $this->career = $career;
+
+        return $this;
+    }
+     */
+
+    /**
+     * Get career
+     *
+     * @return string
+    public function getCareer()
+    {
+        return $this->career;
+    }
+     */
+}

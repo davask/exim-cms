@@ -39,4 +39,90 @@ class Customer extends BaseCustomer
     {
         return $this->id;
     }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setFirstname($firstname)
+    {
+
+        if(!empty($this->user)) {
+            $this->user->setFirstname($firstname);
+        }
+
+        $this->firstname = $firstname;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getFirstname()
+    {
+
+        $firstname = '';
+
+        if(!empty($this->user)) {
+            $firstname = $this->user->getFirstname();
+        }
+        if(empty($firstname)) {
+            $firstname = $this->firstname;
+        }
+
+        return $firstname;
+
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setLastname($lastname)
+    {
+        if(!empty($this->user)) {
+            $this->user->setLastname($lastname);
+        }
+
+        $this->lastname = $lastname;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getLastname()
+    {
+
+        $lastname = '';
+
+        if(!empty($this->user)) {
+            $lastname = $this->user->getLastname();
+        }
+        if(empty($lastname)) {
+            $lastname = $this->lastname;
+        }
+
+        return $lastname;
+
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getFullname()
+    {
+
+        $fullname = trim($this->getFirstname().' '.$this->getLastname());
+
+        if(empty($fullname)) {
+            if(!empty($this->user)) {
+                $fullname = trim($this->user->getUsername());
+            }
+            if(!empty($this->user)) {
+                $fullname = trim("-");
+            }
+        }
+
+        return ucfirst($fullname);
+
+    }
+
+
 }

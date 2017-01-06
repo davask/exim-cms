@@ -1,0 +1,15 @@
+# Enable Doctrine to map the provided entities
+sonata_customer:
+    class:
+        customer: Application\Sonata\CustomerBundle\Entity\Customer
+        address:  Application\Sonata\CustomerBundle\Entity\Address
+        order:    Application\Sonata\OrderBundle\Entity\Order
+        user:     Application\Sonata\UserBundle\Entity\User
+
+doctrine:
+    orm:
+        entity_managers:
+            default:
+                mappings:
+                    SonataCustomerBundle: ~
+                    ApplicationSonataCustomerBundle: ~
