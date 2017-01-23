@@ -1,0 +1,102 @@
+$speaker:'speaker';
+.#{$speaker} {
+
+    padding-left:0;
+    padding-right:0;
+    max-width: 100%;
+
+    &:before {
+        height: 100px;
+    }
+
+    @import "./navtabs";
+
+    .tab-content {
+        max-width: 960px;
+        margin: 0 auto 100px;
+    }
+
+    .map {
+        height: 200px;
+        background: $grey_light_extra;
+    }
+
+    .overview {
+        margin-bottom:100px;
+        > div {
+            background-color: $cyan;
+        }
+        .details {
+            padding-top: 90px;
+            padding-bottom: 90px;
+            text-align:center;
+            color:$blue_text;
+            font-size: 16px;
+            line-height: 30px;
+            hr {
+                border-top-color: $blue_text;
+                width:200px;
+                margin: 40px auto;
+            }
+        }
+        .presentation {
+            @media screen and (min-width: 1200px) {
+                float:right;
+            }
+        }
+    }
+
+    .phone{
+        &::before {
+            font-family: FontAwesome;
+            color:$blue_icon;
+            content: '\f10b ';
+            font-size: 26px;
+            vertical-align: top;
+        }
+        img {
+            height:18px;
+        }
+    }
+    .mail{
+        &::before {
+            font-family: FontAwesome;
+            color:$blue_icon;
+            content: '\f0e0 ';
+            font-size: 20px;
+            vertical-align: top;
+        }
+        img {
+            height:18px;
+        }
+
+    }
+    .address{
+        &::before {
+            font-family: FontAwesome;
+            color:$blue_icon;
+            content: '\f041 ';
+            font-size: 22px;
+            vertical-align: top;
+        }
+    }
+
+    .sub-header {
+        position: relative;
+        h2 {
+            color:$text_dark;
+            position: relative;
+            z-index: 1;
+            background: $white;
+            font-size:18px;
+            display: inline-block;
+            padding-right: 10px;
+        }
+        hr {
+            border-top-color:$text_dark;
+            position: relative;
+            z-index: 0;
+            margin-top:-18px;
+        }
+    }
+}

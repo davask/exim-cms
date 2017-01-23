@@ -97,6 +97,7 @@ class SpeakerRepository extends EntityRepository
             ->leftJoin('c.user', 'u')
             ->LeftJoin('u.groups', 'g')
             ->where('g.id IN (:groupIds)')
+            ->andWhere('s.isSpeaker = true')
             ->setParameter('groupIds', $id)
             ->orderBy('u.lastname, u.firstname, u.username')
             ->getQuery()

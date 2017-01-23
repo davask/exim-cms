@@ -19,6 +19,7 @@ use Dwl\Lcdd\SpeakerBundle\Base\BaseSpeaker as BaseSpeaker;
  */
 class Speaker extends BaseSpeaker
 {
+
     /**
      * @var integer
      *
@@ -27,13 +28,6 @@ class Speaker extends BaseSpeaker
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="career", type="string", length=1000)
-    private $career;
-     */
 
     /**
      * Get id
@@ -45,26 +39,4 @@ class Speaker extends BaseSpeaker
         return $this->id;
     }
 
-    /**
-     * Set career
-     *
-     * @param string $career
-     * @return Speaker
-    public function setCareer($career)
-    {
-        $this->career = $career;
-
-        return $this;
-    }
-     */
-
-    /**
-     * Get career
-     *
-     * @return string
-    public function getCareer()
-    {
-        return $this->career;
-    }
-     */
 }

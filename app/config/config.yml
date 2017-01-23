@@ -161,9 +161,6 @@ jms_serializer:
     metadata:
         directories:
             -
-                path: %kernel.root_dir%/../vendor/sonata-project/user-bundle/Resources/config/serializer/FOSUserBundle
-                namespace_prefix: 'FOS\UserBundle'
-            -
                 path: %kernel.root_dir%/../vendor/sonata-project/ecommerce/src/BasketBundle/Resources/config/serializer/Component
                 namespace_prefix: 'Sonata\Component\Basket'
             -
@@ -173,8 +170,20 @@ jms_serializer:
                 path: %kernel.root_dir%/../web/themes/%exim.theme.name%/vendor/sonata-project/media-bundle/Resources/config/serializer
                 namespace_prefix: 'Sonata\MediaBundle'
             -
+                path: %kernel.root_dir%/../web/themes/%exim.theme.name%/src/Application/Sonata/UserBundle/Resources/config/serializer/FOSUserBundle
+                namespace_prefix: 'FOS\UserBundle'
+            -
+                path: %kernel.root_dir%/../web/themes/%exim.theme.name%/src/Application/Sonata/UserBundle/Resources/config/serializer/SonataUserBundle
+                namespace_prefix: 'Sonata\UserBundle'
+            -
                 path: %kernel.root_dir%/../web/themes/%exim.theme.name%/src/Application/Sonata/UserBundle/Resources/config/serializer
                 namespace_prefix: 'Application\Sonata\UserBundle'
+            -
+                path: %kernel.root_dir%/../web/themes/%exim.theme.name%/src/Application/Sonata/CustomerBundle/Resources/config/serializer/SonataCustomerBundle
+                namespace_prefix: 'Sonata\CustomerBundle'
+            -
+                path: %kernel.root_dir%/../web/themes/%exim.theme.name%/src/Application/Sonata/CustomerBundle/Resources/config/serializer
+                namespace_prefix: 'Application\Sonata\CustomerBundle'
 
 # Assetic Configuration
 #assetic:

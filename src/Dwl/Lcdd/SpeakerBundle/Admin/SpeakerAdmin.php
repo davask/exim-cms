@@ -24,6 +24,7 @@ class SpeakerAdmin extends Admin
 
     const CLASS_CAT_AVATAR = 48;
     const CLASS_CAT_POSITION = 52;
+    const CLASS_CAT_PRESENTATION = 61;
 
     protected $baseRouteName = 'admin_lcdd_speaker';
     protected $baseRoutePattern = 'lcdd/speaker';
@@ -54,7 +55,7 @@ class SpeakerAdmin extends Admin
         }
         $toFlush = false;
         foreach ($user->getQuestions() as $i => $question) {
-            dump($user->getGroups());
+            // dump($user->getGroups());
             // if($user->getGroups() && $question->getQualified()) {
             //     $toFlush = true;
             //     $question->setSpeaker($owner);
@@ -90,6 +91,7 @@ class SpeakerAdmin extends Admin
             ->addIdentifier('customer')
             ->addIdentifier('customer.user')
             ->addIdentifier('customer.user.groups')
+            ->addIdentifier('position')
             ->add('isSpeaker', null, array(
                 'editable' => true
             ))
@@ -106,6 +108,10 @@ class SpeakerAdmin extends Admin
 
         $datagridMapper
             ->add('customer')
+            ->addIdentifier('customer')
+            ->addIdentifier('customer.user')
+            ->addIdentifier('customer.user.groups')
+            ->addIdentifier('position')
             ->add('isSpeaker')
         ;
     }
@@ -151,6 +157,20 @@ class SpeakerAdmin extends Admin
                 ->end()
                 ->with('Publications')
 
+                ->end()
+                ->with('Video de presentation')
+                    ->add('presentation', EntityType::class, array(
+                        'class' => 'ApplicationSonataMediaBundle:Media',
+                        'placeholder' => 'Choisissez une video',
+                        'required' => true,
+                        'query_builder' => function(EntityRepository $repository) {
+                            $qb = $repository->createQueryBuilder('m');
+                            return $qb
+                                ->where($qb->expr()->eq('m.context', '\'lcdd\''))
+                                ->andWhere($qb->expr()->eq('m.category', self::CLASS_CAT_PRESENTATION))
+                            ;
+                        },
+                    ))
                 ->end()
             ->end()
             ->tab('Divers')

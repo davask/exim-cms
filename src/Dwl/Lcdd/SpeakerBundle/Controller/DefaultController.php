@@ -31,11 +31,13 @@ class DefaultController extends Controller
      * @Rest\View
      */
     private function viewDatasRender($viewDatas, $_template = null) {
+
         if($this->_format == 'json' || is_null($_template)) {
             return $viewDatas;
         } else {
             return $this->render($_template, $viewDatas);
         }
+
     }
 
     /**

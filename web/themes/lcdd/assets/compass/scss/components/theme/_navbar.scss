@@ -1,0 +1,33 @@
+/*******************************\
+    $NAVBAR
+\*******************************/
+.navbar-#{$theme} {
+    background-color: $blue_dark;
+    border-color: transparent;
+    border-radius: 0;
+    border:0;
+    margin-bottom:0;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    a {
+        text-transform: uppercase;
+    }
+
+    .navbar-brand img {
+        margin-top: -8px;
+    }
+    .container-fluid {
+        max-width: $maxWidth;
+    }
+    .navbar-toggle {
+        background-color: $blue_dark;
+        .icon-bar {
+            background-color: $white;
+        }
+        &:focus , &:hover {
+            .icon-bar {
+                background-color: lighten($blue_dark, 10%);
+            }
+        }
+    }
+}

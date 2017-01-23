@@ -1,0 +1,21 @@
+/*******************************\
+    $QUESTION
+\*******************************/
+&.question {
+    h1 {
+        display: inline;
+    }
+    .body-content {
+        max-width:none;
+        padding:0;
+        .content-media {
+            background: #f3edd3;
+        }
+        .content-embed {
+            max-width:$maxWidth;
+            margin:0 auto;
+            padding:0 65px;
+        }
+    }
+}
+

@@ -1,0 +1,27 @@
+/*******************************\
+    $GENERIC
+\*******************************/
+.max-width {
+    max-width: $maxWidth;
+    margin: 0 auto;
+    float: none;
+    clear: both;
+}
+.no-horizontal-padding {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+a {
+    color: $white;
+    text-decoration: none;
+    &:hover {
+        color: $orange_dark;
+    }
+}
+
+.content, .navbar-admin {
+    a {
+        color: $text_dark;
+    }
+}

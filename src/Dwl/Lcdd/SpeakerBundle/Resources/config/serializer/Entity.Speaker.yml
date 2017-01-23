@@ -21,3 +21,9 @@ Dwl\Lcdd\SpeakerBundle\Entity\Speaker:
           expose: true
         longitude:
           expose: true
+        presentation:
+          expose: true
+        protectedEmail:
+          expose: true
+        protectedPhone:
+          expose: true

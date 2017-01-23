@@ -19,6 +19,7 @@ use Dwl\Lcdd\SpeakerBundle\Base\BaseSpeaker as BaseSpeaker;
  */
 class Speaker extends BaseSpeaker
 {
+
     /**
      * @var integer
      *

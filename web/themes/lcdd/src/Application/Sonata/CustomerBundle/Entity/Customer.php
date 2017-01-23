@@ -25,6 +25,28 @@ use Sonata\CustomerBundle\Entity\BaseCustomer as BaseCustomer;
  */
 class Customer extends BaseCustomer
 {
+
+    /**
+     * Available properties
+     *
+     * protected $title;
+     * protected $firstname;
+     * protected $lastname;
+     * protected $email;
+     * protected $birthDate;
+     * protected $birthPlace;
+     * protected $phoneNumber;
+     * protected $mobileNumber;
+     * protected $faxNumber;
+     * protected $updatedAt;
+     * protected $createdAt;
+     * protected $user;
+     * protected $addresses;
+     * protected $orders;
+     * protected $locale;
+     * protected $isFake;
+     */
+
     /**
      * @var int $id
      */
@@ -46,7 +68,7 @@ class Customer extends BaseCustomer
     public function setFirstname($firstname)
     {
 
-        if(!empty($this->user)) {
+        if(!empty($this->user) && !empty($firstname)) {
             $this->user->setFirstname($firstname);
         }
 
@@ -77,7 +99,7 @@ class Customer extends BaseCustomer
      */
     public function setLastname($lastname)
     {
-        if(!empty($this->user)) {
+        if(!empty($this->user) && !empty($lastname)) {
             $this->user->setLastname($lastname);
         }
 
@@ -121,6 +143,130 @@ class Customer extends BaseCustomer
         }
 
         return ucfirst($fullname);
+
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setEmail($email)
+    {
+        if(!empty($this->user) && !empty($email)) {
+            $this->user->setEmail($email);
+        }
+
+        $this->email = $email;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getEmail()
+    {
+
+        $email = '';
+
+        if(!empty($this->user)) {
+            $email = $this->user->getEmail();
+        }
+        if(empty($email)) {
+            $email = $this->email;
+        }
+
+        return $email;
+
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setCreatedAt(\DateTime $createdAt = null)
+    {
+        if(!empty($this->user) && !empty($createdAt)) {
+            $this->user->setCreatedAt($createdAt);
+        }
+
+        $this->createdAt = $createdAt;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getCreatedAt()
+    {
+
+        $createdAt = '';
+
+        if(!empty($this->user)) {
+            $createdAt = $this->user->getCreatedAt();
+        }
+        if(empty($createdAt)) {
+            $createdAt = $this->createdAt;
+        }
+
+        return $createdAt;
+
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setUpdatedAt(\DateTime $updatedAt = null)
+    {
+        if(!empty($this->user) && !empty($updatedAt)) {
+            $this->user->setUpdatedAt($updatedAt);
+        }
+
+        $this->updatedAt = $updatedAt;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getUpdatedAt()
+    {
+
+        $updatedAt = '';
+
+        if(!empty($this->user)) {
+            $updatedAt = $this->user->getUpdatedAt();
+        }
+        if(empty($updatedAt)) {
+            $updatedAt = $this->updatedAt;
+        }
+
+        return $updatedAt;
+
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setLocale($locale)
+    {
+        if(!empty($this->user) && !empty($locale)) {
+            $this->user->setLocale($locale);
+        }
+
+        $this->locale = $locale;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getLocale()
+    {
+
+        $locale = '';
+
+        if(!empty($this->user)) {
+            $locale = $this->user->getLocale();
+        }
+        if(empty($locale)) {
+            $locale = $this->locale;
+        }
+
+        return $locale;
 
     }
 

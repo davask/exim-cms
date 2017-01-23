@@ -15,7 +15,17 @@ var updateMap = function() {
     var mapOptions = {
         center: LOCATION,
         zoom: 15,
-        styles: styles['black']
+        minZoom: 15,
+        maxZoom: 15,
+        styles: styles['black'],
+        streetViewControl: false,
+        zoomControl: false,
+        pancontrol: false,
+        mapTypeControl: false,
+        scaleControl: false,
+        overviewMapControl: false,
+        draggable: false,
+        disableDoubleClickZoom: true
     };
 
     MAP = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
@@ -59,7 +69,7 @@ var addMarkers = function() {
                       position: gc.geometry.location,
                       map: MAP,
                       title: "Studio cyclone - " + marker.name,
-                      icon: "/assets/img/favicon/favicon.ico"
+                      icon: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAMAAAAM7l6QAAAA51BMVEUAAAARP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1lWONL1AAAATHRSTlMAAQIDBAUHCAkKCwwPEBESFRgcHh8hIicpMTM2Oj0+P0FDS0xNTlhiZGdocXN8f4CCg4WIl6Kjpqirrbq+wMHDys7R2ubp6+3v9/v9r3MSiAAAAO5JREFUGBl1wQk7AlEYBtD3lkE0JFmTse+KIntRCTPv//89vpnnNvfOdg4s7nHv5enOqyCP26fWnUdG02dsWkdKi7agjoS1gAk/C7ANGLpYhlrtMtSDZYMi2ETkkKEKjBuKU2htigMYHySDMjSXog1jSnKEGUXRh/FNcoQZRfEIY0AyKEOrUnRgXFGcQLul2INRo/AbiHgUvgPLK0VwvgS10mHoGrYGUxaR8M6EeyRtM6GKlC9aHpC2S0sNGWPGnpG1z9g6stSE2hvyHFHbQp7SLyOfyHfGyA7yzf1RjFHkkqKFIs6EHCoUcrxmCbZ/alda5t7XpDYAAAAASUVORK5CYII="
                     });
                     google.maps.event.addListener(marker, "click", function() {
                       INFOWINDOW.setContent(
