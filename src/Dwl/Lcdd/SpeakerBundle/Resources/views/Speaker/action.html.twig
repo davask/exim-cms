@@ -1,4 +1,8 @@
 {% extends "@theme/Template/default.html.twig" %}
+{% block exim_page_header_stylesheets %}
+    {{ parent() }}
+    {% include "CmfCreateBundle::includecssfiles.html.twig" %}
+{% endblock %}
 {% block page_content %}
 <div class="body-content clearfix speaker">
 
@@ -142,6 +146,12 @@
 
 </div>
 {% endblock %}
+
+{% block exim_page_footer_vendor_javascripts %}
+{{ parent() }}
+{% render(controller("cmf_create.jsloader.controller:includeJSFilesAction")) %}
+{% endblock %}
+
 {% block exim_page_scripts %}
     {% set gmapapikey = 'AIzaSyAbE9d8X2BvRbO3E_8tt9n84ewVejztclQ' %}
     <script src="https://maps.googleapis.com/maps/api/js?key={{gmapapikey}}&libraries=places" type="text/javascript"></script>

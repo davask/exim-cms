@@ -9,6 +9,7 @@
 <script src="{{js}}"></script>
 {# exim space fix -#}
 {% endfor %}
+
 {% for js in theme.assets.js.extra %}
 <script src="{{ theme.path.web }}/assetic/{{js}}.js?v={{theme.assets.version.js}}"></script>
 {# exim space fix -#}
@@ -26,9 +27,11 @@
 {% if app.user and is_granted('ROLE_SUPER_ADMIN') -%}
 <!-- /exim-->
 {% endif %}
+
 {%- if app.user and is_granted('ROLE_SUPER_ADMIN') %}
 <!-- exim page styles -->
 {% endif %}
+
 {% if page is defined %}
     {% if page.javascript is not empty %}
 <script>
@@ -36,6 +39,7 @@
 </script>
     {% endif %}
 {% endif %}
+
 {% if app.user and is_granted('ROLE_SUPER_ADMIN') -%}
 <!-- /exim-->
 {% endif %}

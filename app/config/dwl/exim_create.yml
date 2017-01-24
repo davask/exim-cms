@@ -1,0 +1,11 @@
+cmf_create:
+    object_mapper_service_id: cmf_create.persistence.orm.object_mapper
+    security:
+        role: ROLE_LCDD_SPEAKER
+
+services:
+    cmf_create.persistence.orm.object_mapper:
+        class: Midgard\CreatePHP\Mapper\DoctrineOrmMapper
+        arguments:
+            - "%cmf_create.map%"
+            - "@doctrine"

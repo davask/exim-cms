@@ -4,19 +4,19 @@
         {{ sonata_seo_title() }}
         {{ sonata_seo_metadatas() }}
         {% include '@theme/Template/Head/favicon.html.twig' %}
+
         {% include '@theme/Template/Head/stylesheets.html.twig' %}
+
+        {% include "@theme/Template/Block/separator.html.twig" with { bname: 'exim_page_header_stylesheets' } %}{% block exim_page_header_stylesheets '' %}{% include "@theme/Template/Block/separator.html.twig" %}
+
         {% include '@theme/Template/Head/javascripts.html.twig' %}
+
+        {% include "@theme/Template/Block/separator.html.twig" with { bname: 'exim_page_header_javascripts' } %}{% block exim_page_header_javascripts '' %}{% include "@theme/Template/Block/separator.html.twig" %}
+
     </head>
 
-    {%- if 'dwl_lcdd_get_' in page.name %}
-        {% set pageClass = page.name | replace({'dwl_lcdd_get_':''}) %}
-    {% elseif 'fos_user_' in page.name %}
-        {% set pageClass = page.name | replace({'fos_user_':''}) %}
-    {% elseif 'lcdd_speaker' in page.name %}
-        {% set pageClass = page.name | replace({'lcdd_':''}) %}
-    {% else %}
-        {% set pageClass = '' %}
-    {% endif -%}
+    {%- include '@theme/Settings/bodyclass.html.twig' -%}
+
     <body class="{{ theme.name }} {{ pageClass | default('npc') }} container-fluid{% block bodyClass %} global{% endblock %}">
         <!--[if lt IE 9]>
             <p class="row browserupgrade">Vous utilisez un navigateur <strong>obsol&egrave;te</strong>. Merci de le <a href="http://browsehappy.com/">mettre-&agrave;-jour</a> afin d'am&eacute;liorer votre experience.</p>
@@ -74,6 +74,12 @@
         {% endblock %}{% include "@theme/Template/Block/separator.html.twig" %}
         {% include "@theme/Template/Block/separator.html.twig" with { bname: 'exim_page_asset_footer' } %}{% block exim_page_asset_footer %}
         {% endblock %}{% include "@theme/Template/Block/separator.html.twig" %}
+
+        {% include "@theme/Template/Block/separator.html.twig" with { bname: 'exim_page_footer_vendor_javascripts' } %}{% block exim_page_footer_vendor_javascripts %}
+        {% endblock %}{% include "@theme/Template/Block/separator.html.twig" %}
+        {% include "@theme/Template/Block/separator.html.twig" with { bname: 'exim_page_footer_javascripts' } %}{% block exim_page_footer_javascripts %}
+        {% endblock %}{% include "@theme/Template/Block/separator.html.twig" %}
+
         {% include "@theme/Template/Block/separator.html.twig" with { bname: 'exim_page_scripts' } %}{% block exim_page_scripts '' %}{% include "@theme/Template/Block/separator.html.twig" %}
 
     </body>

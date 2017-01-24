@@ -7,6 +7,8 @@ fos_rest:
         templating_formats:
             html: true
             json: false
+        formats:
+            json: true
     body_converter:
         enabled: false
         validate: true
