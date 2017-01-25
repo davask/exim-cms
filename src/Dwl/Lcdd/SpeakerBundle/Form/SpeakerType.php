@@ -29,7 +29,7 @@ class SpeakerType extends AbstractType
         $customer = $speaker->getCustomer();
         $user = $customer->getUser();
 
-        $categoryAdmin = $this->getConfigurationPool()->getAdminByClass("\\Application\\Sonata\\ClassificationBundle\\Entity\\Category");
+        // $categoryAdmin = $this->getConfigurationPool()->getAdminByClass("\\Application\\Sonata\\ClassificationBundle\\Entity\\Category");
 
         $builder
             // ->add('isSpeaker')
