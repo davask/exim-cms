@@ -3,7 +3,7 @@ assetic:
     debug : false # '%kernel.debug%'
     use_controller : '%kernel.debug%'
     write_to : '%exim.theme.path.root%'
-    bundles: [CmfCreateBundle]
+    bundles: []
     filters :
         # cssrewrite:
             # style: 'compressed'

@@ -86,6 +86,8 @@ abstract class BaseSpeaker implements SpeakerInterface
      *
      */
 
+    protected $displayName;
+
     /**
      * @var \Application\Sonata\CustomerBundle\Entity\Customer
      *
@@ -178,6 +180,42 @@ abstract class BaseSpeaker implements SpeakerInterface
     public function __construct()
     {
         $this->questions = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getFullname()
+    {
+
+        if(!empty($this->customer)) {
+
+            $customer = $this->customer;
+            $fullname = trim($customer->getLastname().' '.$customer->getFirstname());
+
+        }
+
+        if(empty($fullname)) {
+
+            $user = $customer->getUser();
+
+            if(!empty($user)) {
+                $fullname = trim($user->getLastname().' '.$user->getFirstname());
+
+                if(empty($fullname)) {
+                    $fullname = trim($user->getUsername());
+                }
+
+            }
+
+        }
+
+        if(empty($fullname)) {
+            $fullname = trim("-");
+        }
+
+        return ucfirst($fullname);
+
     }
 
     /**
@@ -507,6 +545,5 @@ abstract class BaseSpeaker implements SpeakerInterface
         }
         return $this->protectedEmail;
     }
-
 
 }

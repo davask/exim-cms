@@ -13,6 +13,8 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Doctrine\ORM\EntityRepository;
 
+use Ivory\CKEditorBundle\Form\Type\CKEditorType;
+
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 
@@ -88,6 +90,7 @@ class SpeakerAdmin extends Admin
     {
         $listMapper
             ->addIdentifier('id')
+            ->addIdentifier('fullname')
             ->addIdentifier('customer')
             ->addIdentifier('customer.user')
             ->addIdentifier('customer.user.groups')
@@ -108,10 +111,9 @@ class SpeakerAdmin extends Admin
 
         $datagridMapper
             ->add('customer')
-            ->addIdentifier('customer')
-            ->addIdentifier('customer.user')
-            ->addIdentifier('customer.user.groups')
-            ->addIdentifier('position')
+            ->add('customer.user')
+            ->add('customer.user.groups')
+            ->add('position')
             ->add('isSpeaker')
         ;
     }
@@ -123,15 +125,19 @@ class SpeakerAdmin extends Admin
     {
         $speaker = $this->getSubject();
 
+        $categoryAdmin = $this->configurationPool->getAdminByClass("Application\\Sonata\\ClassificationBundle\\Entity\\Category");
+        $mediaAdmin = $this->configurationPool->getAdminByClass("Application\\Sonata\\MediaBundle\\Entity\\Media");
+
         // define group zoning
         $formMapper
             ->tab('Intervenant')
                 ->with('Utilisateur', array('class' => 'col-md-12'))->end()
             ->end()
             ->tab('Informations')
-                ->with('A propos', array('class' => 'col-md-4'))->end()
-                ->with('Specialitees', array('class' => 'col-md-4'))->end()
-                ->with('Publications', array('class' => 'col-md-4'))->end()
+                ->with('A-propos', array('class' => 'col-md-6'))->end()
+                ->with('Parcours', array('class' => 'col-md-6'))->end()
+                ->with('Specialitees', array('class' => 'col-md-6'))->end()
+                ->with('Publications', array('class' => 'col-md-6'))->end()
             ->end()
             ->tab('Divers')
                 ->with('Configuration', array('class' => 'col-md-6'))->end()
@@ -147,30 +153,32 @@ class SpeakerAdmin extends Admin
                 ->end()
             ->end()
             ->tab('Informations')
-                ->with('A propos')
-                    ->add('career', 'textarea', array(
+                ->with('A-propos')
+                    ->add('customer.user.biography', CKEditorType::class, array(
+                        'required' => true,
+                    ))
+                ->end()
+                ->with('Parcours')
+                    ->add('career', CKEditorType::class, array(
                         'required' => true,
                     ))
                 ->end()
                 ->with('Specialitees')
-
+                    ->add('specialties', CKEditorType::class, array(
+                        'required' => true,
+                    ))
                 ->end()
                 ->with('Publications')
-
+                    ->add('publications', CKEditorType::class, array(
+                        'required' => true,
+                    ))
                 ->end()
                 ->with('Video de presentation')
-                    ->add('presentation', EntityType::class, array(
-                        'class' => 'ApplicationSonataMediaBundle:Media',
-                        'placeholder' => 'Choisissez une video',
-                        'required' => true,
-                        'query_builder' => function(EntityRepository $repository) {
-                            $qb = $repository->createQueryBuilder('m');
-                            return $qb
-                                ->where($qb->expr()->eq('m.context', '\'lcdd\''))
-                                ->andWhere($qb->expr()->eq('m.category', self::CLASS_CAT_PRESENTATION))
-                            ;
-                        },
-                    ))
+                    ->add('presentation', 'sonata_media_type', array(
+                    'provider' => 'sonata.media.provider.vimeo',
+                    'context'  => 'lcdd',
+                    'required' => true,
+                ))
                 ->end()
             ->end()
             ->tab('Divers')
@@ -180,31 +188,15 @@ class SpeakerAdmin extends Admin
                     ))
                 ->end()
                 ->with('Speaker')
-                    ->add('position', null, array(
-                        'required' => false,
-                        'query_builder' => function(EntityRepository $repository) {
-                            $qb = $repository->createQueryBuilder('c');
-                            return $qb
-                                ->where($qb->expr()->eq('c.context', '\'lcdd\''))
-                                ->andWhere($qb->expr()->eq('c.parent', self::CLASS_CAT_POSITION))
-                            ;
-                        },
+                    ->add('position', 'sonata_type_model_list', array(
+                        'model_manager' => $categoryAdmin->getModelManager(),
                     ))
-                    ->add('avatar', null, array(
-                        'required' => true,
-                        'placeholder' => 'Choisissez votre avatar',
-                        'query_builder' => function(EntityRepository $repository) {
-                            $qb = $repository->createQueryBuilder('m');
-                            return $qb
-                                ->where($qb->expr()->eq('m.context', '\'lcdd\''))
-                                ->andWhere($qb->expr()->eq('m.category', self::CLASS_CAT_AVATAR))
-                            ;
-                        },
+                    ->add('avatar', 'sonata_type_model_list', array(
+                        'model_manager' => $mediaAdmin->getModelManager(),
                     ))
                 ->end()
                 ->with('Videos')
                     ->add('questions', null, array(
-                        'disabled' => true,
                         'multiple' => true,
                     ))
                 ->end()

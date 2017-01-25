@@ -14,6 +14,9 @@ sonata_media:
                     width: 134
                     quality: 100
                 icon:
+                    width: 32
+                    quality: 100
+                thumb:
                     width: 90
                     quality: 100
                 small:

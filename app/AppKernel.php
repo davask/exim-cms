@@ -101,7 +101,6 @@ class AppKernel extends Kernel
             // EXIM DEPENDENCIES
             new Liip\ImagineBundle\LiipImagineBundle(),
             new Knp\Bundle\GaufretteBundle\KnpGaufretteBundle(),
-            new Symfony\Cmf\Bundle\CreateBundle\CmfCreateBundle(),
 
             // EXIM THEME DEPENDENCIES
             new Application\Sonata\BasketBundle\ApplicationSonataBasketBundle(),

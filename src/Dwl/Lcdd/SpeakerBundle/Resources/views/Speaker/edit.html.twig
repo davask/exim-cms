@@ -1,0 +1,101 @@
+{% trans_default_domain "DwlLcddSpeakerBundle" %}
+{% import "@DwlLcddSpeakerBundle/Resources/views/macro.html.twig" as macro %}
+{% extends "DwlLcddSpeakerBundle:Speaker:action.html.twig" %}
+
+{% block exim_profile_action %}
+    {% if app.user.username == speaker.customer.user.username or ('ROLE_SUPER_ADMIN' in app.user.roles) == true %}
+<ul class="nav navbar-nav text-center">
+    <li>
+        <a href="javascript:jQuery('[name={{edit_form.vars.name}}]').submit();">
+            {{ 'Enregistrer' | trans }}
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('lcdd_speaker_get', { 'username' : speaker.customer.user.username }) }}">
+            {{ 'Annuler' | trans }}
+        </a>
+    </li>
+</ul>
+<ul class="nav navbar-nav navbar-right text-center">
+    <li>
+        {{ form(delete_form) }}
+    </li>
+</ul>
+    {% endif %}
+{% endblock %}
+
+{% block sonata_profile_form_start %}
+{{ form_start(edit_form) }}
+{% endblock %}
+
+{% block sonata_profile_form_errors %}
+{{ form_errors(edit_form) }}
+{% endblock %}
+
+{% block sonata_profile_form_end %}
+{{ form_end(edit_form) }}
+{% endblock %}
+
+{% block sonata_profile_tabs %}
+
+                    <!-- Tab panes -->
+
+                    <div class="tab-content">
+
+                        <div role="tabpanel" class="tab-pane active" id="apropos">
+                            {{ form_widget(edit_form.biography) }}
+                        </div>
+
+                        <div role="tabpanel" class="tab-pane" id="parcours">
+                            {{ form_widget(edit_form.career) }}
+                        </div>
+
+                        <div role="tabpanel" class="tab-pane" id="specialisations">
+                            {{ form_widget(edit_form.specialties) }}
+                        </div>
+
+                        <div role="tabpanel" class="tab-pane" id="publications">
+                            {{ form_widget(edit_form.publications) }}
+                        </div>
+
+
+                    </div>
+
+{% endblock %}
+
+{% block sonata_profile_map %}
+                    {{ form_row(edit_form.longitude) }}
+                    {{ form_row(edit_form.latitude) }}
+{% endblock %}
+
+{% block sonata_profile_presentation %}
+                    {{ form_widget(edit_form.avatar) }}
+                    {{ form_widget(edit_form.position) }}
+                    {{ form_widget(edit_form.presentation) }}
+{% endblock %}
+
+{% block sonata_profile_details %}
+
+                    {{ form_row(edit_form.phone) }}
+                    {{ form_row(edit_form.email) }}
+                    {{ form_widget(edit_form.adresses) }}
+                    <hr/>
+                    <ul class="list-inline">
+                        <li>
+                            {{ form_row(edit_form.gplusUid, { 'label': 'Identifiant Google+' }) }}
+                        </li>
+                        <li>
+                            {{ form_row(edit_form.twitterUid, { 'label': 'Identifiant Twitter' }) }}
+                        </li>
+                        <li>
+                            {{ form_row(edit_form.facebookUid, { 'label': 'Identifiant facebook' }) }}
+                        </li>
+                        <li>
+                            {{ form_row(edit_form.youtubeUid, { 'label': 'Identifiant Youtube' }) }}
+                        </li>
+                        <li>
+                            {{ form_row(edit_form.linkedinUid, { 'label': 'Identifiant linkedin' }) }}
+                        </li>
+                    </ul>
+
+{% endblock %}

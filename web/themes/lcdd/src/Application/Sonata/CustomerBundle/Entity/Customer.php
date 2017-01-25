@@ -137,9 +137,9 @@ class Customer extends BaseCustomer
             if(!empty($this->user)) {
                 $fullname = trim($this->user->getUsername());
             }
-            if(!empty($this->user)) {
-                $fullname = trim("-");
-            }
+        }
+        if(empty($fullname)) {
+            $fullname = trim("-");
         }
 
         return ucfirst($fullname);

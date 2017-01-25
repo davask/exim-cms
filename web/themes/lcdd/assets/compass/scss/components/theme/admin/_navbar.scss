@@ -12,6 +12,13 @@ header.navbar-admin {
         padding: 5px 15px;
     }
 
+    .navbar-header {
+        a {
+            color: #fff;
+            line-height: 30px;
+        }
+    }
+
     .navbar-brand {
         height:auto;
         color: $white;

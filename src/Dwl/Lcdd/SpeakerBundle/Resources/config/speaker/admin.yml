@@ -4,5 +4,14 @@ sonata_admin:
 
         groups:
             sonata.admin.group.lcdd:
+                roles: [ROLE_SUPER_ADMIN]
+                label: LCDD
+                icon:  '<i class="fa fa-lcdd"><img src="/bundles/dwllcddsearch/images/favicon-16x16.png"/></i>'
+                items:
+                    - dwl.lcdd.speaker.speaker
+            sonata.admin.group.user:
+                roles: [ROLE_SUPER_ADMIN]
+                label: Utilisateurs
+                icon:            '<i class="fa fa-user"></i>'
                 items:
                     - dwl.lcdd.speaker.speaker

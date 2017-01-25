@@ -1,0 +1,4 @@
+dwl_lcdd_speaker_intervenant:
+    resource: "@DwlLcddSpeakerBundle/Resources/config/routing/speaker.yml"
+    prefix:   /intervenant
+

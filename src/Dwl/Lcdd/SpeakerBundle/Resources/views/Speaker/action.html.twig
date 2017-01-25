@@ -1,23 +1,18 @@
 {% extends "@theme/Template/default.html.twig" %}
-{% block exim_page_header_stylesheets %}
-    {{ parent() }}
-    {% include "CmfCreateBundle::includecssfiles.html.twig" %}
-{% endblock %}
 {% block page_content %}
 <div class="body-content clearfix speaker">
-
-    {% createphp speaker as="rdf" %}
-    {{ rdf|raw }}
-    {% endcreatephp %}
+    {% block sonata_profile_form_start '' %}
 
     <h1 class="max-width col-sm-12 text-center">{{ macro.speakerName(speaker.customer.user) }}</h1>
+
+    {% block sonata_profile_form_errors '' %}
 
     <div class="max-width col-sm-12">
 
       <!-- Nav tabs -->
       <ul class="nav nav-tabs" role="tablist">
         <li role="presentation" class="active">
-            <a href="#a-propos" aria-controls="apropos" role="tab" data-toggle="tab">
+            <a href="#apropos" aria-controls="apropos" role="tab" data-toggle="tab">
                 {{ 'Â propos (see description)' | trans }}
             </a>
         </li>
@@ -38,106 +33,36 @@
         </li>
       </ul>
 
-      <!-- Tab panes -->
-      <div class="tab-content">
-        <div role="tabpanel" class="tab-pane active" id="apropos">
-            1 - Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean rhoncus nibh id arcu ullamcorper tristique. Etiam laoreet blandit tellus at malesuada. Phasellus scelerisque luctus massa non bibendum. In eget leo volutpat, placerat enim sed, bibendum arcu. Curabitur sit amet dui in sapien euismod lobortis a vitae massa. Vivamus elit ex, auctor et viverra non, commodo vitae nibh.
-        </div>
-        <div role="tabpanel" class="tab-pane" id="parcours">
-            2 - Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean rhoncus nibh id arcu ullamcorper tristique. Etiam laoreet blandit tellus at malesuada. Phasellus scelerisque luctus massa non bibendum. In eget leo volutpat, placerat enim sed, bibendum arcu. Curabitur sit amet dui in sapien euismod lobortis a vitae massa. Vivamus elit ex, auctor et viverra non, commodo vitae nibh.
-        </div>
-        <div role="tabpanel" class="tab-pane" id="specialisations">
-            3 - Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean rhoncus nibh id arcu ullamcorper tristique. Etiam laoreet blandit tellus at malesuada. Phasellus scelerisque luctus massa non bibendum. In eget leo volutpat, placerat enim sed, bibendum arcu. Curabitur sit amet dui in sapien euismod lobortis a vitae massa. Vivamus elit ex, auctor et viverra non, commodo vitae nibh.
-        </div>
-        <div role="tabpanel" class="tab-pane" id="publications">
-            4 - Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean rhoncus nibh id arcu ullamcorper tristique. Etiam laoreet blandit tellus at malesuada. Phasellus scelerisque luctus massa non bibendum. In eget leo volutpat, placerat enim sed, bibendum arcu. Curabitur sit amet dui in sapien euismod lobortis a vitae massa. Vivamus elit ex, auctor et viverra non, commodo vitae nibh.
-        </div>
-      </div>
+      {#% block sonata_profile_menu %}
+          {{ sonata_block_render({'type': 'lcdd.speaker.block.menu'}, {'current_uri': app.request.requestUri}) }}
+      {% endblock %#}
+
+      {#% include 'SonataCoreBundle:FlashMessage:render.html.twig' %#}
+
+      {% block sonata_profile_tabs '' %}
 
     </div>
-        {#% block sonata_profile_menu %}
-            {{ sonata_block_render({'type': 'lcdd.speaker.block.menu'}, {'current_uri': app.request.requestUri}) }}
-        {% endblock %#}
 
-        {#% include 'SonataCoreBundle:FlashMessage:render.html.twig' %#}
     <div class="no-horizontal-padding col-xs-12 map">
-        <div id="map-canvas" style="height:250px;"></div>
+        {% block sonata_profile_map '' %}
     </div>
 
     <div class="no-horizontal-padding col-xs-12 overview">
         <div class="clearfix">
             <div class="max-width">
                 <div class="no-horizontal-padding col-lg-6 presentation">
-                    <div class="content-media">
-                        <div class="content-embed">
-                            <div class="embed-responsive embed-responsive-16by9">
-    {% if speaker.presentation %}
-                              {{speaker.presentation.providerMetadata.html | raw}}
-    {% endif %}
-                            </div>
-                        </div>
-                    </div>
+                    {% block sonata_profile_presentation '' %}
                 </div>
                 <div class="col-lg-6 details">
-                    <span class="phone">
-                    <img src="{{ speaker.protectedPhone }}" alt="{{'user phone' | trans }}" />
-                    </span><br/>
-                    <span class="mail">
-                        <img src="{{ speaker.protectedEmail }}" alt="{{'user email' | trans }}" />
-                    </span><br/>
-                    <span class="address">
-    {% if speaker.customer.addresses | length %}
-        {% for address in speaker.customer.addresses if address.current %}
-                        {{address.fullAddress | default('-') }}
-        {% endfor %}
-    {% else %}
-                        -
-    {% endif %}
-                    </span>
-                    <hr/>
-                    <ul class="list-inline">
-    {% if speaker.customer.user.gplusUid %}
-                        <li>
-                            <a href="https://plus.google.com/{{speaker.customer.user.gplusUid}}" title="page google" target="_blank">
-                                <img src="/themes/lcdd/media/svg/google.svg" width="68px" class="svg"/>
-                            </a>
-                        </li>
-    {% endif %}
-    {% if speaker.customer.user.twitterUid %}
-                        <li>
-                            <a href="https://twitter.com/{{speaker.customer.user.twitterUid}}" title="compte twitter" target="_blank">
-                                <img src="/themes/lcdd/media/svg/twitter.svg" width="68px" class="svg"/>
-                            </a>
-                        </li>
-    {% endif %}
-    {% if speaker.customer.user.facebookUid %}
-                        <li>
-                            <a href="https://www.facebook.com/{{speaker.customer.user.facebookUid}}" title="page facebook" target="_blank">
-                                <img src="/themes/lcdd/media/svg/facebook.svg" width="68px" class="svg"/>
-                            </a>
-                        </li>
-    {% endif %}
-    {% if speaker.customer.user.youtubeUid %}
-                        <li>
-                            <a href="https://www.youtube.com/user/{{speaker.customer.user.youtubeUid}}" title="chaine youtube" target="_blank">
-                                <img src="/themes/lcdd/media/svg/youtube.svg" width="68px" class="svg"/>
-                            </a>
-                        </li>
-    {% endif %}
-    {% if speaker.customer.user.linkedinUid %}
-                        <li>
-                            <a href="https://www.linkedin.com/in/{{speaker.customer.user.linkedinUid}}" title="page linkedin" target="_blank">
-                                <img src="/themes/lcdd/media/svg/linkedin.svg" width="68px" class="svg"/>
-                            </a>
-                        </li>
-    {% endif %}
-                    </ul>
+                    {% block sonata_profile_details '' %}
                 </div>
             </div>
         </div>
     </div>
+    {% block sonata_profile_form_end '' %}
+
+
     <div class="max-width col-xs-12">
-        {#% block sonata_profile_content '' %#}
 
         <div class="sub-header">
 
@@ -149,11 +74,6 @@
     </div>
 
 </div>
-{% endblock %}
-
-{% block exim_page_footer_vendor_javascripts %}
-{{ parent() }}
-{% render(controller("cmf_create.jsloader.controller:includeJSFilesAction")) %}
 {% endblock %}
 
 {% block exim_page_scripts %}

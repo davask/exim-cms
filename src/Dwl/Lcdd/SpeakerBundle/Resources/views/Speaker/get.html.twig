@@ -2,7 +2,123 @@
 {% import "@DwlLcddSpeakerBundle/Resources/views/macro.html.twig" as macro %}
 {% extends "DwlLcddSpeakerBundle:Speaker:action.html.twig" %}
 
-{% block sonata_profile_content %}
+{% block exim_profile_action %}
+    {% if app.user.username == speaker.customer.user.username or ('ROLE_SUPER_ADMIN' in app.user.roles) == true %}
+<ul class="nav navbar-nav text-center">
+    <li>
+        <a href="{{ path('lcdd_speaker_edit', { 'username' : speaker.customer.user.username }) }}">
+            &Eacute;diter
+        </a>
+    </li>
+</ul>
+    {% endif %}
+{% endblock %}
+
+
+{% block sonata_profile_tabs %}
+
+                    <!-- Tab panes -->
+
+                    <div class="tab-content">
+
+                        <div role="tabpanel" class="tab-pane active" id="apropos">
+                            {{ speaker.customer.user.biography | raw }}
+                        </div>
+
+                        <div role="tabpanel" class="tab-pane" id="parcours">
+                            {{ speaker.career | raw }}
+                        </div>
+
+                        <div role="tabpanel" class="tab-pane" id="specialisations">
+                            {{ speaker.specialties | raw }}
+                        </div>
+
+                        <div role="tabpanel" class="tab-pane" id="publications">
+                            {{ speaker.publications | raw }}
+                        </div>
+
+
+                    </div>
+
+{% endblock %}
+
+{% block sonata_profile_map %}
+<div id="map-canvas" style="height:250px;"></div>
+{% endblock %}
+
+{% block sonata_profile_presentation %}
+                    <div class="content-media">
+                        <div class="content-embed">
+                            <div class="embed-responsive embed-responsive-16by9">
+    {% if speaker.presentation %}
+                              {{speaker.presentation.providerMetadata.html | raw}}
+    {% endif %}
+                            </div>
+                        </div>
+                    </div>
+
+{% endblock %}
+
+{% block sonata_profile_details %}
+
+                    <span class="phone">
+                    <img src="{{ speaker.protectedPhone }}" alt="{{'user phone' | trans }}" />
+                    </span><br/>
+                    <span class="mail">
+                        <img src="{{ speaker.protectedEmail }}" alt="{{'user email' | trans }}" />
+                    </span><br/>
+                    <span class="address">
+    {% if speaker.customer.addresses | length %}
+        {% for address in speaker.customer.addresses if address.current %}
+                        {{address.fullAddress | default('-') }}
+        {% endfor %}
+    {% else %}
+                        -
+    {% endif %}
+                    </span>
+                    <hr/>
+                    <ul class="list-inline">
+    {% if speaker.customer.user.gplusUid %}
+                        <li>
+                            <a href="https://plus.google.com/{{speaker.customer.user.gplusUid}}" title="page google" target="_blank">
+                                <img src="/themes/lcdd/media/svg/google.svg" width="68px" class="svg"/>
+                            </a>
+                        </li>
+    {% endif %}
+    {% if speaker.customer.user.twitterUid %}
+                        <li>
+                            <a href="https://twitter.com/{{speaker.customer.user.twitterUid}}" title="compte twitter" target="_blank">
+                                <img src="/themes/lcdd/media/svg/twitter.svg" width="68px" class="svg"/>
+                            </a>
+                        </li>
+    {% endif %}
+    {% if speaker.customer.user.facebookUid %}
+                        <li>
+                            <a href="https://www.facebook.com/{{speaker.customer.user.facebookUid}}" title="page facebook" target="_blank">
+                                <img src="/themes/lcdd/media/svg/facebook.svg" width="68px" class="svg"/>
+                            </a>
+                        </li>
+    {% endif %}
+    {% if speaker.customer.user.youtubeUid %}
+                        <li>
+                            <a href="https://www.youtube.com/user/{{speaker.customer.user.youtubeUid}}" title="chaine youtube" target="_blank">
+                                <img src="/themes/lcdd/media/svg/youtube.svg" width="68px" class="svg"/>
+                            </a>
+                        </li>
+    {% endif %}
+    {% if speaker.customer.user.linkedinUid %}
+                        <li>
+                            <a href="https://www.linkedin.com/in/{{speaker.customer.user.linkedinUid}}" title="page linkedin" target="_blank">
+                                <img src="/themes/lcdd/media/svg/linkedin.svg" width="68px" class="svg"/>
+                            </a>
+                        </li>
+    {% endif %}
+                    </ul>
+
+{% endblock %}
+
+
+{#
     {% sonata_template_box 'This is the speaker profile template. Feel free to override it.' %}
 
     {% set has_center = false %}
@@ -42,5 +158,6 @@
     </div>
 
 </div>
-{% endblock %}
+
+#}
 

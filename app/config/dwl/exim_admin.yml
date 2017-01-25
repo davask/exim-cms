@@ -119,15 +119,14 @@ sonata_admin:
                     - sonata.classification.admin.collection
                     - sonata.classification.admin.context
 
-            sonata.admin.group.site_builder:
+            sonata.admin.group.user:
                 roles: [ROLE_SUPER_ADMIN]
-                label:           Site Builder
-                label_catalogue: SonataPageBundle
-                icon:            '<i class="fa fa-puzzle-piece"></i>'
+                label:           exim_user
+                label_catalogue: SonataAdminBundle
+                icon:            '<i class="fa fa-user"></i>'
                 items:
-                    - sonata.page.admin.site
-                    - sonata.page.admin.page
-                    - sonata.page.admin.block
+                    - sonata.user.admin.user
+                    - sonata.customer.admin.customer
 
             sonata.admin.group.administration:
                 roles: [ROLE_SUPER_ADMIN]
@@ -138,6 +137,16 @@ sonata_admin:
                     - sonata.user.admin.user
                     - sonata.user.admin.group
                     - sonata.notification.admin.message
+
+            sonata.admin.group.site_builder:
+                roles: [ROLE_SUPER_ADMIN]
+                label:           Site Builder
+                label_catalogue: SonataPageBundle
+                icon:            '<i class="fa fa-puzzle-piece"></i>'
+                items:
+                    - sonata.page.admin.site
+                    - sonata.page.admin.page
+                    - sonata.page.admin.block
 
     assets:
         stylesheets:
