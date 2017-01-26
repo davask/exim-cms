@@ -27,6 +27,7 @@ class DwlLcddSpeakerExtension extends Extension
 
         if (isset($bundles['SonataAdminBundle'])) {
             $loader->load('admin.yml');
+            $loader->load('front_admin.yml');
         }
 
         $loader->load('block.yml');

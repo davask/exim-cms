@@ -11,12 +11,20 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 use Doctrine\ORM\EntityRepository;
 
+use Sonata\AdminBundle\Admin\Pool;
+
 class SpeakerType extends AbstractType
 {
 
     const CLASS_CAT_AVATAR = 48;
     const CLASS_CAT_POSITION = 52;
     const CLASS_CAT_PRESENTATION = 61;
+
+    private $adminPool;
+
+    public function __construct(Pool $adminPool) {
+        $this->adminPool = $adminPool;
+    }
 
     /**
      * @param FormBuilderInterface $builder
@@ -29,7 +37,8 @@ class SpeakerType extends AbstractType
         $customer = $speaker->getCustomer();
         $user = $customer->getUser();
 
-        // $categoryAdmin = $this->getConfigurationPool()->getAdminByClass("\\Application\\Sonata\\ClassificationBundle\\Entity\\Category");
+        $categoryAdmin = $this->adminPool->getAdminByClass("Application\\Sonata\\ClassificationBundle\\Entity\\Category");
+        $mediaAdmin = $this->adminPool->getAdminByClass("Application\\Sonata\\MediaBundle\\Entity\\Media");
 
         $builder
             // ->add('isSpeaker')
@@ -75,10 +84,9 @@ class SpeakerType extends AbstractType
             ))
             ->add('latitude')
             ->add('longitude')
-            ->add('position')
-            // ->add('position', 'sonata_type_model_list', array(
-            //     'model_manager' => $categoryAdmin->getModelManager(),
-            // ))
+            ->add('position', 'sonata_type_model_list', array(
+                'model_manager' => $categoryAdmin->getModelManager(),
+            ))
             ->add('avatar', 'sonata_media_type', array(
                 'provider' => 'sonata.media.provider.image',
                 'context'  => 'lcdd',

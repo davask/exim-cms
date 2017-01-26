@@ -171,7 +171,7 @@ class SpeakerController extends Controller
     */
     private function createEditForm(Speaker $entity)
     {
-        $form = $this->createForm(new SpeakerType(), $entity, array(
+        $form = $this->createForm(new SpeakerType($this->container->get('sonata.admin.pool')), $entity, array(
             'action' => $this->generateUrl('lcdd_speaker_update', array('id' => $entity->getId())),
             'method' => 'PUT',
         ));
