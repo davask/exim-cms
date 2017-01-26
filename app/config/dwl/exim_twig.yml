@@ -3,7 +3,7 @@ twig:
         '%exim.theme.path.root%/views': theme
     globals:
         theme:
-            demo: false # '%kernel.debug%'
+            demo: '%exim.theme.demo%' # '%kernel.debug%'
             name: '%exim.theme.name%'
             path:
                 web: '%exim.theme.path.web%'

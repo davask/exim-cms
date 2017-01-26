@@ -477,7 +477,7 @@ abstract class BaseSpeaker implements SpeakerInterface
         $font = dirname(__DIR__).'/Helper/OpenSans-Regular.ttf';
 
         if(empty($text)) {
-            $text = '-';
+            return '';
         }
 
         $width = strlen($text) * 15;

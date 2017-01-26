@@ -3,7 +3,7 @@
 <div class="body-content clearfix speaker">
     {% block sonata_profile_form_start '' %}
 
-    <h1 class="max-width col-sm-12 text-center">{{ macro.speakerName(speaker.customer.user) }}</h1>
+    <h1 class="max-width col-sm-12 text-center">{{ speaker.fullname }}</h1>
 
     {% block sonata_profile_form_errors '' %}
 
@@ -76,10 +76,4 @@
 </div>
 {% endblock %}
 
-{% block exim_page_scripts %}
-    {% set gmapapikey = 'AIzaSyAbE9d8X2BvRbO3E_8tt9n84ewVejztclQ' %}
-    <script src="https://maps.googleapis.com/maps/api/js?key={{gmapapikey}}&libraries=places" type="text/javascript"></script>
-    <script src="{{ asset('bundles/dwleximcore/vendor/google/maps/js/markers.js') }}?v={{theme.assets.version.img}}" type="text/javascript"></script>
-    <script src="{{ asset('bundles/dwleximcore/vendor/google/maps/js/styles.js') }}?v={{theme.assets.version.img}}" type="text/javascript"></script>
-    <script src="{{ asset('bundles/dwleximcore/vendor/google/maps/js/script.js') }}?v={{theme.assets.version.img}}" type="text/javascript"></script>
-{% endblock %}
+{% block exim_page_scripts '' %}

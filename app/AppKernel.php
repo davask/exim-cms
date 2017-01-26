@@ -116,6 +116,7 @@ class AppKernel extends Kernel
             new Application\Sonata\UserBundle\ApplicationSonataUserBundle(),
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
             new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
+            new Bazinga\Bundle\GeocoderBundle\BazingaGeocoderBundle(),
 
 
             // EXIM CORE

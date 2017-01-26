@@ -2,15 +2,19 @@
 {% import "@DwlLcddSpeakerBundle/Resources/views/macro.html.twig" as macro %}
 {% extends "DwlLcddSpeakerBundle:Speaker:action.html.twig" %}
 
+{% if speaker.customer.addresses | length %}
+    {% for address in speaker.customer.addresses if address.current %}
+        {% set speakeraddress = address %}
+    {% endfor %}
+{% endif %}
+
 {% block exim_profile_action %}
     {% if app.user.username == speaker.customer.user.username or ('ROLE_SUPER_ADMIN' in app.user.roles) == true %}
-<ul class="nav navbar-nav text-center">
     <li>
-        <a href="{{ path('lcdd_speaker_edit', { 'username' : speaker.customer.user.username }) }}">
-            &Eacute;diter
+        <a href="{{ path('admin_lcdd_speaker_edit', { 'id' : speaker.id } }}">
+            {% media speaker.avatar, 'lcdd_icon' with { 'width': '16', 'height': '16' } %} <b>{{admin|trans}}</b>
         </a>
     </li>
-</ul>
     {% endif %}
 {% endblock %}
 
@@ -61,59 +65,79 @@
 
 {% block sonata_profile_details %}
 
+    {% if speaker.protectedPhone %}
                     <span class="phone">
-                    <img src="{{ speaker.protectedPhone }}" alt="{{'user phone' | trans }}" />
-                    </span><br/>
+                        <img src="{{ speaker.protectedPhone }}" alt="{{'user phone' | trans }}" />
+                    </span>
+                    <br/>
+    {% endif %}
+    {% if speaker.protectedEmail %}
                     <span class="mail">
                         <img src="{{ speaker.protectedEmail }}" alt="{{'user email' | trans }}" />
-                    </span><br/>
-                    <span class="address">
-    {% if speaker.customer.addresses | length %}
-        {% for address in speaker.customer.addresses if address.current %}
-                        {{address.fullAddress | default('-') }}
-        {% endfor %}
-    {% else %}
-                        -
-    {% endif %}
                     </span>
+                    <br/>
+    {% endif %}
+    {% if speakeraddress is defined %}
+                    <span class="address">
+                        {{ speakeraddress }}
+                    </span>
+                    <br/>
+    {% endif %}
+    {% if (
+        speaker.protectedPhone or speaker.protectedEmail or speakeraddress is defined
+    ) and (
+        speaker.customer.user.gplusUid or
+          speaker.customer.user.twitterUid or
+          speaker.customer.user.facebookUid or
+          speaker.customer.user.youtubeUid or
+          speaker.customer.user.linkedinUid
+    ) %}
                     <hr/>
+    {% endif %}
+    {% if speaker.customer.user.gplusUid is defined or
+          speaker.customer.user.twitterUid is defined or
+          speaker.customer.user.facebookUid is defined or
+          speaker.customer.user.youtubeUid is defined or
+          speaker.customer.user.linkedinUid
+    %}
                     <ul class="list-inline">
-    {% if speaker.customer.user.gplusUid %}
+        {% if speaker.customer.user.gplusUid %}
                         <li>
                             <a href="https://plus.google.com/{{speaker.customer.user.gplusUid}}" title="page google" target="_blank">
                                 <img src="/themes/lcdd/media/svg/google.svg" width="68px" class="svg"/>
                             </a>
                         </li>
-    {% endif %}
-    {% if speaker.customer.user.twitterUid %}
+        {% endif %}
+        {% if speaker.customer.user.twitterUid %}
                         <li>
                             <a href="https://twitter.com/{{speaker.customer.user.twitterUid}}" title="compte twitter" target="_blank">
                                 <img src="/themes/lcdd/media/svg/twitter.svg" width="68px" class="svg"/>
                             </a>
                         </li>
-    {% endif %}
-    {% if speaker.customer.user.facebookUid %}
+        {% endif %}
+        {% if speaker.customer.user.facebookUid %}
                         <li>
                             <a href="https://www.facebook.com/{{speaker.customer.user.facebookUid}}" title="page facebook" target="_blank">
                                 <img src="/themes/lcdd/media/svg/facebook.svg" width="68px" class="svg"/>
                             </a>
                         </li>
-    {% endif %}
-    {% if speaker.customer.user.youtubeUid %}
+        {% endif %}
+        {% if speaker.customer.user.youtubeUid %}
                         <li>
                             <a href="https://www.youtube.com/user/{{speaker.customer.user.youtubeUid}}" title="chaine youtube" target="_blank">
                                 <img src="/themes/lcdd/media/svg/youtube.svg" width="68px" class="svg"/>
                             </a>
                         </li>
-    {% endif %}
-    {% if speaker.customer.user.linkedinUid %}
+        {% endif %}
+        {% if speaker.customer.user.linkedinUid %}
                         <li>
                             <a href="https://www.linkedin.com/in/{{speaker.customer.user.linkedinUid}}" title="page linkedin" target="_blank">
                                 <img src="/themes/lcdd/media/svg/linkedin.svg" width="68px" class="svg"/>
                             </a>
                         </li>
-    {% endif %}
+        {% endif %}
                     </ul>
+    {% endif %}
 
 {% endblock %}
 
@@ -161,3 +185,31 @@
 
 #}
 
+{% block exim_page_scripts %}
+
+    {% set gmapapikey = 'AIzaSyAbE9d8X2BvRbO3E_8tt9n84ewVejztclQ' %}
+    <script src="https://maps.googleapis.com/maps/api/js?key={{gmapapikey}}&libraries=places" type="text/javascript"></script>
+    {#<script src="{{ asset('bundles/dwleximcore/vendor/google/maps/js/markers.js') }}?v={{theme.assets.version.js}}" type="text/javascript"></script>#}
+    <script type="text/javascript">
+    var markers = [{
+        "id":1,
+    {% if speakeraddress is defined %}
+        "name":"{{speaker.fullname}}",
+        "address_1":"{{speakeraddress.streetNumber}} {{speakeraddress.streetName}}",
+        "address_2":"",
+        "city":"{{speakeraddress.locality}}",
+        "postcode":"{{speakeraddress.postalCode}}",
+        "country":"{{speakeraddress.country.name}}"
+    {% else %}
+        "name":"La chaine du droit",
+        "address_1":"60 Boulevard des Dames",
+        "address_2":"",
+        "city":"Marseille",
+        "postcode":"13002",
+        "country":"France"
+    {% endif %}
+    }];
+    </script>
+    <script src="{{ asset('bundles/dwleximcore/vendor/google/maps/js/styles.js') }}?v={{theme.assets.version.js}}" type="text/javascript"></script>
+    <script src="{{ asset('bundles/dwleximcore/vendor/google/maps/js/script.js') }}?v={{theme.assets.version.js}}" type="text/javascript"></script>
+{% endblock %}

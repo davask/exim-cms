@@ -41,23 +41,29 @@
                     <span class="icon-bar"></span>
                   </button>
                   <a class="navbar-brand" href="#">
-                    <!-- <i class="fa fa-home fa-fw" aria-hidden="true"></i> -->
+        {% if speaker is defined %}
                     <a href="{{ path('lcdd_speaker_get', { 'username' : speaker.customer.user.username }) }}">
                         {% media speaker.avatar, 'lcdd_icon' with { 'width': '16', 'height': '16' } %} <b>{{speaker.customer.user.username}}</b>
                     </a>
+        {% else %}
+                    <a href="{{ path('lcdd_speaker_get', { 'username' : app.user.username }) }}">
+                        <i class="fa fa-home fa-fw" aria-hidden="true"></i> <b>{{app.user.username}}</b>
+                    </a>
+        {% endif %}
                   </a>
                 </div>
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse" id="exim-navbar-collapse">
-        {% if 'ROLE_EXIM_ADMIN' in app.user.roles %}
                     <ul class="nav navbar-nav navbar-right text-center">
-
                         {% include '@theme/Template/Header/admin.html.twig' %}
                         {% include '@theme/Template/Header/edition.html.twig' %}
-                        {% include '@theme/Template/Header/switch.html.twig' %}
                     </ul>
-        {% endif %}
-                    {% block exim_profile_action %}{% endblock %}
+                    {% block exim_profile_action %}
+                    <ul class="nav navbar-nav text-center">
+                        {% include '@theme/Template/Header/switch.html.twig' %}
+                        {% include '@theme/Template/Header/dashboard.html.twig' %}
+                    </ul>
+                    {% endblock %}
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
         </header>

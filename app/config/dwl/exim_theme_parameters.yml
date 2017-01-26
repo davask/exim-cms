@@ -19,8 +19,8 @@ parameters:
     exim.theme.name: exim
     exim.theme.host: dev.davaskweblimited.com
     exim.theme.assets.version.css: '1.0'
-    exim.theme.assets.version.js: '1.0'
-    exim.theme.assets.version.img: '1.0'
+    exim.theme.assets.version.js: '1.1'
+    exim.theme.assets.version.img: '1.1'
     exim.theme.front.format: 'html'
 
     exim.theme.front.css:

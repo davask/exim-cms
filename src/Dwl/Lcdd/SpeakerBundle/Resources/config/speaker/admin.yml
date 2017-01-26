@@ -10,7 +10,7 @@ sonata_admin:
                 items:
                     - dwl.lcdd.speaker.speaker
             sonata.admin.group.user:
-                roles: [ROLE_SUPER_ADMIN]
+                roles: [ROLE_USER]
                 label: Utilisateurs
                 icon:            '<i class="fa fa-user"></i>'
                 items:

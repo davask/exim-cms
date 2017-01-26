@@ -73,3 +73,11 @@ sonata_user:
             #     route: 'sonata_order_index'
             #     label: 'order_list'
             #     domain: 'SonataOrderBundle'
+
+bazinga_geocoder:
+    providers:
+        google_maps:
+            locale:               null
+            region:               null
+            use_ssl:              true
+            api_key:              AIzaSyAbE9d8X2BvRbO3E_8tt9n84ewVejztclQ

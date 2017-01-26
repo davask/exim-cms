@@ -94,6 +94,25 @@ class DefaultController extends Controller
             return $this->redirect($this->generateUrl('lcdd_speaker_all'));
         }
 
+        // Retrieve information from the current user (by its IP address)
+        $result = $this->container
+            ->get('bazinga_geocoder.geocoder')
+            ->using('google_maps')
+            ->geocode('Kirchenstrasse 9, Erlangen, Allemagne');
+
+        // Find the 5 nearest objects (15km) from the current user.
+        $address = $result->first();
+        // $objects = ObjectQuery::create()
+        //     ->filterByDistanceFrom($address->getLatitude(), $address->getLongitude(), 15)
+        //     ->limit(5)
+        //     ->find();
+
+        dump(
+            $address
+            // $objects
+        );
+
+
         $site = $this->get('sonata.page.manager.site')->findOneBy(array('id'=>1));
         $page = $this->get('sonata.page.cms_manager_selector')->retrieve()
             ->getPageByRouteName($site,$this->get('request')->get('_route'));

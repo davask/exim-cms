@@ -68,7 +68,7 @@ var addMarkers = function() {
                     marker = new google.maps.Marker({
                       position: gc.geometry.location,
                       map: MAP,
-                      title: "Studio cyclone - " + marker.name,
+                      title: marker.name,
                       icon: "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAMAAAAM7l6QAAAA51BMVEUAAAARP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1kRP1lWONL1AAAATHRSTlMAAQIDBAUHCAkKCwwPEBESFRgcHh8hIicpMTM2Oj0+P0FDS0xNTlhiZGdocXN8f4CCg4WIl6Kjpqirrbq+wMHDys7R2ubp6+3v9/v9r3MSiAAAAO5JREFUGBl1wQk7AlEYBtD3lkE0JFmTse+KIntRCTPv//89vpnnNvfOdg4s7nHv5enOqyCP26fWnUdG02dsWkdKi7agjoS1gAk/C7ANGLpYhlrtMtSDZYMi2ETkkKEKjBuKU2htigMYHySDMjSXog1jSnKEGUXRh/FNcoQZRfEIY0AyKEOrUnRgXFGcQLul2INRo/AbiHgUvgPLK0VwvgS10mHoGrYGUxaR8M6EeyRtM6GKlC9aHpC2S0sNGWPGnpG1z9g6stSE2hvyHFHbQp7SLyOfyHfGyA7yzf1RjFHkkqKFIs6EHCoUcrxmCbZ/alda5t7XpDYAAAAASUVORK5CYII="
                     });
                     google.maps.event.addListener(marker, "click", function() {

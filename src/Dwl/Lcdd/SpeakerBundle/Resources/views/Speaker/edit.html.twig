@@ -64,8 +64,7 @@
 {% endblock %}
 
 {% block sonata_profile_map %}
-                    {{ form_row(edit_form.longitude) }}
-                    {{ form_row(edit_form.latitude) }}
+                    {{ form_row(edit_form.adresses) }}
 {% endblock %}
 
 {% block sonata_profile_presentation %}
@@ -78,7 +77,6 @@
 
                     {{ form_row(edit_form.phone) }}
                     {{ form_row(edit_form.email) }}
-                    {{ form_widget(edit_form.adresses) }}
                     <hr/>
                     <ul class="list-inline">
                         <li>

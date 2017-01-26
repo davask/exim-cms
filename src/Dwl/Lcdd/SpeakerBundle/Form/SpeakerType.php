@@ -38,6 +38,7 @@ class SpeakerType extends AbstractType
         $user = $customer->getUser();
 
         $categoryAdmin = $this->adminPool->getAdminByClass("Application\\Sonata\\ClassificationBundle\\Entity\\Category");
+        $addressAdmin = $this->adminPool->getAdminByClass("Application\\Sonata\\CustomerBundle\\Entity\\Address");
         $mediaAdmin = $this->adminPool->getAdminByClass("Application\\Sonata\\MediaBundle\\Entity\\Media");
 
         $builder
@@ -66,7 +67,21 @@ class SpeakerType extends AbstractType
             ->add('adresses', EntityType::class, array(
                 'class' => 'ApplicationSonataCustomerBundle:Address',
                 'property_path' => 'customer.addresses',
+                'query_builder' => function (EntityRepository $repository) use($customer) {
+                    return $repository->createQueryBuilder('s')
+                        ->leftJoin('s.customer', 'c')
+                        ->where('c.id = :cid')
+                        ->setParameters(array(
+                            'cid' => $customer->getId(),
+                        ))
+                    ;
+                },
             ))
+            // ->add('adresses', 'sonata_type_model_list', array(
+            //     'class' => 'ApplicationSonataCustomerBundle:Address',
+            //     'model_manager' => $addressAdmin->getModelManager(),
+            //     'property_path' => 'customer.addresses',
+            // ))
             ->add('gplusUid', null, array(
                 'property_path' => 'customer.user.gplusUid',
             ))
@@ -82,11 +97,10 @@ class SpeakerType extends AbstractType
             ->add('linkedinUid', null, array(
                 'property_path' => 'customer.user.linkedinUid',
             ))
-            ->add('latitude')
-            ->add('longitude')
-            ->add('position', 'sonata_type_model_list', array(
-                'model_manager' => $categoryAdmin->getModelManager(),
-            ))
+            ->add('position')
+            // ->add('position', 'sonata_type_model_list', array(
+            //     'model_manager' => $categoryAdmin->getModelManager(),
+            // ))
             ->add('avatar', 'sonata_media_type', array(
                 'provider' => 'sonata.media.provider.image',
                 'context'  => 'lcdd',

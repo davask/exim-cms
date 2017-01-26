@@ -120,7 +120,7 @@ sonata_admin:
                     - sonata.classification.admin.context
 
             sonata.admin.group.user:
-                roles: [ROLE_SUPER_ADMIN]
+                roles: [ROLE_USER]
                 label:           exim_user
                 label_catalogue: SonataAdminBundle
                 icon:            '<i class="fa fa-user"></i>'

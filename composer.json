@@ -73,7 +73,8 @@
         "twbs/bootstrap": "v3.0.0",
         "twig/extensions": "~1.0",
         "twig/twig": "^1.24",
-        "willdurand/faker-bundle": "~1.0"
+        "willdurand/faker-bundle": "~1.0",
+        "willdurand/geocoder-bundle": "^4.1"
     },
 
     "require-dev": {
