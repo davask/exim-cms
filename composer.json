@@ -1,0 +1,31 @@
+{
+    "name" : "exim/corebundle",
+    "description" : "A core bundle for the eXim cms",
+    "type" : "symfony-bundle",
+    "authors" : [{
+        "name" : "davask",
+        "email" : "contact@davaskweblimited.com"
+    }],
+    "keywords" : [
+        "core bundle",
+        "exim cms"
+    ],
+    "license" : [
+        "MIT"
+    ],
+    "require" : {
+    },
+    "autoload" : {
+        "psr-0" : {
+            "Dwl\\Exim\\CoreBundle" : ""
+        }
+    },
+    "target-dir" : "Dwl\\Exim\\CoreBundle",
+    "repositories" : [{
+    }],
+    "extra" : {
+    "branch-alias" : {
+            "dev-master" : "1.x-dev"
+        }
+    }
+}
