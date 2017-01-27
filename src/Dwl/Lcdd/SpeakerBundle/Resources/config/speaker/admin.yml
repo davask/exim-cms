@@ -10,8 +10,8 @@ sonata_admin:
                 items:
                     - dwl.lcdd.speaker.speaker
             sonata.admin.group.user:
-                roles: [ROLE_USER]
+                roles: [ROLE_EXIM_USER]
                 label: Utilisateurs
-                icon:            '<i class="fa fa-user"></i>'
+                icon: '<i class="fa fa-user"></i>'
                 items:
                     - dwl.lcdd.speaker.speaker

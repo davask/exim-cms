@@ -9,7 +9,7 @@
             "": "src/"
         },
         "psr-4": {
-            "": "web/themes/lcdd/src/"
+            "": "web/themes/Lcdd/src/"
         }
     },
 

@@ -103,6 +103,7 @@ class AppKernel extends Kernel
             new Knp\Bundle\GaufretteBundle\KnpGaufretteBundle(),
 
             // EXIM THEME DEPENDENCIES
+            new Application\Sonata\AdminBundle\ApplicationSonataAdminBundle(),
             new Application\Sonata\BasketBundle\ApplicationSonataBasketBundle(),
             new Application\Sonata\ClassificationBundle\ApplicationSonataClassificationBundle(),
             new Application\Sonata\CustomerBundle\ApplicationSonataCustomerBundle(),
@@ -132,6 +133,10 @@ class AppKernel extends Kernel
             // LCDD
             new Dwl\Lcdd\SearchBundle\DwlLcddSearchBundle(),
             new Dwl\Lcdd\SpeakerBundle\DwlLcddSpeakerBundle(),
+
+            // EXIM THEME : LCDD
+            new Exim\Theme\Lcdd\FrontBundle\EximThemeLcddFrontBundle(),
+            new Exim\Theme\Lcdd\AdminBundle\EximThemeLcddAdminBundle(),
 
         );
 

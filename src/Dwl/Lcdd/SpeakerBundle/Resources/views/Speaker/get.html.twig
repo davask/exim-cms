@@ -11,7 +11,7 @@
 {% block exim_profile_action %}
     {% if app.user.username == speaker.customer.user.username or ('ROLE_SUPER_ADMIN' in app.user.roles) == true %}
     <li>
-        <a href="{{ path('admin_lcdd_speaker_edit', { 'id' : speaker.id } }}">
+        <a href="{{ path('admin_lcdd_speaker_edit', { 'id' : speaker.id }) }}">
             {% media speaker.avatar, 'lcdd_icon' with { 'width': '16', 'height': '16' } %} <b>{{admin|trans}}</b>
         </a>
     </li>

@@ -1,6 +1,6 @@
 twig:
     paths:
-        '%exim.theme.path.root%/views': theme
+        '%exim.theme.path.root%/Resources/views': theme
     globals:
         theme:
             demo: '%exim.theme.demo%' # '%kernel.debug%'
