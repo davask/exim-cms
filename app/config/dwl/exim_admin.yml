@@ -126,7 +126,7 @@ sonata_admin:
                     - sonata.classification.admin.context
 
             sonata.admin.group.user:
-                roles: [ROLE_EXIM_USER]
+                roles: [ROLE_SUPER_ADMIN]
                 label:           exim_user
                 label_catalogue: SonataAdminBundle
                 icon:            '<i class="fa fa-user"></i>'
@@ -153,6 +153,18 @@ sonata_admin:
                     - sonata.page.admin.site
                     - sonata.page.admin.page
                     - sonata.page.admin.block
+
+            sonata.admin.group.exim:
+                roles: [ROLE_EXIM_USER]
+                label:           mon_profil
+                label_catalogue: DwlEximCoreBundle
+                icon:            '<i class="fa fa-user"></i>'
+                items:
+                    - route:        page_slug
+                      route_params:
+                        path: /admin/lcdd/speaker/item.id/edit
+                      label:        Intervenants
+
 
     templates:
         layout:                         EximTheme%exim.theme.name%AdminBundle::standard_layout.html.twig

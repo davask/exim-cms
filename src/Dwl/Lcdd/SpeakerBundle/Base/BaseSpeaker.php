@@ -86,7 +86,13 @@ abstract class BaseSpeaker implements SpeakerInterface
      *
      */
 
-    protected $displayName;
+    /**
+     * @var \Application\Sonata\MediaBundle\Entity\Media
+     *
+     * @ORM\ManyToOne(targetEntity="\Application\Sonata\MediaBundle\Entity\Media",cascade={"persist"})
+     * @ORM\JoinColumn(name="media_id", referencedColumnName="id")
+     */
+    protected $avatar;
 
     /**
      * @var \Application\Sonata\CustomerBundle\Entity\Customer
@@ -95,57 +101,6 @@ abstract class BaseSpeaker implements SpeakerInterface
      * @ORM\JoinColumn(name="customer_id", referencedColumnName="id")
      */
     protected $customer;
-
-    /**
-     * @var boolean
-     *
-     * @ORM\Column(name="is_speaker", type="boolean", nullable=true)
-     */
-    protected $isSpeaker;
-
-    /**
-     * @var ArrayCollection
-     *
-     * @ORM\OneToMany(targetEntity="\Dwl\Lcdd\SearchBundle\Entity\Question", mappedBy="speaker")
-     */
-    protected $questions;
-
-    /**
-     * @var \Application\Sonata\ClassificationBundle\Entity\Category
-     *
-     * @ORM\ManyToOne(targetEntity="\Application\Sonata\ClassificationBundle\Entity\Category")
-     * @ORM\JoinColumn(name="category_id", referencedColumnName="id")
-     */
-    protected $position;
-
-    /**
-     * @var \Application\Sonata\MediaBundle\Entity\Media
-     *
-     * @ORM\ManyToOne(targetEntity="\Application\Sonata\MediaBundle\Entity\Media")
-     * @ORM\JoinColumn(name="media_id", referencedColumnName="id")
-     */
-    protected $avatar;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="career", type="string", length=1000, nullable=true)
-     */
-    protected $career;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="specialties", type="string", length=1000, nullable=true)
-     */
-    protected $specialties;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="publications", type="string", length=1000, nullable=true)
-     */
-    protected $publications;
 
     /* see http://www.coordonnees-gps.fr/ */
     /**
@@ -162,24 +117,62 @@ abstract class BaseSpeaker implements SpeakerInterface
      */
     protected $longitude;
 
-    /**
-     * @var ArrayCollection
-     *
-     * @ORM\ManyToOne(targetEntity="\Application\Sonata\MediaBundle\Entity\Media")
-     * @ORM\JoinColumn(name="presentation_id", referencedColumnName="id")
-     */
-    protected $presentation;
-
     protected $protectedEmail;
 
     protected $protectedPhone;
 
     /**
-     * Constructor
+     * {@inheritdoc}
      */
-    public function __construct()
+    public function __toString()
     {
-        $this->questions = new \Doctrine\Common\Collections\ArrayCollection();
+        return $this->getFullname() ?: 'n/a';
+    }
+
+    /**
+     * Get Firstname
+     *
+     */
+    public function getFirstname()
+    {
+        $firstname = '';
+
+        $customer = $this->customer;
+        if(!empty($customer)) {
+            $firstname = $customer->getFirstname();
+        }
+
+        if(empty($firstname)) {
+            $user = $customer->getUser();
+            if(!empty($user)) {
+                $firstname = $user->getFirstname();
+            }
+        }
+
+        return $firstname;
+    }
+
+    /**
+     * Get Firstname
+     *
+     */
+    public function getLastname()
+    {
+        $lastname = '';
+
+        $customer = $this->customer;
+        if(!empty($customer)) {
+            $lastname = $customer->getLastname();
+        }
+
+        if(empty($lastname)) {
+            $user = $customer->getUser();
+            if(!empty($user)) {
+                $lastname = $user->getLastname();
+            }
+        }
+
+        return $lastname;
     }
 
     /**
@@ -216,255 +209,6 @@ abstract class BaseSpeaker implements SpeakerInterface
 
         return ucfirst($fullname);
 
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setCustomer(CustomerInterface $customer)
-    {
-        $this->customer = $customer;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getCustomer()
-    {
-        return $this->customer;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setIsSpeaker($isSpeaker)
-    {
-        $this->isSpeaker = $isSpeaker;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getIsSpeaker()
-    {
-        return $this->isSpeaker;
-    }
-
-    /**
-     * Add questions
-     *
-     * @param \Dwl\Lcdd\SearchBundle\Entity\Question $questions
-     * @return User
-     */
-    public function addQuestion(\Dwl\Lcdd\SearchBundle\Entity\Question $questions)
-    {
-        $this->questions[] = $questions;
-
-        return $this;
-    }
-
-    /**
-     * Remove questions
-     *
-     * @param \Dwl\Lcdd\SearchBundle\Entity\Question $questions
-     */
-    public function removeQuestion(\Dwl\Lcdd\SearchBundle\Entity\Question $questions)
-    {
-        $this->questions->removeElement($questions);
-    }
-
-    /**
-     * Get questions
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getQuestions()
-    {
-        return $this->questions;
-    }
-
-    /**
-     * Set avatar
-     *
-     * @param \Application\Sonata\MediaBundle\Entity\Media $avatar
-     * @return User
-     */
-    public function setAvatar(\Application\Sonata\MediaBundle\Entity\Media $avatar = null)
-    {
-        $this->avatar = $avatar;
-
-        return $this;
-    }
-
-    /**
-     * Get avatar
-     *
-     * @return \Application\Sonata\MediaBundle\Entity\Media
-     */
-    public function getAvatar()
-    {
-        return $this->avatar;
-    }
-
-    /**
-     * Set position
-     *
-     * @param \Application\Sonata\ClassificationBundle\Entity\Category $position
-     * @return User
-     */
-    public function setPosition(\Application\Sonata\ClassificationBundle\Entity\Category $position = null)
-    {
-        $this->position = $position;
-
-        return $this;
-    }
-
-    /**
-     * Get position
-     *
-     * @return \Application\Sonata\ClassificationBundle\Entity\Category
-     */
-    public function getPosition()
-    {
-        return $this->position;
-    }
-
-    /**
-     * Set career
-     *
-     * @param string $career
-     * @return User
-     */
-    public function setCareer($career)
-    {
-        $this->career = $career;
-
-        return $this;
-    }
-
-    /**
-     * Get career
-     *
-     * @return string
-     */
-    public function getCareer()
-    {
-        return $this->career;
-    }
-
-    /**
-     * Set specialties
-     *
-     * @param string $specialties
-     * @return User
-     */
-    public function setSpecialties($specialties)
-    {
-        $this->specialties = $specialties;
-
-        return $this;
-    }
-
-    /**
-     * Get specialties
-     *
-     * @return string
-     */
-    public function getSpecialties()
-    {
-        return $this->specialties;
-    }
-
-    /**
-     * Set publications
-     *
-     * @param string $publications
-     * @return User
-     */
-    public function setPublications($publications)
-    {
-        $this->publications = $publications;
-
-        return $this;
-    }
-
-    /**
-     * Get publications
-     *
-     * @return string
-     */
-    public function getPublications()
-    {
-        return $this->publications;
-    }
-
-    /**
-     * Set latitude
-     *
-     * @param string $latitude
-     * @return User
-     */
-    public function setLatitude($latitude)
-    {
-        $this->latitude = $latitude;
-
-        return $this;
-    }
-
-    /**
-     * Get latitude
-     *
-     * @return string
-     */
-    public function getLatitude()
-    {
-        return $this->latitude;
-    }
-
-    /**
-     * Set longitude
-     *
-     * @param string $longitude
-     * @return User
-     */
-    public function setLongitude($longitude)
-    {
-        $this->longitude = $longitude;
-
-        return $this;
-    }
-
-    /**
-     * Get longitude
-     *
-     * @return string
-     */
-    public function getLongitude()
-    {
-        return $this->longitude;
-    }
-
-    /**
-     * Set presentation
-     *
-     * @param \Application\Sonata\MediaBundle\Entity\Media $presentation
-     * @return Question
-     */
-    public function setPresentation(\Application\Sonata\MediaBundle\Entity\Media $presentation = null)
-    {
-        $this->presentation = $presentation;
-
-        return $this;
-    }
-
-    /**
-     * Get presentation
-     *
-     * @return \Application\Sonata\MediaBundle\Entity\Media
-     */
-    public function getPresentation()
-    {
-        return $this->presentation;
     }
 
     /**
@@ -544,6 +288,98 @@ abstract class BaseSpeaker implements SpeakerInterface
             $this->setProtectedEmail();
         }
         return $this->protectedEmail;
+    }
+
+    /**
+     * Set avatar
+     *
+     * @param \Application\Sonata\MediaBundle\Entity\Media $avatar
+     * @return Speaker
+     */
+    public function setAvatar(\Application\Sonata\MediaBundle\Entity\Media $avatar = null)
+    {
+        $this->avatar = $avatar;
+
+        return $this;
+    }
+
+    /**
+     * Get avatar
+     *
+     * @return \Application\Sonata\MediaBundle\Entity\Media
+     */
+    public function getAvatar()
+    {
+        return $this->avatar;
+    }
+
+    /**
+     * Set customer
+     *
+     * @param \Application\Sonata\CustomerBundle\Entity\Customer $customer
+     * @return Speaker
+     */
+    public function setCustomer(\Application\Sonata\CustomerBundle\Entity\Customer $customer = null)
+    {
+        $this->customer = $customer;
+
+        return $this;
+    }
+
+    /**
+     * Get customer
+     *
+     * @return \Application\Sonata\CustomerBundle\Entity\Customer
+     */
+    public function getCustomer()
+    {
+        return $this->customer;
+    }
+
+    /**
+     * Set latitude
+     *
+     * @param string $latitude
+     * @return Speaker
+     */
+    public function setLatitude($latitude)
+    {
+        $this->latitude = $latitude;
+
+        return $this;
+    }
+
+    /**
+     * Get latitude
+     *
+     * @return string
+     */
+    public function getLatitude()
+    {
+        return $this->latitude;
+    }
+
+    /**
+     * Set longitude
+     *
+     * @param string $longitude
+     * @return Speaker
+     */
+    public function setLongitude($longitude)
+    {
+        $this->longitude = $longitude;
+
+        return $this;
+    }
+
+    /**
+     * Get longitude
+     *
+     * @return string
+     */
+    public function getLongitude()
+    {
+        return $this->longitude;
     }
 
 }

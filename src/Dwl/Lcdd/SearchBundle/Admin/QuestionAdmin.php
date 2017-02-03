@@ -38,6 +38,22 @@ class QuestionAdmin extends Admin
     /**
      * {@inheritdoc}
      */
+    public function prePersist($question)
+    {
+        $this->preUpdate($question);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function preUpdate($question)
+    {
+        dump($question->getSpeaker());die();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     protected function configureShowFields(ShowMapper $showMapper)
     {
         $showMapper

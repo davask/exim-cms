@@ -79,8 +79,6 @@ class SpeakerController extends Controller
             'method' => 'POST',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Create'));
-
         return $form;
     }
 
@@ -172,12 +170,17 @@ class SpeakerController extends Controller
     private function createEditForm(Speaker $entity)
     {
 
-        $form = $this->createForm(new SpeakerType($this->container->get('sonata.admin.pool')), $entity, array(
+        $this->postConstruct();
+
+        $form = $this->createForm(new SpeakerType($this->container->get('sonata.admin.pool'), $this->container), $entity, array(
             'action' => $this->generateUrl('lcdd_speaker_update', array('id' => $entity->getId())),
             'method' => 'PUT',
         ));
 
-        // $form->add('submit', 'submit', array('label' => 'Update'));
+        $form->add('submit', 'submit', array(
+            'label' => $this->translator->trans('Enregistrer', array(), 'DwlLcddSpeakerBundle'),
+            'attr' => array('class' => 'btn btn-link'),
+        ));
 
         return $form;
     }
@@ -187,9 +190,9 @@ class SpeakerController extends Controller
      */
     public function updateAction(Request $request, $id)
     {
-        $em = $this->getDoctrine()->getManager();
+        $this->postConstruct();
 
-        $entity = $em->getRepository('DwlLcddSpeakerBundle:Speaker')->find($id);
+        $entity = $this->repo->find($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Speaker entity.');
@@ -197,12 +200,13 @@ class SpeakerController extends Controller
 
         $deleteForm = $this->createDeleteForm($id);
         $editForm = $this->createEditForm($entity);
+        dump($request);
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
-            $em->flush();
+            $this->em->flush();
 
-            return $this->redirect($this->generateUrl('lcdd_speaker_edit', array('username' => $entity->getUsername())));
+            return $this->redirect($this->generateUrl('lcdd_speaker_edit', array('username' => $entity->getCustomer()->getUser()->getUsername())));
         }
 
         return $this->render('DwlLcddSpeakerBundle:Speaker:edit.html.twig', array(

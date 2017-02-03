@@ -5,18 +5,34 @@
     "license": "MIT",
 
     "autoload": {
-        "psr-0": {
-            "": "src/"
-        },
         "psr-4": {
-            "": "web/themes/Lcdd/src/"
+            "Sonata\\Bundle\\QABundle\\": "src/Sonata/Bundle/QABundle",
+            "Sonata\\Bundle\\DemoBundle\\": "src/Sonata/Bundle/DemoBundle",
+            "Application\\Sonata\\AdminBundle\\": "vendor/davask/exim/src/Application/Sonata/AdminBundle",
+            "Application\\Sonata\\BasketBundle\\": "vendor/davask/exim/src/Application/Sonata/BasketBundle",
+            "Application\\Sonata\\ClassificationBundle\\": "vendor/davask/exim/src/Application/Sonata/ClassificationBundle",
+            "Application\\Sonata\\CustomerBundle\\": "vendor/davask/exim/src/Application/Sonata/CustomerBundle",
+            "Application\\Sonata\\InvoiceBundle\\": "vendor/davask/exim/src/Application/Sonata/InvoiceBundle",
+            "Application\\Sonata\\MediaBundle\\": "vendor/davask/exim/src/Application/Sonata/MediaBundle",
+            "Application\\Sonata\\NewsBundle\\": "vendor/davask/exim/src/Application/Sonata/NewsBundle",
+            "Application\\Sonata\\OrderBundle\\": "vendor/davask/exim/src/Application/Sonata/OrderBundle",
+            "Application\\Sonata\\PageBundle\\": "vendor/davask/exim/src/Application/Sonata/PageBundle",
+            "Application\\Sonata\\PaymentBundle\\": "vendor/davask/exim/src/Application/Sonata/PaymentBundle",
+            "Application\\Sonata\\ProductBundle\\": "vendor/davask/exim/src/Application/Sonata/ProductBundle",
+            "Application\\Sonata\\UserBundle\\": "vendor/davask/exim/src/Application/Sonata/UserBundle",
+            "Dwl\\Exim\\CoreBundle\\": "vendor/davask/exim/src/CoreBundle",
+            "Dwl\\Exim\\ThemeBundle\\": "vendor/davask/exim/src/ThemeBundle",
+            "Exim\\Theme\\Lcdd\\FrontBundle\\": "vendor/davask/exim/src/FrontBundle",
+            "Exim\\Theme\\Lcdd\\AdminBundle\\": "vendor/davask/exim/src/AdminBundle",
+            "Dwl\\Lcdd\\SearchBundle\\": "src/Dwl/Lcdd/SearchBundle",
+            "Dwl\\Lcdd\\SpeakerBundle\\": "src/Dwl/Lcdd/SpeakerBundle"
         }
     },
 
-    "minimum-stability": "stable",
 
     "require": {
         "php": ">=5.3.3",
+        "davask/exim": "~1",
         "doctrine/data-fixtures": "1.1.1",
         "doctrine/dbal": "~2.4,<2.5",
         "doctrine/doctrine-bundle": "~1.5",
@@ -96,6 +112,21 @@
         "symfony/phpunit-bridge": "2.7.*@dev",
         "symfony/var-dumper": "^3.1"
     },
+
+    "repositories" : [
+        {
+            "type" : "vcs",
+            "url" : "https://github.com/davask/SonataAdminBundle"
+        },
+        {
+            "type" : "vcs",
+            "url" : "https://github.com/davask/SonataBlockBundle"
+        },
+        {
+            "type" : "vcs",
+            "url" : "https://github.com/davask/SonataPageBundle"
+        }
+    ],
 
     "scripts": {
         "post-install-cmd": [

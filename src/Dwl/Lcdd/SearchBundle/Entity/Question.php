@@ -48,7 +48,7 @@ class Question
      *
      * @ORM\Column(name="qualified", type="boolean")
      */
-    private $qualified;
+    private $qualified = false;
 
     /**
      * @var \Dwl\Lcdd\SearchBundle\Entity\Question
@@ -125,8 +125,8 @@ class Question
     /**
      * @var ArrayCollection
      *
-     * @ORM\ManyToOne(targetEntity="\Application\Sonata\UserBundle\Entity\User", inversedBy="questions")
-     * @ORM\JoinColumn(name="fos_user_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="\Dwl\Lcdd\SpeakerBundle\Entity\Speaker", inversedBy="questions")
+     * @ORM\JoinColumn(name="speaker_id", referencedColumnName="id")
      */
     private $speaker;
 
@@ -143,7 +143,6 @@ class Question
      */
     public function __construct()
     {
-        $this->qualified = false;
         $this->unqualifiedQuestions = new \Doctrine\Common\Collections\ArrayCollection();
         $this->legalTags = new \Doctrine\Common\Collections\ArrayCollection();
         $this->civilTags = new \Doctrine\Common\Collections\ArrayCollection();
@@ -454,25 +453,25 @@ class Question
     }
 
     /**
-     * Set author
+     * Set speaker
      *
-     * @param \Application\Sonata\UserBundle\Entity\User $author
+     * @param \Dwl\Lcdd\SpeakerBundle\Entity\Speaker $speaker
      * @return Question
      */
-    public function setAuthor(\Application\Sonata\UserBundle\Entity\User $author = null)
+    public function setSpeaker(\Dwl\Lcdd\SpeakerBundle\Entity\Speaker $speaker = null)
     {
-        $this->author = $author;
+        $this->speaker = $speaker;
 
         return $this;
     }
 
     /**
-     * Get author
+     * Get speaker
      *
-     * @return \Application\Sonata\UserBundle\Entity\User
+     * @return \Dwl\Lcdd\SpeakerBundle\Entity\Speaker
      */
-    public function getAuthor()
+    public function getSpeaker()
     {
-        return $this->author;
+        return $this->speaker;
     }
 }

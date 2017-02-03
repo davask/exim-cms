@@ -1,6 +1,6 @@
-{% extends "@theme/Template/default.html.twig" %}
+{% extends "EximTheme"~theme.name~"FrontBundle:Template:default.html.twig" %}
 {% block page_content %}
-<div class="body-content clearfix speaker">
+<div class="body-content clearfix speaker {% block contentClass %}{% endblock %}">
     {% block sonata_profile_form_start '' %}
 
     <h1 class="max-width col-sm-12 text-center">{{ speaker.fullname }}</h1>
@@ -43,9 +43,7 @@
 
     </div>
 
-    <div class="no-horizontal-padding col-xs-12 map">
-        {% block sonata_profile_map '' %}
-    </div>
+    {% block sonata_profile_map '' %}
 
     <div class="no-horizontal-padding col-xs-12 overview">
         <div class="clearfix">
@@ -60,7 +58,6 @@
         </div>
     </div>
     {% block sonata_profile_form_end '' %}
-
 
     <div class="max-width col-xs-12">
 

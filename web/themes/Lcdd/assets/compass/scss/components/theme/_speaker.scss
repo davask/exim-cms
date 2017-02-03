@@ -103,4 +103,52 @@ $speaker:'speaker';
     .form-group {
         background: none;
     }
+
+    &.edit {
+
+        .max-width {
+            max-width: 100%;
+        }
+
+        .map {
+            height:auto;
+        }
+
+        .adresses {
+            > li {
+                > div {
+                    &:before, &:after{
+                        display: table;
+                        content: " ";
+                    }
+                    &:after{
+                        clear:both;
+                    }
+
+                }
+
+            }
+
+        }
+        .form-group {
+            &:before, &:after{
+                display: table;
+                content: " ";
+            }
+            &:after{
+                clear:both;
+            }
+        }
+
+        .overview {
+            .details, .presentation {
+                padding-top: 20px;
+                padding-bottom: 20px;
+                text-align: left;
+            }
+        }
+
+
+    }
+
 }

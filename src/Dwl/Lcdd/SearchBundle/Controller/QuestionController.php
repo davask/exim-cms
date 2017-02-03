@@ -18,6 +18,10 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Dwl\Lcdd\SearchBundle\Entity\Question;
 use Dwl\Lcdd\SearchBundle\Form\QuestionType;
 
+/**
+ * Question controller.
+ *
+ */
 class QuestionController extends Controller
 {
     private $doctrine;
@@ -81,6 +85,22 @@ class QuestionController extends Controller
 
     }
 
+    // /**
+    //  * Lists all Question entities.
+    //  *
+    //  */
+    // public function indexAction()
+    // {
+    //     $em = $this->getDoctrine()->getManager();
+
+    //     $entities = $em->getRepository('DwlLcddSearchBundle:Question')->findAll();
+
+    //     return $this->render('DwlLcddSearchBundle:Question:index.html.twig', array(
+    //         'entities' => $entities,
+    //     ));
+    // }
+
+
     /**
      * @Rest\View
      */
@@ -105,11 +125,41 @@ class QuestionController extends Controller
             ), true))
         ;
 
-        $viewDatas = array('question' => $question);
+        $site = $this->get('sonata.page.manager.site')->findOneBy(array('id'=>1));
+        $page = $this->get('sonata.page.cms_manager_selector')->retrieve()
+            ->getPageByRouteName($site,$this->get('request')->get('_route'));
+
+        $viewDatas = array(
+            'question' => $question,
+            'page' => $page,
+            'blocks' => $this->container->getParameter('lcdd.speaker.configuration.speaker_blocks'),
+        );
 
         return $this->viewDatasRender($viewDatas, 'DwlLcddSearchBundle:Question:get.html.twig');
 
     }
+
+    // /**
+    //  * Finds and displays a Question entity.
+    //  *
+    //  */
+    // public function showAction($id)
+    // {
+    //     $em = $this->getDoctrine()->getManager();
+
+    //     $entity = $em->getRepository('DwlLcddSearchBundle:Question')->find($id);
+
+    //     if (!$entity) {
+    //         throw $this->createNotFoundException('Unable to find Question entity.');
+    //     }
+
+    //     $deleteForm = $this->createDeleteForm($id);
+
+    //     return $this->render('DwlLcddSearchBundle:Question:show.html.twig', array(
+    //         'entity'      => $entity,
+    //         'delete_form' => $deleteForm->createView(),
+    //     ));
+    // }
 
     /**
      * @Rest\View
@@ -121,6 +171,7 @@ class QuestionController extends Controller
         $this->_format = $this->request->request->get('format', $this->_format);
 
         $viewDatas = array();
+        $viewDatas['userLogged'] = $this->getUser();
         $viewDatas['userQuestion'] = $this->request->request->get('question', '');
         $viewDatas['qs'] = $this->repo->findAll();
         $viewDatas['cs'] = $this->em->getRepository('ApplicationSonataClassificationBundle:Category')->findAll();
@@ -183,9 +234,149 @@ class QuestionController extends Controller
         return $this->viewDatasRender($this->processForm(new Question()));
     }
 
-    public function editAction(Question $question)
+    /**
+     * Creates a new Question entity.
+     *
+     */
+    public function createAction(Request $request)
     {
-        return $this->viewDatasRender($this->processForm($question));
+        $entity = new Question();
+        $form = $this->createCreateForm($entity);
+        $form->handleRequest($request);
+
+        if ($form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($entity);
+            $em->flush();
+
+            return $this->redirect($this->generateUrl('question_show', array('id' => $entity->getId())));
+        }
+
+        return $this->render('DwlLcddSearchBundle:Question:new.html.twig', array(
+            'entity' => $entity,
+            'form'   => $form->createView(),
+        ));
+    }
+
+    // /**
+    //  * Creates a form to create a Question entity.
+    //  *
+    //  * @param Question $entity The entity
+    //  *
+    //  * @return \Symfony\Component\Form\Form The form
+    //  */
+    // private function createCreateForm(Question $entity)
+    // {
+    //     $form = $this->createForm(new QuestionType(), $entity, array(
+    //         'action' => $this->generateUrl('question_create'),
+    //         'method' => 'POST',
+    //     ));
+
+    //     $form->add('submit', 'submit', array('label' => 'Create'));
+
+    //     return $form;
+    // }
+
+    // /**
+    //  * Displays a form to create a new Question entity.
+    //  *
+    //  */
+    // public function newAction()
+    // {
+    //     $entity = new Question();
+    //     $form   = $this->createCreateForm($entity);
+
+    //     return $this->render('DwlLcddSearchBundle:Question:new.html.twig', array(
+    //         'entity' => $entity,
+    //         'form'   => $form->createView(),
+    //     ));
+    // }
+
+    /**
+    * Creates a form to edit a Question entity.
+    *
+    * @param Question $entity The entity
+    *
+    * @return \Symfony\Component\Form\Form The form
+    */
+    private function createEditForm(Question $entity)
+    {
+        $form = $this->createForm(new QuestionType(), $entity, array(
+            'action' => $this->generateUrl('question_update', array('id' => $entity->getId())),
+            'method' => 'PUT',
+        ));
+
+        $form->add('submit', 'submit', array('label' => 'Update'));
+
+        return $form;
+    }
+
+    // public function editAction(Question $question)
+    // {
+    //     return $this->viewDatasRender($this->processForm($question));
+    // }
+
+    /**
+     * Displays a form to edit an existing Question entity.
+     *
+     */
+    public function editAction($id)
+    {
+
+        $this->postConstruct();
+
+        $question = $this->repo->findOneById($id);
+
+        if (!$question) {
+            throw $this->createNotFoundException('Unable to find Question entity.');
+        }
+
+        $editForm = $this->createEditForm($question);
+        $deleteForm = $this->createDeleteForm($id);
+
+        $site = $this->get('sonata.page.manager.site')->findOneBy(array('id'=>1));
+        $page = $this->get('sonata.page.cms_manager_selector')->retrieve()
+            ->getPageByRouteName($site,$this->get('request')->get('_route'));
+
+
+        return $this->render('DwlLcddSearchBundle:Question:edit.html.twig', array(
+            'question'      => $question,
+            'edit_form'   => $editForm->createView(),
+            'delete_form' => $deleteForm->createView(),
+            'page' => $page,
+            'blocks' => $this->container->getParameter('lcdd.speaker.configuration.speaker_blocks'),
+        ));
+    }
+
+    /**
+     * Edits an existing Question entity.
+     *
+     */
+    public function updateAction(Request $request, $id)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $entity = $em->getRepository('DwlLcddSearchBundle:Question')->find($id);
+
+        if (!$entity) {
+            throw $this->createNotFoundException('Unable to find Question entity.');
+        }
+
+        $deleteForm = $this->createDeleteForm($id);
+        $editForm = $this->createEditForm($entity);
+        $editForm->handleRequest($request);
+
+        if ($editForm->isValid()) {
+            $em->flush();
+
+            return $this->redirect($this->generateUrl('question_edit', array('id' => $id)));
+        }
+
+        return $this->render('DwlLcddSearchBundle:Question:edit.html.twig', array(
+            'entity'      => $entity,
+            'edit_form'   => $editForm->createView(),
+            'delete_form' => $deleteForm->createView(),
+        ));
     }
 
     public function removeAction(Question $question)
@@ -194,4 +385,46 @@ class QuestionController extends Controller
         $this->em->remove($question);
         $this->em->flush();
     }
+
+    /**
+     * Deletes a Question entity.
+     *
+     */
+    public function deleteAction(Request $request, $id)
+    {
+        $form = $this->createDeleteForm($id);
+        $form->handleRequest($request);
+
+        if ($form->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $entity = $em->getRepository('DwlLcddSearchBundle:Question')->find($id);
+
+            if (!$entity) {
+                throw $this->createNotFoundException('Unable to find Question entity.');
+            }
+
+            $em->remove($entity);
+            $em->flush();
+        }
+
+        return $this->redirect($this->generateUrl('question'));
+    }
+
+    /**
+     * Creates a form to delete a Question entity by id.
+     *
+     * @param mixed $id The entity id
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
+    private function createDeleteForm($id)
+    {
+        return $this->createFormBuilder()
+            ->setAction($this->generateUrl('question_delete', array('id' => $id)))
+            ->setMethod('DELETE')
+            ->add('submit', 'submit', array('label' => 'Delete'))
+            ->getForm()
+        ;
+    }
+
 }

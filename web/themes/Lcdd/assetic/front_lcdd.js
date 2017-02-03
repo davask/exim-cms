@@ -33785,14 +33785,19 @@ angular
           $scope.pagination[$scope.type].currentPage = pageNo;
         };
 
-        $scope.initSettings = function(userQuestion, searchUrl) {
+        $scope.initSettings = function(userQuestion, searchUrl, isSpeaker) {
             $scope.userQuestion=userQuestion;
             $scope.searchUrl=searchUrl;
+            $scope.isSpeaker=isSpeaker;
             $scope.getQuestions();
         };
 
         $scope.getPath = function(slug){
           return $window.Routing.generate('dwl_lcdd_get_question', { slug: slug });
+        };
+
+        $scope.editPath = function(id){
+          return $window.Routing.generate('question_edit', { id: id });
         };
 
         $scope.setType = function(type){

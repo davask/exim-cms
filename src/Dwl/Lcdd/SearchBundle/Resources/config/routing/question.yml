@@ -1,0 +1,32 @@
+question:
+    path:     /
+    defaults: { _controller: "DwlLcddSearchBundle:Question:index" }
+
+question_show:
+    path:     /{id}/show
+    defaults: { _controller: "DwlLcddSearchBundle:Question:show" }
+
+question_new:
+    path:     /new
+    defaults: { _controller: "DwlLcddSearchBundle:Question:new" }
+
+question_create:
+    path:     /create
+    defaults: { _controller: "DwlLcddSearchBundle:Question:create" }
+    methods:  POST
+
+question_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "DwlLcddSearchBundle:Question:edit" }
+    options:
+        expose: true
+
+question_update:
+    path:     /{id}/update
+    defaults: { _controller: "DwlLcddSearchBundle:Question:update" }
+    methods:  [POST, PUT]
+
+question_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "DwlLcddSearchBundle:Question:delete" }
+    methods:  [POST, DELETE]

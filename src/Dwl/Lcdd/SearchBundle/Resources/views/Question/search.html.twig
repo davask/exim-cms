@@ -1,7 +1,7 @@
 {% trans_default_domain "DwlLcddSearchBundle" %}
 <div class="dwl-search-page col-sm-12"
     ng-controller="searchCtrl"
-    ng-init="initSettings('{{ userQuestion }}', '{{ path('dwl_lcdd_search_question', { '_format': 'json' } ) }}');">
+    ng-init="initSettings('{{ userQuestion }}', '{{ path('dwl_lcdd_search_question', { '_format': 'json' } ) }}', {{ 'ROLE_LCDD_SPEAKER' in userLogged.roles }});">
     <div class="row">
         <div class="col-sm-offset-3 col-sm-3">
             <h1>{{ 'ps.title' | trans }}</h1>

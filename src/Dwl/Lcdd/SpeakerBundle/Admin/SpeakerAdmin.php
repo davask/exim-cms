@@ -18,6 +18,9 @@ use Ivory\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 
+use Sonata\AdminBundle\Form\Type\ModelListType;
+use Sonata\MediaBundle\Form\Type\MediaType;
+
 /**
  * @author David Asquiedge <contact@davaskweblimited.com>
  */
@@ -46,26 +49,45 @@ class SpeakerAdmin extends Admin
     /**
      * {@inheritdoc}
      */
-    public function postUpdate($user)
+    // public function postUpdate($speaker)
+    // {
+    //     $doctrine = $this->getConfigurationPool()->getContainer()->get('doctrine');
+    //     $em = $doctrine->getEntityManager();
+    //     $repo = $doctrine->getRepository($this->getClass());
+    //     $owner = $repo->findLcdd();
+    //     if(empty($owner) || $speaker->getId() == $owner->getId()) {
+    //         $owner = $repo->findOneById(1);
+    //     }
+    //     $toFlush = false;
+    //     foreach ($speaker->getQuestions() as $i => $question) {
+    //         // dump($speaker->getGroups());
+    //         // if($speaker->getGroups() && $question->getQualified()) {
+    //         //     $toFlush = true;
+    //         //     $question->setSpeaker($owner);
+    //         //     $em->persist($question);
+    //         // }
+    //     }
+    //     if($toFlush) {
+    //         $em->flush();
+    //     }
+    // }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function prePersist($speaker)
     {
-        $doctrine = $this->getConfigurationPool()->getContainer()->get('doctrine');
-        $em = $doctrine->getEntityManager();
-        $repo = $doctrine->getRepository($this->getClass());
-        $owner = $repo->findLcdd();
-        if(empty($owner) || $user->getId() == $owner->getId()) {
-            $owner = $repo->findOneById(1);
-        }
-        $toFlush = false;
-        foreach ($user->getQuestions() as $i => $question) {
-            // dump($user->getGroups());
-            // if($user->getGroups() && $question->getQualified()) {
-            //     $toFlush = true;
-            //     $question->setSpeaker($owner);
-            //     $em->persist($question);
-            // }
-        }
-        if($toFlush) {
-            $em->flush();
+        $this->preUpdate($speaker);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function preUpdate($speaker)
+    {
+        $questions = $this->getForm()->get('questions')->getData();
+        foreach ($questions as $question) {
+            $question->setSpeaker($speaker);
         }
     }
 
@@ -75,7 +97,7 @@ class SpeakerAdmin extends Admin
     protected function configureShowFields(ShowMapper $showMapper)
     {
         $showMapper
-            ->add('customer', 'sonata_type_model_list')
+            ->add('customer')
             ->add('isSpeaker')
             ->add('position')
             ->add('customer.updatedAt')
@@ -88,6 +110,7 @@ class SpeakerAdmin extends Admin
      */
     protected function configureListFields(ListMapper $listMapper)
     {
+
         $listMapper
             ->addIdentifier('id')
             ->addIdentifier('fullname')
@@ -149,7 +172,7 @@ class SpeakerAdmin extends Admin
         $formMapper
             ->tab('Intervenant')
                 ->with('Utilisateur')
-                    ->add('customer', 'sonata_type_model_list')
+                    ->add('customer', ModelListType::class)
                 ->end()
             ->end()
             ->tab('Informations')
@@ -174,11 +197,9 @@ class SpeakerAdmin extends Admin
                     ))
                 ->end()
                 ->with('Video de presentation')
-                    ->add('presentation', 'sonata_media_type', array(
-                    'provider' => 'sonata.media.provider.vimeo',
-                    'context'  => 'lcdd',
-                    'required' => true,
-                ))
+                    ->add('presentation', ModelListType::class, array(
+                        'model_manager' => $mediaAdmin->getModelManager(),
+                    ))
                 ->end()
             ->end()
             ->tab('Divers')
@@ -188,16 +209,17 @@ class SpeakerAdmin extends Admin
                     ))
                 ->end()
                 ->with('Speaker')
-                    ->add('position', 'sonata_type_model_list', array(
+                    ->add('position', ModelListType::class, array(
                         'model_manager' => $categoryAdmin->getModelManager(),
                     ))
-                    ->add('avatar', 'sonata_type_model_list', array(
+                    ->add('avatar', ModelListType::class, array(
                         'model_manager' => $mediaAdmin->getModelManager(),
                     ))
                 ->end()
                 ->with('Videos')
                     ->add('questions', null, array(
                         'multiple' => true,
+                        'disabled' => true,
                     ))
                 ->end()
             ->end()

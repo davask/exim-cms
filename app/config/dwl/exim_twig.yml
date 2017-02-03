@@ -24,3 +24,6 @@ twig:
                 skin: '%exim.theme.admin.skin%'
             front:
                 format: '%exim.theme.front.format%'
+    form:
+        resources:
+            - 'ApplicationSonataMediaBundle:Form:media_widgets.html.twig'

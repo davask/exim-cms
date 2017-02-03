@@ -1,59 +1,12 @@
-{% trans_default_domain "DwlLcddSearchBundle" %}
-<div class="content-embed">
-    <div>Cat&eacute;gories:{% for u in question.categories %}{% if not loop.first %}, {% endif %}{{ u.name }}{% endfor %}</div>
-    <div>
-        En train de regarder:<h1>{{question.question}}</h1><small><a href="{{path('admin_lcdd_search_question_edit', { 'id': question.id })}}" target="_blank"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></small>
-    </div>
-    <div>
-        Par: <a href="{{ path('lcdd_speaker_get', {'username': question.author.usernameCanonical }) }}">
-            {{ (question.author.firstname ~ ' ' ~ question.author.lastname) | trim | default(question.author.username) | capitalize }}
-        </a>
-    </div>
+{% extends "DwlLcddSearchBundle:Question:base.html.twig" %}
+{% block content_embed %}
+<div>Cat&eacute;gories:{% for u in question.categories %}{% if not loop.first %}, {% endif %}{{ u.name }}{% endfor %}</div>
+<div>
+    En train de regarder:<h1>{{question.question}}</h1><small><a href="{{ path('question_edit', {'id': question.id }) }}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></small>
 </div>
-<div class="content-media">
-    <div class="content-embed">
-        <div class="embed-responsive embed-responsive-16by9">
-          <!-- <iframe class="embed-responsive-item" src="..."></iframe> -->
-          {{question.media.providerMetadata.html | raw}}
-        </div>
-    </div>
+<div>
+    Par: <a href="{{ path('lcdd_speaker_get', {'username': question.speaker.customer.user.usernameCanonical }) }}">
+        {{ (question.speaker.customer.user.firstname ~ ' ' ~ question.speaker.customer.user.lastname) | trim | default(question.speaker.customer.user.username) | capitalize }}
+    </a>
 </div>
-<div class="content-embed">
-    <h2>R&eacute;sultats semblables</h2>
-    <p>List</p>
-    <h3>Les plus visionn&eacute;es</h3>
-    <p>List</p>
-{#    <ul>
-        <li>
-        <ul><b>unqualified questions</b>
-    {% for u in question.unqualifiedQuestions %}
-            <li>{{ u.question }}</li>
-    {% endfor %}
-        </ul>
-        </li>
-        <li>
-        <ul><b>qualified question</b>
-    {% for u in question.qualifiedQuestion %}
-            <li>{{ u.question }}</li>
-    {% endfor %}
-        </ul>
-        </li>create: {{question.dateCreate.date}}<li>
-        </li>update: {{question.dateUpdate.date}}<li>
-        </li>
-        <li>
-        <ul><b>legal tags</b>
-    {% for u in question.legalTags %}
-            <li>{{ u.name }}</li>
-    {% endfor %}
-        </ul>
-        </li>
-        <li>
-        <ul><b>civil tags</b>
-    {% for u in question.civilTags %}
-            <li>{{ u.name }}</li>
-    {% endfor %}
-        </ul>
-        </li>
-        </ul>
-    </ul>#}
-</div>
+{% endblock %}

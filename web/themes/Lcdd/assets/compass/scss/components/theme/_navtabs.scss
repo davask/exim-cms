@@ -23,7 +23,7 @@
             &:hover {
                 border-color: #eee #eee $black-border;
                 &::after {
-                    background: transparent url('/themes/lcdd/media/decoration/arrow-down-hover.png') 50% 100% no-repeat;
+                    background: transparent url('/themes/#{$theme}/media/decoration/arrow-down-hover.png') 50% 100% no-repeat;
                 }
             }
             &:hover, &:focus {
@@ -48,7 +48,7 @@
                 border: none;
                 border-bottom: 1px solid $black-border;
                 &::after {
-                    background: transparent url('/themes/lcdd/media/decoration/arrow-down.png') 50% 100% no-repeat;
+                    background: transparent url('/themes/#{$theme}/media/decoration/arrow-down.png') 50% 100% no-repeat;
                 }
             }
 

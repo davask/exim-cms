@@ -40,7 +40,7 @@ class QuestionType extends AbstractType
             // ->add('civilTags')
             // ->add('categories')
             // ->add('media')
-            // ->add('author')
+            // ->add('speaker')
             ->add('submit', SubmitType::class, array(
                 'label' => '_f._q.submit',
                 'attr' => array(

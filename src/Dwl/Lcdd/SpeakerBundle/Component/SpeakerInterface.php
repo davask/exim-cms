@@ -8,32 +8,40 @@ use Sonata\Component\Customer\CustomerInterface;
 interface SpeakerInterface
 {
     /**
-     * Add questions
-     *
-     * @param \Dwl\Lcdd\SearchBundle\Entity\Question $questions
-     * @return User
+     * {@inheritdoc}
      */
-    public function addQuestion(\Dwl\Lcdd\SearchBundle\Entity\Question $questions);
+    public function getFullname();
 
     /**
-     * Remove questions
-     *
-     * @param \Dwl\Lcdd\SearchBundle\Entity\Question $questions
+     * set textToPng
      */
-    public function removeQuestion(\Dwl\Lcdd\SearchBundle\Entity\Question $questions);
+    public function textToPng($text = null, $R = 49, $G = 75, $B = 72);
 
     /**
-     * Get questions
-     *
-     * @return \Doctrine\Common\Collections\Collection
+     * Get protectedPhone
      */
-    public function getQuestions();
+    public function setProtectedPhone();
+
+    /**
+     * Get protectedEmail
+     */
+    public function getProtectedPhone();
+
+    /**
+     * Get protectedEmail
+     */
+    public function setProtectedEmail();
+
+    /**
+     * Get protectedEmail
+     */
+    public function getProtectedEmail();
 
     /**
      * Set avatar
      *
      * @param \Application\Sonata\MediaBundle\Entity\Media $avatar
-     * @return User
+     * @return Speaker
      */
     public function setAvatar(\Application\Sonata\MediaBundle\Entity\Media $avatar = null);
 
@@ -45,70 +53,25 @@ interface SpeakerInterface
     public function getAvatar();
 
     /**
-     * Set position
+     * Set customer
      *
-     * @param \Application\Sonata\ClassificationBundle\Entity\Category $position
-     * @return User
+     * @param \Application\Sonata\CustomerBundle\Entity\Customer $customer
+     * @return Speaker
      */
-    public function setPosition(\Application\Sonata\ClassificationBundle\Entity\Category $position = null);
+    public function setCustomer(\Application\Sonata\CustomerBundle\Entity\Customer $customer = null);
 
     /**
-     * Get position
+     * Get customer
      *
-     * @return \Application\Sonata\ClassificationBundle\Entity\Category
+     * @return \Application\Sonata\CustomerBundle\Entity\Customer
      */
-    public function getPosition();
-
-    /**
-     * Set career
-     *
-     * @param string $career
-     * @return User
-     */
-    public function setCareer($career);
-
-    /**
-     * Get career
-     *
-     * @return string
-     */
-    public function getCareer();
-
-    /**
-     * Set specialties
-     *
-     * @param string $specialties
-     * @return User
-     */
-    public function setSpecialties($specialties);
-
-    /**
-     * Get specialties
-     *
-     * @return string
-     */
-    public function getSpecialties();
-
-    /**
-     * Set publications
-     *
-     * @param string $publications
-     * @return User
-     */
-    public function setPublications($publications);
-
-    /**
-     * Get publications
-     *
-     * @return string
-     */
-    public function getPublications();
+    public function getCustomer();
 
     /**
      * Set latitude
      *
      * @param string $latitude
-     * @return User
+     * @return Speaker
      */
     public function setLatitude($latitude);
 
@@ -123,7 +86,7 @@ interface SpeakerInterface
      * Set longitude
      *
      * @param string $longitude
-     * @return User
+     * @return Speaker
      */
     public function setLongitude($longitude);
 
@@ -133,6 +96,5 @@ interface SpeakerInterface
      * @return string
      */
     public function getLongitude();
-
 
 }

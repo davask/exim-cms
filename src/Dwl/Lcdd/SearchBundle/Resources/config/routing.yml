@@ -1,3 +1,7 @@
+DwlLcddSearchBundle_question:
+        resource: "@DwlLcddSearchBundle/Resources/config/routing/question.yml"
+        prefix:   /question
+
 dwl_lcdd_search_question_new:
     path:     /lcdd/question/new
     methods:

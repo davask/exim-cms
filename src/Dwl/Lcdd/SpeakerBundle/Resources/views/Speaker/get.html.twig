@@ -1,5 +1,4 @@
 {% trans_default_domain "DwlLcddSpeakerBundle" %}
-{% import "@DwlLcddSpeakerBundle/Resources/views/macro.html.twig" as macro %}
 {% extends "DwlLcddSpeakerBundle:Speaker:action.html.twig" %}
 
 {% if speaker.customer.addresses | length %}
@@ -11,8 +10,11 @@
 {% block exim_profile_action %}
     {% if app.user.username == speaker.customer.user.username or ('ROLE_SUPER_ADMIN' in app.user.roles) == true %}
     <li>
-        <a href="{{ path('admin_lcdd_speaker_edit', { 'id' : speaker.id }) }}">
-            {% media speaker.avatar, 'lcdd_icon' with { 'width': '16', 'height': '16' } %} <b>{{admin|trans}}</b>
+        <!--a href="{{ path('admin_lcdd_speaker_edit', { 'id' : speaker.id }) }}">
+            {% media speaker.avatar, 'lcdd_icon' with { 'width': '16', 'height': '16' } %} <b>{{'admin'|trans}}</b>
+        </a-->
+        <a href="{{ path('lcdd_speaker_edit', { 'username' : speaker.customer.user.username }) }}">
+            {% media speaker.avatar, 'lcdd_icon' with { 'width': '16', 'height': '16' } %} <b>{{'edit'|trans}}</b>
         </a>
     </li>
     {% endif %}
@@ -47,7 +49,9 @@
 {% endblock %}
 
 {% block sonata_profile_map %}
-<div id="map-canvas" style="height:250px;"></div>
+<div class="no-horizontal-padding col-xs-12 map">
+    <div id="map-canvas" style="height:250px;"></div>
+</div>
 {% endblock %}
 
 {% block sonata_profile_presentation %}

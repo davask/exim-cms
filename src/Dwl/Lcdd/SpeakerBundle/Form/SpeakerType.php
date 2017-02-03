@@ -5,13 +5,25 @@ namespace Dwl\Lcdd\SpeakerBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
 
 use Ivory\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 
 use Doctrine\ORM\EntityRepository;
 
 use Sonata\AdminBundle\Admin\Pool;
+use Sonata\CustomerBundle\Form\Type\AddressType;
+use Sonata\MediaBundle\Form\Type\MediaType;
+
+use Application\Sonata\CustomerBundle\Entity\Address;
+use Application\Sonata\ClassificationBundle\Entity\Category;
+use Application\Sonata\MediaBundle\Entity\Media;
 
 class SpeakerType extends AbstractType
 {
@@ -22,8 +34,9 @@ class SpeakerType extends AbstractType
 
     private $adminPool;
 
-    public function __construct(Pool $adminPool) {
+    public function __construct(Pool $adminPool, $container) {
         $this->adminPool = $adminPool;
+        $this->container = $container;
     }
 
     /**
@@ -33,16 +46,28 @@ class SpeakerType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
 
+        $mediaAdmin = $this->adminPool->getAdminByClass("Application\\Sonata\\MediaBundle\\Entity\\Media");
+
         $speaker = $builder->getData();
         $customer = $speaker->getCustomer();
         $user = $customer->getUser();
 
-        $categoryAdmin = $this->adminPool->getAdminByClass("Application\\Sonata\\ClassificationBundle\\Entity\\Category");
-        $addressAdmin = $this->adminPool->getAdminByClass("Application\\Sonata\\CustomerBundle\\Entity\\Address");
-        $mediaAdmin = $this->adminPool->getAdminByClass("Application\\Sonata\\MediaBundle\\Entity\\Media");
+        $user->setPhone('0620300669');
+
+        $addressCurrent = new Address();
+        $adresses = $customer->getAddresses();
+        foreach ($adresses as $key => $address) {
+            if($address->getCurrent()) {
+                $addressCurrent = $address;
+                break;
+            }
+        }
+
+        $addressCurrent->setAddress1('-');
+        $addressCurrent->setPostcode('91054');
+        $addressCurrent->setCity('-');
 
         $builder
-            // ->add('isSpeaker')
             ->add('biography', CKEditorType::class, array(
                 'property_path' => 'customer.user.biography',
                 'required' => true,
@@ -60,28 +85,28 @@ class SpeakerType extends AbstractType
                 'property_path' => 'customer.user.phone',
                 'required' => true,
             ))
-            ->add('email', null, array(
+            ->add('email', EmailType::class, array(
                 'property_path' => 'customer.user.email',
                 'required' => true,
             ))
-            ->add('adresses', EntityType::class, array(
-                'class' => 'ApplicationSonataCustomerBundle:Address',
-                'property_path' => 'customer.addresses',
-                'query_builder' => function (EntityRepository $repository) use($customer) {
-                    return $repository->createQueryBuilder('s')
-                        ->leftJoin('s.customer', 'c')
-                        ->where('c.id = :cid')
-                        ->setParameters(array(
-                            'cid' => $customer->getId(),
-                        ))
-                    ;
-                },
-            ))
-            // ->add('adresses', 'sonata_type_model_list', array(
-            //     'class' => 'ApplicationSonataCustomerBundle:Address',
-            //     'model_manager' => $addressAdmin->getModelManager(),
-            //     'property_path' => 'customer.addresses',
-            // ))
+            ->add(
+                $builder->create('address', AddressType::class, array(
+                    'by_reference' => false,
+                    'mapped' => false,
+                    'data' => $addressCurrent,
+                ))
+                ->add('name', HiddenType::class, array('data'=>'Mon bureau'))
+                ->add('type', HiddenType::class, array('data'=>Address::TYPE_CONTACT))
+                ->add('firstname', HiddenType::class, array('data'=>$speaker->getFirstname()))
+                ->add('lastname', HiddenType::class, array('data'=>$speaker->getLastname()))
+                ->add('address1')
+                ->add('address2')
+                ->add('address3')
+                ->add('postcode')
+                ->add('city')
+                ->add('countryCode', null, array('data'=>'FR'))
+                ->add('phone', HiddenType::class, array('data'=>$user->getPhone()))
+            )
             ->add('gplusUid', null, array(
                 'property_path' => 'customer.user.gplusUid',
             ))
@@ -97,25 +122,28 @@ class SpeakerType extends AbstractType
             ->add('linkedinUid', null, array(
                 'property_path' => 'customer.user.linkedinUid',
             ))
-            ->add('position')
-            // ->add('position', 'sonata_type_model_list', array(
-            //     'model_manager' => $categoryAdmin->getModelManager(),
-            // ))
-            ->add('avatar', 'sonata_media_type', array(
-                'provider' => 'sonata.media.provider.image',
-                'context'  => 'lcdd',
-                'required' => true,
-                'empty_on_new' => false,
-                'new_on_update' => false,
-            ))
-            ->add('presentation', 'sonata_media_type', array(
-                'provider' => 'sonata.media.provider.vimeo',
-                'context'  => 'lcdd',
-                'required' => true,
-                'empty_on_new' => false,
-                'new_on_update' => false,
-            ))
+            ->add('position', null, array('placeholder'=>'Choisissez votre profession dans cette liste'))
+            ->add(
+                $builder->create('avatar', MediaType::class, array(
+                    'provider' => 'sonata.media.provider.image',
+                    'context'  => 'lcdd',
+                    'required' => $speaker->getAvatar() ? false : true,
+                    'new_on_update' => false,
+                ))
+                // ->remove('unlink')
+            )
+            ->add(
+                $builder->create('presentation', MediaType::class, array(
+                    'provider' => 'sonata.media.provider.vimeo',
+                    'context'  => 'lcdd',
+                    'required' => $speaker->getPresentation() ? false : true,
+                    'new_on_update' => false
+                ))
+                // ->remove('unlink')
+            )
+
         ;
+
     }
 
     /**
