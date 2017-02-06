@@ -12,12 +12,15 @@
                 </ul>
             </li>
         </ul>
-        <a class="title" href="{[{ getPath(q.slug) }]}" title="{[{ q.question }]}" ng-if="q.qualified">
-            {[{ q.question }]}
-        </a>
+        <span class="title" ng-if="q.qualified">
+            <a href="{[{ getPath(q.slug) }]}" title="{[{ q.question }]}">
+                {[{ q.question }]}
+            </a>
+            <small ng-if="isSpeaker">&nbsp;(<a href="{[{ editPath(q.id) }]}">editer</a>)</small>
+        </span>
         <span class="title" ng-if="!q.qualified">
             {[{ q.question }]}
-            <small ng-if="isSpeaker"> - <a href="{[{ editPath(q.id) }]}" class="btn btn-link">saisir cette question </a></small>
+            <small ng-if="isSpeaker">&nbsp;(<a href="{[{ updatePath(q.id) }]}">Qualifier</a>)</small>
             <small ng-if="!isSpeaker"> - attente d'une r&eacute;ponse </small>
         </span>
         <div class="date" ng-if="q.qualified">

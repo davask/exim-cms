@@ -17,5 +17,33 @@
             padding:0 65px;
         }
     }
+
+    .edit {
+
+        .max-width {
+            max-width: 100%;
+        }
+
+        .form-group {
+            &:before, &:after{
+                display: table;
+                content: " ";
+            }
+            &:after{
+                clear:both;
+            }
+        }
+
+        .select2-container {
+            .select2-choices {
+                position: absolute;
+                width: 100%;
+                left: 0px;
+                top: 0px;
+                border: 0;
+            }
+        }
+
+    }
 }
 

@@ -46,8 +46,6 @@ class SpeakerType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
 
-        $mediaAdmin = $this->adminPool->getAdminByClass("Application\\Sonata\\MediaBundle\\Entity\\Media");
-
         $speaker = $builder->getData();
         $customer = $speaker->getCustomer();
         $user = $customer->getUser();
@@ -122,7 +120,9 @@ class SpeakerType extends AbstractType
             ->add('linkedinUid', null, array(
                 'property_path' => 'customer.user.linkedinUid',
             ))
-            ->add('position', null, array('placeholder'=>'Choisissez votre profession dans cette liste'))
+            ->add('position', null, array(
+                'placeholder'=>'Choisissez votre profession dans cette liste'
+            ))
             ->add(
                 $builder->create('avatar', MediaType::class, array(
                     'provider' => 'sonata.media.provider.image',

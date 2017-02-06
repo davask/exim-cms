@@ -10,6 +10,12 @@ question_new:
     path:     /new
     defaults: { _controller: "DwlLcddSearchBundle:Question:new" }
 
+question_qualify:
+    path:     /{id}/qualify
+    defaults: { _controller: "DwlLcddSearchBundle:Question:qualify" }
+    options:
+        expose: true
+
 question_create:
     path:     /create
     defaults: { _controller: "DwlLcddSearchBundle:Question:create" }

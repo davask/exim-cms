@@ -48,7 +48,7 @@ class QuestionAdmin extends Admin
      */
     public function preUpdate($question)
     {
-        dump($question->getSpeaker());die();
+        // dump($question->getSpeaker());die();
     }
 
     /**

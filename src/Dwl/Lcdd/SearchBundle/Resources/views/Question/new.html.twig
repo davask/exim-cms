@@ -1,15 +1,1 @@
-{% extends '::base.html.twig' %}
-
-{% block body -%}
-    <h1>Question creation</h1>
-
-    {{ form(form) }}
-
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('question') }}">
-            Back to the list
-        </a>
-    </li>
-</ul>
-{% endblock %}
+{% extends "DwlLcddSearchBundle:Question:edit.html.twig" %}

@@ -2,22 +2,42 @@
 
 namespace Dwl\Lcdd\SearchBundle\EventListener;
 
+use Doctrine\Common\EventSubscriber;
 use Doctrine\ORM\Event\LifecycleEventArgs;
 use Doctrine\ORM\Event\PreUpdateEventArgs;
 use Dwl\Lcdd\SearchBundle\Entity\Question;
 
-class QuestionListener
+class QuestionListener implements EventSubscriber
 {
+
+    public function getSubscribedEvents()
+    {
+        return array(
+          'prePersist',
+          'preUpdate',
+          'postPersist',
+          'postUpdate',
+        );
+    }
 
     public function prePersist(LifecycleEventArgs $args)
     {
         $entity = $args->getObject();
         $entityManager = $args->getObjectManager();
 
-        // perhaps you only want to act on some "Product" entity
-        if ($entity instanceof Question) {
-            // do something with the Product
-            $this->handleEvent($entity, $entityManager);
+        if ($entity instanceof \Dwl\Lcdd\SearchBundle\Entity\Question) {
+
+            if(count($entity->getUnqualifiedQuestions()) > 0) {
+
+                foreach ($entity->getUnqualifiedQuestions() as $key => $unqualifiedQuestion) {
+                    $unqualifiedQuestion->setQualifiedQuestion($entity);
+                }
+
+                $entity->setQualified(true);
+                $entity->removeQualifiedQuestion();
+
+            }
+
         }
     }
 
@@ -26,25 +46,35 @@ class QuestionListener
         $entity = $args->getObject();
         $entityManager = $args->getObjectManager();
 
-        // perhaps you only want to act on some "Product" entity
-        if ($entity instanceof Question) {
-            // do something with the Product
-            $this->handleEvent($entity, $entityManager);
+        if ($entity instanceof \Dwl\Lcdd\SearchBundle\Entity\Question) {
+
+            if(count($entity->getUnqualifiedQuestions()) > 0) {
+
+                foreach ($entity->getUnqualifiedQuestions() as $key => $unqualifiedQuestion) {
+                    $unqualifiedQuestion->setQualifiedQuestion($entity);
+                }
+
+                $entity->setQualified(true);
+                $entity->removeQualifiedQuestion();
+
+            }
+
         }
     }
 
-    public function handleEvent($question, $em) {
+    public function postPersist(LifecycleEventArgs $args)
+    {
+        $this->postUpdate($args);
+    }
 
-        // $author = $question->getAuthor();
+    public function postUpdate(LifecycleEventArgs $args)
+    {
+        $entity = $args->getEntity();
+        $entityManager = $args->getEntityManager();
 
-        // if(empty($author)) {
-        //     $repo = $em->getRepository('ApplicationSonataUserBundle:User');
-        //     $author = $repo->findLcdd();
-        //     if(empty($author)) {
-        //         $author = $repo->findOneById(1);
-        //     }
-        // }
+        if ($entity instanceof \Dwl\Lcdd\SearchBundle\Entity\Question) {
 
+        }
     }
 
 }

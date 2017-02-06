@@ -1,16 +1,68 @@
 {% extends "DwlLcddSearchBundle:Question:base.html.twig" %}
-{% block contentClass %} edit{% endblock %}
-{% block content_embed %}
-    <h1>Question edit</h1>
 
-    {{ form(edit_form) }}
+{% block bodyClass %}{{parent()}} question{% endblock %}
+{% block contentClass %}{{parent()}} edit{% endblock %}
 
-        <ul class="record_actions">
+{% block exim_profile_action %}
+    {% if (question.speaker is not null and app.user.username == question.speaker.customer.user.username) or ('ROLE_SUPER_ADMIN' in app.user.roles) == true %}
+<ul class="nav navbar-nav text-center">
     <li>
-        <a href="{{ path('question') }}">
-            Back to the list
+        <a href="javascript:jQuery('[name={{edit_form.vars.name}}]').submit();">
+            {{ 'Enregistrer' | trans }}
         </a>
     </li>
-    <li>{{ form(delete_form) }}</li>
+        {% if question.slug is defined and question.slug != '' %}
+    <li>
+        <a href="{{ path('dwl_lcdd_get_question', { 'slug' : question.slug }) }}">
+            {{ 'Annuler' | trans }}
+        </a>
+    </li>
+        {% endif %}
 </ul>
+        {% if delete_form is defined %}
+<ul class="nav navbar-nav navbar-right text-center">
+    <li>
+        {{ form(delete_form) }}
+    </li>
+</ul>
+        {% endif %}
+    {% endif %}
 {% endblock %}
+
+{% block sonata_profile_form_start %}
+{{ form_start(edit_form) }}
+{% endblock %}
+
+{% block sonata_profile_form_errors %}
+{{ form_errors(edit_form) }}
+{% endblock %}
+
+{% block content_embed %}
+<div>
+    {{ form_row(edit_form.categories) }}
+</div>
+<div>
+    {{ form_row(edit_form.question) }}
+</div>
+<div>
+    {{ form_row(edit_form.speaker) }}
+</div>
+{% endblock %}
+
+{% block content_video %}
+    {{ form_row(edit_form.media) }}
+{% endblock %}
+
+{% block sonata_profile_form_end %}
+<div class="content-embed">
+    {{ form_row(edit_form.unqualifiedQuestions) }}
+    {{ form_row(edit_form.legalTags) }}
+    {{ form_row(edit_form.civilTags) }}
+</div>
+<div class="content-embed">
+    {{ form_row(edit_form.qualified) }}
+    {{ form_row(edit_form.submit, { 'attr' : { 'class' : 'btn-link pull-right' } }) }}
+    {{ form_end(edit_form) }}
+</div>
+{% endblock %}
+

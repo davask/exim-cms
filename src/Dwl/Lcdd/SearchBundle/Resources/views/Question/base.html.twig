@@ -2,19 +2,18 @@
 {% extends "EximTheme"~theme.name~"FrontBundle:Template:default.html.twig" %}
 {% block page_content %}
 <div class="body-content clearfix question {% block contentClass %}{% endblock %}">
+    {% block sonata_profile_form_start '' %}
+    {% block sonata_profile_form_errors '' %}
+
     <div class="content-embed">
         {% block content_embed '' %}
     </div>
     <div class="content-media">
         <div class="content-embed">
-{% if question is defined %}
-            <div class="embed-responsive embed-responsive-16by9">
-              <!-- <iframe class="embed-responsive-item" src="..."></iframe> -->
-              {{question.media.providerMetadata.html | raw}}
-            </div>
-{% endif %}
+            {% block content_video '' %}
         </div>
     </div>
+    {% block sonata_profile_form_end '' %}
     <div class="content-embed">
         <h2>R&eacute;sultats semblables</h2>
         <p>List</p>

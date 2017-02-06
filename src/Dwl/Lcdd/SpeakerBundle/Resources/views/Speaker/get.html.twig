@@ -1,5 +1,4 @@
-{% trans_default_domain "DwlLcddSpeakerBundle" %}
-{% extends "DwlLcddSpeakerBundle:Speaker:action.html.twig" %}
+{% extends "DwlLcddSpeakerBundle:Speaker:base.html.twig" %}
 
 {% if speaker.customer.addresses | length %}
     {% for address in speaker.customer.addresses if address.current %}

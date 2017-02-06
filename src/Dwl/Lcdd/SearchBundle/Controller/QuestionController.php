@@ -16,6 +16,7 @@ use FOS\RestBundle\View\View;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 use Dwl\Lcdd\SearchBundle\Entity\Question;
+use Dwl\Lcdd\SearchBundle\Form\SearchQuestionType;
 use Dwl\Lcdd\SearchBundle\Form\QuestionType;
 
 /**
@@ -39,6 +40,8 @@ class QuestionController extends Controller
         $this->doctrine = $this->getDoctrine();
         $this->em = $this->doctrine->getEntityManager();
         $this->repo = $this->em->getRepository('DwlLcddSearchBundle:Question');
+        $this->repoCustomer = $this->em->getRepository('ApplicationSonataCustomerBundle:Customer');
+        $this->repoSpeaker = $this->em->getRepository('DwlLcddSpeakerBundle:Speaker');
 
         $this->request = $this->getRequest();
         $this->_format = $this->request->attributes->get('_format', $this->getParameter('exim.theme.front.format'));
@@ -109,8 +112,6 @@ class QuestionController extends Controller
         $this->postConstruct();
 
         $question = $this->repo->findOneBySlug($slug);
-
-        dump($question);
 
         if (!$question instanceof Question) {
             throw new NotFoundHttpException('Question not found');
@@ -226,12 +227,32 @@ class QuestionController extends Controller
         return $viewDatas;
     }
 
-    /**
-     * @Rest\View
-     */
-    public function newAction()
+    public function qualifyAction($id)
     {
-        return $this->viewDatasRender($this->processForm(new Question()));
+        $this->postConstruct();
+
+        $question = $this->repo->findOneById($id);
+
+        if (!$question) {
+            throw $this->createNotFoundException('Unable to find Question entity.');
+        }
+
+        $questionQualified = new Question();
+        $questionQualified->addUnqualifiedQuestion($question);
+
+        $editForm = $this->createCreateForm($questionQualified);
+
+        $site = $this->get('sonata.page.manager.site')->findOneBy(array('id'=>1));
+        $page = $this->get('sonata.page.cms_manager_selector')->retrieve()
+            ->getPageByRouteName($site,$this->get('request')->get('_route'));
+
+        return $this->render('DwlLcddSearchBundle:Question:new.html.twig', array(
+            'question'      => $questionQualified,
+            'edit_form'   => $editForm->createView(),
+            'page' => $page,
+            'blocks' => $this->container->getParameter('lcdd.speaker.configuration.speaker_blocks'),
+        ));
+
     }
 
     /**
@@ -240,6 +261,9 @@ class QuestionController extends Controller
      */
     public function createAction(Request $request)
     {
+
+        $this->postConstruct();
+
         $entity = new Question();
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
@@ -249,7 +273,7 @@ class QuestionController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('question_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('question_edit', array('id' => $entity->getId())));
         }
 
         return $this->render('DwlLcddSearchBundle:Question:new.html.twig', array(
@@ -258,39 +282,63 @@ class QuestionController extends Controller
         ));
     }
 
+    /**
+     * Creates a form to create a Question entity.
+     *
+     * @param Question $entity The entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
+    private function createCreateForm(Question $entity)
+    {
+
+        $user = $this->container->get('security.context')->getToken()->getUser();
+        $customer = $this->repoCustomer->findOneByUser($user);
+        $speaker = $this->repoSpeaker->findOneByCustomer($customer);
+
+        $entity->setSpeaker($speaker);
+
+        $form = $this->createForm(new QuestionType(), $entity, array(
+            'action' => $this->generateUrl('question_create'),
+            'method' => 'POST',
+        ));
+
+        $form->add('submit', 'submit', array('label' => 'Qualifier'));
+
+        return $form;
+    }
+
     // /**
-    //  * Creates a form to create a Question entity.
-    //  *
-    //  * @param Question $entity The entity
-    //  *
-    //  * @return \Symfony\Component\Form\Form The form
-    //  */
-    // private function createCreateForm(Question $entity)
-    // {
-    //     $form = $this->createForm(new QuestionType(), $entity, array(
-    //         'action' => $this->generateUrl('question_create'),
-    //         'method' => 'POST',
-    //     ));
-
-    //     $form->add('submit', 'submit', array('label' => 'Create'));
-
-    //     return $form;
-    // }
-
-    // /**
-    //  * Displays a form to create a new Question entity.
-    //  *
+    //  * @Rest\View
     //  */
     // public function newAction()
     // {
-    //     $entity = new Question();
-    //     $form   = $this->createCreateForm($entity);
-
-    //     return $this->render('DwlLcddSearchBundle:Question:new.html.twig', array(
-    //         'entity' => $entity,
-    //         'form'   => $form->createView(),
-    //     ));
+    //     return $this->viewDatasRender($this->processForm(new Question()));
     // }
+
+    /**
+     * Displays a form to create a new Question entity.
+     *
+     */
+    public function newAction()
+    {
+        $this->postConstruct();
+
+        $question = new Question();
+
+        $editForm = $this->createCreateForm($question);
+
+        $site = $this->get('sonata.page.manager.site')->findOneBy(array('id'=>1));
+        $page = $this->get('sonata.page.cms_manager_selector')->retrieve()
+            ->getPageByRouteName($site,$this->get('request')->get('_route'));
+
+        return $this->render('DwlLcddSearchBundle:Question:new.html.twig', array(
+            'question'      => $question,
+            'edit_form'   => $editForm->createView(),
+            'page' => $page,
+            'blocks' => $this->container->getParameter('lcdd.speaker.configuration.speaker_blocks'),
+        ));
+    }
 
     /**
     * Creates a form to edit a Question entity.
@@ -301,6 +349,12 @@ class QuestionController extends Controller
     */
     private function createEditForm(Question $entity)
     {
+        $user = $this->container->get('security.context')->getToken()->getUser();
+        $customer = $this->repoCustomer->findOneByUser($user);
+        $speaker = $this->repoSpeaker->findOneByCustomer($customer);
+
+        $entity->setSpeaker($speaker);
+
         $form = $this->createForm(new QuestionType(), $entity, array(
             'action' => $this->generateUrl('question_update', array('id' => $entity->getId())),
             'method' => 'PUT',
@@ -310,11 +364,6 @@ class QuestionController extends Controller
 
         return $form;
     }
-
-    // public function editAction(Question $question)
-    // {
-    //     return $this->viewDatasRender($this->processForm($question));
-    // }
 
     /**
      * Displays a form to edit an existing Question entity.
@@ -354,28 +403,34 @@ class QuestionController extends Controller
      */
     public function updateAction(Request $request, $id)
     {
-        $em = $this->getDoctrine()->getManager();
+        $this->postConstruct();
 
-        $entity = $em->getRepository('DwlLcddSearchBundle:Question')->find($id);
+        $question = $this->repo->findOneById($id);
 
-        if (!$entity) {
+        if (!$question) {
             throw $this->createNotFoundException('Unable to find Question entity.');
         }
 
         $deleteForm = $this->createDeleteForm($id);
-        $editForm = $this->createEditForm($entity);
+        $editForm = $this->createEditForm($question);
         $editForm->handleRequest($request);
 
         if ($editForm->isValid()) {
-            $em->flush();
+            $this->em->flush();
 
             return $this->redirect($this->generateUrl('question_edit', array('id' => $id)));
         }
 
+        $site = $this->get('sonata.page.manager.site')->findOneBy(array('id'=>1));
+        $page = $this->get('sonata.page.cms_manager_selector')->retrieve()
+            ->getPageByRouteName($site,$this->get('request')->get('_route'));
+
         return $this->render('DwlLcddSearchBundle:Question:edit.html.twig', array(
-            'entity'      => $entity,
+            'question'      => $question,
             'edit_form'   => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
+            'page' => $page,
+            'blocks' => $this->container->getParameter('lcdd.speaker.configuration.speaker_blocks'),
         ));
     }
 

@@ -53,7 +53,7 @@ class Question
     /**
      * @var \Dwl\Lcdd\SearchBundle\Entity\Question
      *
-     * @ORM\OneToMany(targetEntity="\Dwl\Lcdd\SearchBundle\Entity\Question", mappedBy="qualifiedQuestion")
+     * @ORM\OneToMany(targetEntity="\Dwl\Lcdd\SearchBundle\Entity\Question", mappedBy="qualifiedQuestion", cascade={"persist", "remove"})
      */
     private $unqualifiedQuestions;
 
@@ -117,7 +117,7 @@ class Question
     /**
      * @var ArrayCollection
      *
-     * @ORM\ManyToOne(targetEntity="\Application\Sonata\MediaBundle\Entity\Media")
+     * @ORM\ManyToOne(targetEntity="\Application\Sonata\MediaBundle\Entity\Media",cascade={"persist"})
      * @ORM\JoinColumn(name="media_id", referencedColumnName="id")
      */
     private $media;
@@ -275,14 +275,37 @@ class Question
     }
 
     /**
-     * Add unqualifiedQuestions
+     * Set unqualifiedQuestions
      *
      * @param \Dwl\Lcdd\SearchBundle\Entity\Question $unqualifiedQuestions
      * @return Question
      */
-    public function addUnqualifiedQuestion(\Dwl\Lcdd\SearchBundle\Entity\Question $unqualifiedQuestions)
+    public function setUnqualifiedQuestions(\Doctrine\Common\Collections\ArrayCollection $unqualifiedQuestions)
     {
-        $this->unqualifiedQuestions[] = $unqualifiedQuestions;
+        $this->unqualifiedQuestions = new \Doctrine\Common\Collections\ArrayCollection();
+
+        foreach ($unqualifiedQuestions as $key => $unqualifiedQuestion) {
+            $this->addUnqualifiedQuestion($unqualifiedQuestion);
+        }
+
+        return $this;
+    }
+
+    public function hasUnqualifiedQuestion(\Dwl\Lcdd\SearchBundle\Entity\Question $unqualifiedQuestion)
+    {
+        return $this->unqualifiedQuestions->contains($unqualifiedQuestion);
+        }
+
+    /**
+     * Add unqualifiedQuestion
+     *
+     * @param \Dwl\Lcdd\SearchBundle\Entity\Question $unqualifiedQuestion
+     * @return Question
+     */
+    public function addUnqualifiedQuestion(\Dwl\Lcdd\SearchBundle\Entity\Question $unqualifiedQuestion)
+    {
+        $this->unqualifiedQuestions->add($unqualifiedQuestion);
+        $unqualifiedQuestion->setQualifiedQuestion($this);
 
         return $this;
     }
@@ -290,11 +313,17 @@ class Question
     /**
      * Remove unqualifiedQuestions
      *
-     * @param \Dwl\Lcdd\SearchBundle\Entity\Question $unqualifiedQuestions
+     * @param \Dwl\Lcdd\SearchBundle\Entity\Question $unqualifiedQuestion
      */
-    public function removeUnqualifiedQuestion(\Dwl\Lcdd\SearchBundle\Entity\Question $unqualifiedQuestions)
+    public function removeUnqualifiedQuestion(\Dwl\Lcdd\SearchBundle\Entity\Question $unqualifiedQuestion)
     {
-        $this->unqualifiedQuestions->removeElement($unqualifiedQuestions);
+
+        if ($this->hasUnqualifiedQuestion($unqualifiedQuestion)) {
+            $this->unqualifiedQuestions->removeElement($unqualifiedQuestion);
+            $unqualifiedQuestion->removeQualifiedQuestion();
+        }
+
+        return $this;
     }
 
     /**
@@ -328,6 +357,19 @@ class Question
     public function getQualifiedQuestion()
     {
         return $this->qualifiedQuestion;
+    }
+
+    /**
+     * Remove qualifiedQuestion
+     *
+     * @return \Dwl\Lcdd\SearchBundle\Entity\Question
+     */
+    public function removeQualifiedQuestion()
+    {
+
+        $this->qualifiedQuestion = null;
+
+        return $this;
     }
 
     /**

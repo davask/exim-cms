@@ -11,11 +11,15 @@ services:
         class: Symfony\Component\Form\Form
         arguments:
             - question                                    # name of the form
-            - dwl_lcdd_searchbundle_question              # alias of the form type
+            - dwl_lcdd_searchbundle_search                # alias of the form type
             - null                                        # data to bind, this is where your entity could go if you have that defined as a service
             - { validation_groups: [Default] }            # validation groups
 
     dwl.lcdd.block.search.form.type.question:
+        class: Dwl\Lcdd\SearchBundle\Form\SearchQuestionType
+        tags:
+            - { name: form.type, alias: dwl_lcdd_searchbundle_search }
+    dwl.lcdd.block.question.form.type.question:
         class: Dwl\Lcdd\SearchBundle\Form\QuestionType
         tags:
             - { name: form.type, alias: dwl_lcdd_searchbundle_question }
@@ -75,3 +79,5 @@ services:
         tags:
             - { name: doctrine.event_listener, event: prePersist }
             - { name: doctrine.event_listener, event: preUpdate }
+            - { name: doctrine.event_listener, event: postPersist }
+            - { name: doctrine.event_listener, event: postUpdate }

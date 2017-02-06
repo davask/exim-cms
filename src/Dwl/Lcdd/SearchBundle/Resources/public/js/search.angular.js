@@ -210,6 +210,10 @@ angular
           return $window.Routing.generate('question_edit', { id: id });
         };
 
+        $scope.updatePath = function(id){
+          return $window.Routing.generate('question_qualify', { id: id });
+        };
+
         $scope.setType = function(type){
             $scope.type=type;
         };
