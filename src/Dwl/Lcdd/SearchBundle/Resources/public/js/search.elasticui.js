@@ -1285,7 +1285,7 @@ var elasticui;
                         }
                     };
                     // TODO: should be debounced
-                    var queryMatch = 'ejs.MatchQuery(field, querystring)';
+                    var queryMatch = 'ejs.MatchQuery(field, \'*\' + querystring + \'*\')';
                     // var queryMatch = 'ejs.MultiMatch().query(querystring).fields([field])'; // src : https://github.com/YousefED/ElasticUI/issues/84
                     directive.template = '\
 <input type="text" class="dwl-search-block-search-input form-control" placeholder="{[{placeholder}]}" \

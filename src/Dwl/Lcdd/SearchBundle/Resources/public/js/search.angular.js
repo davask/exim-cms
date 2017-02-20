@@ -12,7 +12,7 @@ angular
             .startSymbol('{[{')
             .endSymbol('}]}');
     })
-    .constant('euiHost', lcdd.elastic.request)
+    .constant('euiHost', legi.elastic.request)
     .controller("formCtrl", ['$scope', '$window', '$log', '$http', function($scope, $window, $log, $http) {
         $scope.block = null;
         $scope.display = 'block';

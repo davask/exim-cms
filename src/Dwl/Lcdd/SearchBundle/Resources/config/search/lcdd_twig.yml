@@ -8,6 +8,12 @@ twig:
                 port: '%lcdd.elastic.port%'
                 request: '%lcdd.elastic.request%'
                 index: '%lcdd.elastic.index%'
+        legi:
+            elastic:
+                host: '%legi.elastic.host%'
+                port: '%legi.elastic.port%'
+                request: '%legi.elastic.request%'
+                index: '%legi.elastic.index%'
             search:
                 host: '%lcdd.search.host%'
                 port: '%lcdd.search.port%'

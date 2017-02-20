@@ -77,6 +77,15 @@
       if (typeof(lcdd.elastic.request) == 'undefined') {
         lcdd['elastic']['request'] = '{{ lcdd.elastic.request }}';
       }
+      if (typeof(legi) == 'undefined') {
+        var legi = {};
+      }
+      if (typeof(legi.elastic) == 'undefined') {
+        legi['elastic'] = {};
+      }
+      if (typeof(legi.elastic.request) == 'undefined') {
+        legi['elastic']['request'] = '{{ legi.elastic.request }}';
+      }
     </script>
 </div>
 {% endblock %}
