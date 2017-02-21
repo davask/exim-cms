@@ -1,3 +1,8 @@
+parameters:
+    legi.elastic.host: ''
+    legi.elastic.port: ''
+    legi.elastic.request: ''
+    legi.elastic.index: ''
 twig:
     paths:
         '%exim.lcdd.search.resources%/views': views

@@ -8,22 +8,6 @@
         "psr-4": {
             "Sonata\\Bundle\\QABundle\\": "src/Sonata/Bundle/QABundle",
             "Sonata\\Bundle\\DemoBundle\\": "src/Sonata/Bundle/DemoBundle",
-            "Application\\Sonata\\AdminBundle\\": "vendor/davask/exim/src/Application/Sonata/AdminBundle",
-            "Application\\Sonata\\BasketBundle\\": "vendor/davask/exim/src/Application/Sonata/BasketBundle",
-            "Application\\Sonata\\ClassificationBundle\\": "vendor/davask/exim/src/Application/Sonata/ClassificationBundle",
-            "Application\\Sonata\\CustomerBundle\\": "vendor/davask/exim/src/Application/Sonata/CustomerBundle",
-            "Application\\Sonata\\InvoiceBundle\\": "vendor/davask/exim/src/Application/Sonata/InvoiceBundle",
-            "Application\\Sonata\\MediaBundle\\": "vendor/davask/exim/src/Application/Sonata/MediaBundle",
-            "Application\\Sonata\\NewsBundle\\": "vendor/davask/exim/src/Application/Sonata/NewsBundle",
-            "Application\\Sonata\\OrderBundle\\": "vendor/davask/exim/src/Application/Sonata/OrderBundle",
-            "Application\\Sonata\\PageBundle\\": "vendor/davask/exim/src/Application/Sonata/PageBundle",
-            "Application\\Sonata\\PaymentBundle\\": "vendor/davask/exim/src/Application/Sonata/PaymentBundle",
-            "Application\\Sonata\\ProductBundle\\": "vendor/davask/exim/src/Application/Sonata/ProductBundle",
-            "Application\\Sonata\\UserBundle\\": "vendor/davask/exim/src/Application/Sonata/UserBundle",
-            "Dwl\\Exim\\CoreBundle\\": "vendor/davask/exim/src/CoreBundle",
-            "Dwl\\Exim\\ThemeBundle\\": "vendor/davask/exim/src/ThemeBundle",
-            "Exim\\Theme\\Lcdd\\FrontBundle\\": "vendor/davask/exim/src/FrontBundle",
-            "Exim\\Theme\\Lcdd\\AdminBundle\\": "vendor/davask/exim/src/AdminBundle",
             "Dwl\\Lcdd\\SearchBundle\\": "src/Dwl/Lcdd/SearchBundle",
             "Dwl\\Lcdd\\SpeakerBundle\\": "src/Dwl/Lcdd/SpeakerBundle"
         }
@@ -32,7 +16,8 @@
 
     "require": {
         "php": ">=5.3.3",
-        "davask/exim": "~1@dev",
+        "ext-bcmath": "*",
+        "davask/exim": "*@dev",
         "doctrine/data-fixtures": "1.1.1",
         "doctrine/dbal": "~2.4,<2.5",
         "doctrine/doctrine-bundle": "~1.5",
@@ -85,7 +70,7 @@
         "symfony/assetic-bundle": "~2.3",
         "symfony/monolog-bundle": "~2.3",
         "symfony/swiftmailer-bundle": "~2.3",
-        "symfony/symfony": "~2.7,>=2.7.2",
+        "symfony/symfony": "~2.7,>=2.7.2,<2.8.16",
         "twbs/bootstrap": "v3.0.0",
         "twig/extensions": "~1.0",
         "twig/twig": "^1.24",
@@ -158,7 +143,11 @@
 
     "config": {
         "bin-dir": "bin",
-        "sort-packages": true
+        "sort-packages": true,
+        "preferred-install": {
+            "davask/*": "source",
+            "*": "auto"
+        }
     },
 
     "extra": {
