@@ -1,6 +1,5 @@
 twig:
-    paths:
-        '%exim.theme.path.root%/Resources/views': theme
+
     globals:
         theme:
             demo: '%exim.theme.demo%' # '%kernel.debug%'
@@ -27,3 +26,6 @@ twig:
     form:
         resources:
             - 'ApplicationSonataMediaBundle:Form:media_widgets.html.twig'
+    # paths:
+        # '%exim.theme.path.root%/src/FrontBundle/Resources/views': theme
+        # '%exim.theme.path.root%/src/AdminBundle/Resources/views': adminTheme
