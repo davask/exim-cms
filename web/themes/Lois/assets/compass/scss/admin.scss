@@ -1,0 +1,6 @@
+@import "settings/variables";
+
+.breadcrumb > .active {
+    color: $white;
+    font-weight: bold;
+}

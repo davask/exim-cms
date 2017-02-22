@@ -49,10 +49,6 @@ imports:
     - { resource: sonata/sonata_customer.yml }
     - { resource: sonata/sonata_basket.yml }
 
-    # Exim Parameters
-    - { resource: dwl/exim_theme_parameters.yml }
-    - { resource: ../../web/themes/Lcdd/app/config/dwl/exim_theme_parameters.yml }
-
     # Exim Front Bundles
     - { resource: dwl/exim_twig.yml }
     - { resource: dwl/exim_assetic.yml }

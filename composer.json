@@ -6,6 +6,8 @@
 
     "autoload": {
         "psr-4": {
+            "Exim\\Theme\\Lois\\FrontBundle\\": "web/themes/Lois/src/FrontBundle",
+            "Exim\\Theme\\Lois\\AdminBundle\\": "web/themes/Lois/src/AdminBundle",
             "Sonata\\Bundle\\QABundle\\": "src/Sonata/Bundle/QABundle",
             "Sonata\\Bundle\\DemoBundle\\": "src/Sonata/Bundle/DemoBundle",
             "Dwl\\Lcdd\\SearchBundle\\": "src/Dwl/Lcdd/SearchBundle",
@@ -15,8 +17,6 @@
 
 
     "require": {
-        "php": ">=5.3.3",
-        "ext-bcmath": "*",
         "davask/exim": "*@dev",
         "doctrine/data-fixtures": "1.1.1",
         "doctrine/dbal": "~2.4,<2.5",
@@ -137,7 +137,8 @@
             "Mopa\\Bundle\\BootstrapBundle\\Composer\\ScriptHandler::postInstallSymlinkTwitterBootstrap",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
-            "php bin/load_data.php"
+            "COMPOSER_PROCESS_TIMEOUT=600 php bin/exim_reset.php",
+            "DWLC_USER_NAME=`whoami` bash /tmp/dwl/symfony.sh"
         ]
     },
 
@@ -159,6 +160,7 @@
         },
         "incenteev-parameters": [{
             "file": "app/config/parameters.yml",
+            "dist-file": "app/config/parameters.yml.exim-dist",
             "env-map": {
                 "database.driver":   "DATABASE_DRIVER",
                 "database.host":     "DATABASE_HOST",
@@ -169,7 +171,6 @@
                 "mailer_host":       "MAILER_HOST",
                 "mailer_user":       "MAILER_USER",
                 "mailer_password":   "MAILER_PASSWORD",
-
                 "sonata_media.cdn.host": "SONATA_MEDIA_CDN_HOST"
             }
         }]

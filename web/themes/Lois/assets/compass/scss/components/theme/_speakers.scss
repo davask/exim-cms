@@ -1,0 +1,46 @@
+/*******************************\
+    $SPEAKER
+\*******************************/
+&.speaker_all {
+
+    .body-content {
+        max-width:none;
+        padding:0;
+        .content-media {
+            padding:100px 0;
+            background: #f3edd3;
+        }
+        .content-embed {
+            max-width:$maxWidth;
+            margin:0 auto;
+            padding:0 65px;
+        }
+    }
+
+    h2 {
+        font-size:18px;
+    }
+
+    .speaker {
+        padding:0 2%;
+        > a {
+            display:block;
+            > div {
+                background: #ffffff;
+                border-radius: 50%;
+                width: 120px;
+                height: 120px;
+                overflow: hidden;
+                border: 5px solid #ddd4ab;
+                display: inline-block;
+                margin: 30px 0 20px 0;
+            }
+            &:hover{
+                > div {
+                    border-color:#d54f58;
+                }
+            }
+        }
+    }
+
+}

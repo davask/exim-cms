@@ -1,0 +1,8 @@
+@import "settings/variables";
+
+body.#{$theme} {
+    /* overriding */
+    @import "components/admin/navbar";
+    @import "components/theme/admin/navbar";
+
+}

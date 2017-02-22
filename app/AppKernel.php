@@ -124,8 +124,9 @@ class AppKernel extends Kernel
             new Dwl\Exim\CoreBundle\DwlEximCoreBundle(),
             new Dwl\Exim\ThemeBundle\DwlEximThemeBundle(),
 
-            // APP
-            // new AppBundle\AppBundle(),
+            // EXIM THEME : LOIS
+            new Exim\Theme\Lois\FrontBundle\EximThemeLoisFrontBundle(),
+            new Exim\Theme\Lois\AdminBundle\EximThemeLoisAdminBundle(),
 
             // LCDD DEPENDENCIES
             // Search Integration
@@ -134,10 +135,6 @@ class AppKernel extends Kernel
             // LCDD
             new Dwl\Lcdd\SearchBundle\DwlLcddSearchBundle(),
             new Dwl\Lcdd\SpeakerBundle\DwlLcddSpeakerBundle(),
-
-            // EXIM THEME : LCDD
-            new Exim\Theme\Lcdd\FrontBundle\EximThemeLcddFrontBundle(),
-            new Exim\Theme\Lcdd\AdminBundle\EximThemeLcddAdminBundle(),
 
         );
 

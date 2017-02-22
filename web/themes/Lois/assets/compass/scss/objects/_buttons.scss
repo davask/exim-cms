@@ -1,0 +1,26 @@
+/*******************************\
+    $BUTTON
+\*******************************/
+.btn {
+    border: 0;
+    padding: 5px 15px;
+}
+
+.btn-primary {
+    background: $blue_light_extra;
+    border-radius: 0;
+    &:hover {
+        color: $white;
+        background: lighten( $blue_light_extra, 20% );
+    }
+}
+
+.btn-secondary {
+    background: $red_dark;
+    border-radius: 0;
+    &:hover {
+        color: $white;
+        background: lighten( $red_dark, 10% );
+    }
+}
+
