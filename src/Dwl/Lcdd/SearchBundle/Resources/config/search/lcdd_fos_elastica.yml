@@ -1,0 +1,32 @@
+fos_elastica:
+    clients:
+        lcdd:
+            host: %lcdd.elastic.host%
+            port: %lcdd.elastic.port%
+
+    serializer:
+        callback_class:                         FOS\ElasticaBundle\Serializer\Callback
+        serializer:                             serializer
+
+    indexes:
+
+        lcdd:
+
+            type_prototype:
+                persistence:
+                   driver:                      orm
+                   identifier:                  id
+
+            client: lcdd
+
+            types:
+
+                # lcdd Search Bundle
+                question:
+                    # serializer:                 { groups: ['lcdd_search'] }
+                    mappings:
+                        question:               { type: string }
+
+                    persistence:
+                        model:    Dwl\Lcdd\SearchBundle\Entity\Question
+                        provider: ~

@@ -1,0 +1,22 @@
+@import "settings/variables";
+@import "override/bootstrap";
+@import "objects/fonts";
+@import "objects/generic";
+@import "objects/buttons";
+@import "components/generic";
+@import "components/menu";
+
+body.#{$theme} {
+
+    height: 100%;
+    background: $blue_dark;
+    font-family: 'Open Sans', 'Helvetica Neue',Helvetica,Arial,sans-serif;
+
+    @import "components/theme/navbar";
+    @import "components/theme/footer";
+    @import "components/theme/question";
+    @import "components/theme/speakers";
+    @import "components/theme/speaker";
+
+}
+

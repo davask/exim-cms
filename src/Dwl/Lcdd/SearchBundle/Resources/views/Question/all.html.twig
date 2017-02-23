@@ -1,0 +1,4 @@
+{% trans_default_domain "DwlLcddSearchBundle" %}
+{% for question in questions %}
+    {% include 'DwlLcddSearchBundle:Question:get.html.twig' with { 'question' : question } %}
+{% endfor %}

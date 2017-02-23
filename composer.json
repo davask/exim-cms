@@ -1,22 +1,41 @@
 {
-    "name": "sonata-project/sandbox",
-    "description": "Sonata Project's sandbox (with ecommerce bundles)",
+    "name": "davask/exim",
+    "description": "eXim Project - a Sonata Project fork (with ecommerce bundles)",
 
     "license": "MIT",
 
     "autoload": {
-        "psr-0": {
-            "": "src/"
-        },
         "psr-4": {
-            "": "web/themes/lcdd/src/"
+            "Application\\Sonata\\AdminBundle\\": "vendor/davask/exim/src/Application/Sonata/AdminBundle",
+            "Application\\Sonata\\BasketBundle\\": "vendor/davask/exim/src/Application/Sonata/BasketBundle",
+            "Application\\Sonata\\ClassificationBundle\\": "vendor/davask/exim/src/Application/Sonata/ClassificationBundle",
+            "Application\\Sonata\\CustomerBundle\\": "vendor/davask/exim/src/Application/Sonata/CustomerBundle",
+            "Application\\Sonata\\InvoiceBundle\\": "vendor/davask/exim/src/Application/Sonata/InvoiceBundle",
+            "Application\\Sonata\\MediaBundle\\": "vendor/davask/exim/src/Application/Sonata/MediaBundle",
+            "Application\\Sonata\\NewsBundle\\": "vendor/davask/exim/src/Application/Sonata/NewsBundle",
+            "Application\\Sonata\\OrderBundle\\": "vendor/davask/exim/src/Application/Sonata/OrderBundle",
+            "Application\\Sonata\\PageBundle\\": "vendor/davask/exim/src/Application/Sonata/PageBundle",
+            "Application\\Sonata\\PaymentBundle\\": "vendor/davask/exim/src/Application/Sonata/PaymentBundle",
+            "Application\\Sonata\\ProductBundle\\": "vendor/davask/exim/src/Application/Sonata/ProductBundle",
+            "Application\\Sonata\\UserBundle\\": "vendor/davask/exim/src/Application/Sonata/UserBundle",
+            "Dwl\\Exim\\CoreBundle\\": "vendor/davask/exim/src/CoreBundle",
+            "Dwl\\Exim\\ThemeBundle\\": "vendor/davask/exim/src/ThemeBundle",
+
+            "Exim\\Theme\\Lcdd\\FrontBundle\\": "web/themes/Lcdd/src/FrontBundle",
+            "Exim\\Theme\\Lcdd\\AdminBundle\\": "web/themes/Lcdd/src/AdminBundle",
+
+            "Sonata\\Bundle\\QABundle\\": "src/Sonata/Bundle/QABundle",
+            "Sonata\\Bundle\\DemoBundle\\": "src/Sonata/Bundle/DemoBundle",
+
+            "Dwl\\Lcdd\\SearchBundle\\": "src/Dwl/Lcdd/SearchBundle",
+            "Dwl\\Lcdd\\SpeakerBundle\\": "src/Dwl/Lcdd/SpeakerBundle"
         }
     },
 
-    "minimum-stability": "stable",
 
     "require": {
         "php": ">=5.3.3",
+        "davask/exim": "*@dev",
         "doctrine/data-fixtures": "1.1.1",
         "doctrine/dbal": "~2.4,<2.5",
         "doctrine/doctrine-bundle": "~1.5",
@@ -24,7 +43,10 @@
         "doctrine/doctrine-migrations-bundle": "*@dev",
         "doctrine/migrations": "~1.0@dev",
         "doctrine/orm": "~2.4,<2.5",
+        "egeloen/ckeditor-bundle": "^4.0",
         "friendsofsymfony/comment-bundle": "~2.0@dev",
+        "friendsofsymfony/elastica-bundle": "dev-master",
+        "friendsofsymfony/jsrouting-bundle": "^1.6",
         "incenteev/composer-parameter-handler": "~2.0",
         "jms/serializer-bundle": "~0.11",
         "knplabs/gaufrette": "~0.1.6",
@@ -37,8 +59,8 @@
         "sensio/distribution-bundle": "~4.0",
         "sensio/framework-extra-bundle": "^3.0.2",
         "simplethings/entity-audit-bundle": "~0.5",
-        "sonata-project/admin-bundle": "~3.4",
-        "sonata-project/block-bundle": "~3.1",
+        "sonata-project/admin-bundle": "3.x-dev",
+        "sonata-project/block-bundle": "3.x-dev",
         "sonata-project/cache": "~1.0",
         "sonata-project/cache-bundle": "~2.2",
         "sonata-project/classification-bundle": "~3.1",
@@ -66,11 +88,12 @@
         "symfony/assetic-bundle": "~2.3",
         "symfony/monolog-bundle": "~2.3",
         "symfony/swiftmailer-bundle": "~2.3",
-        "symfony/symfony": "~2.7,>=2.7.2",
+        "symfony/symfony": "~2.7,>=2.7.2,<2.8.16",
         "twbs/bootstrap": "v3.0.0",
         "twig/extensions": "~1.0",
         "twig/twig": "^1.24",
-        "willdurand/faker-bundle": "~1.0"
+        "willdurand/faker-bundle": "~1.0",
+        "willdurand/geocoder-bundle": "^4.1"
     },
 
     "require-dev": {
@@ -92,6 +115,21 @@
         "symfony/phpunit-bridge": "2.7.*@dev",
         "symfony/var-dumper": "^3.1"
     },
+
+    "repositories" : [
+        {
+            "type" : "vcs",
+            "url" : "https://github.com/davask/SonataAdminBundle"
+        },
+        {
+            "type" : "vcs",
+            "url" : "https://github.com/davask/SonataBlockBundle"
+        },
+        {
+            "type" : "vcs",
+            "url" : "https://github.com/davask/SonataPageBundle"
+        }
+    ],
 
     "scripts": {
         "post-install-cmd": [
@@ -117,13 +155,18 @@
             "Mopa\\Bundle\\BootstrapBundle\\Composer\\ScriptHandler::postInstallSymlinkTwitterBootstrap",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
-            "php bin/load_data.php"
+            "COMPOSER_PROCESS_TIMEOUT=600 php bin/exim_reset.php",
+            "DWLC_USER_NAME=`whoami` bash /tmp/dwl/symfony.sh"
         ]
     },
 
     "config": {
         "bin-dir": "bin",
-        "sort-packages": true
+        "sort-packages": true,
+        "preferred-install": {
+            "davask/*": "source",
+            "*": "auto"
+        }
     },
 
     "extra": {
@@ -135,6 +178,7 @@
         },
         "incenteev-parameters": [{
             "file": "app/config/parameters.yml",
+            "dist-file": "app/config/parameters.yml.exim-dist",
             "env-map": {
                 "database.driver":   "DATABASE_DRIVER",
                 "database.host":     "DATABASE_HOST",

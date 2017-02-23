@@ -1,0 +1,11 @@
+assetic:
+    assets:
+        # add extra assets after this line
+        lcdd_search_css:
+            inputs: '%exim.lcdd.search.styles%'
+            output: 'assetic/front_lcdd.css'
+            filters:
+                - yui_css
+        lcdd_search_js:
+            inputs: '%exim.lcdd.search.javascript%'
+            output: 'assetic/front_lcdd.js'

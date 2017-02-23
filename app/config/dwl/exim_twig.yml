@@ -1,0 +1,29 @@
+twig:
+    # paths:
+    #     '%exim.theme.path.root%/Resources/views': theme
+    globals:
+        theme:
+            demo: '%exim.theme.demo%' # '%kernel.debug%'
+            name: '%exim.theme.name%'
+            path:
+                web: '%exim.theme.path.web%'
+                public: '%exim.theme.path.public%'
+                private: '%exim.theme.path.private%'
+            assets:
+                version:
+                    css: '%exim.theme.assets.version.css%'
+                    js: '%exim.theme.assets.version.js%'
+                    img: '%exim.theme.assets.version.img%'
+                css:
+                    vendor: '%exim.theme.front.css.vendor%'
+                    extra: '%exim.theme.front.css.extra%'
+                js:
+                    vendor: '%exim.theme.front.js.vendor%'
+                    extra: '%exim.theme.front.js.extra%'
+            admin:
+                skin: '%exim.theme.admin.skin%'
+            front:
+                format: '%exim.theme.front.format%'
+    form:
+        resources:
+            - 'ApplicationSonataMediaBundle:Form:media_widgets.html.twig'

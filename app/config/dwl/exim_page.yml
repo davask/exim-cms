@@ -1,0 +1,166 @@
+cmf_routing:
+    chain:
+        routers_by_id:
+            # enable the DynamicRouter with high priority to allow overwriting configured routes with content
+            # cmf_routing.dynamic_router: 200
+            # enable the symfony default router with a lower priority
+            sonata.page.router: 150
+            router.default: 100
+
+sonata_page:
+    # class:
+    #     site:     Application\Sonata\PageBundle\Entity\Site
+    #     snapshot: Application\Sonata\PageBundle\Entity\Snapshot
+    #     page:     Application\Sonata\PageBundle\Entity\Page
+    #     block:    Application\Sonata\PageBundle\Entity\Block
+    # default_template: default
+    templates:
+        global:
+            path: 'EximTheme%exim.theme.name%FrontBundle:Template:global.html.twig'
+            name: 'Global layout'
+            containers:
+                header:
+                    name: En-tete
+                header_search:
+                    name: Header search
+                header_connexion:
+                    name: Header connexion
+                header_top:
+                    name: Header Top
+                header_menu:
+                    name: Header Menu
+                content_search:
+                    name: Home Search
+                content_top:
+                    name: Content Top
+                content:
+                    name: Content
+                content_bottom:
+                    name: Content Bottom
+                bottom_newsletter:
+                    name: Bottom Newsletter
+                bottom_embed:
+                    name: Bottom Embed
+                footer:
+                    name: Pied de page
+            matrix:
+                 layout: |
+                     hhhhhhhhhhhh
+                     hhhhhhmmmmmm
+                     sssssscccccc
+                     tttttttttttt
+                     TTTTTTTTTTTT
+                     CCCCCCCCCCCC
+                     SSSSSSSSSSSS
+                     BBBBBBBBBBBB
+                     NNNNNNEEEEEE
+                     FFFFFFFFFFFF
+
+                 mapping:
+                    h: header
+                    m: header_menu
+                    s: header_search
+                    c: header_connexion
+                    t: header_top
+                    T: content_top
+                    C: content
+                    S: content_search
+                    B: content_bottom
+                    N: bottom_newsletter
+                    E: bottom_embed
+                    F: footer
+
+        default:
+            path: 'EximTheme%exim.theme.name%FrontBundle:Template:default.html.twig'
+            name: 'Lcdd layout - default'
+            containers:
+                 content_top:
+                     name: Content Top
+                 content:
+                     name: Main content
+                 content_bottom:
+                     name: Content Bottom
+                 footer:
+                     name: Footer
+            matrix:
+                 layout: |
+                     TTTTTTTT
+                     CCCCCCCC
+                     BBBBBBBB
+                     FFFFFFFF
+
+                 mapping:
+                     T: content_top
+                     C: content
+                     B: content_bottom
+                     F: footer
+
+        index:
+            path: 'EximTheme%exim.theme.name%FrontBundle:Template:index.html.twig'
+            name: 'Index layout - default'
+            containers:
+                 content_search:
+                     name: Moteur de recherche
+                 content_concept:
+                     name: Concept
+                 content_video:
+                     name: Videos
+                 content_question:
+                     name: Questions
+                 content_category:
+                     name: Questions
+                 content_person:
+                     name: Intervenants
+            matrix:
+                 layout: |
+                     ssssssssssss
+                     iiiiiiiiiiii
+                     vvvvvvvvvvvv
+                     qqqqqqqqqqqq
+                     cccccccccccc
+                     pppppppppppp
+
+                 mapping:
+                     s: content_search
+                     i: content_concept
+                     v: content_video
+                     q: content_question
+                     c: content_category
+                     p: content_person
+
+        question:
+            path: 'EximTheme%exim.theme.name%FrontBundle:Template:question.html.twig'
+            name: 'Question layout'
+            containers:
+                 content_top:
+                     name: Content Top
+                 content:
+                     name: Main content
+                 content_bottom:
+                     name: Content Bottom
+                 footer:
+                     name: Footer
+            matrix:
+                 layout: |
+                     TTTTTTTT
+                     CCCCCCCC
+                     BBBBBBBB
+                     FFFFFFFF
+
+                 mapping:
+                     T: content_top
+                     C: content
+                     B: content_bottom
+                     F: footer
+
+    templates_admin:
+        compose:    ApplicationSonataPageBundle:PageAdmin:compose.html.twig
+
+doctrine:
+    orm:
+        entity_managers:
+            default:
+                mappings:
+                    ApplicationSonataPageBundle: ~
+
+

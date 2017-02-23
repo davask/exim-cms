@@ -1,0 +1,18 @@
+parameters:
+  dwl.lcdd.speaker.admin.speaker.class: 'Dwl\Lcdd\SpeakerBundle\Admin\SpeakerAdmin'
+  dwl.lcdd.speaker.admin.speaker.entity: 'Dwl\Lcdd\SpeakerBundle\Entity\Speaker'
+  dwl.lcdd.speaker.admin.speaker.controller: 'SonataAdminBundle:CRUD'
+
+services:
+    dwl.lcdd.speaker.speaker:
+        class: '%dwl.lcdd.speaker.admin.speaker.class%'
+        tags:
+            -
+              name: sonata.admin
+              manager_type: orm
+              group: Lcdd
+              label: Intervenants
+              show_in_dashboard: false
+              label: speaker
+              label_translator_strategy: sonata.admin.label.strategy.underscore
+        arguments: ['', '%dwl.lcdd.speaker.admin.speaker.entity%', '%dwl.lcdd.speaker.admin.speaker.controller%']

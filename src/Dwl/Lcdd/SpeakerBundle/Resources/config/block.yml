@@ -1,0 +1,21 @@
+services:
+    lcdd.speaker.block.menu:
+        class: Sonata\UserBundle\Block\ProfileMenuBlockService
+        tags:
+            -
+                name: sonata.block
+        arguments:
+            - 'lcdd.speaker.block.menu'
+            - '@templating'
+            - '@knp_menu.menu_provider'
+            - '@lcdd.speaker.profile.menu_builder'
+
+    lcdd.speaker.block.account:
+        class: Sonata\UserBundle\Block\AccountBlockService
+        tags:
+            -
+                name: sonata.block
+        arguments:
+            - 'lcdd.speaker.block.account'
+            - '@templating'
+            - '@security.context'

@@ -1,0 +1,46 @@
+{# available fields
+{% set lcddSearchFields = ["'ARTICLE.CONTEXTE.TEXTE.TITRE_TXT.$t'"] %}
+{% set lcddSearchFields = lcddSearchFields | merge(["'ARTICLE.CONTEXTE.TEXTE.TM.TITRE_TM.$t'"]) %}
+
+
+              'ARTICLE.CONTEXTE.TEXTE.TM.TM.TITRE_TM.$t'
+              'ARTICLE.CONTEXTE.TEXTE.TM.TM.TM.TITRE_TM.$t'
+              'ARTICLE.CONTEXTE.TEXTE.TM.TM.TM.TM.TITRE_TM.$t'
+              'ARTICLE.CONTEXTE.TEXTE.TM.TM.TM.TM.TM.TITRE_TM.$t'
+              'ARTICLE.CONTEXTE.TEXTE.TM.TM.TM.TM.TM.TM.TITRE_TM.$t'
+              'ARTICLE.CONTEXTE.TEXTE.TM.TM.TM.TM.TM.TM.TM.TITRE_TM.$t'
+              'ARTICLE.CONTEXTE.TEXTE.TM.TM.TM.TM.TM.TM.TM.TM.TITRE_TM.$t'
+              'ARTICLE.CONTEXTE.TEXTE.TM.TM.TM.TM.TM.TM.TM.TM.TM.TITRE_TM.$t'
+              'ARTICLE.CONTEXTE.TEXTE.@nature'
+              'ARTICLE.META.META_COMMUN.NATURE.$t'
+              'ARTICLE.META.META_SPEC.META_ARTICLE.NUM.$t'
+              'ARTICLE.BLOC_TEXTUEL.CONTENU.$t'
+              'ARTICLE.BLOC_TEXTUEL.CONTENU.p'
+              'ARTICLE.BLOC_TEXTUEL.CONTENU.p.$t'
+              'ARTICLE.BLOC_TEXTUEL.CONTENU.div.$t'
+              'ARTICLE.BLOC_TEXTUEL.CONTENU.div.p'
+              'ARTICLE.BLOC_TEXTUEL.CONTENU.table.tbody.tr'
+
+              'ARTICLE.META.META_COMMUN.ID.$t'
+              '_score'
+              'ARTICLE.CONTEXTE.TEXTE.@cid'
+
+              'ARTICLE.META.META_SPEC.META_ARTICLE.DATE_DEBUT.$t'
+              'ARTICLE.META.META_SPEC.META_ARTICLE.DATE_FIN.$t'
+              'ARTICLE.BLOC_TEXTUEL.CONTENU.br'
+              'ARTICLE.NOTA.CONTENU.$t'
+              'ARTICLE.NOTA.CONTENU.p.$t'
+              'ARTICLE.META.META_SPEC.META_ARTICLE.ETAT.$t'
+              'ARTICLE.CONTEXTE.TEXTE.TM.TITRE_TM.@id'
+              'ARTICLE.CONTEXTE.TEXTE.TM.TM.TITRE_TM.@id'
+              'ARTICLE.CONTEXTE.TEXTE.TM.TM.TM.TITRE_TM.@id'
+              'ARTICLE.CONTEXTE.TEXTE.TM.TM.TM.TM.TITRE_TM.@id'
+              'ARTICLE.CONTEXTE.TEXTE.TM.TM.TM.TM.TM.TITRE_TM.@id'
+              'ARTICLE.CONTEXTE.TEXTE.TM.TM.TM.TM.TM.TM.TITRE_TM.@id'
+              'ARTICLE.CONTEXTE.TEXTE.TM.TM.TM.TM.TM.TM.TM.TITRE_TM.@id'
+              'ARTICLE.CONTEXTE.TEXTE.TM.TM.TM.TM.TM.TM.TM.TM.TITRE_TM.@id'
+              'ARTICLE.CONTEXTE.TEXTE.TM.TM.TM.TM.TM.TM.TM.TM.TM.TITRE_TM.@id'
+#}
+<div class="panel panel-default" ng-repeat="doc in indexVM.results.hits.hits" ng-init="dictum=doc._source.ARTICLE">
+    {% include 'DwlLcddSearchBundle:Search:dictum_result.html.twig' %}
+</div>

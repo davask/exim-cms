@@ -2,6 +2,14 @@ dwl_exim_core:
     resource: "@DwlEximCoreBundle/Resources/config/routing.yml"
     prefix:   /
 
+dwl_lcdd_search:
+    resource: "@DwlLcddSearchBundle/Resources/config/routing.yml"
+    prefix:   /
+
+dwl_lcdd_speaker:
+    resource: "@DwlLcddSpeakerBundle/Resources/config/routing/speaker.yml"
+    prefix:   /intervenant
+
 # Internal routing configuration to handle ESI
 #_internal:
 #   resource: "@FrameworkBundle/Resources/config/routing/internal.xml"
@@ -25,3 +33,6 @@ _api:
 
 _liip_imagine:
     resource: "@LiipImagineBundle/Resources/config/routing.xml"
+
+fos_js_routing:
+    resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"

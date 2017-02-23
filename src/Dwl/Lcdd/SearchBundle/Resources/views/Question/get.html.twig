@@ -1,0 +1,20 @@
+{% extends "DwlLcddSearchBundle:Question:base.html.twig" %}
+{% block content_embed %}
+<div>Cat&eacute;gories:{% for u in question.categories %}{% if not loop.first %}, {% endif %}{{ u.name }}{% endfor %}</div>
+<div>
+    En train de regarder:<h1>{{question.question}}</h1><small><a href="{{ path('question_edit', {'id': question.id }) }}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></small>
+</div>
+<div>
+    Par: <a href="{{ path('lcdd_speaker_get', {'username': question.speaker.customer.user.usernameCanonical }) }}">
+        {{ (question.speaker.customer.user.firstname ~ ' ' ~ question.speaker.customer.user.lastname) | trim | default(question.speaker.customer.user.username) | capitalize }}
+    </a>
+</div>
+{% endblock %}
+{% block content_video %}
+    {% if question.media.providerMetadata is defined %}
+            <div class="embed-responsive embed-responsive-16by9">
+              <!-- <iframe class="embed-responsive-item" src="..."></iframe> -->
+              {{ question.media.providerMetadata.html | raw}}
+            </div>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,77 @@
+{% trans_default_domain "DwlLcddSpeakerBundle" %}
+{% extends "EximTheme"~theme.name~"FrontBundle:Template:default.html.twig" %}
+{% block page_content %}
+<div class="body-content clearfix speaker {% block contentClass %}{% endblock %}">
+    {% block sonata_profile_form_start '' %}
+
+    <h1 class="max-width col-sm-12 text-center">{{ speaker.fullname }}</h1>
+
+    {% block sonata_profile_form_errors '' %}
+
+    <div class="max-width col-sm-12">
+
+      <!-- Nav tabs -->
+      <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active">
+            <a href="#apropos" aria-controls="apropos" role="tab" data-toggle="tab">
+                {{ 'Â propos (see description)' | trans }}
+            </a>
+        </li>
+        <li role="presentation">
+            <a href="#parcours" aria-controls="parcours" role="tab" data-toggle="tab">
+                {{'Parcours' | trans }}
+            </a>
+        </li>
+        <li role="presentation">
+            <a href="#specialisations" aria-controls="specialisations" role="tab" data-toggle="tab">
+                {{'Spécialisations' | trans }}
+            </a>
+        </li>
+        <li role="presentation">
+            <a href="#publications" aria-controls="publications" role="tab" data-toggle="tab">
+                {{'Publications' | trans }}
+            </a>
+        </li>
+      </ul>
+
+      {#% block sonata_profile_menu %}
+          {{ sonata_block_render({'type': 'lcdd.speaker.block.menu'}, {'current_uri': app.request.requestUri}) }}
+      {% endblock %#}
+
+      {#% include 'SonataCoreBundle:FlashMessage:render.html.twig' %#}
+
+      {% block sonata_profile_tabs '' %}
+
+    </div>
+
+    {% block sonata_profile_map '' %}
+
+    <div class="no-horizontal-padding col-xs-12 overview">
+        <div class="clearfix">
+            <div class="max-width">
+                <div class="no-horizontal-padding col-lg-6 presentation">
+                    {% block sonata_profile_presentation '' %}
+                </div>
+                <div class="col-lg-6 details">
+                    {% block sonata_profile_details '' %}
+                </div>
+            </div>
+        </div>
+    </div>
+    {% block sonata_profile_form_end '' %}
+
+    <div class="max-width col-xs-12">
+
+        <div class="sub-header">
+
+            <h2>{{'Ses vidéos' | trans }}</h2>
+            <hr class="subheader"/>
+
+        </div>
+
+    </div>
+
+</div>
+{% endblock %}
+
+{% block exim_page_scripts '' %}

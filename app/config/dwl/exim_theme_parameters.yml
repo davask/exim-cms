@@ -1,0 +1,56 @@
+# dependencies :
+#    - sonata-porject
+#    - liip/imagine-bundle
+#    - knplabs/knp-gaufrette-bundle
+# configuration :
+#    - exim config & appKernel need to be called after all other bundles and before app bundles
+
+parameters:
+    # theme details
+
+    # Sonata Admin Options
+    exim_admin.title:      'eXim Project'
+    exim_admin.logo_title: '%exim.theme.path.web%/media/images/logo-admin.png'
+
+    # Sonata Seo Options
+    exim_seo.title: 'eXim Project'
+    exim_seo.baseline: 'eXim Project - a Sonata Project Fork'
+
+    exim.theme.name: Exim
+    exim.theme.host: dev.davaskweblimited.com
+    exim.theme.assets.version.css: '1.0'
+    exim.theme.assets.version.js: '1.1'
+    exim.theme.assets.version.img: '1.1'
+    exim.theme.front.format: 'html'
+
+    exim.theme.front.css:
+        - '%exim.theme.path.root%/assets/legacy/compass/scss/sonata_legacy.scss'
+        - '%exim.theme.path.root%/assets/compass/scss/front.scss'
+        - '%exim.theme.path.root%/assets/compass/scss/style.scss'
+    exim.theme.admin.css:
+        - 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css'
+        - 'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'
+    exim.theme.front.js: []
+
+    exim.theme.vendor_front.css:
+        - 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css'
+        - 'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'
+    exim.theme.vendor_front.js:
+        - 'https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js'
+        - 'https://cdnjs.cloudflare.com/ajax/libs/sizzle/2.2.0/sizzle.min.js'
+        - 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js'
+        - 'https://cdnjs.cloudflare.com/ajax/libs/jquery-noty/2.3.8/packaged/jquery.noty.packaged.min.js'
+
+    exim.theme.front.css.extra: []
+    exim.theme.front.js.extra: []
+    exim.theme.front.css.vendor:
+        - 'front_vendor'
+    exim.theme.front.js.vendor:
+        - 'front_vendor'
+
+    exim.theme.admin.skin: 'skin-black'
+
+
+    # Assetic
+    # assetic.filter.compass.images_dir: '%kernel.root_dir%/../web/images'
+    # assetic.filter.compass.http_path:  '/images'

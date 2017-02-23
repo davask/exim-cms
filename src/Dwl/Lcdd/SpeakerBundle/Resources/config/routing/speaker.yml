@@ -1,0 +1,68 @@
+lcdd_speaker_all:
+    pattern: "/tous.{_format}"
+    methods: "GET"
+    defaults:
+        _controller: DwlLcddSpeakerBundle:Default:all
+        _locale: fr
+        _format: '%exim.theme.front.format%'
+    requirements:
+        _locale: fr
+        _format: html|json
+    options:
+        expose: true
+
+lcdd_speaker_get:
+    pattern: "/{username}.{_format}"
+    methods: "GET"
+    defaults:
+        _controller: DwlLcddSpeakerBundle:Default:get
+        username: 'me'
+        _locale: fr
+        _format: '%exim.theme.front.format%'
+    requirements:
+        _locale: fr
+        _format: html|json
+    options:
+        expose: true
+
+# lcdd_speaker
+#     path:     /
+#     defaults: { _controller: "DwlLcddSpeakerBundle:Speaker:index" }
+
+# lcdd_speaker_show:
+#     path:     /{id}/show
+#     defaults: { _controller: "DwlLcddSpeakerBundle:Speaker:show" }
+
+lcdd_speaker_new:
+    path:     /new
+    defaults: { _controller: "DwlLcddSpeakerBundle:Speaker:new" }
+
+lcdd_speaker_create:
+    path:     /create
+    defaults: { _controller: "DwlLcddSpeakerBundle:Speaker:create" }
+    methods:  POST
+
+lcdd_speaker_edit:
+    path: /{username}/edit
+    defaults:
+        _controller: "DwlLcddSpeakerBundle:Speaker:edit"
+        username: 'me'
+        _locale: fr
+    requirements:
+        _locale: fr
+    options:
+        expose: true
+
+
+lcdd_speaker_update:
+    path:     /{id}/update
+    methods:  [POST, PUT]
+    defaults:
+        _controller: "DwlLcddSpeakerBundle:Speaker:update"
+    options:
+        expose: true
+
+lcdd_speaker_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "DwlLcddSpeakerBundle:Speaker:delete" }
+    methods:  [POST, DELETE]

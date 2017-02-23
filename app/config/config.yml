@@ -6,6 +6,9 @@ imports:
     # Mopa Bootstrap
     - { resource: mopa/mopa_bootstrap.yml }
 
+    # Gedmo extension
+    - { resource: gedmo/extension.yml }
+
     # Knp Paginator
     - { resource: knp/knp_paginator.yml }
 
@@ -13,7 +16,7 @@ imports:
     - { resource: fos/fos_comment.yml }
     - { resource: fos/fos_rest.yml }
     - { resource: fos/fos_user.yml }
-    #- { resource: fos/fos_elastica.yml }
+    # - { resource: fos/fos_elastica.yml }
 
     #- { resource: bazinga/bazinga_hateos.yml }
 
@@ -46,9 +49,41 @@ imports:
     - { resource: sonata/sonata_customer.yml }
     - { resource: sonata/sonata_basket.yml }
 
-    # Sonata e-commerce bundles
-    - { resource: dwl/exim_theme.yml }
+    # Exim Parameters
+    # - { resource: dwl/exim_theme_parameters.yml }
+    # - { resource: ../../web/themes/Lcdd/app/config/dwl/exim_theme_parameters.yml }
+
+    # Exim Front Bundles
+    - { resource: dwl/exim_twig.yml }
+    - { resource: dwl/exim_assetic.yml }
+
+    # Exim Core Bundles
+    - { resource: dwl/exim_block.yml }
+    - { resource: dwl/exim_seo.yml }
     - { resource: dwl/exim_core.yml }
+    - { resource: dwl/exim_security.yml }
+
+    # Exim Feature Bundles
+    - { resource: dwl/exim_admin.yml }
+    - { resource: dwl/exim_page.yml }
+    - { resource: dwl/exim_media.yml }
+    - { resource: dwl/exim_user.yml }
+
+    # Exim e-commerce bundles
+    - { resource: dwl/exim_customer.yml }
+
+    # Lcdd Parameters + Bundles
+    - { resource: ../../src/Dwl/Lcdd/SearchBundle/Resources/config/search/lcdd_search_parameters.yml }
+
+    - { resource: ../../src/Dwl/Lcdd/SearchBundle/Resources/config/search/lcdd_assetic.yml }
+
+    - { resource: ../../src/Dwl/Lcdd/SearchBundle/Resources/config/search/lcdd_stof.yml }
+    - { resource: ../../src/Dwl/Lcdd/SearchBundle/Resources/config/search/lcdd_fos_elastica.yml }
+    - { resource: ../../src/Dwl/Lcdd/SearchBundle/Resources/config/search/lcdd_twig.yml }
+    - { resource: ../../src/Dwl/Lcdd/SearchBundle/Resources/config/search/lcdd_admin.yml }
+    - { resource: ../../src/Dwl/Lcdd/SearchBundle/Resources/config/search/lcdd_media.yml }
+    - { resource: ../../src/Dwl/Lcdd/SearchBundle/Resources/config/search/lcdd_page.yml }
+    - { resource: ../../src/Dwl/Lcdd/SpeakerBundle/Resources/config/speaker/admin.yml }
 
 framework:
     #esi:             ~
@@ -60,13 +95,15 @@ framework:
     form:            ~
     csrf_protection: ~
     validation:      { enable_annotations: true }
-    #serializer:      { enable_annotations: true }
+    serializer:
+        enabled: true
+        enable_annotations: true
     templating:
         engines: ['twig']
         #assets_version: SomeVersionScheme
     default_locale:  "%locale%"
     trusted_hosts:   ~
-    trusted_proxies: ~
+    trusted_proxies: ['127.0.0.1']
     session:
         # handler_id set to null will use default session handler from php.ini
         handler_id:  ~
@@ -83,7 +120,7 @@ twig:
     form:
         resources:
             - 'SonataFormatterBundle:Form:formatter.html.twig'
-            - 'SonataMediaBundle:Form:media_widgets.html.twig'
+            # - 'SonataMediaBundle:Form:media_widgets.html.twig'
             - 'SonataCoreBundle:Form:datepicker.html.twig'
 
     exception_controller: 'FOS\RestBundle\Controller\ExceptionController::showAction'
@@ -124,9 +161,30 @@ swiftmailer:
 jms_serializer:
     metadata:
         directories:
-            - { path: %kernel.root_dir%/../vendor/sonata-project/user-bundle/Resources/config/serializer/FOSUserBundle, namespace_prefix: 'FOS\UserBundle' }
-            - { path: %kernel.root_dir%/../vendor/sonata-project/ecommerce/src/BasketBundle/Resources/config/serializer/Component, namespace_prefix: 'Sonata\Component\Basket' }
-            - { path: %kernel.root_dir%/../vendor/sonata-project/datagrid-bundle/Resources/config/serializer, namespace_prefix: 'Sonata\DatagridBundle' }
+            -
+                path: %kernel.root_dir%/../vendor/sonata-project/ecommerce/src/BasketBundle/Resources/config/serializer/Component
+                namespace_prefix: 'Sonata\Component\Basket'
+            -
+                path: %kernel.root_dir%/../vendor/sonata-project/datagrid-bundle/Resources/config/serializer
+                namespace_prefix: 'Sonata\DatagridBundle'
+            -
+                path: %kernel.root_dir%/../web/themes/%exim.theme.name%/vendor/sonata-project/media-bundle/Resources/config/serializer
+                namespace_prefix: 'Sonata\MediaBundle'
+            -
+                path: %kernel.root_dir%/../web/themes/%exim.theme.name%/src/Application/Sonata/UserBundle/Resources/config/serializer/FOSUserBundle
+                namespace_prefix: 'FOS\UserBundle'
+            -
+                path: %kernel.root_dir%/../web/themes/%exim.theme.name%/src/Application/Sonata/UserBundle/Resources/config/serializer/SonataUserBundle
+                namespace_prefix: 'Sonata\UserBundle'
+            -
+                path: %kernel.root_dir%/../web/themes/%exim.theme.name%/src/Application/Sonata/UserBundle/Resources/config/serializer
+                namespace_prefix: 'Application\Sonata\UserBundle'
+            -
+                path: %kernel.root_dir%/../web/themes/%exim.theme.name%/src/Application/Sonata/CustomerBundle/Resources/config/serializer/SonataCustomerBundle
+                namespace_prefix: 'Sonata\CustomerBundle'
+            -
+                path: %kernel.root_dir%/../web/themes/%exim.theme.name%/src/Application/Sonata/CustomerBundle/Resources/config/serializer
+                namespace_prefix: 'Application\Sonata\CustomerBundle'
 
 # Assetic Configuration
 #assetic:

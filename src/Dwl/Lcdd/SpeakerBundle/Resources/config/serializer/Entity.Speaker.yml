@@ -1,0 +1,29 @@
+Dwl\Lcdd\SpeakerBundle\Entity\Speaker:
+    exclusion_policy: ALL
+    properties:
+        customer:
+          expose: true
+        isSpeaker:
+          expose: true
+        questions:
+          expose: true
+        position:
+          expose: true
+        avatar:
+          expose: true
+        career:
+          expose: true
+        specialties:
+          expose: true
+        publications:
+          expose: true
+        latitude:
+          expose: true
+        longitude:
+          expose: true
+        presentation:
+          expose: true
+        protectedEmail:
+          expose: true
+        protectedPhone:
+          expose: true

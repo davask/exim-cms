@@ -1,0 +1,30 @@
+<div>
+    <a class="title" href="{[{ getPath(q.slug) }]}" title="{[{ q.question }]}" ng-if="q.qualified">
+        <img ng-if="q.media && q.qualified" ng-src="{[{q.media.provider_metadata.thumbnail_url_with_play_button}]}" alt="{[{q.media.provider_metadata.title}]}" class="img-responsive"/>
+    </a>
+    <img ng-if="!q.media && q.qualified" src="#" alt="{[{q.question}]}" class="empty img-responsive"/>
+    <div>
+        <ul ng-if="q.qualified && (q.categories.length || q.civilTags.length || q.legalTags.length)" class="list-inline">
+            <li ng-if="q.categories.length">
+                <ul class="list-inline">
+                    {# <li><i class="fa fa-book" aria-hidden="true"></i></li> #}
+                    <li class="category" ng-repeat="category in q.categories">{[{ category.name }]}</li>
+                </ul>
+            </li>
+        </ul>
+        <span class="title" ng-if="q.qualified">
+            <a href="{[{ getPath(q.slug) }]}" title="{[{ q.question }]}">
+                {[{ q.question }]}
+            </a>
+            <small ng-if="isSpeaker">&nbsp;(<a href="{[{ editPath(q.id) }]}">editer</a>)</small>
+        </span>
+        <span class="title" ng-if="!q.qualified">
+            {[{ q.question }]}
+            <small ng-if="isSpeaker">&nbsp;(<a href="{[{ updatePath(q.id) }]}">Qualifier</a>)</small>
+            <small ng-if="!isSpeaker"> - attente d'une r&eacute;ponse </small>
+        </span>
+        <div class="date" ng-if="q.qualified">
+            {[{ dateDiff(q.date_update) }]}
+        </div>
+    <div>
+<div>

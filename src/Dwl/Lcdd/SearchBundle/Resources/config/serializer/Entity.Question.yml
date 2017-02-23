@@ -1,0 +1,27 @@
+Dwl\Lcdd\SearchBundle\Entity\Question:
+    exclusion_policy: ALL
+    properties:
+        id:
+            expose: true
+        question:
+            expose: true
+        slug:
+            expose: true
+        qualified:
+            expose: true
+        unqualifiedQuestions:
+            expose: true
+        qualifiedQuestion:
+            expose: true
+        date_create:
+            expose: true
+        date_update:
+            expose: true
+        legalTags:
+            expose: true
+        civilTags:
+            expose: true
+        categories:
+            expose: true
+        media:
+            expose: true

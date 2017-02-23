@@ -1,0 +1,57 @@
+{% trans_default_domain "DwlLcddSearchBundle" %}
+{% extends "EximTheme"~theme.name~"FrontBundle:Template:default.html.twig" %}
+{% block page_content %}
+<div class="body-content clearfix question {% block contentClass %}{% endblock %}">
+    {% block sonata_profile_form_start '' %}
+    {% block sonata_profile_form_errors '' %}
+
+    <div class="content-embed">
+        {% block content_embed '' %}
+    </div>
+    <div class="content-media">
+        <div class="content-embed">
+            {% block content_video '' %}
+        </div>
+    </div>
+    {% block sonata_profile_form_end '' %}
+    <div class="content-embed">
+        <h2>R&eacute;sultats semblables</h2>
+        <p>List</p>
+        <h3>Les plus visionn&eacute;es</h3>
+        <p>List</p>
+    {#    <ul>
+            <li>
+            <ul><b>unqualified questions</b>
+        {% for u in question.unqualifiedQuestions %}
+                <li>{{ u.question }}</li>
+        {% endfor %}
+            </ul>
+            </li>
+            <li>
+            <ul><b>qualified question</b>
+        {% for u in question.qualifiedQuestion %}
+                <li>{{ u.question }}</li>
+        {% endfor %}
+            </ul>
+            </li>create: {{question.dateCreate.date}}<li>
+            </li>update: {{question.dateUpdate.date}}<li>
+            </li>
+            <li>
+            <ul><b>legal tags</b>
+        {% for u in question.legalTags %}
+                <li>{{ u.name }}</li>
+        {% endfor %}
+            </ul>
+            </li>
+            <li>
+            <ul><b>civil tags</b>
+        {% for u in question.civilTags %}
+                <li>{{ u.name }}</li>
+        {% endfor %}
+            </ul>
+            </li>
+            </ul>
+        </ul>#}
+    </div>
+</div>
+{% endblock %}

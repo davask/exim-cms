@@ -1,0 +1,49 @@
+/*******************************\
+    $QUESTION
+\*******************************/
+&.question {
+    h1 {
+        display: inline;
+    }
+    .body-content {
+        max-width:none;
+        padding:0;
+        .content-media {
+            background: #f3edd3;
+        }
+        .content-embed {
+            max-width:$maxWidth;
+            margin:0 auto;
+            padding:0 65px;
+        }
+    }
+
+    .edit {
+
+        .max-width {
+            max-width: 100%;
+        }
+
+        .form-group {
+            &:before, &:after{
+                display: table;
+                content: " ";
+            }
+            &:after{
+                clear:both;
+            }
+        }
+
+        .select2-container {
+            .select2-choices {
+                position: absolute;
+                width: 100%;
+                left: 0px;
+                top: 0px;
+                border: 0;
+            }
+        }
+
+    }
+}
+

@@ -1,0 +1,6 @@
+services:
+    dwl.lcdd.speaker.form.type:
+        class: Dwl\Lcdd\SpeakerBundle\Form\SpeakerType
+        tags:
+            - { name: form.type, alias: lcdd_speaker_form_type }
+        arguments: [@sonata.admin.pool]

@@ -1,0 +1,13 @@
+sonata_admin:
+    title:      %lcdd_admin.title%
+    title_logo: %lcdd_admin.logo_title%
+
+    dashboard:
+
+        groups:
+            sonata.admin.group.lcdd:
+                roles: [ROLE_SUPER_ADMIN]
+                label: LCDD
+                icon:  '<i class="fa fa-lcdd"><img src="/bundles/dwllcddsearch/images/favicon-16x16.png"/></i>'
+                items:
+                    - dwl.lcdd.search.question

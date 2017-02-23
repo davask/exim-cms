@@ -1,0 +1,40 @@
+# add in config.yml
+# - { resource: '%kernel.root_dir%/../src/Dwl/Lcdd/SearchBundle/Resources/config/search.yml' }
+# add in your global/base html.twig file just before the closing </body> tag
+# {% block exim_page_asset_footer %}{% endbock %}
+parameters:
+    # Sonata Admin Options
+    lcdd_admin.title: 'La chaine du droit'
+    lcdd_admin.logo_title: '%exim.theme.path.web%/media/images/icon-full.png'
+
+    exim.lcdd.search.resources: '%kernel.root_dir%/../src/Dwl/Lcdd/SearchBundle/Resources'
+    exim.lcdd.search.styles:
+      - '%exim.lcdd.search.resources%/public/scss/block_search.scss'
+      - '%exim.lcdd.search.resources%/public/scss/page_search.scss'
+    exim.lcdd.search.javascript:
+      - '%exim.lcdd.search.resources%/public/js/elasticsearch.angular.js'
+      - '%exim.lcdd.search.resources%/public/js/search.elasticui.js'
+      - '%exim.lcdd.search.resources%/public/js/search.angular.js'
+    exim.lcdd.search.vendor.javascript:
+      - '//code.angularjs.org/1.2.16/angular.js'
+      - '//code.angularjs.org/1.2.25/angular-sanitize.js'
+      - '//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.3.0/ui-bootstrap-tpls.min.js'
+      - '/bundles/dwllcddsearch/vendor/elastic.js/dist/elastic.min.js'
+
+    lcdd.elastic.host: 163.172.35.42
+    lcdd.elastic.port: 9200
+    lcdd.elastic.request: 'http://%lcdd.elastic.host%:%lcdd.elastic.port%'
+    lcdd.elastic.index: 'lcdd'
+    lcdd.search.host: 163.172.35.42
+    lcdd.search.port: 9200
+    lcdd.search.request: 'http://%lcdd.search.host%:%lcdd.search.port%'
+    lcdd.search.index: 'lcdd'
+
+    legi.elastic.host: 163.172.35.42
+    legi.elastic.port: 9200
+    legi.elastic.request: 'http://%legi.elastic.host%:%legi.elastic.port%'
+    legi.elastic.index: 'legi'
+    legi.search.host: public.davaskweblimited.com
+    legi.search.port: 9200
+    legi.search.request: 'http://%legi.search.host%:%legi.search.port%'
+    legi.search.index: 'legi'

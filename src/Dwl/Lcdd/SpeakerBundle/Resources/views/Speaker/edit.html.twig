@@ -1,0 +1,168 @@
+{% extends "DwlLcddSpeakerBundle:Speaker:base.html.twig" %}
+
+{% block contentClass %}{{parent()}} edit{% endblock %}
+
+{% block exim_profile_action %}
+    {% if app.user.username == speaker.customer.user.username or ('ROLE_SUPER_ADMIN' in app.user.roles) == true %}
+<ul class="nav navbar-nav text-center">
+    <li>
+        <a href="javascript:jQuery('[name={{edit_form.vars.name}}]').submit();">
+            {{ 'Enregistrer' | trans }}
+        </a>
+    </li>
+    <li>
+        <a href="{{ path('lcdd_speaker_get', { 'username' : speaker.customer.user.username }) }}">
+            {{ 'Annuler' | trans }}
+        </a>
+    </li>
+</ul>
+<ul class="nav navbar-nav navbar-right text-center">
+    <li>
+        {{ form(delete_form) }}
+    </li>
+</ul>
+    {% endif %}
+{% endblock %}
+
+{% block sonata_profile_form_start %}
+{{ form_start(edit_form) }}
+{% endblock %}
+
+{% block sonata_profile_form_errors %}
+{{ form_errors(edit_form) }}
+{% endblock %}
+
+{% block sonata_profile_tabs %}
+
+                    <!-- Tab panes -->
+
+                    <div class="tab-content">
+
+                        <div role="tabpanel" class="tab-pane active" id="apropos">
+                            {{ form_widget(edit_form.biography) }}
+                        </div>
+
+                        <div role="tabpanel" class="tab-pane" id="parcours">
+                            {{ form_widget(edit_form.career) }}
+                        </div>
+
+                        <div role="tabpanel" class="tab-pane" id="specialisations">
+                            {{ form_widget(edit_form.specialties) }}
+                        </div>
+
+                        <div role="tabpanel" class="tab-pane" id="publications">
+                            {{ form_widget(edit_form.publications) }}
+                        </div>
+
+
+                    </div>
+
+{% endblock %}
+
+{% block sonata_profile_map %}
+    <div class="no-horizontal-padding col-xs-12 map">
+        <div class="adresses">
+            <div class="form-group">
+                <label class=" control-label col-lg-3 control-label">
+                    {{'Mon Bureau' | trans}}
+                </label>
+            </div>
+            {{ form_row(edit_form.address.address1) }}
+            {{ form_row(edit_form.address.address2) }}
+            {{ form_row(edit_form.address.address3) }}
+            {{ form_row(edit_form.address.postcode) }}
+            {{ form_row(edit_form.address.city) }}
+            {{ form_row(edit_form.address.countryCode, { 'attr' : { 'disabled' : true } }) }}
+            {{ form_row(edit_form.address.name) }}
+            {{ form_row(edit_form.address.type) }}
+            {{ form_row(edit_form.address.firstname ) }}
+            {{ form_row(edit_form.address.lastname ) }}
+            {{ form_row(edit_form.address.phone ) }}
+        </div>
+    </div>
+{% endblock %}
+
+{% block sonata_profile_presentation %}
+    <div class="col-xs-12">
+                    {{ form_row(edit_form.avatar) }}
+    </div>
+    <div class="col-xs-12">
+                    {{ form_row(edit_form.position) }}
+    </div>
+    <div class="col-xs-12">
+                    {{ form_row(edit_form.presentation, {'attr': {'placeholder': 'Placer ici votre url vimeo de présentation' | trans }}) }}
+    </div>
+    <div class="col-xs-12">
+                    {{ form_row(edit_form.submit) }}
+    </div>
+{% endblock %}
+
+{% block sonata_profile_details %}
+
+                    {{ form_row(edit_form.phone) }}
+                    {{ form_row(edit_form.email) }}
+                    <hr/>
+                    {{ form_row(edit_form.gplusUid, { 'label': 'Identifiant Google+' }) }}
+                    {{ form_row(edit_form.twitterUid, { 'label': 'Identifiant Twitter' }) }}
+                    {{ form_row(edit_form.facebookUid, { 'label': 'Identifiant facebook' }) }}
+                    {{ form_row(edit_form.youtubeUid, { 'label': 'Identifiant Youtube' }) }}
+                    {{ form_row(edit_form.linkedinUid, { 'label': 'Identifiant linkedin' }) }}
+
+{% endblock %}
+
+{% block sonata_profile_form_end %}
+{{ form_end(edit_form) }}
+{% endblock %}
+
+
+{% block exim_page_scripts %}
+    {{parent()}}
+    <script type="text/javascript">
+        // var addAdressForm = function ($collectionHolder, $newLinkLi) {
+        //     // Get the data-prototype explained earlier
+        //     var prototype = $collectionHolder.data('prototype');
+
+        //     // get the new index
+        //     var index = $collectionHolder.data('index');
+
+        //     // Replace '__name__' in the prototype's HTML to
+        //     // instead be a number based on how many items we have
+        //     var newForm = prototype.replace(/__name__/g, index);
+
+        //     // increase the index with one for the next item
+        //     $collectionHolder.data('index', index + 1);
+
+        //     // Display the form in the page in an li, before the "Add a tag" link li
+        //     var $newFormLi = $('<li></li>').append(newForm);
+        //     $newLinkLi.before($newFormLi);
+        // };
+
+        // var $collectionHolder;
+
+        // // setup an "add a tag" link
+        // var $addAdressLink = $('<a href="#" class="add_adress_link">{{ 'Ajouter une adresse' |trans}}</a>');
+        // var $newLinkLi = $('<li></li>').append($addAdressLink);
+
+        // jQuery(document).ready(function() {
+        //     // Get the ul that holds the collection of tags
+        //     $collectionHolder = $('ul.adresses');
+
+        //     // add the "add a tag" anchor and li to the tags ul
+        //     $collectionHolder.append($newLinkLi);
+
+        //     // count the current form inputs we have (e.g. 2), use that as the new
+        //     // index when inserting a new item (e.g. 2)
+        //     $collectionHolder.data('index', $collectionHolder.find(':input').length);
+
+        //     $addAdressLink.on('click', function(e) {
+        //         // prevent the link from creating a "#" on the URL
+        //         e.preventDefault();
+
+        //         // add a new tag form (see next code block)
+        //         addAdressForm($collectionHolder, $newLinkLi);
+        //     });
+        // });
+
+    </script>
+{% endblock %}
+

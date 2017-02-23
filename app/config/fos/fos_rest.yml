@@ -4,6 +4,11 @@ fos_rest:
     format_listener:        true
     view:
         view_response_listener: force
+        templating_formats:
+            html: true
+            json: false
+        formats:
+            json: true
     body_converter:
         enabled: false
         validate: true

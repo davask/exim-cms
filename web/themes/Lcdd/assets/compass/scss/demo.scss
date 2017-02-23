@@ -1,0 +1,22 @@
+@import "settings/variables";
+
+body.#{$theme} {
+  .demonstration-bar {
+    position: static;
+    width: 100%;
+    z-index: 999;
+    background-color: #000;
+    color: #fff;
+    opacity: .8;
+    min-height: 30px;
+    padding-top: 5px;
+    text-align: center;
+    font-size: 1em;
+  }
+  #add_basket_modal {
+    top: 15%;
+  }
+  label.disabled {
+    color: #aaa;
+  }
+}

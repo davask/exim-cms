@@ -1,0 +1,10 @@
+{% macro speakerName(speaker) %}
+    {{- ((speaker.lastname ~ ' ' ~ speaker.firstname) | trim | default(speaker.username)) | trim | capitalize -}}
+{% endmacro %}
+{% macro speakerAvatar(speaker) %}
+    {% if speaker.avatar %}
+            {% thumbnail speaker.avatar, 'small' with { 'class': 'img-responsive' } %}
+    {% else %}
+            <img title="avatar par defaut" alt="avatar par defaut" class="img-responsive" src="/themes/lcdd/media/favicons/android-chrome-192x192.png">
+    {% endif %}
+{% endmacro %}

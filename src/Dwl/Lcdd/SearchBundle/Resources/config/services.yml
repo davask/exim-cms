@@ -1,0 +1,83 @@
+parameters:
+    dwl.lcdd.block.search.class: Dwl\Lcdd\SearchBundle\Block\SearchBlockService
+    dwl.lcdd.admin.search.class: Dwl\Lcdd\SearchBundle\Admin\ORM\SearchAdmin
+    dwl.lcdd.admin.search.controller: 'DwlLcddSearchBundle:SearchAdmin'
+    dwl.lcdd.admin.search.translation_domain: DwlLcddSearchBundle
+
+services:
+    dwl.lcdd.block.search.form.question:
+        factory_method: createNamed
+        factory_service: form.factory
+        class: Symfony\Component\Form\Form
+        arguments:
+            - question                                    # name of the form
+            - dwl_lcdd_searchbundle_search                # alias of the form type
+            - null                                        # data to bind, this is where your entity could go if you have that defined as a service
+            - { validation_groups: [Default] }            # validation groups
+
+    dwl.lcdd.block.search.form.type.question:
+        class: Dwl\Lcdd\SearchBundle\Form\SearchQuestionType
+        tags:
+            - { name: form.type, alias: dwl_lcdd_searchbundle_search }
+    dwl.lcdd.block.question.form.type.question:
+        class: Dwl\Lcdd\SearchBundle\Form\QuestionType
+        tags:
+            - { name: form.type, alias: dwl_lcdd_searchbundle_question }
+
+    dwl.lcdd.block.search.form.entity.question:
+        class: Dwl\Lcdd\SearchBundle\Entity\Question
+
+    dwl.lcdd.block.search:
+        class: %dwl.lcdd.block.search.class%
+        tags:
+            -
+              name: sonata.block
+        arguments:
+            - 'dwl.lcdd.block.search'
+            - '@templating'
+            - '@service_container'
+            - '@sonata.media.manager.media'
+
+    # override sonata.media.admin.media
+    sonata.media.admin.media:
+        class: %dwl.lcdd.admin.search.class%
+        tags:
+            -
+              name: sonata.admin
+              manager_type: orm
+              group: sonata_media
+              label_catalogue: '%dwl.lcdd.admin.search.translation_domain%'
+              label: media
+              label_translator_strategy: sonata.admin.label.strategy.underscore
+        arguments:
+            - ''
+            - '%sonata.media.admin.media.entity%'
+            - '%dwl.lcdd.admin.search.controller%'
+            - '@sonata.media.pool'
+            - '@sonata.classification.manager.category'
+        calls:
+            -
+              - setModelManager
+              -
+                - '@sonata.media.admin.media.manager'
+            -
+              - setTranslationDomain
+              -
+                - '%dwl.lcdd.admin.search.translation_domain%'
+            -
+              - setTemplates
+              -
+                -
+                  inner_list_row: 'DwlLcddSearchBundle:SearchAdmin:inner_row_media.html.twig'
+                  outer_list_rows_mosaic: 'DwlLcddSearchBundle:SearchAdmin:list_outer_rows_mosaic.html.twig'
+                  base_list_field: 'SonataAdminBundle:CRUD:base_list_flat_field.html.twig'
+                  list: 'DwlLcddSearchBundle:SearchAdmin:list.html.twig'
+                  edit: 'DwlLcddSearchBundle:SearchAdmin:edit.html.twig'
+
+    dwl.lcdd.question.listener:
+        class: Dwl\Lcdd\SearchBundle\EventListener\QuestionListener
+        tags:
+            - { name: doctrine.event_listener, event: prePersist }
+            - { name: doctrine.event_listener, event: preUpdate }
+            - { name: doctrine.event_listener, event: postPersist }
+            - { name: doctrine.event_listener, event: postUpdate }

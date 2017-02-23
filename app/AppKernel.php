@@ -80,13 +80,10 @@ class AppKernel extends Kernel
             new Sonata\FormatterBundle\SonataFormatterBundle(),
             new Sonata\CacheBundle\SonataCacheBundle(),
             new Sonata\BlockBundle\SonataBlockBundle(),
-            new Sonata\SeoBundle\SonataSeoBundle(),
+            new Sonata\SeoBundle\SonataSeoBundle(), // 2.x-exim
             new Sonata\ClassificationBundle\SonataClassificationBundle(),
             new Sonata\NotificationBundle\SonataNotificationBundle(),
             new Sonata\DatagridBundle\SonataDatagridBundle(),
-
-            // Search Integration
-            //new FOS\ElasticaBundle\FOSElasticaBundle(),
 
             // CMF Integration
             new Symfony\Cmf\Bundle\RoutingBundle\CmfRoutingBundle(),
@@ -108,7 +105,6 @@ class AppKernel extends Kernel
             // EXIM THEME DEPENDENCIES
             new Application\Sonata\AdminBundle\ApplicationSonataAdminBundle(),
             new Application\Sonata\BasketBundle\ApplicationSonataBasketBundle(),
-            new Application\Sonata\BlockBundle\ApplicationSonataBlockBundle(),
             new Application\Sonata\ClassificationBundle\ApplicationSonataClassificationBundle(),
             new Application\Sonata\CustomerBundle\ApplicationSonataCustomerBundle(),
             new Application\Sonata\InvoiceBundle\ApplicationSonataInvoiceBundle(),
@@ -118,13 +114,30 @@ class AppKernel extends Kernel
             new Application\Sonata\PageBundle\ApplicationSonataPageBundle(),
             new Application\Sonata\PaymentBundle\ApplicationSonataPaymentBundle(),
             new Application\Sonata\ProductBundle\ApplicationSonataProductBundle(),
-            new Application\Sonata\SeoBundle\ApplicationSonataSeoBundle(),
+            new Application\Sonata\UserBundle\ApplicationSonataUserBundle(),
+            new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
+            new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
+            new Bazinga\Bundle\GeocoderBundle\BazingaGeocoderBundle(),
+
 
             // EXIM CORE
             new Dwl\Exim\CoreBundle\DwlEximCoreBundle(),
+            new Dwl\Exim\ThemeBundle\DwlEximThemeBundle(),
 
             // APP
-            new AppBundle\AppBundle(),
+            // new AppBundle\AppBundle(),
+
+            // LCDD DEPENDENCIES
+            // Search Integration
+            new FOS\ElasticaBundle\FOSElasticaBundle(),
+
+            // LCDD
+            new Dwl\Lcdd\SearchBundle\DwlLcddSearchBundle(),
+            new Dwl\Lcdd\SpeakerBundle\DwlLcddSpeakerBundle(),
+
+            // EXIM THEME : LCDD
+            new Exim\Theme\Lcdd\FrontBundle\EximThemeLcddFrontBundle(),
+            new Exim\Theme\Lcdd\AdminBundle\EximThemeLcddAdminBundle(),
 
         );
 

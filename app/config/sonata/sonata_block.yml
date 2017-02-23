@@ -5,8 +5,8 @@ sonata_block:
     http_cache:
         listener: true
 
-    menus:
-        "SonataDemoBundle:Builder:mainMenu": "Main Menu"
+    # menus:
+    #     "SonataDemoBundle:Builder:mainMenu": "Main Menu"
 
     blocks:
         sonata.admin.block.stats:

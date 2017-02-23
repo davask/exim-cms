@@ -4,7 +4,7 @@ sonata_customer:
         customer: Application\Sonata\CustomerBundle\Entity\Customer
         address:  Application\Sonata\CustomerBundle\Entity\Address
         order:    Application\Sonata\OrderBundle\Entity\Order
-        user:     Dwl\Exim\CoreBundle\Entity\User\User
+        user:     Application\Sonata\UserBundle\Entity\User
 
 doctrine:
     orm:

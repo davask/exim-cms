@@ -1,0 +1,75 @@
+DwlLcddSearchBundle_question:
+        resource: "@DwlLcddSearchBundle/Resources/config/routing/question.yml"
+        prefix:   /question
+
+dwl_lcdd_search_question_new:
+    path:     /lcdd/question/new
+    methods:
+        - POST
+    defaults:
+        _controller: DwlLcddSearchBundle:Question:New
+        _locale: fr
+        _format: 'json'
+        qualified: false
+    requirements:
+        question: .+
+        qualified: true|false
+        _locale: fr
+        _format: html
+    options:
+        expose: true
+
+dwl_lcdd_search_question_submit:
+    path:     /lcdd/question/submit
+    methods:
+        - POST
+    defaults:
+        _controller: DwlLcddSearchBundle:Question:Submit
+        qualified: false
+    requirements:
+        question: .+
+        qualified: true|false
+        _locale: fr
+    options:
+        expose: true
+
+dwl_lcdd_search_question:
+    path:     /recherche.{_format}
+    defaults:
+        _controller: DwlLcddSearchBundle:Question:Search
+        _locale: fr
+        _format: '%exim.theme.front.format%'
+    requirements:
+        question: .*
+        _locale: fr
+        _format: html|json
+    options:
+        expose: true
+
+dwl_lcdd_get_question:
+    pattern:     /question/{slug}.{_format}
+    defaults:
+        _controller: DwlLcddSearchBundle:Question:Get
+        _locale: fr
+        _format: '%exim.theme.front.format%'
+    requirements:
+        _method: GET
+        _locale: fr
+        _format: html|json
+        slug: "[a-zA-Z1-9\-_\/]+"
+    options:
+        expose: true
+
+dwl_lcdd_get_question_all:
+    pattern:     /questions.{_format}
+    defaults:
+        _controller: DwlLcddSearchBundle:Question:All
+        _locale: fr
+        _format: '%exim.theme.front.format%'
+    requirements:
+        _method: GET
+        _locale: fr
+        _format: html|json
+    options:
+        expose: true
+

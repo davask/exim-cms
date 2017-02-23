@@ -1,0 +1,210 @@
+sonata_admin:
+    title:      %exim_admin.title%
+    title_logo: %exim_admin.logo_title%
+
+    security:
+        # acl security information
+        information:
+            SPEAKER:    [EDIT, LIST, CREATE]
+
+    options:
+        html5_validate: false # does not use html5 validation
+        pager_links: 5        # pager max links to display
+        use_bootlint: false # %kernel.debug%
+
+    dashboard:
+        blocks:
+            -
+                roles: [ROLE_SUPER_ADMIN]
+                class:    col-lg-3 col-xs-6
+                position: top
+                type:     sonata.admin.block.stats
+                settings:
+                    code:  sonata.order.admin.order
+                    icon:  fa-shopping-cart
+                    text:  New Orders
+                    color: bg-red
+                    filters:
+                        status: { type: 3, value: 0 } # 3 => NumberType::TYPE_EQUAL
+
+            -
+                roles: [ROLE_SUPER_ADMIN]
+                class:    col-lg-3 col-xs-6
+                position: top
+                type:     sonata.admin.block.stats
+                settings:
+                    code:  sonata.customer.admin.customer
+                    icon:  fa-users
+                    text:  Customers
+                    color: bg-green
+
+            -
+                roles: [ROLE_SUPER_ADMIN]
+                class:    col-lg-3 col-xs-6
+                position: top
+                type:     sonata.admin.block.stats
+                settings:
+                    code:  sonata.page.admin.page
+                    icon:  fa-magic
+                    text:  Edited Pages
+                    color: bg-yellow
+                    filters:
+                        edited: { value: 1 }
+
+            -
+                roles: [ROLE_SUPER_ADMIN]
+                position: left
+                type: sonata.block.service.text
+                settings:
+                    content: "<div class='panel panel-default'><div class='panel-heading'><h3 class='panel-title'>Bonjour!</h3></div><div class='panel-body'>Bientot le site la chaine du droit</div></div>"
+
+            -
+                roles: [ROLE_SUPER_ADMIN]
+                position: left
+                type: sonata.news.block.recent_posts
+                settings:
+                    title: Recent Posts
+                    number: 7
+                    mode: admin
+            -
+                roles: [ROLE_SUPER_ADMIN]
+                position: right
+                type: sonata.order.block.recent_orders
+                settings:
+                    title: Recent Orders
+                    number: 5
+                    mode: admin
+            -
+                roles: [ROLE_SUPER_ADMIN]
+                position: right
+                type: sonata.customer.block.recent_customers
+                settings:
+                    title: Recent Customers
+                    number: 5
+                    mode: admin
+
+        groups:
+            sonata.admin.group.content:
+                roles: [ROLE_SUPER_ADMIN]
+                label:           sonata_content
+                label_catalogue: SonataDemoBundle
+                icon:            '<i class="fa fa-th"></i>'
+                items:
+                    - sonata.news.admin.post
+                    - sonata.media.admin.media
+                    - sonata.media.admin.gallery
+
+            sonata.admin.group.comment:
+                roles: [ROLE_SUPER_ADMIN]
+                label:           Conversation
+                label_catalogue: SonataNewsBundle
+                icon:            '<i class="fa fa-comments"></i>'
+                items:
+                    - sonata.comment.admin.thread
+                    - sonata.news.admin.comment
+
+            sonata.admin.group.ecommerce:
+                roles: [ROLE_SUPER_ADMIN]
+                label:           sonata_ecommerce
+                label_catalogue: SonataAdminBundle
+                icon:            '<i class="fa fa-dollar"></i>'
+                items:
+                    - sonata.customer.admin.customer
+                    - sonata.invoice.admin.invoice
+                    - sonata.order.admin.order
+                    - sonata.product.admin.product
+
+            sonata.admin.group.classification:
+                roles: [ROLE_SUPER_ADMIN]
+                label:           sonata_classification
+                label_catalogue: SonataClassificationBundle
+                icon:            '<i class="fa fa-tags"></i>'
+                items:
+                    - sonata.classification.admin.category
+                    - sonata.classification.admin.tag
+                    - sonata.classification.admin.collection
+                    - sonata.classification.admin.context
+
+            sonata.admin.group.user:
+                roles: [ROLE_SUPER_ADMIN]
+                label:           exim_user
+                label_catalogue: SonataAdminBundle
+                icon:            '<i class="fa fa-user"></i>'
+                items:
+                    - sonata.user.admin.user
+                    - sonata.customer.admin.customer
+
+            sonata.admin.group.administration:
+                roles: [ROLE_SUPER_ADMIN]
+                label:           sonata_administration
+                label_catalogue: SonataAdminBundle
+                icon:            '<i class="fa fa-cogs"></i>'
+                items:
+                    - sonata.user.admin.user
+                    - sonata.user.admin.group
+                    - sonata.notification.admin.message
+
+            sonata.admin.group.site_builder:
+                roles: [ROLE_SUPER_ADMIN]
+                label:           Site Builder
+                label_catalogue: SonataPageBundle
+                icon:            '<i class="fa fa-puzzle-piece"></i>'
+                items:
+                    - sonata.page.admin.site
+                    - sonata.page.admin.page
+                    - sonata.page.admin.block
+
+            sonata.admin.group.exim:
+                roles: [ROLE_EXIM_USER]
+                label:           mon_profil
+                label_catalogue: DwlEximCoreBundle
+                icon:            '<i class="fa fa-user"></i>'
+                items:
+                    - route:        page_slug
+                      route_params:
+                        path: /admin/lcdd/speaker/item.id/edit
+                      label:        Intervenants
+
+
+    templates:
+        layout:                         EximTheme%exim.theme.name%AdminBundle::standard_layout.html.twig
+        ajax:                           EximTheme%exim.theme.name%AdminBundle::ajax_layout.html.twig
+        list:                           EximTheme%exim.theme.name%AdminBundle:CRUD:list.html.twig
+        show:                           EximTheme%exim.theme.name%AdminBundle:CRUD:show.html.twig
+        show_compare:                   EximTheme%exim.theme.name%AdminBundle:CRUD:show_compare.html.twig
+        edit:                           EximTheme%exim.theme.name%AdminBundle:CRUD:edit.html.twig
+        history:                        EximTheme%exim.theme.name%AdminBundle:CRUD:history.html.twig
+        preview:                        EximTheme%exim.theme.name%AdminBundle:CRUD:preview.html.twig
+        delete:                         EximTheme%exim.theme.name%AdminBundle:CRUD:delete.html.twig
+        batch:                          EximTheme%exim.theme.name%AdminBundle:CRUD:list__batch.html.twig
+        acl:                            EximTheme%exim.theme.name%AdminBundle:CRUD:acl.html.twig
+        action:                         EximTheme%exim.theme.name%AdminBundle:CRUD:action.html.twig
+        select:                         EximTheme%exim.theme.name%AdminBundle:CRUD:list__select.html.twig
+        filter:                         EximTheme%exim.theme.name%AdminBundle:Form:filter_admin_fields.html.twig
+        dashboard:                      EximTheme%exim.theme.name%AdminBundle:Core:dashboard.html.twig
+        search:                         EximTheme%exim.theme.name%AdminBundle:Core:search.html.twig
+        batch_confirmation:             EximTheme%exim.theme.name%AdminBundle:CRUD:batch_confirmation.html.twig
+        inner_list_row:                 EximTheme%exim.theme.name%AdminBundle:CRUD:list_inner_row.html.twig
+        base_list_field:                EximTheme%exim.theme.name%AdminBundle:CRUD:base_list_field.html.twig
+        list_block:                     EximTheme%exim.theme.name%AdminBundle:Block:block_admin_list.html.twig
+        user_block:                     EximTheme%exim.theme.name%AdminBundle:Core:user_block.html.twig
+        add_block:                      EximTheme%exim.theme.name%AdminBundle:Core:add_block.html.twig
+        pager_links:                    EximTheme%exim.theme.name%AdminBundle:Pager:links.html.twig
+        pager_results:                  EximTheme%exim.theme.name%AdminBundle:Pager:results.html.twig
+        tab_menu_template:              EximTheme%exim.theme.name%AdminBundle:Core:tab_menu_template.html.twig
+        history_revision_timestamp:     EximTheme%exim.theme.name%AdminBundle:CRUD:history_revision_timestamp.html.twig
+        short_object_description:       EximTheme%exim.theme.name%AdminBundle:Helper:short-object-description.html.twig
+        search_result_block:            EximTheme%exim.theme.name%AdminBundle:Block:block_search_result.html.twig
+
+    assets:
+        stylesheets:
+            - '%exim.theme.path.web%/assetic/sonata_admin_css.css'
+            - '%exim.theme.path.web%/assetic/sonata_formatter_css.css'
+            - '%exim.theme.path.web%/assetic/sonata_jqueryui_css.css'
+            - 'bundles/sonataadmin/vendor/admin-lte/dist/css/skins/%exim.theme.admin.skin%.min.css'
+
+        javascripts:
+            - '%exim.theme.path.web%/assetic/sonata_admin_js.js'
+            - '%exim.theme.path.web%/assetic/sonata_jqueryui_js.js'
+            - '%exim.theme.path.web%/assetic/sonata_formatter_js.js'
+            - bundles/sonataformatter/vendor/ckeditor/ckeditor.js

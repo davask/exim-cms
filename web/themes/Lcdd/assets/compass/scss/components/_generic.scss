@@ -1,0 +1,32 @@
+/*******************************\
+    $GENERIC
+\*******************************/
+
+.browserupgrade {
+    text-align:center;
+    background:$orange_dark;
+    margin-bottom:0;
+    a:hover {
+        color: darken( $white, 10% );
+    }
+}
+
+body {
+
+    /*******************************\
+        $DEFAULT
+    \*******************************/
+    &.base {
+        .body-content {
+            max-width:$maxWidth;
+            margin:0 auto;
+            padding:0 15px;
+        }
+    }
+
+    > .content {
+        background: $white;
+        min-height: 100px;
+  }
+
+}

@@ -1,0 +1,4 @@
+services:
+    lcdd.speaker.profile.menu_builder:
+        class: Sonata\UserBundle\Menu\ProfileMenuBuilder
+        arguments: [@knp_menu.factory, @translator, [], @event_dispatcher]

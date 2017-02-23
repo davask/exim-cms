@@ -1,0 +1,92 @@
+{% extends sonata_block.templates.block_base %}
+{% trans_default_domain "DwlLcddSearchBundle" %}
+
+{% set legiSearchIndex = lcdd.search.index %}
+{% set lcddSearchFields = ["'question'"] %}
+{% set lcddSearchHighlightsFields = lcddSearchFields %}
+
+{% block block %}
+<div class="dwl-search-block {% if settings.display == 'inline' and settings.inline_class != '' %} {{ settings.inline_class }}{% endif %} {% if settings.display == 'bottom' and settings.bottom_class != '' %} {{ settings.bottom_class }}{% endif %}">
+
+    <div class="dwl-search-block-search-hero-form{% if settings.display == 'block' and settings.block_class != ''  %} {{ settings.block_class }}{% endif %}{% if settings.display == 'bottom' %} col-sm-6 pull-right{% endif %}"
+         ng-controller="formCtrl"
+         eui-index="'{{ legiSearchIndex }}'"
+         ng-init="initSettings('{{block.id}}', '{{ settings.display }}', '{{ questionForm.vars.full_name }}');"
+         data-form="{{ questionForm.vars.full_name }}"
+         ng-mouseleave="hideDisplay()" ng-mouseenter="showDisplay()"
+         ng-cloak>
+        <form
+            class="dwl-search-block-search-form form-inline {% if settings.display == 'inline' %} dwl-search-block-search-form-inline{% endif %}"
+{%- if settings.display == 'inline' %}
+            name="header_{{ questionForm.vars.full_name }}"
+            action="{{ path('dwl_lcdd_search_question', { '_format': theme.front.format } ) }}"
+            method="POST"
+{% endif -%}
+{%- if settings.display == 'bottom' %}
+            ng-if="!isAllwaysSubmitingNewQuestion"
+{% endif -%}
+        >
+          <div class="form-group">
+              <lcdd-search class="input-group" field="{{ lcddSearchFields | join(',') }}" highlights="{{ lcddSearchHighlightsFields | join(',') }}"></lcdd-search>
+              <div class="dwl-search-block-results panel-group" role="tablist" aria-multiselectable="true" ng-if="!isSubmitingNewQuestion && allowDisplay">
+                {% include 'DwlLcddSearchBundle:Search:question.html.twig' %}
+              </div>
+          </div>
+        </form>
+    {% if settings.display != 'inline' %}
+        {% form_theme questionForm 'bootstrap_3_layout.html.twig' %}
+        <form ng-if="isAllwaysSubmitingNewQuestion || (isSubmitingNewQuestion && allowDisplay)"
+            class="dwl-search-block-question-form"
+            name="{{ questionForm.vars.full_name }}"
+            onsubmit="return false;"
+            target="_blank"
+            action="{{ path('dwl_lcdd_search_question_new') }}" method="POST" {{ form_enctype(questionForm) }}>
+            {{ form_widget(questionForm) }}
+            <span class="result"></span>
+        </form>
+    {% endif %}
+    </div>
+
+    {% if settings.display != 'inline' %}
+    <div class="dwl-search-block-search-hero-text-container{% if settings.display == 'bottom' %} col-sm-6{% endif %}">
+      <div class="dwl-search-block-search-hero-text col-sm-offset-1 col-sm-10 col-md-offset-3 col-md-6">
+      {% if settings.title %}
+          <h2 class="dwl-search-block-search-title">{{ settings.title }}</h2>
+          {% if settings.sub_title %}
+          <h3 class="dwl-search-block-search-sub_title">{{ settings.sub_title }}</h3>
+          {% endif %}
+      {% endif %}
+      </div>
+      <div class="dwl-search-block-media-container">
+      {% if media and settings.format %}
+          {% media media, settings.format with { 'class': 'img-responsive ' ~ settings.img_class, 'width': '100%', 'height': '' } %}
+          <div class="shadow"></div>
+      {% else %}
+          {# no media selected or format defined... #}
+      {% endif %}
+      </div>
+    </div>
+    {% endif %}
+
+    <script type="text/javascript">
+      if (typeof(lcdd) == 'undefined') {
+        var lcdd = {};
+      }
+      if (typeof(lcdd.elastic) == 'undefined') {
+        lcdd['elastic'] = {};
+      }
+      if (typeof(lcdd.elastic.request) == 'undefined') {
+        lcdd['elastic']['request'] = '{{ lcdd.elastic.request }}';
+      }
+      if (typeof(legi) == 'undefined') {
+        var legi = {};
+      }
+      if (typeof(legi.elastic) == 'undefined') {
+        legi['elastic'] = {};
+      }
+      if (typeof(legi.elastic.request) == 'undefined') {
+        legi['elastic']['request'] = '{{ legi.elastic.request }}';
+      }
+    </script>
+</div>
+{% endblock %}
