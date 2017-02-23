@@ -26,6 +26,16 @@ parameters:
     lcdd.elastic.port: 9200
     lcdd.elastic.request: 'http://%lcdd.elastic.host%:%lcdd.elastic.port%'
     lcdd.elastic.index: 'lcdd'
-    lcdd.search.host: dev.lachainedudroit.fr
-    lcdd.search.port: 80
+    lcdd.search.host: 163.172.35.42
+    lcdd.search.port: 9200
     lcdd.search.request: 'http://%lcdd.search.host%:%lcdd.search.port%'
+    lcdd.search.index: 'lcdd'
+
+    legi.elastic.host: 163.172.35.42
+    legi.elastic.port: 9200
+    legi.elastic.request: 'http://%legi.elastic.host%:%legi.elastic.port%'
+    legi.elastic.index: 'legi'
+    legi.search.host: public.davaskweblimited.com
+    legi.search.port: 9200
+    legi.search.request: 'http://%legi.search.host%:%legi.search.port%'
+    legi.search.index: 'legi'

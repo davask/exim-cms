@@ -1275,22 +1275,36 @@ var elasticui;
             // The widgets show how to create reusable components on top of ElasticUI.
             // You can also directly use the directive.template html in your front-end (see docs/widgets.md for more info)
             var LcddSearchDirective = (function () {
-                function LcddSearchDirective($parse) {
+                function LcddSearchDirective($parse, $log) {
                     var directive = {};
                     directive.restrict = 'E';
                     directive.scope = true;
                     directive.link = {
                         'pre': function (scope, element, attrs) {
-                            elasticui.util.AngularTool.setupBinding($parse, scope, attrs, ["field"]);
+                            elasticui.util.AngularTool.setupBinding($parse, scope, attrs, ["field", "highlights"]);
                         }
                     };
+
                     // TODO: should be debounced
-                    var queryMatch = 'ejs.MatchQuery(field, \'*\' + querystring + \'*\')';
-                    // var queryMatch = 'ejs.MultiMatch().query(querystring).fields([field])'; // src : https://github.com/YousefED/ElasticUI/issues/84
+                    // "query":{"query_string":{"query":"*Superb*","analyze_wildcard":true}}
+
+                    // var queryMatch = 'ejs.MatchQuery(field, querystring)';
+                    // var queryMatch = 'ejs.MatchQuery().fields(field).query(querystring)';
+                    // "query":{"match":{"question":{"query":"*Superb*"}}
+
+                    // var queryMatch = 'ejs.MultiMatchQuery(field, querystring)';
+                    // "query":{"multi_match":{"query":"Superbe","fields":["question"]}}
+
+                    var queryMatch = 'ejs.QueryStringQuery(querystring+\'*\').analyzeWildcard(true)';
+                    // see ejs.HasChildFilter for highlights
+                    // "query":{"query_string":{"query":"*Superb*","analyze_wildcard":true}}
+                    // see http://stackoverflow.com/questions/16933800/elasticsearch-how-to-use-multi-match-with-wildcard for multimapping wildcard
+                    // var queryMatch = 'ejs.WildcardQuery(field, querystring+\'*\')';
+
                     directive.template = '\
 <input type="text" class="dwl-search-block-search-input form-control" placeholder="{[{placeholder}]}" \
     eui-query="' + queryMatch + '" ng-model="querystring" \
-    eui-highlight="ejs.Highlight(\'question\').preTags(\'<b>\').postTags(\'</b>\')" \
+    eui-highlight="ejs.Highlight(highlights).preTags(\'<b>\').postTags(\'</b>\')" \
     eui-enabled="true" \
     name="question" \
     />\
@@ -1303,7 +1317,7 @@ var elasticui;
 ';
                     return directive;
                 }
-                LcddSearchDirective.$inject = ['$parse'];
+                LcddSearchDirective.$inject = ['$parse', '$log'];
                 return LcddSearchDirective;
             })();
             directives.LcddSearchDirective = LcddSearchDirective;

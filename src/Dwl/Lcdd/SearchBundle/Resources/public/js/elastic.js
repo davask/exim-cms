@@ -237,7 +237,7 @@
       <p>The AggregationMixin provides support for common options used across
       various <code>Aggregation</code> implementations.  This object should not be
       used directly.</p>
-  
+
       @name ejs.AggregationMixin
       */
     ejs.AggregationMixin = function (name) {
@@ -251,7 +251,7 @@
             Add a nesated aggregation.  This method can be called multiple times
             in order to set multiple nested aggregations what will be executed
             at the same time as the parent aggregation.
-      
+
             @member ejs.AggregationMixin
             @param {Aggregation} agg Any valid <code>Aggregation</code> object.
             @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -279,7 +279,7 @@
             in order to set multiple nested aggregations what will be executed
             at the same time as the parent aggregation.  Alias for the
             aggregation method.
-      
+
             @member ejs.AggregationMixin
             @param {Aggregation} agg Any valid <code>Aggregation</code> object.
             @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -290,7 +290,7 @@
 
             /**
                   The type of ejs object.  For internal use only.
-      
+
                   @member ejs.AggregationMixin
                   @returns {String} the type of object
                   */
@@ -301,7 +301,7 @@
             /**
                   <p>Retrieves the internal <code>agg</code> object. This is typically used by
                      internal API functions so use with caution.</p>
-      
+
                   @member ejs.AggregationMixin
                   @returns {String} returns this object's internal object.
                   */
@@ -314,12 +314,12 @@
 
     /**
       @mixin
-      <p>The DirectSettingsMixin provides support for common options used across 
-      various <code>Suggester</code> implementations.  This object should not be 
+      <p>The DirectSettingsMixin provides support for common options used across
+      various <code>Suggester</code> implementations.  This object should not be
       used directly.</p>
-  
+
       @name ejs.DirectSettingsMixin
-    
+
       @param {String} settings The object to set the options on.
       */
     ejs.DirectSettingsMixin = function (settings) {
@@ -327,9 +327,9 @@
         return {
 
             /**
-                  <p>Sets the accuracy.  How similar the suggested terms at least 
+                  <p>Sets the accuracy.  How similar the suggested terms at least
                   need to be compared to the original suggest text.</p>
-      
+
                   @member ejs.DirectSettingsMixin
                   @param {Double} a A positive double value between 0 and 1.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -345,13 +345,13 @@
 
             /**
                   <p>Sets the suggest mode.  Valid values are:</p>
-      
+
                   <dl>
                     <dd><code>missing</code> - Only suggest terms in the suggest text that aren't in the index</dd>
                     <dd><code>popular</code> - Only suggest suggestions that occur in more docs then the original suggest text term</dd>
-                    <dd><code>always</code> - Suggest any matching suggestions based on terms in the suggest text</dd> 
+                    <dd><code>always</code> - Suggest any matching suggestions based on terms in the suggest text</dd>
                   </dl>
-      
+
                   @member ejs.DirectSettingsMixin
                   @param {String} m The mode of missing, popular, or always.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -371,12 +371,12 @@
 
             /**
                   <p>Sets the sort mode.  Valid values are:</p>
-      
+
                   <dl>
                     <dd><code>score</code> - Sort by score first, then document frequency, and then the term itself</dd>
                     <dd><code>frequency</code> - Sort by document frequency first, then simlarity score and then the term itself</dd>
                   </dl>
-      
+
                   @member ejs.DirectSettingsMixin
                   @param {String} s The score type of score or frequency.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -395,9 +395,9 @@
             },
 
             /**
-                  <p>Sets what string distance implementation to use for comparing 
+                  <p>Sets what string distance implementation to use for comparing
                   how similar suggested terms are.  Valid values are:</p>
-      
+
                   <dl>
                     <dd><code>internal</code> - based on damerau_levenshtein but but highly optimized for comparing string distance for terms inside the index</dd>
                     <dd><code>damerau_levenshtein</code> - String distance algorithm based on Damerau-Levenshtein algorithm</dd>
@@ -405,7 +405,7 @@
                     <dd><code>jarowinkler</code> - String distance algorithm based on Jaro-Winkler algorithm</dd>
                     <dd><code>ngram</code> - String distance algorithm based on character n-grams</dd>
                   </dl>
-      
+
                   @member ejs.DirectSettingsMixin
                   @param {String} s The string distance algorithm name.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -425,9 +425,9 @@
             },
 
             /**
-                  <p>Sets the maximum edit distance candidate suggestions can have 
+                  <p>Sets the maximum edit distance candidate suggestions can have
                   in order to be considered as a suggestion.</p>
-      
+
                   @member ejs.DirectSettingsMixin
                   @param {Integer} max An integer value greater than 0.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -442,9 +442,9 @@
             },
 
             /**
-                  <p>The factor that is used to multiply with the size in order 
+                  <p>The factor that is used to multiply with the size in order
                   to inspect more candidate suggestions.</p>
-      
+
                   @member ejs.DirectSettingsMixin
                   @param {Integer} max A positive integer value.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -459,9 +459,9 @@
             },
 
             /**
-                  <p>Sets a maximum threshold in number of documents a suggest text 
+                  <p>Sets a maximum threshold in number of documents a suggest text
                   token can exist in order to be corrected.</p>
-      
+
                   @member ejs.DirectSettingsMixin
                   @param {Double} max A positive double value.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -476,9 +476,9 @@
             },
 
             /**
-                  <p>Sets the number of minimal prefix characters that must match in 
+                  <p>Sets the number of minimal prefix characters that must match in
                   order be a candidate suggestion.</p>
-      
+
                   @member ejs.DirectSettingsMixin
                   @param {Integer} len A positive integer value.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -493,9 +493,9 @@
             },
 
             /**
-                  <p>Sets the minimum length a suggest text term must have in order 
+                  <p>Sets the minimum length a suggest text term must have in order
                   to be corrected.</p>
-      
+
                   @member ejs.DirectSettingsMixin
                   @param {Integer} len A positive integer value.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -510,9 +510,9 @@
             },
 
             /**
-                  <p>Sets a minimal threshold of the number of documents a suggested 
+                  <p>Sets a minimal threshold of the number of documents a suggested
                   term should appear in.</p>
-      
+
                   @member ejs.DirectSettingsMixin
                   @param {Double} min A positive double value.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -531,10 +531,10 @@
 
     /**
       @mixin
-      <p>The FacetMixin provides support for common options used across 
-      various <code>Facet</code> implementations.  This object should not be 
+      <p>The FacetMixin provides support for common options used across
+      various <code>Facet</code> implementations.  This object should not be
       used directly.</p>
-  
+
       @name ejs.FacetMixin
       */
     ejs.FacetMixin = function (name) {
@@ -546,7 +546,7 @@
 
             /**
                   <p>Allows you to reduce the documents used for computing facet results.</p>
-      
+
                   @member ejs.FacetMixin
                   @param {Object} oFilter A valid <code>Filter</code> object.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -566,7 +566,7 @@
 
             /**
                   <p>Computes values across the entire index</p>
-      
+
                   @member ejs.FacetMixin
                   @param {Boolean} trueFalse Calculate facet counts globally or not.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -582,12 +582,12 @@
 
             /**
                   <p>Sets the mode the facet will use.<p>
-                  
+
                   <dl>
                       <dd><code>collector</code></dd>
                       <dd><code>post</code></dd>
                   <dl>
-                  
+
                   @member ejs.FacetMixin
                   @param {String} m The mode: collector or post.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -607,7 +607,7 @@
 
             /**
                   <p>Enables caching of the <code>facetFilter</code></p>
-      
+
                   @member ejs.FacetMixin
                   @param {Boolean} trueFalse If the facetFilter should be cached or not
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -623,7 +623,7 @@
 
             /**
                   <p>Computes values across the the specified scope</p>
-      
+
                   @deprecated since elasticsearch 0.90
                   @member ejs.FacetMixin
                   @param {String} scope The scope name to calculate facet counts with.
@@ -636,7 +636,7 @@
             /**
                   <p>Sets the path to the nested document if faceting against a
                   nested field.</p>
-      
+
                   @member ejs.FacetMixin
                   @param {String} path The nested path
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -652,7 +652,7 @@
 
             /**
                   The type of ejs object.  For internal use only.
-                  
+
                   @member ejs.FacetMixin
                   @returns {String} the type of object
                   */
@@ -663,7 +663,7 @@
             /**
                   <p>Retrieves the internal <code>facet</code> object. This is typically used by
                      internal API functions so use with caution.</p>
-      
+
                   @member ejs.FacetMixin
                   @returns {String} returns this object's internal <code>facet</code> property.
                   */
@@ -676,10 +676,10 @@
 
     /**
       @mixin
-      <p>The FilterMixin provides support for common options used across 
-      various <code>Filter</code> implementations.  This object should not be 
+      <p>The FilterMixin provides support for common options used across
+      various <code>Filter</code> implementations.  This object should not be
       used directly.</p>
-  
+
       @name ejs.FilterMixin
       */
     ejs.FilterMixin = function (type) {
@@ -691,7 +691,7 @@
 
             /**
                   Sets the filter name.
-      
+
                   @member ejs.FilterMixin
                   @param {String} name A name for the filter.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -707,7 +707,7 @@
 
             /**
                   Enable or disable caching of the filter
-      
+
                   @member ejs.FilterMixin
                   @param {Boolean} trueFalse True to cache the filter, false otherwise.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -723,7 +723,7 @@
 
             /**
                   Sets the cache key.
-      
+
                   @member ejs.FilterMixin
                   @param {String} key the cache key as a string.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -739,7 +739,7 @@
 
             /**
                   The type of ejs object.  For internal use only.
-                
+
                   @member ejs.FilterMixin
                   @returns {String} the type of object
                   */
@@ -749,7 +749,7 @@
 
             /**
                    Returns the filter object.
-      
+
                    @member ejs.FilterMixin
                    @returns {Object} filter object
                    */
@@ -765,12 +765,12 @@
       <p>The MetricsAggregationMixin provides support for common options used across
       various metrics <code>Aggregation</code> implementations.  This object should
       not be used directly.</p>
-  
+
       @name ejs.MetricsAggregationMixin
       @ejs aggregation
       @borrows ejs.AggregationMixin._type as _type
       @borrows ejs.AggregationMixin.toJSON as toJSON
-  
+
       */
     ejs.MetricsAggregationMixin = function (name, type) {
 
@@ -789,7 +789,7 @@
 
             /**
             <p>Sets the field to operate on.</p>
-      
+
             @member ejs.MetricsAggregationMixin
             @param {String} field a valid field name..
             @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -805,7 +805,7 @@
 
             /**
             Allows you generate or modify the terms/values using a script.
-      
+
             @member ejs.MetricsAggregationMixin
             @param {String} scriptCode A valid script string to execute.
             @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -821,7 +821,7 @@
 
             /**
             The script language being used.
-      
+
             @member ejs.MetricsAggregationMixin
             @param {String} language The language of the script.
             @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -837,7 +837,7 @@
 
             /**
             Set to true to assume script values are sorted.
-      
+
             @member ejs.MetricsAggregationMixin
             @param {Boolean} trueFalse assume sorted values or not
             @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -854,7 +854,7 @@
             /**
             Sets parameters that will be applied to the script.  Overwrites
             any existing params.
-      
+
             @member ejs.MetricsAggregationMixin
             @param {Object} p An object where the keys are the parameter name and
               values are the parameter value.
@@ -874,10 +874,10 @@
 
     /**
       @mixin
-      <p>The QueryMixin provides support for common options used across 
-      various <code>Query</code> implementations.  This object should not be 
+      <p>The QueryMixin provides support for common options used across
+      various <code>Query</code> implementations.  This object should not be
       used directly.</p>
-  
+
       @name ejs.QueryMixin
       */
     ejs.QueryMixin = function (type) {
@@ -889,7 +889,7 @@
 
             /**
                   Sets the boost value for documents matching the <code>Query</code>.
-      
+
                   @member ejs.QueryMixin
                   @param {Double} boost A positive <code>double</code> value.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -905,7 +905,7 @@
 
             /**
                   The type of ejs object.  For internal use only.
-                
+
                   @member ejs.QueryMixin
                   @returns {String} the type of object
                   */
@@ -916,7 +916,7 @@
             /**
                   Retrieves the internal <code>query</code> object. This is typically used by
                   internal API functions so use with caution.
-      
+
                   @member ejs.QueryMixin
                   @returns {String} returns this object's internal <code>query</code> property.
                   */
@@ -932,7 +932,7 @@
       <p>The ScoreFunctionMixin provides support for common options used across
       various <code>ScoreFunction</code> implementations.  This object should not be
       used directly.</p>
-  
+
       @name ejs.ScoreFunctionMixin
       */
     ejs.ScoreFunctionMixin = function (name) {
@@ -944,7 +944,7 @@
 
             /**
             Adds a filter whose matching documents will have the score function applied.
-      
+
             @member ejs.ScoreFunctionMixin
             @param {Filter} oFilter Any valid <code>Filter</code> object.
             @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -964,7 +964,7 @@
 
             /**
             The type of ejs object.  For internal use only.
-      
+
             @member ejs.ScoreFunctionMixin
             @returns {String} the type of object
             */
@@ -975,7 +975,7 @@
             /**
             <p>Retrieves the internal <code>agg</code> object. This is typically used by
                internal API functions so use with caution.</p>
-      
+
             @member ejs.ScoreFunctionMixin
             @returns {String} returns this object's internal object.
             */
@@ -988,12 +988,12 @@
 
     /**
       @mixin
-      <p>The SuggestContextMixin provides support for suggest context settings 
-      across various <code>Suggester</code> implementations.  This object should not be 
+      <p>The SuggestContextMixin provides support for suggest context settings
+      across various <code>Suggester</code> implementations.  This object should not be
       used directly.</p>
-  
+
       @name ejs.SuggestContextMixin
-    
+
       @param {String} settings The object to set the options on.
       */
     ejs.SuggestContextMixin = function (settings) {
@@ -1002,7 +1002,7 @@
 
             /**
                   <p>Sets analyzer used to analyze the suggest text.</p>
-      
+
                   @member ejs.SuggestContextMixin
                   @param {String} analyzer A valid analyzer name.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -1018,7 +1018,7 @@
 
             /**
                   <p>Sets the field used to generate suggestions from.</p>
-      
+
                   @member ejs.SuggestContextMixin
                   @param {String} field A valid field name.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -1034,7 +1034,7 @@
 
             /**
                   <p>Sets the number of suggestions returned for each token.</p>
-      
+
                   @member ejs.SuggestContextMixin
                   @param {Integer} s A positive integer value.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -1049,9 +1049,9 @@
             },
 
             /**
-                  <p>Sets the maximum number of suggestions to be retrieved from 
+                  <p>Sets the maximum number of suggestions to be retrieved from
                   each individual shard.</p>
-      
+
                   @member ejs.SuggestContextMixin
                   @param {Integer} s A positive integer value.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -1070,11 +1070,11 @@
 
     /**
       @mixin
-      <p>The SuggesterMixin provides support for the base setting of all suggesters. 
+      <p>The SuggesterMixin provides support for the base setting of all suggesters.
       This object should not be used directly.</p>
-  
+
       @name ejs.SuggesterMixin
-    
+
       @param {String} name The name of the suggester.
       */
     ejs.SuggesterMixin = function (name) {
@@ -1087,7 +1087,7 @@
             /**
                   <p>Sets the text to get suggestions for.  If not set, the global
                   suggestion text will be used.</p>
-      
+
                   @member ejs.SuggesterMixin
                   @param {String} txt A string to get suggestions for.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -1103,7 +1103,7 @@
 
             /**
                   The type of ejs object.  For internal use only.
-              
+
                   @member ejs.SuggesterMixin
                   @returns {String} the type of object
                   */
@@ -1114,7 +1114,7 @@
             /**
                   <p>Retrieves the internal <code>suggest</code> object. This is typically used by
                      internal API functions so use with caution.</p>
-      
+
                   @member ejs.SuggesterMixin
                   @returns {String} returns this object's internal <code>suggest</code> property.
                   */
@@ -1130,11 +1130,11 @@
       <p>The DateHistogram facet works with time-based values by building a histogram across time
          intervals of the <code>value</code> field. Each value is <em>rounded</em> into an interval (or
          placed in a bucket), and statistics are provided per interval/bucket (count and total).</p>
-  
+
       <p>Facets are similar to SQL <code>GROUP BY</code> statements but perform much
          better. You can also construct several <em>"groups"</em> at once by simply
          specifying multiple facets.</p>
-  
+
       <div class="alert-message block-message info">
           <p>
               <strong>Tip: </strong>
@@ -1143,7 +1143,7 @@
               Wikipedia article on Faceted Classification.
           </p>
       </div>
-  
+
       @name ejs.DateHistogramFacet
       @ejs facet
       @borrows ejs.FacetMixin.facetFilter as facetFilter
@@ -1154,16 +1154,16 @@
       @borrows ejs.FacetMixin.nested as nested
       @borrows ejs.FacetMixin._type as _type
       @borrows ejs.FacetMixin.toJSON as toJSON
-    
+
       @desc
       <p>A facet which returns the N most frequent terms within a collection
          or set of collections.</p>
-  
+
       @param {String} name The name which be used to refer to this facet. For instance,
           the facet itself might utilize a field named <code>doc_authors</code>. Setting
           <code>name</code> to <code>Authors</code> would allow you to refer to the
           facet by that name, possibly simplifying some of the display logic.
-  
+
       */
     ejs.DateHistogramFacet = function (name) {
 
@@ -1177,7 +1177,7 @@
 
             /**
                   Sets the field to be used to construct the this facet.
-      
+
                   @member ejs.DateHistogramFacet
                   @param {String} fieldName The field name whose data will be used to construct the facet.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -1193,7 +1193,7 @@
 
             /**
                   Allows you to specify a different key field to be used to group intervals.
-      
+
                   @member ejs.DateHistogramFacet
                   @param {String} fieldName The name of the field to be used.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -1209,7 +1209,7 @@
 
             /**
                   Allows you to specify a different value field to aggrerate over.
-      
+
                   @member ejs.DateHistogramFacet
                   @param {String} fieldName The name of the field to be used.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -1225,7 +1225,7 @@
 
             /**
                   Sets the bucket interval used to calculate the distribution.
-      
+
                   @member ejs.DateHistogramFacet
                   @param {String} timeInterval The bucket interval. Valid values are <code>year, month, week, day, hour,</code> and <code>minute</code>.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -1240,15 +1240,15 @@
             },
 
             /**
-                  <p>By default, time values are stored in UTC format.<p> 
-      
-                  <p>This method allows users to set a time zone value that is then used 
-                  to compute intervals before rounding on the interval value. Equalivent to 
-                  <coe>preZone</code>.  Use <code>preZone</code> if possible. The 
+                  <p>By default, time values are stored in UTC format.<p>
+
+                  <p>This method allows users to set a time zone value that is then used
+                  to compute intervals before rounding on the interval value. Equalivent to
+                  <coe>preZone</code>.  Use <code>preZone</code> if possible. The
                   value is an offset from UTC.<p>
-                  
+
                   <p>For example, to use EST you would set the value to <code>-5</code>.</p>
-      
+
                   @member ejs.DateHistogramFacet
                   @param {Integer} tz An offset value from UTC.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -1263,14 +1263,14 @@
             },
 
             /**
-                  <p>By default, time values are stored in UTC format.<p> 
-      
-                  <p>This method allows users to set a time zone value that is then used to 
-                  compute intervals before rounding on the interval value.  The value is an 
+                  <p>By default, time values are stored in UTC format.<p>
+
+                  <p>This method allows users to set a time zone value that is then used to
+                  compute intervals before rounding on the interval value.  The value is an
                   offset from UTC.<p>
-                  
+
                   <p>For example, to use EST you would set the value to <code>-5</code>.</p>
-      
+
                   @member ejs.DateHistogramFacet
                   @param {Integer} tz An offset value from UTC.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -1285,11 +1285,11 @@
             },
 
             /**
-                  <p>Enables large date interval conversions (day and up).</p>  
-      
-                  <p>Set to true to enable and then set the <code>interval</code> to an 
+                  <p>Enables large date interval conversions (day and up).</p>
+
+                  <p>Set to true to enable and then set the <code>interval</code> to an
                   interval greater than a day.</p>
-                  
+
                   @member ejs.DateHistogramFacet
                   @param {Boolean} trueFalse A valid boolean value.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -1304,14 +1304,14 @@
             },
 
             /**
-                  <p>By default, time values are stored in UTC format.<p> 
-      
-                  <p>This method allows users to set a time zone value that is then used to compute 
-                  intervals after rounding on the interval value.  The value is an offset from UTC.  
+                  <p>By default, time values are stored in UTC format.<p>
+
+                  <p>This method allows users to set a time zone value that is then used to compute
+                  intervals after rounding on the interval value.  The value is an offset from UTC.
                   The tz offset value is simply added to the resulting bucket's date value.<p>
-                  
+
                   <p>For example, to use EST you would set the value to <code>-5</code>.</p>
-      
+
                   @member ejs.DateHistogramFacet
                   @param {Integer} tz An offset value from UTC.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -1327,7 +1327,7 @@
 
             /**
                   Set's a specific pre-rounding offset.  Format is 1d, 1h, etc.
-      
+
                   @member ejs.DateHistogramFacet
                   @param {String} offset The offset as a string (1d, 1h, etc)
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -1343,7 +1343,7 @@
 
             /**
                   Set's a specific post-rounding offset.  Format is 1d, 1h, etc.
-      
+
                   @member ejs.DateHistogramFacet
                   @param {String} offset The offset as a string (1d, 1h, etc)
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -1358,17 +1358,17 @@
             },
 
             /**
-                  <p>The date histogram works on numeric values (since time is stored 
-                  in milliseconds since the epoch in UTC).<p> 
-      
-                  <p>But, sometimes, systems will store a different resolution (like seconds since UTC) 
-                  in a numeric field. The factor parameter can be used to change the value in the field 
-                  to milliseconds to actual do the relevant rounding, and then be applied again to get to 
+                  <p>The date histogram works on numeric values (since time is stored
+                  in milliseconds since the epoch in UTC).<p>
+
+                  <p>But, sometimes, systems will store a different resolution (like seconds since UTC)
+                  in a numeric field. The factor parameter can be used to change the value in the field
+                  to milliseconds to actual do the relevant rounding, and then be applied again to get to
                   the original unit.</p>
-      
-                  <p>For example, when storing in a numeric field seconds resolution, 
+
+                  <p>For example, when storing in a numeric field seconds resolution,
                   the factor can be set to 1000.<p>
-      
+
                   @member ejs.DateHistogramFacet
                   @param {Integer} f The conversion factor.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -1385,7 +1385,7 @@
             /**
                   Allows you modify the <code>value</code> field using a script. The modified value
                   is then used to compute the statistical data.
-      
+
                   @member ejs.DateHistogramFacet
                   @param {String} scriptCode A valid script string to execute.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -1402,13 +1402,13 @@
             /**
                   <p>Sets the type of ordering that will be performed on the date
                   buckets.  Valid values are:<p>
-                  
+
                   <dl>
                       <dd><code>time</code> - the default, sort by the buckets start time in milliseconds.</dd>
                       <dd><code>count</code> - sort by the number of items in the bucket</dd>
                       <dd><code>total</code> - sort by the sum/total of the items in the bucket</dd>
                   <dl>
-                  
+
                   @member ejs.DateHistogramFacet
                   @param {String} o The ordering method: time, count, or total.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -1429,7 +1429,7 @@
             /**
                   The script language being used. Currently supported values are
                   <code>javascript</code>, <code>groovy</code>, and <code>mvel</code>.
-      
+
                   @member ejs.DateHistogramFacet
                   @param {String} language The language of the script.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -1444,11 +1444,11 @@
             },
 
             /**
-                  Sets parameters that will be applied to the script.  Overwrites 
+                  Sets parameters that will be applied to the script.  Overwrites
                   any existing params.
-      
+
                   @member ejs.DateHistogramFacet
-                  @param {Object} p An object where the keys are the parameter name and 
+                  @param {Object} p An object where the keys are the parameter name and
                     values are the parameter value.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
                   */
@@ -1468,11 +1468,11 @@
       @class
       <p>The FilterFacet allows you to specify any valid <code>Filter</code> and
       have the number of matching hits returned as the value.</p>
-  
+
       <p>Facets are similar to SQL <code>GROUP BY</code> statements but perform much
          better. You can also construct several <em>"groups"</em> at once by simply
          specifying multiple facets.</p>
-  
+
       <div class="alert-message block-message info">
           <p>
               <strong>Tip: </strong>
@@ -1481,7 +1481,7 @@
               Wikipedia article on Faceted Classification.
           </p>
       </div>
-  
+
       @name ejs.FilterFacet
       @ejs facet
       @borrows ejs.FacetMixin.facetFilter as facetFilter
@@ -1492,15 +1492,15 @@
       @borrows ejs.FacetMixin.nested as nested
       @borrows ejs.FacetMixin._type as _type
       @borrows ejs.FacetMixin.toJSON as toJSON
-  
+
       @desc
       <p>A facet that return a count of the hits matching the given filter.</p>
-  
+
       @param {String} name The name which be used to refer to this facet. For instance,
           the facet itself might utilize a field named <code>doc_authors</code>. Setting
           <code>name</code> to <code>Authors</code> would allow you to refer to the
           facet by that name, possibly simplifying some of the display logic.
-  
+
       */
     ejs.FilterFacet = function (name) {
 
@@ -1512,7 +1512,7 @@
 
             /**
                   <p>Sets the filter to be used for this facet.</p>
-      
+
                   @member ejs.FilterFacet
                   @param {Object} oFilter A valid <code>Query</code> object.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -1538,11 +1538,11 @@
       <p>The geoDistanceFacet facet provides information over a range of distances from a
       provided point. This includes the number of hits that fall within each range,
       along with aggregate information (like total).</p>
-  
+
       <p>Facets are similar to SQL <code>GROUP BY</code> statements but perform much
          better. You can also construct several <em>"groups"</em> at once by simply
          specifying multiple facets.</p>
-  
+
       <div class="alert-message block-message info">
           <p>
               <strong>Tip: </strong>
@@ -1551,7 +1551,7 @@
               Wikipedia article on Faceted Classification.
           </p>
       </div>
-  
+
       @name ejs.GeoDistanceFacet
       @ejs facet
       @borrows ejs.FacetMixin.facetFilter as facetFilter
@@ -1562,15 +1562,15 @@
       @borrows ejs.FacetMixin.nested as nested
       @borrows ejs.FacetMixin._type as _type
       @borrows ejs.FacetMixin.toJSON as toJSON
-  
+
       @desc
       <p>A facet which provides information over a range of distances from a provided point.</p>
-  
+
       @param {String} name The name which be used to refer to this facet. For instance,
           the facet itself might utilize a field named <code>doc_authors</code>. Setting
           <code>name</code> to <code>Authors</code> would allow you to refer to the
           facet by that name, possibly simplifying some of the display logic.
-  
+
       */
     ejs.GeoDistanceFacet = function (name) {
 
@@ -1588,9 +1588,9 @@
         return extend(_common, {
 
             /**
-                  Sets the document field containing the geo-coordinate to be used 
+                  Sets the document field containing the geo-coordinate to be used
                   to calculate the distance.  Defaults to "location".
-      
+
                   @member ejs.GeoDistanceFacet
                   @param {String} fieldName The field name whose data will be used to construct the facet.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -1611,7 +1611,7 @@
 
             /**
                   Sets the point of origin from where distances will be measured.
-      
+
                   @member ejs.GeoDistanceFacet
                   @param {GeoPoint} p A valid GeoPoint object
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -1632,7 +1632,7 @@
 
             /**
                   Adds a new bounded range.
-      
+
                   @member ejs.GeoDistanceFacet
                   @param {Number} from The lower bound of the range
                   @param {Number} to The upper bound of the range
@@ -1653,7 +1653,7 @@
 
             /**
                   Adds a new unbounded lower limit.
-      
+
                   @member ejs.GeoDistanceFacet
                   @param {Number} from The lower limit of the unbounded range
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -1672,7 +1672,7 @@
 
             /**
                   Adds a new unbounded upper limit.
-      
+
                   @member ejs.GeoDistanceFacet
                   @param {Number} to The upper limit of the unbounded range
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -1692,7 +1692,7 @@
             /**
                    Sets the distance unit.  Valid values are "mi" for miles or "km"
                    for kilometers. Defaults to "km".
-      
+
                    @member ejs.GeoDistanceFacet
                    @param {Number} unit the unit of distance measure.
                    @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -1711,11 +1711,11 @@
             },
 
             /**
-                  How to compute the distance. Can either be arc (better precision) 
+                  How to compute the distance. Can either be arc (better precision)
                   or plane (faster). Defaults to arc.
-      
+
                   @member ejs.GeoDistanceFacet
-                  @param {String} type The execution type as a string.  
+                  @param {String} type The execution type as a string.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
                   */
             distanceType: function (type) {
@@ -1734,11 +1734,11 @@
             /**
                   If the lat/long points should be normalized to lie within their
                   respective normalized ranges.
-                  
+
                   Normalized ranges are:
                   lon = -180 (exclusive) to 180 (inclusive) range
                   lat = -90 to 90 (both inclusive) range
-      
+
                   @member ejs.GeoDistanceFacet
                   @param {String} trueFalse True if the coordinates should be normalized. False otherwise.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -1754,7 +1754,7 @@
 
             /**
                   Allows you to specify a different value field to aggrerate over.
-      
+
                   @member ejs.GeoDistanceFacet
                   @param {String} fieldName The name of the field to be used.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -1771,7 +1771,7 @@
             /**
                   Allows you modify the <code>value</code> field using a script. The modified value
                   is then used to compute the statistical data.
-      
+
                   @member ejs.GeoDistanceFacet
                   @param {String} scriptCode A valid script string to execute.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -1788,7 +1788,7 @@
             /**
                   The script language being used. Currently supported values are
                   <code>javascript</code>, <code>groovy</code>, and <code>mvel</code>.
-      
+
                   @member ejs.GeoDistanceFacet
                   @param {String} language The language of the script.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -1803,11 +1803,11 @@
             },
 
             /**
-                  Sets parameters that will be applied to the script.  Overwrites 
+                  Sets parameters that will be applied to the script.  Overwrites
                   any existing params.
-      
+
                   @member ejs.GeoDistanceFacet
-                  @param {Object} p An object where the keys are the parameter name and 
+                  @param {Object} p An object where the keys are the parameter name and
                     values are the parameter value.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
                   */
@@ -1828,11 +1828,11 @@
       <p>The histogram facet works with numeric data by building a histogram across intervals
          of the field values. Each value is <em>rounded</em> into an interval (or placed in a
          bucket), and statistics are provided per interval/bucket (count and total).</p>
-  
+
       <p>Facets are similar to SQL <code>GROUP BY</code> statements but perform much
          better. You can also construct several <em>"groups"</em> at once by simply
          specifying multiple facets.</p>
-  
+
       <div class="alert-message block-message info">
           <p>
               <strong>Tip: </strong>
@@ -1841,7 +1841,7 @@
               Wikipedia article on Faceted Classification.
           </p>
       </div>
-  
+
       @name ejs.HistogramFacet
       @ejs facet
       @borrows ejs.FacetMixin.facetFilter as facetFilter
@@ -1852,16 +1852,16 @@
       @borrows ejs.FacetMixin.nested as nested
       @borrows ejs.FacetMixin._type as _type
       @borrows ejs.FacetMixin.toJSON as toJSON
-  
+
       @desc
       <p>A facet which returns the N most frequent terms within a collection
          or set of collections.</p>
-  
+
       @param {String} name The name which be used to refer to this facet. For instance,
           the facet itself might utilize a field named <code>doc_authors</code>. Setting
           <code>name</code> to <code>Authors</code> would allow you to refer to the
           facet by that name, possibly simplifying some of the display logic.
-  
+
       */
     ejs.HistogramFacet = function (name) {
 
@@ -1875,7 +1875,7 @@
 
             /**
                   Sets the field to be used to construct the this facet.
-      
+
                   @member ejs.HistogramFacet
                   @param {String} fieldName The field name whose data will be used to construct the facet.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -1891,7 +1891,7 @@
 
             /**
                   Sets the bucket interval used to calculate the distribution.
-      
+
                   @member ejs.HistogramFacet
                   @param {Number} numericInterval The bucket interval in which to group values.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -1908,7 +1908,7 @@
             /**
                   Sets the bucket interval used to calculate the distribution based
                   on a time value such as "1d", "1w", etc.
-      
+
                   @member ejs.HistogramFacet
                   @param {Number} timeInterval The bucket interval in which to group values.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -1923,11 +1923,11 @@
             },
 
             /**
-                  Sets the "from", "start", or lower bounds bucket.  For example if 
-                  you have a value of 1023, an interval of 100, and a from value of 
-                  1500, it will be placed into the 1500 bucket vs. the normal bucket 
+                  Sets the "from", "start", or lower bounds bucket.  For example if
+                  you have a value of 1023, an interval of 100, and a from value of
+                  1500, it will be placed into the 1500 bucket vs. the normal bucket
                   of 1000.
-      
+
                   @member ejs.HistogramFacet
                   @param {Number} from the lower bounds bucket value.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -1942,11 +1942,11 @@
             },
 
             /**
-                  Sets the "to", "end", or upper bounds bucket.  For example if 
-                  you have a value of 1023, an interval of 100, and a to value of 
-                  900, it will be placed into the 900 bucket vs. the normal bucket 
+                  Sets the "to", "end", or upper bounds bucket.  For example if
+                  you have a value of 1023, an interval of 100, and a to value of
+                  900, it will be placed into the 900 bucket vs. the normal bucket
                   of 1000.
-      
+
                   @member ejs.HistogramFacet
                   @param {Number} to the upper bounds bucket value.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -1962,7 +1962,7 @@
 
             /**
                   Allows you to specify a different value field to aggrerate over.
-      
+
                   @member ejs.HistogramFacet
                   @param {String} fieldName The name of the field to be used.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -1978,7 +1978,7 @@
 
             /**
                   Allows you to specify a different key field to be used to group intervals.
-      
+
                   @member ejs.HistogramFacet
                   @param {String} fieldName The name of the field to be used.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -1995,7 +1995,7 @@
             /**
                   Allows you modify the <code>value</code> field using a script. The modified value
                   is then used to compute the statistical data.
-      
+
                   @member ejs.HistogramFacet
                   @param {String} scriptCode A valid script string to execute.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -2012,7 +2012,7 @@
             /**
                   Allows you modify the <code>key</code> field using a script. The modified value
                   is then used to generate the interval.
-      
+
                   @member ejs.HistogramFacet
                   @param {String} scriptCode A valid script string to execute.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -2029,7 +2029,7 @@
             /**
                   The script language being used. Currently supported values are
                   <code>javascript</code>, <code>groovy</code>, and <code>mvel</code>.
-      
+
                   @member ejs.HistogramFacet
                   @param {String} language The language of the script.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -2044,11 +2044,11 @@
             },
 
             /**
-                  Sets parameters that will be applied to the script.  Overwrites 
+                  Sets parameters that will be applied to the script.  Overwrites
                   any existing params.
-      
+
                   @member ejs.HistogramFacet
-                  @param {Object} p An object where the keys are the parameter name and 
+                  @param {Object} p An object where the keys are the parameter name and
                     values are the parameter value.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
                   */
@@ -2064,11 +2064,11 @@
             /**
                   Sets the type of ordering that will be performed on the date
                   buckets.  Valid values are:
-                  
+
                   key - the default, sort by the bucket's key value
                   count - sort by the number of items in the bucket
                   total - sort by the sum/total of the items in the bucket
-                  
+
                   @member ejs.HistogramFacet
                   @param {String} o The ordering method: key, count, or total.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -2093,11 +2093,11 @@
       @class
       <p>The QueryFacet facet allows you to specify any valid <code>Query</code> and
       have the number of matching hits returned as the value.</p>
-  
+
       <p>Facets are similar to SQL <code>GROUP BY</code> statements but perform much
          better. You can also construct several <em>"groups"</em> at once by simply
          specifying multiple facets.</p>
-  
+
       <div class="alert-message block-message info">
           <p>
               <strong>Tip: </strong>
@@ -2106,7 +2106,7 @@
               Wikipedia article on Faceted Classification.
           </p>
       </div>
-  
+
       @name ejs.QueryFacet
       @ejs facet
       @borrows ejs.FacetMixin.facetFilter as facetFilter
@@ -2117,15 +2117,15 @@
       @borrows ejs.FacetMixin.nested as nested
       @borrows ejs.FacetMixin._type as _type
       @borrows ejs.FacetMixin.toJSON as toJSON
-  
+
       @desc
       <p>A facet that return a count of the hits matching the given query.</p>
-  
+
       @param {String} name The name which be used to refer to this facet. For instance,
           the facet itself might utilize a field named <code>doc_authors</code>. Setting
           <code>name</code> to <code>Authors</code> would allow you to refer to the
           facet by that name, possibly simplifying some of the display logic.
-  
+
       */
     ejs.QueryFacet = function (name) {
 
@@ -2137,7 +2137,7 @@
 
             /**
                   <p>Sets the query to be used for this facet.</p>
-      
+
                   @member ejs.QueryFacet
                   @param {Object} oQuery A valid <code>Query</code> object.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -2162,11 +2162,11 @@
       @class
       <p>A RangeFacet allows you to specify a set of ranges and get both the number of docs (count) that
          fall within each range, and aggregated data based on the field, or another specified field.</p>
-  
+
       <p>Facets are similar to SQL <code>GROUP BY</code> statements but perform much
          better. You can also construct several <em>"groups"</em> at once by simply
          specifying multiple facets.</p>
-  
+
       <div class="alert-message block-message info">
           <p>
               <strong>Tip: </strong>
@@ -2175,7 +2175,7 @@
               Wikipedia article on Faceted Classification.
           </p>
       </div>
-  
+
       @name ejs.RangeFacet
       @ejs facet
       @borrows ejs.FacetMixin.facetFilter as facetFilter
@@ -2186,15 +2186,15 @@
       @borrows ejs.FacetMixin.nested as nested
       @borrows ejs.FacetMixin._type as _type
       @borrows ejs.FacetMixin.toJSON as toJSON
-  
+
       @desc
       <p>A facet which provides information over a range of numeric intervals.</p>
-  
+
       @param {String} name The name which be used to refer to this facet. For instance,
           the facet itself might utilize a field named <code>doc_authors</code>. Setting
           <code>name</code> to <code>Authors</code> would allow you to refer to the
           facet by that name, possibly simplifying some of the display logic.
-  
+
       */
     ejs.RangeFacet = function (name) {
 
@@ -2210,7 +2210,7 @@
 
             /**
                   Sets the document field to be used for the facet.
-      
+
                   @member ejs.RangeFacet
                   @param {String} fieldName The field name whose data will be used to compute the interval.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -2226,7 +2226,7 @@
 
             /**
                   Allows you to specify an alternate key field to be used to compute the interval.
-      
+
                   @member ejs.RangeFacet
                   @param {String} fieldName The field name whose data will be used to compute the interval.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -2242,7 +2242,7 @@
 
             /**
                   Allows you to specify an alternate value field to be used to compute statistical information.
-      
+
                   @member ejs.RangeFacet
                   @param {String} fieldName The field name whose data will be used to compute statistics.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -2259,7 +2259,7 @@
             /**
                   Allows you modify the <code>value</code> field using a script. The modified value
                   is then used to compute the statistical data.
-      
+
                   @member ejs.RangeFacet
                   @param {String} scriptCode A valid script string to execute.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -2276,7 +2276,7 @@
             /**
                   Allows you modify the <code>key</code> field using a script. The modified value
                   is then used to generate the interval.
-      
+
                   @member ejs.RangeFacet
                   @param {String} scriptCode A valid script string to execute.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -2293,7 +2293,7 @@
             /**
                   The script language being used. Currently supported values are
                   <code>javascript</code>, <code>groovy</code>, and <code>mvel</code>.
-      
+
                   @member ejs.RangeFacet
                   @param {String} language The language of the script.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -2308,11 +2308,11 @@
             },
 
             /**
-                  Sets parameters that will be applied to the script.  Overwrites 
+                  Sets parameters that will be applied to the script.  Overwrites
                   any existing params.
-      
+
                   @member ejs.RangeFacet
-                  @param {Object} p An object where the keys are the parameter name and 
+                  @param {Object} p An object where the keys are the parameter name and
                     values are the parameter value.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
                   */
@@ -2327,7 +2327,7 @@
 
             /**
                   Adds a new bounded range.
-      
+
                   @member ejs.RangeFacet
                   @param {Number} from The lower bound of the range (can also be <code>Date</code>).
                   @param {Number} to The upper bound of the range (can also be <code>Date</code>).
@@ -2348,7 +2348,7 @@
 
             /**
                   Adds a new unbounded lower limit.
-      
+
                   @member ejs.RangeFacet
                   @param {Number} from The lower limit of the unbounded range (can also be <code>Date</code>).
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -2367,7 +2367,7 @@
 
             /**
                   Adds a new unbounded upper limit.
-      
+
                   @member ejs.RangeFacet
                   @param {Number} to The upper limit of the unbounded range (can also be <code>Date</code>).
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -2391,11 +2391,11 @@
       @class
       <p>A statistical facet allows you to compute statistical data over a numeric fields. Statistical data includes
       the count, total, sum of squares, mean (average), minimum, maximum, variance, and standard deviation.</p>
-  
+
       <p>Facets are similar to SQL <code>GROUP BY</code> statements but perform much
          better. You can also construct several <em>"groups"</em> at once by simply
          specifying multiple facets.</p>
-  
+
       <div class="alert-message block-message info">
           <p>
               <strong>Tip: </strong>
@@ -2404,7 +2404,7 @@
               Wikipedia article on Faceted Classification.
           </p>
       </div>
-  
+
       @name ejs.StatisticalFacet
       @ejs facet
       @borrows ejs.FacetMixin.facetFilter as facetFilter
@@ -2415,15 +2415,15 @@
       @borrows ejs.FacetMixin.nested as nested
       @borrows ejs.FacetMixin._type as _type
       @borrows ejs.FacetMixin.toJSON as toJSON
-  
+
       @desc
       <p>A facet which returns statistical information about a numeric field</p>
-  
+
       @param {String} name The name which be used to refer to this facet. For instance,
           the facet itself might utilize a field named <code>doc_authors</code>. Setting
           <code>name</code> to <code>Authors</code> would allow you to refer to the
           facet by that name, possibly simplifying some of the display logic.
-  
+
       */
     ejs.StatisticalFacet = function (name) {
 
@@ -2437,7 +2437,7 @@
 
             /**
                   Sets the field to be used to construct the this facet.
-      
+
                   @member ejs.StatisticalFacet
                   @param {String} fieldName The field name whose data will be used to construct the facet.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -2453,7 +2453,7 @@
 
             /**
                   Aggregate statistical info across a set of fields.
-      
+
                   @member ejs.StatisticalFacet
                   @param {Array} aFieldName An array of field names.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -2474,7 +2474,7 @@
             /**
                   Define a script to evaluate of which the result will be used to generate
                   the statistical information.
-      
+
                   @member ejs.StatisticalFacet
                   @param {String} code The script code to execute.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -2491,7 +2491,7 @@
             /**
                   The script language being used. Currently supported values are
                   <code>javascript</code>, <code>groovy</code>, and <code>mvel</code>.
-      
+
                   @member ejs.StatisticalFacet
                   @param {String} language The language of the script.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -2507,7 +2507,7 @@
 
             /**
                   Allows you to set script parameters to be used during the execution of the script.
-      
+
                   @member ejs.StatisticalFacet
                   @param {Object} oParams An object containing key/value pairs representing param name/value.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -2528,11 +2528,11 @@
       @class
       <p>A termsStatsFacet allows you to compute statistics over an aggregate key (term). Essentially this
       facet provides the functionality of what is often refered to as a <em>pivot table</em>.</p>
-  
+
       <p>Facets are similar to SQL <code>GROUP BY</code> statements but perform much
          better. You can also construct several <em>"groups"</em> at once by simply
          specifying multiple facets.</p>
-  
+
       <div class="alert-message block-message info">
           <p>
               <strong>Tip: </strong>
@@ -2541,7 +2541,7 @@
               Wikipedia article on Faceted Classification.
           </p>
       </div>
-  
+
       @name ejs.TermStatsFacet
       @ejs facet
       @borrows ejs.FacetMixin.facetFilter as facetFilter
@@ -2552,15 +2552,15 @@
       @borrows ejs.FacetMixin.nested as nested
       @borrows ejs.FacetMixin._type as _type
       @borrows ejs.FacetMixin.toJSON as toJSON
-  
+
       @desc
       <p>A facet which computes statistical data based on an aggregate key.</p>
-  
+
       @param {String} name The name which be used to refer to this facet. For instance,
           the facet itself might utilize a field named <code>doc_authors</code>. Setting
           <code>name</code> to <code>Authors</code> would allow you to refer to the
           facet by that name, possibly simplifying some of the display logic.
-  
+
       */
     ejs.TermStatsFacet = function (name) {
 
@@ -2574,7 +2574,7 @@
 
             /**
                   Sets the field for which statistical information will be generated.
-      
+
                   @member ejs.TermStatsFacet
                   @param {String} fieldName The field name whose data will be used to construct the facet.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -2590,7 +2590,7 @@
 
             /**
                   Sets the field which will be used to pivot on (group-by).
-      
+
                   @member ejs.TermStatsFacet
                   @param {String} fieldName The field name whose data will be used to construct the facet.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -2606,7 +2606,7 @@
 
             /**
                   Sets a script that will provide the terms for a given document.
-      
+
                   @member ejs.TermStatsFacet
                   @param {String} script The script code.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -2623,7 +2623,7 @@
             /**
                   Define a script to evaluate of which the result will be used to generate
                   the statistical information.
-      
+
                   @member ejs.TermStatsFacet
                   @param {String} code The script code to execute.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -2641,7 +2641,7 @@
                   <p>Allows you to return all terms, even if the frequency count is 0. This should not be
                      used on fields that contain a large number of unique terms because it could cause
                      <em>out-of-memory</em> errors.</p>
-      
+
                   @member ejs.TermStatsFacet
                   @param {String} trueFalse <code>true</code> or <code>false</code>
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -2658,7 +2658,7 @@
             /**
                   The script language being used. Currently supported values are
                   <code>javascript</code>, <code>groovy</code>, and <code>mvel</code>.
-      
+
                   @member ejs.TermStatsFacet
                   @param {String} language The language of the script.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -2674,7 +2674,7 @@
 
             /**
                   Allows you to set script parameters to be used during the execution of the script.
-      
+
                   @member ejs.TermStatsFacet
                   @param {Object} oParams An object containing key/value pairs representing param name/value.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -2692,7 +2692,7 @@
                   Sets the number of facet entries that will be returned for this facet. For instance, you
                   might ask for only the top 5 aggregate keys although there might be hundreds of
                   unique keys. <strong>Higher settings could cause memory strain</strong>.
-      
+
                   @member ejs.TermStatsFacet
                   @param {Integer} facetSize The numer of facet entries to be returned.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -2709,7 +2709,7 @@
             /**
                   Sets the type of ordering that will be performed on the date
                   buckets.  Valid values are:
-                  
+
                   count - default, sort by the number of items in the bucket
                   term - sort by term value.
                   reverse_count - reverse sort of the number of items in the bucket
@@ -2722,7 +2722,7 @@
                   reverse_max - the reverse sort of the maximum value
                   mean - the mean value of the bucket contents
                   reverse_mean - the reverse sort of the mean value of bucket contents.
-                  
+
                   @member ejs.TermStatsFacet
                   @param {String} o The ordering method
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -2753,14 +2753,14 @@
          or set of collections. Term facets are useful for building constructs
          which allow users to refine search results by filtering on terms returned
          by the facet.</p>
-  
+
       <p>Facets are similar to SQL <code>GROUP BY</code> statements but perform much
          better. You can also construct several <em>"groups"</em> at once by simply
          specifying multiple facets.</p>
-  
+
       <p>For more information on faceted navigation, see this Wikipedia article on
          <a href="http://en.wikipedia.org/wiki/Faceted_classification">Faceted Classification</a></p<
-  
+
       @name ejs.TermsFacet
       @ejs facet
       @borrows ejs.FacetMixin.facetFilter as facetFilter
@@ -2771,16 +2771,16 @@
       @borrows ejs.FacetMixin.nested as nested
       @borrows ejs.FacetMixin._type as _type
       @borrows ejs.FacetMixin.toJSON as toJSON
-  
+
       @desc
       <p>A facet which returns the N most frequent terms within a collection
          or set of collections.</p>
-  
+
       @param {String} name The name which be used to refer to this facet. For instance,
           the facet itself might utilize a field named <code>doc_authors</code>. Setting
           <code>name</code> to <code>Authors</code> would allow you to refer to the
           facet by that name, possibly simplifying some of the display logic.
-  
+
       */
     ejs.TermsFacet = function (name) {
 
@@ -2796,7 +2796,7 @@
                   Sets the field to be used to construct the this facet.  Set to
                   _index to return a facet count of hits per _index the search was
                   executed on.
-      
+
                   @member ejs.TermsFacet
                   @param {String} fieldName The field name whose data will be used to construct the facet.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -2812,7 +2812,7 @@
 
             /**
                   Aggregate statistical info across a set of fields.
-      
+
                   @member ejs.TermsFacet
                   @param {Array} aFieldName An array of field names.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -2832,7 +2832,7 @@
 
             /**
                   Sets a script that will provide the terms for a given document.
-      
+
                   @member ejs.TermsFacet
                   @param {String} script The script code.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -2850,7 +2850,7 @@
                   Sets the number of facet entries that will be returned for this facet. For instance, you
                   might ask for only the top 5 <code>authors</code> although there might be hundreds of
                   unique authors.
-      
+
                   @member ejs.TermsFacet
                   @param {Integer} facetSize The numer of facet entries to be returned.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -2868,7 +2868,7 @@
             /**
                   Determines how many terms the coordinating node will request from
                   each shard.
-      
+
                   @member ejs.TermsFacet
                   @param {Integer} shardSize The numer of terms to fetch from each shard.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -2885,12 +2885,12 @@
             /**
                   Sets the type of ordering that will be performed on the date
                   buckets.  Valid values are:
-      
+
                   count - default, sort by the number of items in the bucket
                   term - sort by term value.
                   reverse_count - reverse sort of the number of items in the bucket
                   reverse_term - reverse sort of the term value.
-      
+
                   @member ejs.TermsFacet
                   @param {String} o The ordering method
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -2914,7 +2914,7 @@
                   <p>Allows you to return all terms, even if the frequency count is 0. This should not be
                      used on fields that contain a large number of unique terms because it could cause
                      <em>out-of-memory</em> errors.</p>
-      
+
                   @member ejs.TermsFacet
                   @param {String} trueFalse <code>true</code> or <code>false</code>
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -2932,7 +2932,7 @@
                   <p>Allows you to filter out unwanted facet entries. When passed
                   a single term, it is appended to the list of currently excluded
                   terms.  If passed an array, it overwrites all existing values.</p>
-      
+
                   @member ejs.TermsFacet
                   @param {(String|String[])} exclude A single term to exclude or an
                     array of terms to exclude.
@@ -2960,7 +2960,7 @@
 
             /**
                   <p>Allows you to only include facet entries matching a specified regular expression.</p>
-      
+
                   @member ejs.TermsFacet
                   @param {String} exp A valid regular expression.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -2977,7 +2977,7 @@
             /**
                   <p>Allows you to set the regular expression flags to be used
                   with the <code>regex</code></p>
-      
+
                   @member ejs.TermsFacet
                   @param {String} flags A valid regex flag - see <a href="http://docs.oracle.com/javase/6/docs/api/java/util/regex/Pattern.html#field_summary">Java Pattern API</a>
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -2994,7 +2994,7 @@
             /**
                   Allows you modify the term using a script. The modified value
                   is then used in the facet collection.
-      
+
                   @member ejs.TermsFacet
                   @param {String} scriptCode A valid script string to execute.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -3011,7 +3011,7 @@
             /**
                   The script language being used. Currently supported values are
                   <code>javascript</code>, <code>groovy</code>, and <code>mvel</code>.
-      
+
                   @member ejs.TermsFacet
                   @param {String} language The language of the script.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -3028,7 +3028,7 @@
             /**
                   Sets parameters that will be applied to the script.  Overwrites
                   any existing params.
-      
+
                   @member ejs.TermsFacet
                   @param {Object} p An object where the keys are the parameter name and
                     values are the parameter value.
@@ -3046,7 +3046,7 @@
             /**
                   Sets the execution hint determines how the facet is computed.
                   Currently only supported value is "map".
-      
+
                   @member ejs.TermsFacet
                   @param {Object} h The hint value as a string.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -3069,7 +3069,7 @@
       values that are extracted from the aggregated documents. These values can be
       extracted either from specific numeric fields in the documents, or be
       generated by a provided script.</p>
-  
+
       @name ejs.AvgAggregation
       @ejs aggregation
       @borrows ejs.MetricsAggregationMixin.field as field
@@ -3079,13 +3079,13 @@
       @borrows ejs.MetricsAggregationMixin.params as params
       @borrows ejs.AggregationMixin._type as _type
       @borrows ejs.AggregationMixin.toJSON as toJSON
-  
+
       @desc
       <p>Aggregation that computes the average of numeric values that are extracted
       from the aggregated documents.</p>
-  
+
       @param {String} name The name which be used to refer to this aggregation.
-  
+
       */
     ejs.AvgAggregation = function (name) {
 
@@ -3101,7 +3101,7 @@
       <p>A single-value metrics aggregation that calculates an approximate count of
       distinct values. Values can be extracted either from specific fields in the
       document or generated by a script.</p>
-  
+
       @name ejs.CardinalityAggregation
       @ejs aggregation
       @borrows ejs.MetricsAggregationMixin.field as field
@@ -3110,12 +3110,12 @@
       @borrows ejs.MetricsAggregationMixin.params as params
       @borrows ejs.AggregationMixin._type as _type
       @borrows ejs.AggregationMixin.toJSON as toJSON
-  
+
       @desc
       <p>Aggregation that calculates an approximate count of distinct values.</p>
-  
+
       @param {String} name The name which be used to refer to this aggregation.
-  
+
       */
     ejs.CardinalityAggregation = function (name) {
 
@@ -3131,7 +3131,7 @@
             /**
             Set to false to disable rehashing of values.  You must have computed a hash
             on the client-side and stored it into your documents if you disable this.
-      
+
             @member ejs.CardinalityAggregation
             @param {Boolean} trueFalse set to false to disable rehashing
             @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -3152,7 +3152,7 @@
             above this number will have the same effect as a threshold of 40000.
             Default value depends on the number of parent aggregations that multiple
             create buckets (such as terms or histograms).
-      
+
             @member ejs.CardinalityAggregation
             @param {Long} num The threshold value
             @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -3181,20 +3181,20 @@
       support for time based data. From a functionality perspective, this
       histogram supports the same features as the normal histogram. The main
       difference is that the interval can be specified by date/time expressions.</p>
-  
+
       @name ejs.DateHistogramAggregation
       @ejs aggregation
       @borrows ejs.AggregationMixin.aggregation as aggregation
       @borrows ejs.AggregationMixin.agg as agg
       @borrows ejs.AggregationMixin._type as _type
       @borrows ejs.AggregationMixin.toJSON as toJSON
-  
+
       @desc
       <p>Aggregation similar to the histogram except it can only be applied on
       date values.</p>
-  
+
       @param {String} name The name which be used to refer to this aggregation.
-  
+
       */
     ejs.DateHistogramAggregation = function (name) {
 
@@ -3208,7 +3208,7 @@
 
             /**
             <p>Sets the field to gather terms from.</p>
-      
+
             @member ejs.DateHistogramAggregation
             @param {String} field a valid field name..
             @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -3224,7 +3224,7 @@
 
             /**
             Allows you generate or modify the terms using a script.
-      
+
             @member ejs.DateHistogramAggregation
             @param {String} scriptCode A valid script string to execute.
             @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -3240,7 +3240,7 @@
 
             /**
             The script language being used.
-      
+
             @member ejs.DateHistogramAggregation
             @param {String} language The language of the script.
             @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -3256,7 +3256,7 @@
 
             /**
             Set the date time zone.
-      
+
             @member ejs.DateHistogramAggregation
             @param {String} tz the time zone.
             @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -3272,7 +3272,7 @@
 
             /**
             Set the pre-rouding date time zone.
-      
+
             @member ejs.DateHistogramAggregation
             @param {String} tz the time zone.
             @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -3288,7 +3288,7 @@
 
             /**
             Set the post-rouding date time zone.
-      
+
             @member ejs.DateHistogramAggregation
             @param {String} tz the time zone.
             @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -3304,7 +3304,7 @@
 
             /**
             Set the pre-rouding offset.
-      
+
             @member ejs.DateHistogramAggregation
             @param {String} offset the offset.
             @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -3320,7 +3320,7 @@
 
             /**
             Set the post-rouding offset.
-      
+
             @member ejs.DateHistogramAggregation
             @param {String} offset the offset.
             @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -3338,7 +3338,7 @@
             Set's the range/bounds for the histogram aggregation.  Useful when you
             want to include buckets that might be outside the bounds of indexed
             documents.
-      
+
             @member ejs.DateHistogramAggregation
             @param {(String|Long)} min The start bound / minimum bound value
             @param {(String|Long)} max The end bound / maximum bound value
@@ -3366,7 +3366,7 @@
             /**
             Sets the histogram interval.  Buckets are generated based on this interval
             value.
-      
+
             @member ejs.DateHistogramAggregation
             @param {String} i The interval
             @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -3383,7 +3383,7 @@
             /**
             Sets the format expression for the terms.  Use for number or date
             formatting
-      
+
             @member ejs.DateHistogramAggregation
             @param {String} f the format string
             @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -3400,7 +3400,7 @@
             /**
             Enable the response to be returned as a keyed object where the key is the
             bucket interval.
-      
+
             @member ejs.DateHistogramAggregation
             @param {Boolean} trueFalse to enable keyed response or not
             @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -3416,7 +3416,7 @@
 
             /**
             Set to true to assume script values are sorted.
-      
+
             @member ejs.DateHistogramAggregation
             @param {Boolean} trueFalse assume sorted values or not
             @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -3432,7 +3432,7 @@
 
             /**
             Set to true to apply interval adjusts to day and above intervals.
-      
+
             @member ejs.DateHistogramAggregation
             @param {Boolean} trueFalse adjust large intervals or not
             @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -3448,7 +3448,7 @@
 
             /**
             Only return terms that match more than a configured number of hits.
-      
+
             @member ejs.DateHistogramAggregation
             @param {Integer} num The numer of minimum number of hits.
             @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -3465,7 +3465,7 @@
             /**
             Sets parameters that will be applied to the script.  Overwrites
             any existing params.
-      
+
             @member ejs.DateHistogramAggregation
             @param {Object} p An object where the keys are the parameter name and
               values are the parameter value.
@@ -3482,7 +3482,7 @@
 
             /**
             Sets order for the aggregated values.
-      
+
             @member ejs.DateHistogramAggregation
             @param {String} order The order string.
             @param {String} direction The sort direction, asc or desc.
@@ -3518,22 +3518,22 @@
       possible to specify a date format by which the from and to response fields
       will be returned. Note that this aggregration includes the from value and
       excludes the to value for each range.</p>
-  
+
       <p>Note that this aggregration includes the from value and excludes the to
       value for each range.</p>
-  
+
       @name ejs.DateRangeAggregation
       @ejs aggregation
       @borrows ejs.AggregationMixin.aggregation as aggregation
       @borrows ejs.AggregationMixin.agg as agg
       @borrows ejs.AggregationMixin._type as _type
       @borrows ejs.AggregationMixin.toJSON as toJSON
-  
+
       @desc
       <p>Aggregation that is dedicated for date value ranges.</p>
-  
+
       @param {String} name The name which be used to refer to this aggregation.
-  
+
       */
     ejs.DateRangeAggregation = function (name) {
 
@@ -3547,7 +3547,7 @@
 
             /**
             <p>Sets the field to gather terms from.</p>
-      
+
             @member ejs.DateRangeAggregation
             @param {String} field a valid field name..
             @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -3563,7 +3563,7 @@
 
             /**
             Allows you generate or modify the terms using a script.
-      
+
             @member ejs.DateRangeAggregation
             @param {String} scriptCode A valid script string to execute.
             @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -3579,7 +3579,7 @@
 
             /**
             The script language being used.
-      
+
             @member ejs.DateRangeAggregation
             @param {String} language The language of the script.
             @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -3595,7 +3595,7 @@
 
             /**
             Sets the date format expression.
-      
+
             @member ejs.DateRangeAggregation
             @param {String} f the format string
             @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -3611,7 +3611,7 @@
 
             /**
             Adds a range to the list of exsiting range expressions.
-      
+
             @member ejs.DateRangeAggregation
             @param {String} from The start value, use null to ignore
             @param {String} to The end value, use null to ignore.
@@ -3647,7 +3647,7 @@
             /**
             Enable the response to be returned as a keyed object where the key is the
             bucket interval.
-      
+
             @member ejs.DateRangeAggregation
             @param {Boolean} trueFalse to enable keyed response or not
             @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -3663,7 +3663,7 @@
 
             /**
             Set to true to assume script values are sorted.
-      
+
             @member ejs.DateRangeAggregation
             @param {Boolean} trueFalse assume sorted values or not
             @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -3680,7 +3680,7 @@
             /**
             Sets parameters that will be applied to the script.  Overwrites
             any existing params.
-      
+
             @member ejs.DateRangeAggregation
             @param {Object} p An object where the keys are the parameter name and
               values are the parameter value.
@@ -3704,11 +3704,11 @@
       extracted from the aggregated documents. These values can be extracted either
       from specific numeric fields in the documents, or be generated by a provided
       script.</p>
-  
+
       <p>The extended_stats aggregations is an extended version of the
       <code>StatsAggregation</code>, where additional metrics are added such as
       sum_of_squares, variance and std_deviation.</p>
-  
+
       @name ejs.ExtendedStatsAggregation
       @ejs aggregation
       @borrows ejs.MetricsAggregationMixin.field as field
@@ -3718,13 +3718,13 @@
       @borrows ejs.MetricsAggregationMixin.params as params
       @borrows ejs.AggregationMixin._type as _type
       @borrows ejs.AggregationMixin.toJSON as toJSON
-  
+
       @desc
       <p>Aggregation that computes extra stats over numeric values extracted from
       the aggregated documents.</p>
-  
+
       @param {String} name The name which be used to refer to this aggregation.
-  
+
       */
     ejs.ExtendedStatsAggregation = function (name) {
 
@@ -3740,19 +3740,19 @@
       <p>Defines a single bucket of all the documents in the current document set
       context that match a specified filter. Often this will be used to narrow down
       the current aggregation context to a specific set of documents.</p>
-  
+
       @name ejs.FilterAggregation
       @ejs aggregation
       @borrows ejs.AggregationMixin.aggregation as aggregation
       @borrows ejs.AggregationMixin.agg as agg
       @borrows ejs.AggregationMixin._type as _type
       @borrows ejs.AggregationMixin.toJSON as toJSON
-  
+
       @desc
       <p>Defines a single bucket of all the documents that match a given filter.</p>
-  
+
       @param {String} name The name which be used to refer to this aggregation.
-  
+
       */
     ejs.FilterAggregation = function (name) {
 
@@ -3764,7 +3764,7 @@
 
             /**
             <p>Sets the filter to be used for this aggregation.</p>
-      
+
             @member ejs.FilterAggregation
             @param {Filter} oFilter A valid <code>Filter</code> object.
             @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -3794,20 +3794,20 @@
       buckets it belongs to based on the ranges (a document belongs to a bucket
       if the distance between the document and the origin falls within the distance
       range of the bucket).</p>
-  
+
       @name ejs.GeoDistanceAggregation
       @ejs aggregation
       @borrows ejs.AggregationMixin.aggregation as aggregation
       @borrows ejs.AggregationMixin.agg as agg
       @borrows ejs.AggregationMixin._type as _type
       @borrows ejs.AggregationMixin.toJSON as toJSON
-  
+
       @desc
       <p>Aggregation that works on geo_point fields and conceptually works very
       similar to the range aggregation.</p>
-  
+
       @param {String} name The name which be used to refer to this aggregation.
-  
+
       */
     ejs.GeoDistanceAggregation = function (name) {
 
@@ -3822,7 +3822,7 @@
 
             /**
             <p>Sets the field to gather terms from.</p>
-      
+
             @member ejs.GeoDistanceAggregation
             @param {String} field a valid field name..
             @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -3839,7 +3839,7 @@
             /**
             Sets the distance unit.  Valid values are:
             in, yd, ft, km, NM, mm, cm, mi, and m.
-      
+
             @member ejs.GeoDistanceAggregation
             @param {Number} unit the unit of distance measure.
             @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -3861,7 +3861,7 @@
             /**
             How to compute the distance. Valid values are:
             plane, arc, sloppy_arc, and factor.
-      
+
             @member ejs.GeoDistanceAggregation
             @param {String} type The execution type as a string.
             @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -3882,7 +3882,7 @@
 
             /**
             Sets the point of origin from where distances will be measured.
-      
+
             @member ejs.GeoDistanceAggregation
             @param {GeoPoint} p A valid GeoPoint object
             @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -3904,7 +3904,7 @@
             /**
             Sets the point of origin from where distances will be measured. Same as
             origin.
-      
+
             @member ejs.GeoDistanceAggregation
             @param {GeoPoint} p A valid GeoPoint object
             @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -3926,7 +3926,7 @@
             /**
             Sets the point of origin from where distances will be measured. Same as
             origin.
-      
+
             @member ejs.GeoDistanceAggregation
             @param {GeoPoint} p A valid GeoPoint object
             @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -3947,7 +3947,7 @@
 
             /**
             Adds a range to the list of exsiting range expressions.
-      
+
             @member ejs.GeoDistanceAggregation
             @param {String} from The start value, use null to ignore
             @param {String} to The end value, use null to ignore.
@@ -3983,7 +3983,7 @@
             /**
             Enable the response to be returned as a keyed object where the key is the
             bucket interval.
-      
+
             @member ejs.GeoDistanceAggregation
             @param {Boolean} trueFalse to enable keyed response or not
             @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -4006,20 +4006,20 @@
       into buckets that represent cells in a grid. The resulting grid can be sparse
       and only contains cells that have matching data. Each cell is labeled using a
       geohash which is of user-definable precision.</p>
-  
+
       @name ejs.GeoHashGridAggregation
       @ejs aggregation
       @borrows ejs.AggregationMixin.aggregation as aggregation
       @borrows ejs.AggregationMixin.agg as agg
       @borrows ejs.AggregationMixin._type as _type
       @borrows ejs.AggregationMixin.toJSON as toJSON
-  
+
       @desc
       <p>Aggregation that works on geo_point fields and groups points into buckets
       that represent cells in a grid.</p>
-  
+
       @param {String} name The name which be used to refer to this aggregation.
-  
+
       */
     ejs.GeoHashGridAggregation = function (name) {
 
@@ -4033,7 +4033,7 @@
 
             /**
             Sets the geo field to perform calculations from.
-      
+
             @member ejs.GeoHashGridAggregation
             @param {String} field a valid field name.
             @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -4050,7 +4050,7 @@
             /**
             Sets the Geo Hash precision.  The precision value can be between 1 and 12
             where 12 is the highest precision.
-      
+
             @member ejs.GeoHashGridAggregation
             @param {Integer} p The precision.  Integer between 1 and 12.
             @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -4066,7 +4066,7 @@
 
             /**
             Sets the number of aggregation entries that will be returned.
-      
+
             @member ejs.GeoHashGridAggregation
             @param {Integer} size The numer of aggregation entries to be returned.
             @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -4084,7 +4084,7 @@
             /**
             Determines how many geohash_grid the coordinating node will request from
             each shard.
-      
+
             @member ejs.GeoHashGridAggregation
             @param {Integer} shardSize The numer of geohash_grid to fetch from each shard.
             @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -4106,19 +4106,19 @@
       <p>Defines a single bucket of all the documents within the search execution
       context. This context is defined by the indices and the document types you’re
       searching on, but is not influenced by the search query itself.</p>
-  
+
       @name ejs.GlobalAggregation
       @ejs aggregation
       @borrows ejs.AggregationMixin.aggregation as aggregation
       @borrows ejs.AggregationMixin.agg as agg
       @borrows ejs.AggregationMixin._type as _type
       @borrows ejs.AggregationMixin.toJSON as toJSON
-  
+
       @desc
       <p>Defines a single bucket of all the documents within the search context.</p>
-  
+
       @param {String} name The name which be used to refer to this aggregation.
-  
+
       */
     ejs.GlobalAggregation = function (name) {
 
@@ -4136,20 +4136,20 @@
       <p>A multi-bucket values source based aggregation that can be applied on
       numeric values extracted from the documents. It dynamically builds fixed
       size (a.k.a. interval) buckets over the values.</p>
-  
+
       @name ejs.HistogramAggregation
       @ejs aggregation
       @borrows ejs.AggregationMixin.aggregation as aggregation
       @borrows ejs.AggregationMixin.agg as agg
       @borrows ejs.AggregationMixin._type as _type
       @borrows ejs.AggregationMixin.toJSON as toJSON
-  
+
       @desc
       <p>Aggregation that can be applied on numeric values extracted from the
       documents.</p>
-  
+
       @param {String} name The name which be used to refer to this aggregation.
-  
+
       */
     ejs.HistogramAggregation = function (name) {
 
@@ -4163,7 +4163,7 @@
 
             /**
             <p>Sets the field to gather terms from.</p>
-      
+
             @member ejs.HistogramAggregation
             @param {String} field a valid field name..
             @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -4179,7 +4179,7 @@
 
             /**
             Allows you generate or modify the terms using a script.
-      
+
             @member ejs.HistogramAggregation
             @param {String} scriptCode A valid script string to execute.
             @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -4195,7 +4195,7 @@
 
             /**
             The script language being used.
-      
+
             @member ejs.HistogramAggregation
             @param {String} language The language of the script.
             @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -4212,7 +4212,7 @@
             /**
             Sets the format expression for the terms.  Use for number or date
             formatting
-      
+
             @member ejs.HistogramAggregation
             @param {String} f the format string
             @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -4230,7 +4230,7 @@
             Set's the range/bounds for the histogram aggregation.  Useful when you
             want to include buckets that might be outside the bounds of indexed
             documents.
-      
+
             @member ejs.HistogramAggregation
             @param {Long} min The start bound / minimum bound value
             @param {Long} max The end bound / maximum bound value
@@ -4258,7 +4258,7 @@
             /**
             Sets the histogram interval.  Buckets are generated based on this interval
             value.
-      
+
             @member ejs.HistogramAggregation
             @param {Integer} i The interval
             @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -4274,7 +4274,7 @@
 
             /**
             Only return terms that match more than a configured number of hits.
-      
+
             @member ejs.HistogramAggregation
             @param {Integer} num The numer of minimum number of hits.
             @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -4291,7 +4291,7 @@
             /**
             Enable the response to be returned as a keyed object where the key is the
             bucket interval.
-      
+
             @member ejs.HistogramAggregation
             @param {Boolean} trueFalse to enable keyed response or not
             @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -4307,7 +4307,7 @@
 
             /**
             Set to true to assume script values are sorted.
-      
+
             @member ejs.HistogramAggregation
             @param {Boolean} trueFalse assume sorted values or not
             @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -4324,7 +4324,7 @@
             /**
             Sets parameters that will be applied to the script.  Overwrites
             any existing params.
-      
+
             @member ejs.HistogramAggregation
             @param {Object} p An object where the keys are the parameter name and
               values are the parameter value.
@@ -4341,7 +4341,7 @@
 
             /**
             Sets order for the aggregated values.
-      
+
             @member ejs.HistogramAggregation
             @param {String} order The order string.
             @param {String} direction The sort direction, asc or desc.
@@ -4372,22 +4372,22 @@
     /**
       @class
       <p>A dedicated range aggregation for IPv4 typed fields.</p>
-  
+
       <p>Note that this aggregration includes the from value and excludes the to
       value for each range.</p>
-  
+
       @name ejs.IPv4RangeAggregation
       @ejs aggregation
       @borrows ejs.AggregationMixin.aggregation as aggregation
       @borrows ejs.AggregationMixin.agg as agg
       @borrows ejs.AggregationMixin._type as _type
       @borrows ejs.AggregationMixin.toJSON as toJSON
-  
+
       @desc
       <p>A dedicated range aggregation for IPv4 typed fields.</p>
-  
+
       @param {String} name The name which be used to refer to this aggregation.
-  
+
       */
     ejs.IPv4RangeAggregation = function (name) {
 
@@ -4401,7 +4401,7 @@
 
             /**
             <p>Sets the field to gather terms from.</p>
-      
+
             @member ejs.IPv4RangeAggregation
             @param {String} field a valid field name..
             @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -4417,7 +4417,7 @@
 
             /**
             Allows you generate or modify the terms using a script.
-      
+
             @member ejs.IPv4RangeAggregation
             @param {String} scriptCode A valid script string to execute.
             @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -4433,7 +4433,7 @@
 
             /**
             The script language being used.
-      
+
             @member ejs.IPv4RangeAggregation
             @param {String} language The language of the script.
             @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -4449,7 +4449,7 @@
 
             /**
             Adds a range to the list of exsiting range expressions.
-      
+
             @member ejs.IPv4RangeAggregation
             @param {String} from The start value, use null to ignore
             @param {String} to The end value, use null to ignore.
@@ -4489,7 +4489,7 @@
             /**
             Enable the response to be returned as a keyed object where the key is the
             bucket interval.
-      
+
             @member ejs.IPv4RangeAggregation
             @param {Boolean} trueFalse to enable keyed response or not
             @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -4505,7 +4505,7 @@
 
             /**
             Set to true to assume script values are sorted.
-      
+
             @member ejs.IPv4RangeAggregation
             @param {Boolean} trueFalse assume sorted values or not
             @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -4522,7 +4522,7 @@
             /**
             Sets parameters that will be applied to the script.  Overwrites
             any existing params.
-      
+
             @member ejs.IPv4RangeAggregation
             @param {Object} p An object where the keys are the parameter name and
               values are the parameter value.
@@ -4546,7 +4546,7 @@
       maximum value among the numeric values extracted from the aggregated
       documents. These values can be extracted either from specific numeric fields
       in the documents, or be generated by a provided script.</p>
-  
+
       @name ejs.MaxAggregation
       @ejs aggregation
       @borrows ejs.MetricsAggregationMixin.field as field
@@ -4556,13 +4556,13 @@
       @borrows ejs.MetricsAggregationMixin.params as params
       @borrows ejs.AggregationMixin._type as _type
       @borrows ejs.AggregationMixin.toJSON as toJSON
-  
+
       @desc
       <p>Aggregation that keeps track and returns the maximum value among the
       numeric values extracted from the aggregated documents.</p>
-  
+
       @param {String} name The name which be used to refer to this aggregation.
-  
+
       */
     ejs.MaxAggregation = function (name) {
 
@@ -4579,7 +4579,7 @@
       minimum value among numeric values extracted from the aggregated documents.
       These values can be extracted either from specific numeric fields in the
       documents, or be generated by a provided script.</p>
-  
+
       @name ejs.MinAggregation
       @ejs aggregation
       @borrows ejs.MetricsAggregationMixin.field as field
@@ -4589,13 +4589,13 @@
       @borrows ejs.MetricsAggregationMixin.params as params
       @borrows ejs.AggregationMixin._type as _type
       @borrows ejs.AggregationMixin.toJSON as toJSON
-  
+
       @desc
       <p>Aggregation that keeps track and returns the minimum value among numeric
       values extracted from the aggregated documents.</p>
-  
+
       @param {String} name The name which be used to refer to this aggregation.
-  
+
       */
     ejs.MinAggregation = function (name) {
 
@@ -4611,19 +4611,19 @@
       <p>A field data based single bucket aggregation, that creates a bucket of all
       documents in the current document set context that are missing a field value
       (effectively, missing a field or having the configured NULL value set).</p>
-  
+
       @name ejs.MissingAggregation
       @ejs aggregation
       @borrows ejs.AggregationMixin.aggregation as aggregation
       @borrows ejs.AggregationMixin.agg as agg
       @borrows ejs.AggregationMixin._type as _type
       @borrows ejs.AggregationMixin.toJSON as toJSON
-  
+
       @desc
       <p>Defines a bucket of all documents that are missing a field value.</p>
-  
+
       @param {String} name The name which be used to refer to this aggregation.
-  
+
       */
     ejs.MissingAggregation = function (name) {
 
@@ -4637,7 +4637,7 @@
 
             /**
             <p>Sets the field to gather missing terms from.</p>
-      
+
             @member ejs.MissingAggregation
             @param {String} field a valid field name..
             @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -4658,20 +4658,20 @@
       @class
       <p>A special single bucket aggregation that enables aggregating nested
       documents.</p>
-  
+
       @name ejs.NestedAggregation
       @ejs aggregation
       @borrows ejs.AggregationMixin.aggregation as aggregation
       @borrows ejs.AggregationMixin.agg as agg
       @borrows ejs.AggregationMixin._type as _type
       @borrows ejs.AggregationMixin.toJSON as toJSON
-  
+
       @desc
       <p>A special single bucket aggregation that enables aggregating nested
       documents.</p>
-  
+
       @param {String} name The name which be used to refer to this aggregation.
-  
+
       */
     ejs.NestedAggregation = function (name) {
 
@@ -4685,7 +4685,7 @@
 
             /**
             <p>Sets the nested path.</p>
-      
+
             @member ejs.NestedAggregation
             @param {String} path The nested path value.
             @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -4708,7 +4708,7 @@
       over numeric values extracted from the aggregated documents. These values can
       be extracted either from specific numeric fields in the documents, or be
       generated by a provided script.</p>
-  
+
       @name ejs.PercentilesAggregation
       @ejs aggregation
       @borrows ejs.MetricsAggregationMixin.field as field
@@ -4718,13 +4718,13 @@
       @borrows ejs.MetricsAggregationMixin.params as params
       @borrows ejs.AggregationMixin._type as _type
       @borrows ejs.AggregationMixin.toJSON as toJSON
-  
+
       @desc
       <p>Aggregation that calculates one or more percentiles over numeric values
       extracted from the aggregated documents.</p>
-  
+
       @param {String} name The name which be used to refer to this aggregation.
-  
+
       */
     ejs.PercentilesAggregation = function (name) {
 
@@ -4737,7 +4737,7 @@
             /**
             Enable the response to be returned as a keyed object where the key is the
             bucket interval.
-      
+
             @member ejs.PercentilesAggregation
             @param {Boolean} trueFalse to enable keyed response or not
             @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -4753,7 +4753,7 @@
 
             /**
             Sets the percentile bucket array.  Overwrites all existing values.
-      
+
             @member ejs.PercentilesAggregation
             @param {Double[]} percents A double array of percentiles
             @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -4773,7 +4773,7 @@
 
             /**
             Add a single percentile to the current list of percentiles.
-      
+
             @member ejs.PercentilesAggregation
             @param {Double} percentile A double percentile value to add
             @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -4799,7 +4799,7 @@
             the algorithm slower since the underlying tree data structure grows in
             size, resulting in more expensive operations. The default compression
             value is 100.
-      
+
             @member ejs.PercentilesAggregation
             @param {Integer} c The compression level.
             @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -4822,23 +4822,23 @@
       define a set of ranges - each representing a bucket. During the aggregation
       process, the values extracted from each document will be checked against each
       bucket range and "bucket" the relevant/matching document.</p>
-  
+
       <p>Note that this aggregration includes the from value and excludes the to
       value for each range.</p>
-  
+
       @name ejs.RangeAggregation
       @ejs aggregation
       @borrows ejs.AggregationMixin.aggregation as aggregation
       @borrows ejs.AggregationMixin.agg as agg
       @borrows ejs.AggregationMixin._type as _type
       @borrows ejs.AggregationMixin.toJSON as toJSON
-  
+
       @desc
       <p>Aggregation that enables the user to define a set of ranges that each
       represent a bucket.</p>
-  
+
       @param {String} name The name which be used to refer to this aggregation.
-  
+
       */
     ejs.RangeAggregation = function (name) {
 
@@ -4852,7 +4852,7 @@
 
             /**
             <p>Sets the field to gather terms from.</p>
-      
+
             @member ejs.RangeAggregation
             @param {String} field a valid field name..
             @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -4868,7 +4868,7 @@
 
             /**
             Allows you generate or modify the terms using a script.
-      
+
             @member ejs.RangeAggregation
             @param {String} scriptCode A valid script string to execute.
             @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -4884,7 +4884,7 @@
 
             /**
             The script language being used.
-      
+
             @member ejs.RangeAggregation
             @param {String} language The language of the script.
             @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -4900,7 +4900,7 @@
 
             /**
             Adds a range to the list of exsiting range expressions.
-      
+
             @member ejs.RangeAggregation
             @param {String} from The start value, use null to ignore
             @param {String} to The end value, use null to ignore.
@@ -4936,7 +4936,7 @@
             /**
             Enable the response to be returned as a keyed object where the key is the
             bucket interval.
-      
+
             @member ejs.RangeAggregation
             @param {Boolean} trueFalse to enable keyed response or not
             @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -4952,7 +4952,7 @@
 
             /**
             Set to true to assume script values are sorted.
-      
+
             @member ejs.RangeAggregation
             @param {Boolean} trueFalse assume sorted values or not
             @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -4969,7 +4969,7 @@
             /**
             Sets parameters that will be applied to the script.  Overwrites
             any existing params.
-      
+
             @member ejs.RangeAggregation
             @param {Object} p An object where the keys are the parameter name and
               values are the parameter value.
@@ -4991,20 +4991,20 @@
       @class
       <p>An aggregation that returns interesting or unusual occurrences of terms in
       a set.</p>
-  
+
       @name ejs.SignificantTermsAggregation
       @ejs aggregation
       @borrows ejs.AggregationMixin.aggregation as aggregation
       @borrows ejs.AggregationMixin.agg as agg
       @borrows ejs.AggregationMixin._type as _type
       @borrows ejs.AggregationMixin.toJSON as toJSON
-  
+
       @desc
       <p>An aggregation that returns interesting or unusual occurrences of terms in
       a set.</p>
-  
+
       @param {String} name The name which be used to refer to this aggregation.
-  
+
       */
     ejs.SignificantTermsAggregation = function (name) {
 
@@ -5018,7 +5018,7 @@
 
             /**
             <p>Sets the field to gather terms from.</p>
-      
+
             @member ejs.SignificantTermsAggregation
             @param {String} field a valid field name..
             @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -5035,7 +5035,7 @@
             /**
             Sets the format expression for the terms.  Use for number or date
             formatting.
-      
+
             @member ejs.SignificantTermsAggregation
             @param {String} f the format string
             @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -5056,7 +5056,7 @@
             MULTILINE, DOTALL, UNICODE_CASE, CANON_EQ, UNIX_LINES, LITERAL,
             COMMENTS, and UNICODE_CHAR_CLASS.  Separate multiple flags with a |
             character.</p>
-      
+
             @member ejs.SignificantTermsAggregation
             @param {String} include A regular expression include string
             @param {String} flags Optional regular expression flags..
@@ -5086,7 +5086,7 @@
             MULTILINE, DOTALL, UNICODE_CASE, CANON_EQ, UNIX_LINES, LITERAL,
             COMMENTS, and UNICODE_CHAR_CLASS.  Separate multiple flags with a |
             character.</p>
-      
+
             @member ejs.SignificantTermsAggregation
             @param {String} exclude A regular expression exclude string
             @param {String} flags Optional regular expression flags..
@@ -5112,7 +5112,7 @@
             /**
             Sets the execution hint determines how the aggregation is computed.
             Supported values are: map and ordinals.
-      
+
             @member ejs.SignificantTermsAggregation
             @param {String} h The hint value as a string.
             @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -5132,7 +5132,7 @@
 
             /**
             Sets the number of aggregation entries that will be returned.
-      
+
             @member ejs.SignificantTermsAggregation
             @param {Integer} size The numer of aggregation entries to be returned.
             @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -5150,7 +5150,7 @@
             /**
             Determines how many terms the coordinating node will request from
             each shard.
-      
+
             @member ejs.SignificantTermsAggregation
             @param {Integer} shardSize The numer of terms to fetch from each shard.
             @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -5166,7 +5166,7 @@
 
             /**
             Only return terms that match more than a configured number of hits.
-      
+
             @member ejs.SignificantTermsAggregation
             @param {Integer} num The numer of minimum number of hits.
             @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -5189,9 +5189,9 @@
       extracted from the aggregated documents. These values can be extracted either
       from specific numeric fields in the documents, or be generated by a provided
       script.</p>
-  
+
       <p>The stats that are returned consist of: min, max, sum, count and avg.</p>
-  
+
       @name ejs.StatsAggregation
       @ejs aggregation
       @borrows ejs.MetricsAggregationMixin.field as field
@@ -5201,13 +5201,13 @@
       @borrows ejs.MetricsAggregationMixin.params as params
       @borrows ejs.AggregationMixin._type as _type
       @borrows ejs.AggregationMixin.toJSON as toJSON
-  
+
       @desc
       <p>Aggregation that computes stats over numeric values extracted from the
       aggregated documents.</p>
-  
+
       @param {String} name The name which be used to refer to this aggregation.
-  
+
       */
     ejs.StatsAggregation = function (name) {
 
@@ -5224,7 +5224,7 @@
       extracted from the aggregated documents. These values can be extracted either
       from specific numeric fields in the documents, or be generated by a
       provided script.</p>
-  
+
       @name ejs.SumAggregation
       @ejs aggregation
       @borrows ejs.MetricsAggregationMixin.field as field
@@ -5234,13 +5234,13 @@
       @borrows ejs.MetricsAggregationMixin.params as params
       @borrows ejs.AggregationMixin._type as _type
       @borrows ejs.AggregationMixin.toJSON as toJSON
-  
+
       @desc
       <p>Aggregation that sums up numeric values that are extracted from the
       aggregated documents.</p>
-  
+
       @param {String} name The name which be used to refer to this aggregation.
-  
+
       */
     ejs.SumAggregation = function (name) {
 
@@ -5255,19 +5255,19 @@
       @class
       <p>A multi-bucket value source based aggregation where buckets are dynamically
       built - one per unique value.</p>
-  
+
       @name ejs.TermsAggregation
       @ejs aggregation
       @borrows ejs.AggregationMixin.aggregation as aggregation
       @borrows ejs.AggregationMixin.agg as agg
       @borrows ejs.AggregationMixin._type as _type
       @borrows ejs.AggregationMixin.toJSON as toJSON
-  
+
       @desc
       <p>Defines an aggregation of unique values/terms.</p>
-  
+
       @param {String} name The name which be used to refer to this aggregation.
-  
+
       */
     ejs.TermsAggregation = function (name) {
 
@@ -5281,7 +5281,7 @@
 
             /**
             <p>Sets the field to gather terms from.</p>
-      
+
             @member ejs.TermsAggregation
             @param {String} field a valid field name..
             @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -5297,7 +5297,7 @@
 
             /**
             Allows you generate or modify the terms using a script.
-      
+
             @member ejs.TermsAggregation
             @param {String} scriptCode A valid script string to execute.
             @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -5313,7 +5313,7 @@
 
             /**
             The script language being used.
-      
+
             @member ejs.TermsAggregation
             @param {String} language The language of the script.
             @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -5330,7 +5330,7 @@
             /**
             Sets the type of the field value for use in scripts.  Current values are:
             string, double, float, long, integer, short, and byte.
-      
+
             @member ejs.TermsAggregation
             @param {String} v The value type
             @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -5352,7 +5352,7 @@
             /**
             Sets the format expression for the terms.  Use for number or date
             formatting
-      
+
             @member ejs.TermsAggregation
             @param {String} f the format string
             @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -5373,7 +5373,7 @@
             MULTILINE, DOTALL, UNICODE_CASE, CANON_EQ, UNIX_LINES, LITERAL,
             COMMENTS, and UNICODE_CHAR_CLASS.  Separate multiple flags with a |
             character.</p>
-      
+
             @member ejs.TermsAggregation
             @param {String} include A regular expression include string
             @param {String} flags Optional regular expression flags..
@@ -5403,7 +5403,7 @@
             MULTILINE, DOTALL, UNICODE_CASE, CANON_EQ, UNIX_LINES, LITERAL,
             COMMENTS, and UNICODE_CHAR_CLASS.  Separate multiple flags with a |
             character.</p>
-      
+
             @member ejs.TermsAggregation
             @param {String} exclude A regular expression exclude string
             @param {String} flags Optional regular expression flags..
@@ -5429,7 +5429,7 @@
             /**
             Sets the execution hint determines how the aggregation is computed.
             Supported values are: map and ordinals.
-      
+
             @member ejs.TermsAggregation
             @param {String} h The hint value as a string.
             @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -5449,7 +5449,7 @@
 
             /**
             Set to true to assume script values are unique.
-      
+
             @member ejs.TermsAggregation
             @param {Boolean} trueFalse assume unique values or not
             @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -5465,7 +5465,7 @@
 
             /**
             Sets the number of aggregation entries that will be returned.
-      
+
             @member ejs.TermsAggregation
             @param {Integer} size The numer of aggregation entries to be returned.
             @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -5483,7 +5483,7 @@
             /**
             Determines how many terms the coordinating node will request from
             each shard.
-      
+
             @member ejs.TermsAggregation
             @param {Integer} shardSize The numer of terms to fetch from each shard.
             @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -5499,7 +5499,7 @@
 
             /**
             Only return terms that match more than a configured number of hits.
-      
+
             @member ejs.TermsAggregation
             @param {Integer} num The numer of minimum number of hits.
             @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -5516,7 +5516,7 @@
             /**
             Sets parameters that will be applied to the script.  Overwrites
             any existing params.
-      
+
             @member ejs.TermsAggregation
             @param {Object} p An object where the keys are the parameter name and
               values are the parameter value.
@@ -5533,7 +5533,7 @@
 
             /**
             Sets order for the aggregated values.
-      
+
             @member ejs.TermsAggregation
             @param {String} order The order string.
             @param {String} direction The sort direction, asc or desc.
@@ -5568,7 +5568,7 @@
       either from specific fields in the documents, or be generated by a provided
       script. Typically, this aggregator will be used in conjunction with other
       single-value aggregations.</p>
-  
+
       @name ejs.ValueCountAggregation
       @ejs aggregation
       @borrows ejs.MetricsAggregationMixin.field as field
@@ -5577,13 +5577,13 @@
       @borrows ejs.MetricsAggregationMixin.params as params
       @borrows ejs.AggregationMixin._type as _type
       @borrows ejs.AggregationMixin.toJSON as toJSON
-  
+
       @desc
       <p>Aggregation that counts the number of values that are extracted from the
       aggregated documents.</p>
-  
+
       @param {String} name The name which be used to refer to this aggregation.
-  
+
       */
     ejs.ValueCountAggregation = function (name) {
 
@@ -5598,7 +5598,7 @@
 
             /**
             Set to true to assume script values are unique.
-      
+
             @member ejs.ValueCountAggregation
             @param {Boolean} trueFalse assume unique values or not
             @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -5619,7 +5619,7 @@
     /**
       @class
       A container Filter that allows Boolean AND composition of Filters.
-  
+
       @name ejs.AndFilter
       @ejs filter
       @borrows ejs.FilterMixin.name as name
@@ -5627,11 +5627,11 @@
       @borrows ejs.FilterMixin.cacheKey as cacheKey
       @borrows ejs.FilterMixin._type as _type
       @borrows ejs.FilterMixin.toJSON as toJSON
-  
+
       @desc
       A container Filter that allows Boolean AND composition of Filters.
-  
-      @param {(Filter|Filter[])} f A single Filter object or an array of valid 
+
+      @param {(Filter|Filter[])} f A single Filter object or an array of valid
         Filter objects.
       */
     ejs.AndFilter = function (f) {
@@ -5661,10 +5661,10 @@
         return extend(_common, {
 
             /**
-                   Sets the filters for the filter.  If fltr is a single 
+                   Sets the filters for the filter.  If fltr is a single
                    Filter, it is added to the current filters.  If fltr is an array
                    of Filters, then they replace all existing filters.
-      
+
                    @member ejs.AndFilter
                    @param {(Filter|Filter[])} fltr A valid filter object or an array of filters.
                    @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -5701,10 +5701,10 @@
     /**
       @class
       <p>A <code>BoolFilter</code> allows you to build <em>Boolean</em> filter constructs
-      from individual filters. Similar in concept to Boolean query, except that 
-      the clauses are other filters. Can be placed within queries that accept a 
+      from individual filters. Similar in concept to Boolean query, except that
+      the clauses are other filters. Can be placed within queries that accept a
       filter.
-    
+
       @name ejs.BoolFilter
       @ejs filter
       @borrows ejs.FilterMixin.name as name
@@ -5712,11 +5712,11 @@
       @borrows ejs.FilterMixin.cacheKey as cacheKey
       @borrows ejs.FilterMixin._type as _type
       @borrows ejs.FilterMixin.toJSON as toJSON
-  
+
       @desc
       A Filter that matches documents matching boolean combinations of other
       filters.
-  
+
       */
     ejs.BoolFilter = function () {
 
@@ -5727,11 +5727,11 @@
         return extend(_common, {
 
             /**
-                   Adds filter to boolean container. Given filter "must" appear in 
+                   Adds filter to boolean container. Given filter "must" appear in
                    matching documents.  If passed a single Filter it is added to the
                    list of existing filters.  If passed an array of Filters, they
                    replace all existing filters.
-      
+
                    @member ejs.BoolFilter
                    @param {(Filter|Filter[])} oFilter A valid Filter or array of
                     Filter objects.
@@ -5767,11 +5767,11 @@
             },
 
             /**
-                   Adds filter to boolean container. Given filter "must not" appear 
-                   in matching documents. If passed a single Filter it is added to 
-                   the list of existing filters.  If passed an array of Filters, 
+                   Adds filter to boolean container. Given filter "must not" appear
+                   in matching documents. If passed a single Filter it is added to
+                   the list of existing filters.  If passed an array of Filters,
                    they replace all existing filters.
-      
+
                    @member ejs.BoolFilter
                    @param {(Filter|Filter[])} oFilter A valid Filter or array of
                      Filter objects.
@@ -5807,11 +5807,11 @@
             },
 
             /**
-                   Adds filter to boolean container. Given filter "should" appear in 
-                   matching documents. If passed a single Filter it is added to 
-                   the list of existing filters.  If passed an array of Filters, 
+                   Adds filter to boolean container. Given filter "should" appear in
+                   matching documents. If passed a single Filter it is added to
+                   the list of existing filters.  If passed an array of Filters,
                    they replace all existing filters.
-      
+
                    @member ejs.BoolFilter
                    @param {(Filter|Filter[])} oFilter A valid Filter or array of
                       Filter objects.
@@ -5853,7 +5853,7 @@
       @class
       <p>An existsFilter matches documents where the specified field is present
       and the field contains a legitimate value.</p>
-  
+
       @name ejs.ExistsFilter
       @ejs filter
       @borrows ejs.FilterMixin.name as name
@@ -5861,10 +5861,10 @@
       @borrows ejs.FilterMixin.cacheKey as cacheKey
       @borrows ejs.FilterMixin._type as _type
       @borrows ejs.FilterMixin.toJSON as toJSON
-  
+
       @desc
       Filters documents where a specified field exists and contains a value.
-  
+
       @param {String} fieldName the field name that must exists and contain a value.
       */
     ejs.ExistsFilter = function (fieldName) {
@@ -5879,7 +5879,7 @@
 
             /**
                   Sets the field to check for missing values.
-      
+
                   @member ejs.ExistsFilter
                   @param {String} name A name of the field.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -5900,7 +5900,7 @@
       @class
       <p>A filter that restricts matched results/docs to a geographic bounding box described by
       the specified lon and lat coordinates. The format conforms with the GeoJSON specification.</p>
-  
+
       @name ejs.GeoBboxFilter
       @ejs filter
       @borrows ejs.FilterMixin.name as name
@@ -5908,12 +5908,12 @@
       @borrows ejs.FilterMixin.cacheKey as cacheKey
       @borrows ejs.FilterMixin._type as _type
       @borrows ejs.FilterMixin.toJSON as toJSON
-  
+
       @desc
       Filter results to those which are contained within the defined bounding box.
-  
+
       @param {String} fieldName the document property/field containing the Geo Point (lon/lat).
-  
+
       */
     ejs.GeoBboxFilter = function (fieldName) {
 
@@ -5927,7 +5927,7 @@
 
             /**
                   Sets the fields to filter against.
-      
+
                   @member ejs.GeoBboxFilter
                   @param {String} f A valid field name.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -5948,7 +5948,7 @@
 
             /**
                    Sets the top-left coordinate of the bounding box
-      
+
                    @member ejs.GeoBboxFilter
                    @param {GeoPoint} p A valid GeoPoint object
                    @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -5969,7 +5969,7 @@
 
             /**
                    Sets the bottom-right coordinate of the bounding box
-      
+
                    @member ejs.GeoBboxFilter
                    @param {GeoPoint} p A valid GeoPoint object
                    @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -5991,9 +5991,9 @@
             /**
                   Sets the type of the bounding box execution. Valid values are
                   "memory" and "indexed".  Default is memory.
-      
+
                   @member ejs.GeoBboxFilter
-                  @param {String} type The execution type as a string.  
+                  @param {String} type The execution type as a string.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
                   */
             type: function (type) {
@@ -6012,11 +6012,11 @@
             /**
                   If the lat/long points should be normalized to lie within their
                   respective normalized ranges.
-                  
+
                   Normalized ranges are:
                   lon = -180 (exclusive) to 180 (inclusive) range
                   lat = -90 to 90 (both inclusive) range
-      
+
                   @member ejs.GeoBboxFilter
                   @param {String} trueFalse True if the coordinates should be normalized. False otherwise.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -6037,7 +6037,7 @@
       @class
       <p>A filter that restricts matched results/docs to a given distance from the
       point of origin. The format conforms with the GeoJSON specification.</p>
-  
+
       @name ejs.GeoDistanceFilter
       @ejs filter
       @borrows ejs.FilterMixin.name as name
@@ -6045,12 +6045,12 @@
       @borrows ejs.FilterMixin.cacheKey as cacheKey
       @borrows ejs.FilterMixin._type as _type
       @borrows ejs.FilterMixin.toJSON as toJSON
-  
+
       @desc
       Filter results to those which fall within the given distance of the point of origin.
-  
+
       @param {String} fieldName the document property/field containing the Geo Point (lon/lat).
-  
+
       */
     ejs.GeoDistanceFilter = function (fieldName) {
 
@@ -6064,7 +6064,7 @@
 
             /**
                   Sets the fields to filter against.
-      
+
                   @member ejs.GeoDistanceFilter
                   @param {String} f A valid field name.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -6084,10 +6084,10 @@
             },
 
             /**
-                   Sets the numeric distance to be used.  The distance can be a 
-                   numeric value, and then the unit (either mi or km can be set) 
+                   Sets the numeric distance to be used.  The distance can be a
+                   numeric value, and then the unit (either mi or km can be set)
                    controlling the unit. Or a single string with the unit as well.
-      
+
                    @member ejs.GeoDistanceFilter
                    @param {Number} numericDistance the numeric distance
                    @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -6108,7 +6108,7 @@
             /**
                    Sets the distance unit.  Valid values are "mi" for miles or "km"
                    for kilometers. Defaults to "km".
-      
+
                    @member ejs.GeoDistanceFilter
                    @param {Number} unit the unit of distance measure.
                    @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -6128,7 +6128,7 @@
 
             /**
                    Sets the point of origin in which distance will be measured from
-      
+
                    @member ejs.GeoDistanceFilter
                    @param {GeoPoint} p A valid GeoPoint object.
                    @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -6149,11 +6149,11 @@
 
 
             /**
-                  How to compute the distance. Can either be arc (better precision) 
+                  How to compute the distance. Can either be arc (better precision)
                   or plane (faster). Defaults to arc.
-      
+
                   @member ejs.GeoDistanceFilter
-                  @param {String} type The execution type as a string.  
+                  @param {String} type The execution type as a string.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
                   */
             distanceType: function (type) {
@@ -6172,11 +6172,11 @@
             /**
                   If the lat/long points should be normalized to lie within their
                   respective normalized ranges.
-                  
+
                   Normalized ranges are:
                   lon = -180 (exclusive) to 180 (inclusive) range
                   lat = -90 to 90 (both inclusive) range
-      
+
                   @member ejs.GeoDistanceFilter
                   @param {String} trueFalse True if the coordinates should be normalized. False otherwise.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -6191,11 +6191,11 @@
             },
 
             /**
-                  Will an optimization of using first a bounding box check will be 
-                  used. Defaults to memory which will do in memory checks. Can also 
-                  have values of indexed to use indexed value check, or none which 
+                  Will an optimization of using first a bounding box check will be
+                  used. Defaults to memory which will do in memory checks. Can also
+                  have values of indexed to use indexed value check, or none which
                   disables bounding box optimization.
-      
+
                   @member ejs.GeoDistanceFilter
                   @param {String} t optimization type of memory, indexed, or none.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -6220,7 +6220,7 @@
       @class
       <p>A filter that restricts matched results/docs to a given distance range from the
       point of origin. The format conforms with the GeoJSON specification.</p>
-  
+
       @name ejs.GeoDistanceRangeFilter
       @ejs filter
       @borrows ejs.FilterMixin.name as name
@@ -6228,12 +6228,12 @@
       @borrows ejs.FilterMixin.cacheKey as cacheKey
       @borrows ejs.FilterMixin._type as _type
       @borrows ejs.FilterMixin.toJSON as toJSON
-  
+
       @desc
       Filter results to those which fall within the given distance range of the point of origin.
-  
+
       @param {String} fieldName the document property/field containing the Geo Point (lon/lat).
-  
+
       */
     ejs.GeoDistanceRangeFilter = function (fieldName) {
 
@@ -6247,7 +6247,7 @@
 
             /**
                    Sets the fields to filter against.
-       
+
                    @member ejs.GeoDistanceRangeFilter
                    @param {String} f A valid field name.
                    @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -6268,7 +6268,7 @@
 
             /**
                    * Sets the start point of the distance range
-      
+
                    @member ejs.GeoDistanceRangeFilter
                    @param {Number} numericDistance the numeric distance
                    @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -6288,7 +6288,7 @@
 
             /**
                    * Sets the end point of the distance range
-      
+
                    @member ejs.GeoDistanceRangeFilter
                    @param {Number} numericDistance the numeric distance
                    @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -6307,11 +6307,11 @@
             },
 
             /**
-                  Should the first from (if set) be inclusive or not. 
+                  Should the first from (if set) be inclusive or not.
                   Defaults to true
-      
+
                   @member ejs.GeoDistanceRangeFilter
-                  @param {Boolean} trueFalse true to include, false to exclude 
+                  @param {Boolean} trueFalse true to include, false to exclude
                   @returns {Object} returns <code>this</code> so that calls can be chained.
                   */
             includeLower: function (trueFalse) {
@@ -6325,9 +6325,9 @@
 
             /**
                   Should the last to (if set) be inclusive or not. Defaults to true.
-      
+
                   @member ejs.GeoDistanceRangeFilter
-                  @param {Boolean} trueFalse true to include, false to exclude 
+                  @param {Boolean} trueFalse true to include, false to exclude
                   @returns {Object} returns <code>this</code> so that calls can be chained.
                   */
             includeUpper: function (trueFalse) {
@@ -6340,9 +6340,9 @@
             },
 
             /**
-                  Greater than value.  Same as setting from to the value, and 
+                  Greater than value.  Same as setting from to the value, and
                   include_lower to false,
-      
+
                   @member ejs.GeoDistanceRangeFilter
                   @param {Number} val the numeric distance
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -6363,7 +6363,7 @@
             /**
                   Greater than or equal to value.  Same as setting from to the value,
                   and include_lower to true.
-      
+
                   @member ejs.GeoDistanceRangeFilter
                   @param {Number} val the numeric distance
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -6382,9 +6382,9 @@
             },
 
             /**
-                  Less than value.  Same as setting to to the value, and include_upper 
+                  Less than value.  Same as setting to to the value, and include_upper
                   to false.
-      
+
                   @member ejs.GeoDistanceRangeFilter
                   @param {Number} val the numeric distance
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -6403,9 +6403,9 @@
             },
 
             /**
-                  Less than or equal to value.  Same as setting to to the value, 
+                  Less than or equal to value.  Same as setting to to the value,
                   and include_upper to true.
-      
+
                   @member ejs.GeoDistanceRangeFilter
                   @param {Number} val the numeric distance
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -6426,7 +6426,7 @@
             /**
                    Sets the distance unit.  Valid values are "mi" for miles or "km"
                    for kilometers. Defaults to "km".
-      
+
                    @member ejs.GeoDistanceRangeFilter
                    @param {Number} unit the unit of distance measure.
                    @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -6446,7 +6446,7 @@
 
             /**
                    Sets the point of origin in which distance will be measured from
-      
+
                    @member ejs.GeoDistanceRangeFilter
                    @param {GeoPoint} p A valid GeoPoint object.
                    @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -6467,11 +6467,11 @@
 
 
             /**
-                  How to compute the distance. Can either be arc (better precision) 
+                  How to compute the distance. Can either be arc (better precision)
                   or plane (faster). Defaults to arc.
-      
+
                   @member ejs.GeoDistanceRangeFilter
-                  @param {String} type The execution type as a string.  
+                  @param {String} type The execution type as a string.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
                   */
             distanceType: function (type) {
@@ -6490,11 +6490,11 @@
             /**
                   If the lat/long points should be normalized to lie within their
                   respective normalized ranges.
-                  
+
                   Normalized ranges are:
                   lon = -180 (exclusive) to 180 (inclusive) range
                   lat = -90 to 90 (both inclusive) range
-      
+
                   @member ejs.GeoDistanceRangeFilter
                   @param {String} trueFalse True if the coordinates should be normalized. False otherwise.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -6509,11 +6509,11 @@
             },
 
             /**
-                  Will an optimization of using first a bounding box check will be 
-                  used. Defaults to memory which will do in memory checks. Can also 
-                  have values of indexed to use indexed value check, or none which 
+                  Will an optimization of using first a bounding box check will be
+                  used. Defaults to memory which will do in memory checks. Can also
+                  have values of indexed to use indexed value check, or none which
                   disables bounding box optimization.
-      
+
                   @member ejs.GeoDistanceRangeFilter
                   @param {String} t optimization type of memory, indexed, or none.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -6538,7 +6538,7 @@
       @class
       <p>A filter for locating documents that fall within a polygon of points. Simply provide a lon/lat
       for each document as a Geo Point type. The format conforms with the GeoJSON specification.</p>
-  
+
       @name ejs.GeoPolygonFilter
       @ejs filter
       @borrows ejs.FilterMixin.name as name
@@ -6546,10 +6546,10 @@
       @borrows ejs.FilterMixin.cacheKey as cacheKey
       @borrows ejs.FilterMixin._type as _type
       @borrows ejs.FilterMixin.toJSON as toJSON
-  
+
       @desc
       Filter results to those which are contained within the polygon of points.
-  
+
       @param {String} fieldName the document property/field containing the Geo Point (lon/lat).
       */
     ejs.GeoPolygonFilter = function (fieldName) {
@@ -6566,7 +6566,7 @@
 
             /**
                  Sets the fields to filter against.
-      
+
                  @member ejs.GeoPolygonFilter
                  @param {String} f A valid field name.
                  @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -6586,11 +6586,11 @@
             },
 
             /**
-                   Sets a series of points that represent a polygon.  If passed a 
-                   single <code>GeoPoint</code> object, it is added to the current 
-                   list of points.  If passed an array of <code>GeoPoint</code> 
-                   objects it replaces all current values. 
-      
+                   Sets a series of points that represent a polygon.  If passed a
+                   single <code>GeoPoint</code> object, it is added to the current
+                   list of points.  If passed an array of <code>GeoPoint</code>
+                   objects it replaces all current values.
+
                    @member ejs.GeoPolygonFilter
                    @param {Array} pointsArray the array of points that represent the polygon
                    @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -6623,11 +6623,11 @@
             /**
                   If the lat/long points should be normalized to lie within their
                   respective normalized ranges.
-                  
+
                   Normalized ranges are:
                   lon = -180 (exclusive) to 180 (inclusive) range
                   lat = -90 to 90 (both inclusive) range
-      
+
                   @member ejs.GeoPolygonFilter
                   @param {String} trueFalse True if the coordinates should be normalized. False otherwise.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -6646,15 +6646,15 @@
 
     /**
       @class
-      <p>Efficient filtering of documents containing shapes indexed using the 
+      <p>Efficient filtering of documents containing shapes indexed using the
       geo_shape type.</p>
-  
-      <p>Much like the geo_shape type, the geo_shape filter uses a grid square 
-      representation of the filter shape to find those documents which have shapes 
-      that relate to the filter shape in a specified way. In order to do this, the 
-      field being queried must be of geo_shape type. The filter will use the same 
+
+      <p>Much like the geo_shape type, the geo_shape filter uses a grid square
+      representation of the filter shape to find those documents which have shapes
+      that relate to the filter shape in a specified way. In order to do this, the
+      field being queried must be of geo_shape type. The filter will use the same
       PrefixTree configuration as defined for the field.</p>
-  
+
       @name ejs.GeoShapeFilter
       @ejs filter
       @borrows ejs.FilterMixin.name as name
@@ -6662,10 +6662,10 @@
       @borrows ejs.FilterMixin.cacheKey as cacheKey
       @borrows ejs.FilterMixin._type as _type
       @borrows ejs.FilterMixin.toJSON as toJSON
-  
+
       @desc
       A Filter to find documents with a geo_shapes matching a specific shape.
-  
+
       */
     ejs.GeoShapeFilter = function (field) {
 
@@ -6679,7 +6679,7 @@
 
             /**
                   Sets the field to filter against.
-      
+
                   @member ejs.GeoShapeFilter
                   @param {String} f A valid field name.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -6700,7 +6700,7 @@
 
             /**
                   Sets the shape
-      
+
                   @member ejs.GeoShapeFilter
                   @param {String} shape A valid <code>Shape</code> object.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -6721,7 +6721,7 @@
             /**
                   Sets the indexed shape.  Use this if you already have shape definitions
                   already indexed.
-      
+
                   @member ejs.GeoShapeFilter
                   @param {String} indexedShape A valid <code>IndexedShape</code> object.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -6740,11 +6740,11 @@
             },
 
             /**
-                  Sets the shape relation type.  A relationship between a Query Shape 
-                  and indexed Shapes that will be used to determine if a Document 
+                  Sets the shape relation type.  A relationship between a Query Shape
+                  and indexed Shapes that will be used to determine if a Document
                   should be matched or not.  Valid values are:  intersects, disjoint,
                   and within.
-      
+
                   @member ejs.GeoShapeFilter
                   @param {String} indexedShape A valid <code>IndexedShape</code> object.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -6763,20 +6763,20 @@
             },
 
             /**
-                  <p>Sets the spatial strategy.</p>  
+                  <p>Sets the spatial strategy.</p>
                   <p>Valid values are:</p>
-                  
+
                   <dl>
                       <dd><code>recursive</code> - default, recursively traverse nodes in
-                        the spatial prefix tree.  This strategy has support for 
+                        the spatial prefix tree.  This strategy has support for
                         searching non-point shapes.</dd>
                       <dd><code>term</code> - uses a large TermsFilter on each node
-                        in the spatial prefix tree.  It only supports the search of 
+                        in the spatial prefix tree.  It only supports the search of
                         indexed Point shapes.</dd>
                   </dl>
-      
+
                   <p>This is an advanced setting, use with care.</p>
-                  
+
                   @since elasticsearch 0.90
                   @member ejs.GeoShapeFilter
                   @param {String} strategy The strategy as a string.
@@ -6800,9 +6800,9 @@
 
     /**
       @class
-      <p>The has_child filter results in parent documents that have child docs 
+      <p>The has_child filter results in parent documents that have child docs
       matching the query being returned.</p>
-  
+
       @name ejs.HasChildFilter
       @ejs filter
       @borrows ejs.FilterMixin.name as name
@@ -6810,10 +6810,10 @@
       @borrows ejs.FilterMixin.cacheKey as cacheKey
       @borrows ejs.FilterMixin._type as _type
       @borrows ejs.FilterMixin.toJSON as toJSON
-  
+
       @desc
       Returns results that have child documents matching the filter.
-  
+
       @param {Object} qry A valid query object.
       @param {String} type The child type
       */
@@ -6834,7 +6834,7 @@
 
             /**
                   Sets the query
-      
+
                   @member ejs.HasChildFilter
                   @param {Query} q A valid Query object
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -6854,7 +6854,7 @@
 
             /**
                   Sets the filter
-      
+
                   @since elasticsearch 0.90
                   @member ejs.HasChildFilter
                   @param {Query} f A valid Filter object
@@ -6875,7 +6875,7 @@
 
             /**
                   Sets the child document type to search against
-      
+
                   @member ejs.HasChildFilter
                   @param {String} t A valid type name
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -6891,7 +6891,7 @@
 
             /**
                   Sets the cutoff value to short circuit processing.
-      
+
                   @member ejs.HasChildFilter
                   @param {Integer} cutoff A positive <code>integer</code> value.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -6906,9 +6906,9 @@
             },
 
             /**
-                  Sets the scope of the filter.  A scope allows to run facets on the 
-                  same scope name that will work against the child documents. 
-      
+                  Sets the scope of the filter.  A scope allows to run facets on the
+                  same scope name that will work against the child documents.
+
                   @deprecated since elasticsearch 0.90
                   @member ejs.HasChildFilter
                   @param {String} s The scope name as a string.
@@ -6923,9 +6923,9 @@
 
     /**
       @class
-      <p>The has_parent results in child documents that have parent docs matching 
+      <p>The has_parent results in child documents that have parent docs matching
       the query being returned.</p>
-  
+
       @name ejs.HasParentFilter
       @ejs filter
       @borrows ejs.FilterMixin.name as name
@@ -6933,10 +6933,10 @@
       @borrows ejs.FilterMixin.cacheKey as cacheKey
       @borrows ejs.FilterMixin._type as _type
       @borrows ejs.FilterMixin.toJSON as toJSON
-  
+
       @desc
       Returns results that have parent documents matching the filter.
-  
+
       @param {Object} qry A valid query object.
       @param {String} parentType The child type
       */
@@ -6957,7 +6957,7 @@
 
             /**
                   Sets the query
-      
+
                   @member ejs.HasParentFilter
                   @param {Object} q A valid Query object
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -6977,7 +6977,7 @@
 
             /**
                   Sets the filter
-      
+
                   @since elasticsearch 0.90
                   @member ejs.HasParentFilter
                   @param {Object} f A valid Filter object
@@ -6998,7 +6998,7 @@
 
             /**
                   Sets the child document type to search against
-      
+
                   @member ejs.HasParentFilter
                   @param {String} t A valid type name
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -7013,9 +7013,9 @@
             },
 
             /**
-                  Sets the scope of the filter.  A scope allows to run facets on the 
-                  same scope name that will work against the parent documents. 
-      
+                  Sets the scope of the filter.  A scope allows to run facets on the
+                  same scope name that will work against the parent documents.
+
                   @deprecated since elasticsearch 0.90
                   @member ejs.HasParentFilter
                   @param {String} s The scope name as a string.
@@ -7030,10 +7030,10 @@
 
     /**
       @class
-      <p>Filters documents that only have the provided ids. Note, this filter 
-      does not require the _id field to be indexed since it works using the 
+      <p>Filters documents that only have the provided ids. Note, this filter
+      does not require the _id field to be indexed since it works using the
       _uid field.</p>
-  
+
       @name ejs.IdsFilter
       @ejs filter
       @borrows ejs.FilterMixin.name as name
@@ -7041,10 +7041,10 @@
       @borrows ejs.FilterMixin.cacheKey as cacheKey
       @borrows ejs.FilterMixin._type as _type
       @borrows ejs.FilterMixin.toJSON as toJSON
-  
+
       @desc
       Matches documents with the specified id(s).
-  
+
       @param {(String|String[])} ids A single document id or a list of document ids.
       */
     ejs.IdsFilter = function (ids) {
@@ -7067,7 +7067,7 @@
                   Sets the values array or adds a new value. if val is a string, it
                   is added to the list of existing document ids.  If val is an
                   array it is set as the document values and replaces any existing values.
-      
+
                   @member ejs.IdsFilter
                   @param {(String|String[])} val An single document id or an array of document ids.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -7093,7 +7093,7 @@
                   string, it is added to the list of existing types.  If type is an
                   array, it is set as the types and overwrites an existing types. This
                   parameter is optional.
-      
+
                   @member ejs.IdsFilter
                   @param {(String|String[])} type A type or a list of types
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -7123,11 +7123,11 @@
 
     /**
       @class
-      <p>The indices filter can be used when executed across multiple indices, 
-      allowing to have a filter that executes only when executed on an index that 
-      matches a specific list of indices, and another filter that executes when it 
+      <p>The indices filter can be used when executed across multiple indices,
+      allowing to have a filter that executes only when executed on an index that
+      matches a specific list of indices, and another filter that executes when it
       is executed on an index that does not match the listed indices.</p>
-  
+
       @name ejs.IndicesFilter
       @ejs filter
       @borrows ejs.FilterMixin.name as name
@@ -7135,12 +7135,12 @@
       @borrows ejs.FilterMixin.cacheKey as cacheKey
       @borrows ejs.FilterMixin._type as _type
       @borrows ejs.FilterMixin.toJSON as toJSON
-  
+
       @desc
       A configurable filter that is dependent on the index name.
-  
+
       @param {Object} fltr A valid filter object.
-      @param {(String|String[])} indices a single index name or an array of index 
+      @param {(String|String[])} indices a single index name or an array of index
         names.
       */
     ejs.IndicesFilter = function (fltr, indices) {
@@ -7169,7 +7169,7 @@
                   Sets the indicies the filter should match.  When passed a string,
                   the index name is added to the current list of indices.  When passed
                   an array, it overwites all current indices.
-      
+
                   @member ejs.IndicesFilter
                   @param {(String|String[])} i A single index name or an array of index names.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -7191,9 +7191,9 @@
             },
 
             /**
-                  Sets the filter to be used when executing on one of the indicies 
+                  Sets the filter to be used when executing on one of the indicies
                   specified.
-      
+
                   @member ejs.IndicesFilter
                   @param {Object} f A valid Filter object
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -7215,7 +7215,7 @@
                   Sets the filter to be used on an index that does not match an index
                   name in the indices list.  Can also be set to "none" to not match any
                   documents or "all" to match all documents.
-      
+
                   @member ejs.IndicesFilter
                   @param {(Filter|String)} f A valid Filter object or "none" or "all"
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -7245,7 +7245,7 @@
     /**
       @class
       <p>A limit filter limits the number of documents (per shard) to execute on.</p>
-  
+
       @name ejs.LimitFilter
       @ejs filter
       @borrows ejs.FilterMixin.name as name
@@ -7253,10 +7253,10 @@
       @borrows ejs.FilterMixin.cacheKey as cacheKey
       @borrows ejs.FilterMixin._type as _type
       @borrows ejs.FilterMixin.toJSON as toJSON
-  
+
       @desc
       Limits the number of documents to execute on.
-  
+
       @param {Integer} limit The number of documents to execute on.
       */
     ejs.LimitFilter = function (limit) {
@@ -7271,7 +7271,7 @@
 
             /**
                   Sets the limit value.
-      
+
                   @member ejs.LimitFilter
                   @param {Integer} val An The number of documents to execute on.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -7296,7 +7296,7 @@
       @class
       <p>This filter can be used to match on all the documents
       in a given set of collections and/or types.</p>
-  
+
       @name ejs.MatchAllFilter
       @ejs filter
       @borrows ejs.FilterMixin.name as name
@@ -7304,10 +7304,10 @@
       @borrows ejs.FilterMixin.cacheKey as cacheKey
       @borrows ejs.FilterMixin._type as _type
       @borrows ejs.FilterMixin.toJSON as toJSON
-  
+
       @desc
       <p>A filter that matches on all documents</p>
-  
+
        */
     ejs.MatchAllFilter = function () {
         return ejs.FilterMixin('match_all');
@@ -7316,7 +7316,7 @@
     /**
       @class
       <p>An missingFilter matches documents where the specified field contains no legitimate value.</p>
-  
+
       @name ejs.MissingFilter
       @ejs filter
       @borrows ejs.FilterMixin.name as name
@@ -7324,10 +7324,10 @@
       @borrows ejs.FilterMixin.cacheKey as cacheKey
       @borrows ejs.FilterMixin._type as _type
       @borrows ejs.FilterMixin.toJSON as toJSON
-  
+
       @desc
       Filters documents where a specific field has no value present.
-  
+
       @param {String} fieldName the field name to check for missing values.
       */
     ejs.MissingFilter = function (fieldName) {
@@ -7343,7 +7343,7 @@
 
             /**
                   Sets the field to check for missing values.
-      
+
                   @member ejs.MissingFilter
                   @param {String} name A name of the field.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -7359,7 +7359,7 @@
 
             /**
                   Checks if the field doesn't exist.
-      
+
                   @member ejs.MissingFilter
                   @param {Boolean} trueFalse True to check if the field doesn't exist.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -7375,7 +7375,7 @@
 
             /**
                   Checks if the field has null values.
-      
+
                   @member ejs.MissingFilter
                   @param {Boolean} trueFalse True to check if the field has nulls.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -7395,14 +7395,14 @@
     /**
       @class
       <p>Nested filters allow you to search against content within objects that are
-         embedded inside of other objects. It is similar to <code>XPath</code> 
+         embedded inside of other objects. It is similar to <code>XPath</code>
          expressions in <code>XML</code> both conceptually and syntactically.</p>
-  
+
       <p>
-      The filter is executed against the nested objects / docs as if they were 
-      indexed as separate docs and resulting in the root 
+      The filter is executed against the nested objects / docs as if they were
+      indexed as separate docs and resulting in the root
       parent doc (or parent nested mapping).</p>
-    
+
       @name ejs.NestedFilter
       @ejs filter
       @borrows ejs.FilterMixin.name as name
@@ -7410,13 +7410,13 @@
       @borrows ejs.FilterMixin.cacheKey as cacheKey
       @borrows ejs.FilterMixin._type as _type
       @borrows ejs.FilterMixin.toJSON as toJSON
-  
+
       @desc
       <p>Constructs a filter that is capable of executing a filter against objects
          nested within a document.</p>
-  
+
       @param {String} path The nested object path.
-  
+
        */
     ejs.NestedFilter = function (path) {
 
@@ -7484,7 +7484,7 @@
 
             /**
                   Sets the boost value of the nested <code>Query</code>.
-      
+
                   @member ejs.NestedFilter
                   @param {Double} boost A positive <code>double</code> value.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -7501,7 +7501,7 @@
             /**
                   If the nested query should be "joined" with the parent document.
                   Defaults to false.
-      
+
                   @member ejs.NestedFilter
                   @param {Boolean} trueFalse If the query should be joined or not.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -7516,9 +7516,9 @@
             },
 
             /**
-                  Sets the scope of the filter.  A scope allows to run facets on the 
-                  same scope name that will work against the nested documents. 
-      
+                  Sets the scope of the filter.  A scope allows to run facets on the
+                  same scope name that will work against the nested documents.
+
                   @deprecated since elasticsearch 0.90
                   @member ejs.NestedFilter
                   @param {String} s The scope name as a string.
@@ -7535,7 +7535,7 @@
       @class
       <p>A container Filter that excludes the documents matched by the
       contained filter.</p>
-  
+
       @name ejs.NotFilter
       @ejs filter
       @borrows ejs.FilterMixin.name as name
@@ -7543,10 +7543,10 @@
       @borrows ejs.FilterMixin.cacheKey as cacheKey
       @borrows ejs.FilterMixin._type as _type
       @borrows ejs.FilterMixin.toJSON as toJSON
-  
+
       @desc
       Container filter that excludes the matched documents of the contained filter.
-  
+
       @param {Object} oFilter a valid Filter object such as a termFilter, etc.
       */
     ejs.NotFilter = function (oFilter) {
@@ -7565,7 +7565,7 @@
 
             /**
                    Sets the filter
-      
+
                    @member ejs.NotFilter
                    @param {Object} fltr A valid filter object such as a termFilter, etc.
                    @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -7588,19 +7588,19 @@
 
     /**
       @class
-      <p>Filters documents with fields that have values within a certain numeric 
-      range. Similar to range filter, except that it works only with numeric 
+      <p>Filters documents with fields that have values within a certain numeric
+      range. Similar to range filter, except that it works only with numeric
       values, and the filter execution works differently.</p>
-      
-      <p>The numeric range filter works by loading all the relevant field values 
-      into memory, and checking for the relevant docs if they satisfy the range 
-      requirements. This requires more memory since the numeric range data are 
-      loaded to memory, but can provide a significant increase in performance.</p> 
-      
-      <p>Note, if the relevant field values have already been loaded to memory, 
-      for example because it was used in facets or was sorted on, then this 
+
+      <p>The numeric range filter works by loading all the relevant field values
+      into memory, and checking for the relevant docs if they satisfy the range
+      requirements. This requires more memory since the numeric range data are
+      loaded to memory, but can provide a significant increase in performance.</p>
+
+      <p>Note, if the relevant field values have already been loaded to memory,
+      for example because it was used in facets or was sorted on, then this
       filter should be used.</p>
-  
+
       @name ejs.NumericRangeFilter
       @ejs filter
       @borrows ejs.FilterMixin.name as name
@@ -7608,10 +7608,10 @@
       @borrows ejs.FilterMixin.cacheKey as cacheKey
       @borrows ejs.FilterMixin._type as _type
       @borrows ejs.FilterMixin.toJSON as toJSON
-  
+
       @desc
       A Filter that only accepts numeric values within a specified range.
-  
+
       @param {String} fieldName The name of the field to filter on.
       */
     ejs.NumericRangeFilter = function (fieldName) {
@@ -7626,10 +7626,10 @@
 
             /**
                    Returns the field name used to create this object.
-      
+
                    @member ejs.NumericRangeFilter
                    @param {String} field the field name
-                   @returns {Object} returns <code>this</code> so that calls can be 
+                   @returns {Object} returns <code>this</code> so that calls can be
                     chained. Returns {String}, field name when field is not specified.
                    */
             field: function (field) {
@@ -7648,7 +7648,7 @@
 
             /**
                    Sets the endpoint for the current range.
-      
+
                    @member ejs.NumericRangeFilter
                    @param {Number} startPoint A numeric value representing the start of the range
                    @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -7668,7 +7668,7 @@
 
             /**
                    Sets the endpoint for the current range.
-      
+
                    @member ejs.NumericRangeFilter
                    @param {Number} endPoint A numeric value representing the end of the range
                    @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -7687,11 +7687,11 @@
             },
 
             /**
-                  Should the first from (if set) be inclusive or not. 
+                  Should the first from (if set) be inclusive or not.
                   Defaults to true
-      
+
                   @member ejs.NumericRangeFilter
-                  @param {Boolean} trueFalse true to include, false to exclude 
+                  @param {Boolean} trueFalse true to include, false to exclude
                   @returns {Object} returns <code>this</code> so that calls can be chained.
                   */
             includeLower: function (trueFalse) {
@@ -7705,9 +7705,9 @@
 
             /**
                   Should the last to (if set) be inclusive or not. Defaults to true.
-      
+
                   @member ejs.NumericRangeFilter
-                  @param {Boolean} trueFalse true to include, false to exclude 
+                  @param {Boolean} trueFalse true to include, false to exclude
                   @returns {Object} returns <code>this</code> so that calls can be chained.
                   */
             includeUpper: function (trueFalse) {
@@ -7720,9 +7720,9 @@
             },
 
             /**
-                  Greater than value.  Same as setting from to the value, and 
+                  Greater than value.  Same as setting from to the value, and
                   include_lower to false,
-      
+
                   @member ejs.NumericRangeFilter
                   @param {*} val the value, type depends on field type
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -7743,7 +7743,7 @@
             /**
                   Greater than or equal to value.  Same as setting from to the value,
                   and include_lower to true.
-      
+
                   @member ejs.NumericRangeFilter
                   @param {*} val the value, type depends on field type
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -7762,9 +7762,9 @@
             },
 
             /**
-                  Less than value.  Same as setting to to the value, and include_upper 
+                  Less than value.  Same as setting to to the value, and include_upper
                   to false.
-      
+
                   @member ejs.NumericRangeFilter
                   @param {*} val the value, type depends on field type
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -7783,9 +7783,9 @@
             },
 
             /**
-                  Less than or equal to value.  Same as setting to to the value, 
+                  Less than or equal to value.  Same as setting to to the value,
                   and include_upper to true.
-      
+
                   @member ejs.NumericRangeFilter
                   @param {*} val the value, type depends on field type
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -7809,7 +7809,7 @@
     /**
       @class
       A container filter that allows Boolean OR composition of filters.
-  
+
       @name ejs.OrFilter
       @ejs filter
       @borrows ejs.FilterMixin.name as name
@@ -7817,10 +7817,10 @@
       @borrows ejs.FilterMixin.cacheKey as cacheKey
       @borrows ejs.FilterMixin._type as _type
       @borrows ejs.FilterMixin.toJSON as toJSON
-  
+
       @desc
       A container Filter that allows Boolean OR composition of filters.
-  
+
       @param {(Filter|Filter[])} filters A valid Filter or array of Filters.
       */
     ejs.OrFilter = function (filters) {
@@ -7850,10 +7850,10 @@
         return extend(_common, {
 
             /**
-                   Updates the filters.  If passed a single Filter it is added to 
-                   the existing filters.  If passed an array of Filters, they 
+                   Updates the filters.  If passed a single Filter it is added to
+                   the existing filters.  If passed an array of Filters, they
                    replace all existing Filters.
-      
+
                    @member ejs.OrFilter
                    @param {(Filter|Filter[])} fltr A Filter or array of Filters
                    @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -7890,7 +7890,7 @@
       @class
       <p>Filters documents that have fields containing terms with a specified prefix (not analyzed). Similar
       to phrase query, except that it acts as a filter. Can be placed within queries that accept a filter.</p>
-  
+
       @name ejs.PrefixFilter
       @ejs filter
       @borrows ejs.FilterMixin.name as name
@@ -7898,10 +7898,10 @@
       @borrows ejs.FilterMixin.cacheKey as cacheKey
       @borrows ejs.FilterMixin._type as _type
       @borrows ejs.FilterMixin.toJSON as toJSON
-  
+
       @desc
       Filters documents that have fields containing terms with a specified prefix.
-  
+
       @param {String} fieldName the field name to be used during matching.
       @param {String} prefix the prefix value.
       */
@@ -7917,10 +7917,10 @@
 
             /**
                    Returns the field name used to create this object.
-      
+
                    @member ejs.PrefixFilter
                    @param {String} field the field name
-                   @returns {Object} returns <code>this</code> so that calls can be 
+                   @returns {Object} returns <code>this</code> so that calls can be
                     chained. Returns {String}, field name when field is not specified.
                    */
             field: function (field) {
@@ -7939,7 +7939,7 @@
 
             /**
                    Sets the prefix to search for.
-      
+
                    @member ejs.PrefixFilter
                    @param {String} value the prefix value to match
                    @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -7958,16 +7958,16 @@
 
     /**
       @class
-      <p>Wraps any query to be used as a filter. Can be placed within queries 
+      <p>Wraps any query to be used as a filter. Can be placed within queries
       that accept a filter.</p>
-  
-      <p>The result of the filter is not cached by default.  Set the cache 
-      parameter to true to cache the result of the filter. This is handy when the 
-      same query is used on several (many) other queries.</p> 
-    
-      <p>Note, the process of caching the first execution is higher when not 
+
+      <p>The result of the filter is not cached by default.  Set the cache
+      parameter to true to cache the result of the filter. This is handy when the
+      same query is used on several (many) other queries.</p>
+
+      <p>Note, the process of caching the first execution is higher when not
       caching (since it needs to satisfy different queries).</p>
-    
+
       @name ejs.QueryFilter
       @ejs filter
       @borrows ejs.FilterMixin.name as name
@@ -7975,10 +7975,10 @@
       @borrows ejs.FilterMixin.cacheKey as cacheKey
       @borrows ejs.FilterMixin._type as _type
       @borrows ejs.FilterMixin.toJSON as toJSON
-  
+
       @desc
       Filters documents matching the wrapped query.
-  
+
       @param {Object} qry A valid query object.
       */
     ejs.QueryFilter = function (qry) {
@@ -7997,7 +7997,7 @@
 
             /**
                   Sets the query
-      
+
                   @member ejs.QueryFilter
                   @param {Object} q A valid Query object
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -8021,7 +8021,7 @@
     /**
       @class
       <p>Matches documents with fields that have terms within a certain range.</p>
-  
+
       @name ejs.RangeFilter
       @ejs filter
       @borrows ejs.FilterMixin.name as name
@@ -8029,10 +8029,10 @@
       @borrows ejs.FilterMixin.cacheKey as cacheKey
       @borrows ejs.FilterMixin._type as _type
       @borrows ejs.FilterMixin.toJSON as toJSON
-  
+
       @desc
       Filters documents with fields that have terms within a certain range.
-  
+
       @param {String} field A valid field name.
       */
     ejs.RangeFilter = function (field) {
@@ -8047,7 +8047,7 @@
 
             /**
                    The field to run the filter against.
-      
+
                    @member ejs.RangeFilter
                    @param {String} f A single field name.
                    @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -8068,7 +8068,7 @@
 
             /**
                   The lower bound. Defaults to start from the first.
-      
+
                   @member ejs.RangeFilter
                   @param {*} f the lower bound value, type depends on field type
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -8084,7 +8084,7 @@
 
             /**
                   The upper bound. Defaults to unbounded.
-      
+
                   @member ejs.RangeFilter
                   @param {*} t the upper bound value, type depends on field type
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -8099,11 +8099,11 @@
             },
 
             /**
-                  Should the first from (if set) be inclusive or not. 
+                  Should the first from (if set) be inclusive or not.
                   Defaults to true
-      
+
                   @member ejs.RangeFilter
-                  @param {Boolean} trueFalse true to include, false to exclude 
+                  @param {Boolean} trueFalse true to include, false to exclude
                   @returns {Object} returns <code>this</code> so that calls can be chained.
                   */
             includeLower: function (trueFalse) {
@@ -8117,9 +8117,9 @@
 
             /**
                   Should the last to (if set) be inclusive or not. Defaults to true.
-      
+
                   @member ejs.RangeFilter
-                  @param {Boolean} trueFalse true to include, false to exclude 
+                  @param {Boolean} trueFalse true to include, false to exclude
                   @returns {Object} returns <code>this</code> so that calls can be chained.
                   */
             includeUpper: function (trueFalse) {
@@ -8132,9 +8132,9 @@
             },
 
             /**
-                  Greater than value.  Same as setting from to the value, and 
+                  Greater than value.  Same as setting from to the value, and
                   include_lower to false,
-      
+
                   @member ejs.RangeFilter
                   @param {*} val the value, type depends on field type
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -8151,7 +8151,7 @@
             /**
                   Greater than or equal to value.  Same as setting from to the value,
                   and include_lower to true.
-      
+
                   @member ejs.RangeFilter
                   @param {*} val the value, type depends on field type
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -8166,9 +8166,9 @@
             },
 
             /**
-                  Less than value.  Same as setting to to the value, and include_upper 
+                  Less than value.  Same as setting to to the value, and include_upper
                   to false.
-      
+
                   @member ejs.RangeFilter
                   @param {*} val the value, type depends on field type
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -8183,9 +8183,9 @@
             },
 
             /**
-                  Less than or equal to value.  Same as setting to to the value, 
+                  Less than or equal to value.  Same as setting to to the value,
                   and include_upper to true.
-      
+
                   @member ejs.RangeFilter
                   @param {*} val the value, type depends on field type
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -8204,10 +8204,10 @@
 
     /**
       @class
-      <p>Filters documents that have a field value matching a regular expression. 
-      Based on Lucene 4.0 RegexpFilter which uses automaton to efficiently iterate 
+      <p>Filters documents that have a field value matching a regular expression.
+      Based on Lucene 4.0 RegexpFilter which uses automaton to efficiently iterate
       over index terms.</p>
-  
+
       @name ejs.RegexpFilter
       @ejs filter
       @borrows ejs.FilterMixin.name as name
@@ -8215,10 +8215,10 @@
       @borrows ejs.FilterMixin.cacheKey as cacheKey
       @borrows ejs.FilterMixin._type as _type
       @borrows ejs.FilterMixin.toJSON as toJSON
-  
+
       @desc
       Matches documents that have fields matching a regular expression.
-  
+
       @param {String} field A valid field name.
       @param {String} value A regex pattern.
       */
@@ -8236,7 +8236,7 @@
 
             /**
                    The field to run the filter against.
-      
+
                    @member ejs.RegexpFilter
                    @param {String} f A single field name.
                    @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -8257,7 +8257,7 @@
 
             /**
                   The regexp value.
-      
+
                   @member ejs.RegexpFilter
                   @param {String} p A string regexp
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -8273,7 +8273,7 @@
 
             /**
                   The regex flags to use.  Valid flags are:
-              
+
                   INTERSECTION - Support for intersection notation
                   COMPLEMENT - Support for complement notation
                   EMPTY - Support for the empty language symbol: #
@@ -8281,11 +8281,11 @@
                   INTERVAL - Support for numerical interval notation: <n-m>
                   NONE - Disable support for all syntax options
                   ALL - Enables support for all syntax options
-              
+
                   Use multiple flags by separating with a "|" character.  Example:
-              
+
                   INTERSECTION|COMPLEMENT|EMPTY
-      
+
                   @member ejs.RegexpFilter
                   @param {String} f The flags as a string, separate multiple flags with "|".
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -8302,7 +8302,7 @@
             /**
                   The regex flags to use as a numeric value.  Advanced use only,
                   it is probably better to stick with the <code>flags</code> option.
-              
+
                   @member ejs.RegexpFilter
                   @param {String} v The flags as a numeric value.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -8322,7 +8322,7 @@
     /**
       @class
       <p>A filter allowing to define scripts as filters</p>
-  
+
       @name ejs.ScriptFilter
       @ejs filter
       @borrows ejs.FilterMixin.name as name
@@ -8330,10 +8330,10 @@
       @borrows ejs.FilterMixin.cacheKey as cacheKey
       @borrows ejs.FilterMixin._type as _type
       @borrows ejs.FilterMixin.toJSON as toJSON
-  
+
       @desc
       A filter allowing to define scripts as filters.
-  
+
       @param {String} script The script as a string.
       */
     ejs.ScriptFilter = function (script) {
@@ -8348,7 +8348,7 @@
 
             /**
                   Sets the script.
-      
+
                   @member ejs.ScriptFilter
                   @param {String} s The script as a string.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -8363,11 +8363,11 @@
             },
 
             /**
-                  Sets parameters that will be applied to the script.  Overwrites 
+                  Sets parameters that will be applied to the script.  Overwrites
                   any existing params.
-      
+
                   @member ejs.ScriptFilter
-                  @param {Object} p An object where the keys are the parameter name and 
+                  @param {Object} p An object where the keys are the parameter name and
                     values are the parameter value.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
                   */
@@ -8382,7 +8382,7 @@
 
             /**
                   Sets the script language.
-      
+
                   @member ejs.ScriptFilter
                   @param {String} lang The script language, default mvel.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -8404,7 +8404,7 @@
       <p>Constructs a filter for docs matching any of the terms added to this
       object. Unlike a RangeFilter this can be used for filtering on multiple
       terms that are not necessarily in a sequence.</p>
-  
+
       @name ejs.TermFilter
       @ejs filter
       @borrows ejs.FilterMixin.name as name
@@ -8412,10 +8412,10 @@
       @borrows ejs.FilterMixin.cacheKey as cacheKey
       @borrows ejs.FilterMixin._type as _type
       @borrows ejs.FilterMixin.toJSON as toJSON
-  
+
       @desc
       Constructs a filter for docs matching the term added to this object.
-  
+
       @param {string} fieldName The document field/fieldName to execute the filter against.
       @param {string} term The literal term used to filter the results.
       */
@@ -8430,13 +8430,13 @@
         return extend(_common, {
 
             /**
-                   Provides access to the filter fieldName used to construct the 
+                   Provides access to the filter fieldName used to construct the
                    termFilter object.
-                   
+
                    @member ejs.TermFilter
                    @param {String} f the fieldName term
                    @returns {Object} returns <code>this</code> so that calls can be chained.
-                    When k is not specified, Returns {String}, the filter fieldName used to construct 
+                    When k is not specified, Returns {String}, the filter fieldName used to construct
                     the termFilter object.
                    */
             field: function (f) {
@@ -8454,12 +8454,12 @@
             },
 
             /**
-                   Provides access to the filter term used to construct the 
+                   Provides access to the filter term used to construct the
                    termFilter object.
-                   
+
                    @member ejs.TermFilter
                    @returns {Object} returns <code>this</code> so that calls can be chained.
-                    When k is not specified, Returns {String}, the filter term used 
+                    When k is not specified, Returns {String}, the filter term used
                     to construct the termFilter object.
                    */
             term: function (v) {
@@ -8476,9 +8476,9 @@
 
     /**
       @class
-      <p>Filters documents that have fields that match any of the provided 
+      <p>Filters documents that have fields that match any of the provided
       terms (not analyzed)</p>
-  
+
       @name ejs.TermsFilter
       @ejs filter
       @borrows ejs.FilterMixin.name as name
@@ -8486,10 +8486,10 @@
       @borrows ejs.FilterMixin.cacheKey as cacheKey
       @borrows ejs.FilterMixin._type as _type
       @borrows ejs.FilterMixin.toJSON as toJSON
-  
+
       @desc
-      A Filter that matches documents containing provided terms. 
-  
+      A Filter that matches documents containing provided terms.
+
       @param {String} field the document field/key to filter against
       @param {(String|String[])} terms a single term or an array of terms.
       */
@@ -8523,7 +8523,7 @@
 
             /**
                   Sets the fields to filter against.
-      
+
                   @member ejs.TermsFilter
                   @param {String} f A valid field name.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -8546,7 +8546,7 @@
                   Sets the terms.  If t is a String, it is added to the existing
                   list of terms.  If t is an array, the list of terms replaces the
                   existing terms.
-      
+
                   @member ejs.TermsFilter
                   @param {(String|String[])} t A single term or an array or terms.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -8567,10 +8567,10 @@
             },
 
             /**
-                  Sets the index the document containing the terms is in when 
-                  performing a terms lookup.  Defaults to the index currently 
+                  Sets the index the document containing the terms is in when
+                  performing a terms lookup.  Defaults to the index currently
                   being searched.
-      
+
                   @since elasticsearch 0.90
                   @member ejs.TermsFilter
                   @param {String} idx A valid index name.
@@ -8587,9 +8587,9 @@
             },
 
             /**
-                  Sets the type the document containing the terms when performing a 
+                  Sets the type the document containing the terms when performing a
                   terms lookup.
-      
+
                   @since elasticsearch 0.90
                   @member ejs.TermsFilter
                   @param {String} type A valid type name.
@@ -8609,7 +8609,7 @@
             /**
                   Sets the document id of the document containing the terms to use
                   when performing a terms lookup.
-      
+
                   @since elasticsearch 0.90
                   @member ejs.TermsFilter
                   @param {String} id A valid index name.
@@ -8628,7 +8628,7 @@
             /**
                   Sets the path/field name where the terms in the source document
                   are located when performing a terms lookup.
-      
+
                   @since elasticsearch 0.90
                   @member ejs.TermsFilter
                   @param {String} path A valid index name.
@@ -8645,9 +8645,9 @@
             },
 
             /**
-                  Sets the routing value for the source document when performing a 
+                  Sets the routing value for the source document when performing a
                   terms lookup.
-      
+
                   @since elasticsearch 0.90.2
                   @member ejs.TermsFilter
                   @param {String} path A valid index name.
@@ -8665,7 +8665,7 @@
 
             /**
                   Enable or disable caching of the lookup
-      
+
                   @member ejs.TermsFilter
                   @param {Boolean} trueFalse True to cache the lookup, false otherwise.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -8681,11 +8681,11 @@
             },
 
             /**
-                  Sets the way terms filter executes is by iterating over the terms 
-                  provided and finding matches docs (loading into a bitset) and 
-                  caching it.  Valid values are: plain, bool, bool_nocache, and, 
+                  Sets the way terms filter executes is by iterating over the terms
+                  provided and finding matches docs (loading into a bitset) and
+                  caching it.  Valid values are: plain, bool, bool_nocache, and,
                   and_nocache, or, or_nocache.  Defaults to plain.
-      
+
                   @member ejs.TermsFilter
                   @param {String} e A valid execution method.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -8710,7 +8710,7 @@
     /**
       @class
       <p>A Filter that filters results by a specified index type.</p>
-  
+
       @name ejs.TypeFilter
       @ejs filter
       @borrows ejs.FilterMixin.name as name
@@ -8718,10 +8718,10 @@
       @borrows ejs.FilterMixin.cacheKey as cacheKey
       @borrows ejs.FilterMixin._type as _type
       @borrows ejs.FilterMixin.toJSON as toJSON
-  
+
       @desc
       Filter results by a specified index type.
-  
+
       @param {String} type the index type to filter on.
       */
     ejs.TypeFilter = function (type) {
@@ -8736,7 +8736,7 @@
 
             /**
                    Sets the type
-      
+
                    @member ejs.TypeFilter
                    @param {String} type the index type to filter on
                    @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -8758,17 +8758,17 @@
       <p>A <code>boolQuery</code> allows you to build <em>Boolean</em> query constructs
       from individual term or phrase queries. For example you might want to search
       for documents containing the terms <code>javascript</code> and <code>python</code>.</p>
-  
+
       @name ejs.BoolQuery
       @ejs query
       @borrows ejs.QueryMixin.boost as boost
       @borrows ejs.QueryMixin._type as _type
       @borrows ejs.QueryMixin.toJSON as toJSON
-  
+
       @desc
       A Query that matches documents matching boolean combinations of other
       queries, e.g. <code>termQuerys, phraseQuerys</code> or other <code>boolQuerys</code>.
-  
+
       */
     ejs.BoolQuery = function () {
 
@@ -8780,7 +8780,7 @@
 
             /**
                    Adds query to boolean container. Given query "must" appear in matching documents.
-      
+
                    @member ejs.BoolQuery
                    @param {Object} oQuery A valid <code>Query</code> object
                    @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -8816,7 +8816,7 @@
 
             /**
                    Adds query to boolean container. Given query "must not" appear in matching documents.
-      
+
                    @member ejs.BoolQuery
                    @param {Object} oQuery A valid query object
                    @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -8852,7 +8852,7 @@
 
             /**
                    Adds query to boolean container. Given query "should" appear in matching documents.
-      
+
                    @member ejs.BoolQuery
                    @param {Object} oQuery A valid query object
                    @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -8890,7 +8890,7 @@
                   Sets if the <code>Query</code> should be enhanced with a
                   <code>MatchAllQuery</code> in order to act as a pure exclude when
                   only negative (mustNot) clauses exist. Default: true.
-      
+
                   @member ejs.BoolQuery
                   @param {String} trueFalse A <code>true/false</code value.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -8907,7 +8907,7 @@
             /**
                   Enables or disables similarity coordinate scoring of documents
                   matching the <code>Query</code>. Default: false.
-      
+
                   @member ejs.BoolQuery
                   @param {String} trueFalse A <code>true/false</code value.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -8923,15 +8923,15 @@
 
             /**
                   <p>Sets the number of optional clauses that must match.</p>
-            
+
                   <p>By default no optional clauses are necessary for a match
                   (unless there are no required clauses).  If this method is used,
                   then the specified number of clauses is required.</p>
-      
+
                   <p>Use of this method is totally independent of specifying that
                   any specific clauses are required (or prohibited).  This number will
                   only be compared against the number of matching optional clauses.</p>
-         
+
                   @member ejs.BoolQuery
                   @param {Integer} minMatch A positive <code>integer</code> value.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -8950,22 +8950,22 @@
 
     /**
       @class
-      <p>The boosting query can be used to effectively demote results that match 
-      a given query. Unlike the “NOT” clause in bool query, this still selects 
-      documents that contain undesirable terms, but reduces their overall 
+      <p>The boosting query can be used to effectively demote results that match
+      a given query. Unlike the “NOT” clause in bool query, this still selects
+      documents that contain undesirable terms, but reduces their overall
       score.</p>
-  
+
       @name ejs.BoostingQuery
       @ejs query
       @borrows ejs.QueryMixin.boost as boost
       @borrows ejs.QueryMixin._type as _type
       @borrows ejs.QueryMixin.toJSON as toJSON
-  
+
       @desc
       <p>Constructs a query that can demote search results.  A negative boost.</p>
-  
+
       @param {Object} positiveQry Valid query object used to select all matching docs.
-      @param {Object} negativeQry Valid query object to match the undesirable docs 
+      @param {Object} negativeQry Valid query object to match the undesirable docs
         returned within the positiveQry result set.
       @param {Double} negativeBoost A double value where 0 < n < 1.
        */
@@ -8987,10 +8987,10 @@
 
             /**
                    Sets the "master" query that determines which results are returned.
-      
+
                    @member ejs.BoostingQuery
                    @param {Object} oQuery A valid <code>Query</code> object
-                   @returns {Object} returns <code>this</code> so that calls can be 
+                   @returns {Object} returns <code>this</code> so that calls can be
                     chained. Returns {Object} current positive query if oQuery is
                     not specified.
                    */
@@ -9010,10 +9010,10 @@
             /**
                    Sets the query used to match documents in the <code>positive</code>
                    query that will be negatively boosted.
-      
+
                    @member ejs.BoostingQuery
                    @param {Object} oQuery A valid <code>Query</code> object
-                   @returns {Object} returns <code>this</code> so that calls can be 
+                   @returns {Object} returns <code>this</code> so that calls can be
                     chained. Returns {Object} current negative query if oQuery is
                     not specified.
                    */
@@ -9032,7 +9032,7 @@
 
             /**
                   Sets the negative boost value.
-      
+
                   @member ejs.BoostingQuery
                   @param {Double} boost A positive <code>double</code> value where 0 < n < 1.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -9051,27 +9051,27 @@
 
     /**
       @class
-      <p>A query that executes high-frequency terms in a optional sub-query to 
+      <p>A query that executes high-frequency terms in a optional sub-query to
       prevent slow queries due to "common" terms like stopwords.</p>
-    
-      <p>This query basically builds two queries out of the terms in the query 
-      string where low-frequency terms are added to a required boolean clause and 
-      high-frequency terms are added to an optional boolean clause. The optional 
+
+      <p>This query basically builds two queries out of the terms in the query
+      string where low-frequency terms are added to a required boolean clause and
+      high-frequency terms are added to an optional boolean clause. The optional
       clause is only executed if the required "low-frequency' clause matches.</p>
-    
-      <p><code>CommonTermsQuery</code> has several advantages over stopword 
-      filtering at index or query time since a term can be "classified" based on 
-      the actual document frequency in the index and can prevent slow queries even 
+
+      <p><code>CommonTermsQuery</code> has several advantages over stopword
+      filtering at index or query time since a term can be "classified" based on
+      the actual document frequency in the index and can prevent slow queries even
       across domains without specialized stopword files.</p>
-    
+
       @name ejs.CommonTermsQuery
       @ejs query
       @borrows ejs.QueryMixin._type as _type
       @borrows ejs.QueryMixin.toJSON as toJSON
-    
+
       @desc
       A query that executes high-frequency terms in a optional sub-query.
-  
+
       @param {String} field the document field/key to query against
       @param {String} qstr the query string
       */
@@ -9098,7 +9098,7 @@
 
             /**
                   Sets the field to query against.
-      
+
                   @member ejs.CommonTermsQuery
                   @param {String} f A valid field name.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -9119,7 +9119,7 @@
 
             /**
                   Sets the query string.
-      
+
                   @member ejs.CommonTermsQuery
                   @param {String} qstr The query string.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -9135,7 +9135,7 @@
 
             /**
                   Sets the analyzer name used to analyze the <code>Query</code> object.
-      
+
                   @member ejs.CommonTermsQuery
                   @param {String} analyzer A valid analyzer name.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -9152,7 +9152,7 @@
             /**
                   Enables or disables similarity coordinate scoring of documents
                   commoning the <code>Query</code>. Default: false.
-      
+
                   @member ejs.CommonTermsQuery
                   @param {String} trueFalse A <code>true/false</code value.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -9167,9 +9167,9 @@
             },
 
             /**
-                  Sets the maximum threshold/frequency to be considered a low 
+                  Sets the maximum threshold/frequency to be considered a low
                   frequency term.  Set to a value between 0 and 1.
-      
+
                   @member ejs.CommonTermsQuery
                   @param {Number} freq A positive <code>double</code> value.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -9186,7 +9186,7 @@
             /**
                   Sets the boolean operator to be used for high frequency terms.
                   Default: AND
-      
+
                   @member ejs.CommonTermsQuery
                   @param {String} op Any of "and" or "or", no quote characters.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -9207,7 +9207,7 @@
             /**
                   Sets the boolean operator to be used for low frequency terms.
                   Default: AND
-                
+
                   @member ejs.CommonTermsQuery
                   @param {String} op Any of "and" or "or", no quote characters.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -9226,9 +9226,9 @@
             },
 
             /**
-                  Sets the minimum number of low freq matches that need to match in 
+                  Sets the minimum number of low freq matches that need to match in
                   a document before that document is returned in the results.
-      
+
                   @member ejs.CommonTermsQuery
                   @param {Integer} min A positive integer.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -9247,9 +9247,9 @@
             },
 
             /**
-                  Sets the minimum number of low freq matches that need to match in 
+                  Sets the minimum number of low freq matches that need to match in
                   a document before that document is returned in the results.
-      
+
                   @member ejs.CommonTermsQuery
                   @param {Integer} min A positive integer.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -9259,9 +9259,9 @@
             },
 
             /**
-                  Sets the minimum number of high freq matches that need to match in 
+                  Sets the minimum number of high freq matches that need to match in
                   a document before that document is returned in the results.
-      
+
                   @member ejs.CommonTermsQuery
                   @param {Integer} min A positive integer.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -9281,7 +9281,7 @@
 
             /**
                   Sets the boost value for documents commoning the <code>Query</code>.
-      
+
                   @member ejs.CommonTermsQuery
                   @param {Number} boost A positive <code>double</code> value.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -9303,24 +9303,24 @@
       <p>A constant score query wraps another <code>Query</code> or
       <code>Filter</code> and returns a constant score for each
       result that is equal to the query boost.</p>
-  
+
       <p>Note that lucene's query normalization (queryNorm) attempts
       to make scores between different queries comparable.  It does not
       change the relevance of your query, but it might confuse you when
       you look at the score of your documents and they are not equal to
       the query boost value as expected.  The scores were normalized by
       queryNorm, but maintain the same relevance.</p>
-  
+
       @name ejs.ConstantScoreQuery
       @ejs query
       @borrows ejs.QueryMixin.boost as boost
       @borrows ejs.QueryMixin._type as _type
       @borrows ejs.QueryMixin.toJSON as toJSON
-  
+
       @desc
       <p>Constructs a query where each documents returned by the internal
       query or filter have a constant score equal to the boost factor.</p>
-  
+
        */
     ejs.ConstantScoreQuery = function () {
 
@@ -9331,7 +9331,7 @@
         return extend(_common, {
             /**
                    Adds the query to apply a constant score to.
-      
+
                    @member ejs.ConstantScoreQuery
                    @param {Object} oQuery A valid <code>Query</code> object
                    @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -9351,7 +9351,7 @@
 
             /**
                    Adds the filter to apply a constant score to.
-      
+
                    @member ejs.ConstantScoreQuery
                    @param {Object} oFilter A valid <code>Filter</code> object
                    @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -9371,7 +9371,7 @@
 
             /**
                   Enables caching of the filter.
-      
+
                   @member ejs.ConstantScoreQuery
                   @param {Boolean} trueFalse A boolean value.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -9387,7 +9387,7 @@
 
             /**
                   Set the cache key.
-      
+
                   @member ejs.ConstantScoreQuery
                   @param {String} k A string cache key.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -9410,17 +9410,17 @@
       that scores each document with the maximum score for that document as produced
       by any subquery, plus a tie breaking increment for any additional matching
       subqueries.
-  
+
       @name ejs.DisMaxQuery
       @ejs query
       @borrows ejs.QueryMixin.boost as boost
       @borrows ejs.QueryMixin._type as _type
       @borrows ejs.QueryMixin.toJSON as toJSON
-  
+
       @desc
       A query that generates the union of documents produced by its subqueries such
       as <code>termQuerys, phraseQuerys</code>, <code>boolQuerys</code>, etc.
-  
+
       */
     ejs.DisMaxQuery = function () {
 
@@ -9432,9 +9432,9 @@
 
             /**
                   Updates the queries.  If passed a single Query, it is added to the
-                  list of existing queries.  If passed an array of Queries, it 
+                  list of existing queries.  If passed an array of Queries, it
                   replaces all existing values.
-      
+
                   @member ejs.DisMaxQuery
                   @param {(Query|Query[])} qs A single Query or an array of Queries
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -9469,15 +9469,15 @@
             },
 
             /**
-                  <p>The tie breaker value.</p>  
-      
-                  <p>The tie breaker capability allows results that include the same term in multiple 
-                  fields to be judged better than results that include this term in only the best of those 
-                  multiple fields, without confusing this with the better case of two different terms in 
-                  the multiple fields.</p>  
-      
+                  <p>The tie breaker value.</p>
+
+                  <p>The tie breaker capability allows results that include the same term in multiple
+                  fields to be judged better than results that include this term in only the best of those
+                  multiple fields, without confusing this with the better case of two different terms in
+                  the multiple fields.</p>
+
                   <p>Default: 0.0.</p>
-      
+
                   @member ejs.DisMaxQuery
                   @param {Double} tieBreaker A positive <code>double</code> value.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -9497,24 +9497,24 @@
 
     /**
       @class
-      <p>Wrapper to allow SpanQuery objects participate in composite single-field 
-      SpanQueries by 'lying' about their search field. That is, the masked 
-      SpanQuery will function as normal, but when asked for the field it 
+      <p>Wrapper to allow SpanQuery objects participate in composite single-field
+      SpanQueries by 'lying' about their search field. That is, the masked
+      SpanQuery will function as normal, but when asked for the field it
       queries against, it will return the value specified as the masked field vs.
       the real field used in the wrapped span query.</p>
-  
+
       @name ejs.FieldMaskingSpanQuery
       @ejs query
       @borrows ejs.QueryMixin.boost as boost
       @borrows ejs.QueryMixin._type as _type
       @borrows ejs.QueryMixin.toJSON as toJSON
-  
+
       @desc
       Wraps a SpanQuery and hides the real field being searched across.
-  
+
       @param {Query} spanQry A valid SpanQuery
       @param {Integer} field the maximum field position in a match.
-    
+
       */
     ejs.FieldMaskingSpanQuery = function (spanQry, field) {
 
@@ -9533,7 +9533,7 @@
 
             /**
                   Sets the span query to wrap.
-      
+
                   @member ejs.FieldMaskingSpanQuery
                   @param {Query} spanQuery Any valid span type query.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -9552,8 +9552,8 @@
             },
 
             /**
-                  Sets the value of the "masked" field.  
-      
+                  Sets the value of the "masked" field.
+
                   @member ejs.FieldMaskingSpanQuery
                   @param {String} f A field name the wrapped span query should use
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -9577,20 +9577,20 @@
       (see <a href="/jsdocs/ejs.filter.html">filter</a> module). A <code>filterQuery</code>
       takes a <code>Query</code> and a <code>Filter</code> object as arguments and constructs
       a new <code>Query</code> that is then used for the search.</p>
-  
+
       @name ejs.FilteredQuery
       @ejs query
       @borrows ejs.QueryMixin.boost as boost
       @borrows ejs.QueryMixin._type as _type
       @borrows ejs.QueryMixin.toJSON as toJSON
-  
+
       @desc
       <p>A query that applies a filter to the results of another query.</p>
-  
+
       @param {Object} someQuery a valid <code>Query</code> object
       @param {Object} someFilter a valid <code>Filter</code> object.  This parameter
         is optional.
-  
+
        */
     ejs.FilteredQuery = function (someQuery, someFilter) {
 
@@ -9616,7 +9616,7 @@
 
             /**
                    <p>Adds the query to apply a constant score to.</p>
-      
+
                    @member ejs.FilteredQuery
                    @param {Object} oQuery A valid <code>Query</code> object
                    @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -9636,7 +9636,7 @@
 
             /**
                    <p>Adds the filter to apply a constant score to.</p>
-      
+
                    @member ejs.FilteredQuery
                    @param {Object} oFilter A valid <code>Filter</code> object
                    @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -9655,22 +9655,22 @@
             },
 
             /**
-                  <p>Sets the filter strategy.</p>  
-      
-                  <p>The strategy defines how the filter is applied during document collection.  
+                  <p>Sets the filter strategy.</p>
+
+                  <p>The strategy defines how the filter is applied during document collection.
                   Valid values are:</p>
-                  
+
                   <dl>
                       <dd><code>query_first</code> - advance query scorer first then filter</dd>
                       <dd><code>random_access_random</code> - random access filter</dd>
                       <dd><code>leap_frog</code> - query scorer and filter "leap-frog", query goes first</dd>
                       <dd><code>leap_frog_filter_first</code> - same as <code>leap_frog</code>, but filter goes first</dd>
-                      <dd><code>random_access_N</code> - replace <code>N</code> with integer, same as random access 
+                      <dd><code>random_access_N</code> - replace <code>N</code> with integer, same as random access
                        except you can specify a custom threshold</dd>
                   </dl>
-      
+
                   <p>This is an advanced setting, use with care.</p>
-                  
+
                   @member ejs.FilteredQuery
                   @param {String} strategy The strategy as a string.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -9693,7 +9693,7 @@
 
             /**
                   <p>Enables caching of the filter.</p>
-      
+
                   @member ejs.FilteredQuery
                   @param {Boolean} trueFalse A boolean value.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -9709,7 +9709,7 @@
 
             /**
                   <p>Set the cache key.</p>
-      
+
                   @member ejs.FilteredQuery
                   @param {String} k A string cache key.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -9732,16 +9732,16 @@
       retrieved by a query. This can be useful if, for example, a score function is
       computationally expensive and it is sufficient to compute the score on a
       filtered set of documents.</p>
-  
+
       @name ejs.FunctionScoreQuery
       @ejs query
       @borrows ejs.QueryMixin.boost as boost
       @borrows ejs.QueryMixin._type as _type
       @borrows ejs.QueryMixin.toJSON as toJSON
-  
+
       @desc
       <p>A query that allows you to modify the score of matching documents.</p>
-  
+
        */
     ejs.FunctionScoreQuery = function () {
 
@@ -9753,7 +9753,7 @@
 
             /**
             Set the source query.
-      
+
             @member ejs.FunctionScoreQuery
             @param {Query} oQuery A valid <code>Query</code> object
             @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -9773,7 +9773,7 @@
 
             /**
             Set the source filter.
-      
+
             @member ejs.FunctionScoreQuery
             @param {Filter} oFilter A valid <code>Filter</code> object
             @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -9794,7 +9794,7 @@
             /**
             Set the scoring mode which specifies how the computed scores are combined.
             Valid values are: avg, max, min, sum, multiply, and first.
-      
+
             @member ejs.FunctionScoreQuery
             @param {String} mode A scoring mode.
             @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -9817,7 +9817,7 @@
             Set the setermines how the new calculated score is combined with the
             score from the original query. Valid values are: multiply, replace, sum,
             avg, max, and min.
-      
+
             @member ejs.FunctionScoreQuery
             @param {String} mode A boosting mode.
             @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -9838,7 +9838,7 @@
 
             /**
             Sets the boost value for all documents matching the query.
-      
+
             @member ejs.FunctionScoreQuery
             @param {Float} boost A positive <code>float</code> value.
             @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -9854,7 +9854,7 @@
 
             /**
             Add a single score function to the list of existing functions.
-      
+
             @member ejs.FunctionScoreQuery
             @param {ScoreFunction} func A valid <code>ScoreFunction</code> object.
             @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -9878,7 +9878,7 @@
 
             /**
             Sets the score functions.  Replaces any existing score functions.
-      
+
             @member ejs.FunctionScoreQuery
             @param {ScoreFunction[]} funcs A array of <code>ScoreFunctions</code>.
             @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -9911,36 +9911,36 @@
 
     /**
       @class
-      <p>The fuzzy_like_this_field query is the same as the fuzzy_like_this 
-      query, except that it runs against a single field. It provides nicer query 
-      DSL over the generic fuzzy_like_this query, and support typed fields 
-      query (automatically wraps typed fields with type filter to match only on 
+      <p>The fuzzy_like_this_field query is the same as the fuzzy_like_this
+      query, except that it runs against a single field. It provides nicer query
+      DSL over the generic fuzzy_like_this query, and support typed fields
+      query (automatically wraps typed fields with type filter to match only on
       the specific type).</p>
-  
-      <p>Fuzzifies ALL terms provided as strings and then picks the best n 
-      differentiating terms. In effect this mixes the behaviour of FuzzyQuery and 
-      MoreLikeThis but with special consideration of fuzzy scoring factors. This 
-      generally produces good results for queries where users may provide details 
-      in a number of fields and have no knowledge of boolean query syntax and 
+
+      <p>Fuzzifies ALL terms provided as strings and then picks the best n
+      differentiating terms. In effect this mixes the behaviour of FuzzyQuery and
+      MoreLikeThis but with special consideration of fuzzy scoring factors. This
+      generally produces good results for queries where users may provide details
+      in a number of fields and have no knowledge of boolean query syntax and
       also want a degree of fuzzy matching and a fast query.</p>
-  
-      <p>For each source term the fuzzy variants are held in a BooleanQuery with 
-      no coord factor (because we are not looking for matches on multiple variants 
-      in any one doc). Additionally, a specialized TermQuery is used for variants 
-      and does not use that variant term’s IDF because this would favour rarer 
-      terms eg misspellings. Instead, all variants use the same IDF 
-      ranking (the one for the source query term) and this is factored into the 
-      variant’s boost. If the source query term does not exist in the index the 
+
+      <p>For each source term the fuzzy variants are held in a BooleanQuery with
+      no coord factor (because we are not looking for matches on multiple variants
+      in any one doc). Additionally, a specialized TermQuery is used for variants
+      and does not use that variant term’s IDF because this would favour rarer
+      terms eg misspellings. Instead, all variants use the same IDF
+      ranking (the one for the source query term) and this is factored into the
+      variant’s boost. If the source query term does not exist in the index the
       average IDF of the variants is used.</p>
-  
+
       @name ejs.FuzzyLikeThisFieldQuery
       @ejs query
       @borrows ejs.QueryMixin._type as _type
       @borrows ejs.QueryMixin.toJSON as toJSON
-  
+
       @desc
       <p>Constructs a query where each documents returned are “like” provided text</p>
-  
+
       @param {String} field The field to run the query against.
       @param {String} likeText The text to find documents like it.
       */
@@ -9958,7 +9958,7 @@
 
             /**
                    The field to run the query against.
-      
+
                    @member ejs.FuzzyLikeThisFieldQuery
                    @param {String} f A single field name.
                    @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -9979,7 +9979,7 @@
 
             /**
                   The text to find documents like
-      
+
                   @member ejs.FuzzyLikeThisFieldQuery
                   @param {String} s A text string.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -9995,7 +9995,7 @@
 
             /**
                   Should term frequency be ignored. Defaults to false.
-      
+
                   @member ejs.FuzzyLikeThisFieldQuery
                   @param {Boolean} trueFalse A boolean value
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -10010,9 +10010,9 @@
             },
 
             /**
-                  The maximum number of query terms that will be included in any 
+                  The maximum number of query terms that will be included in any
                   generated query. Defaults to 25.
-      
+
                   @member ejs.FuzzyLikeThisFieldQuery
                   @param {Integer} max A positive integer value.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -10028,7 +10028,7 @@
 
             /**
                   The minimum similarity of the term variants. Defaults to 0.5.
-      
+
                   @member ejs.FuzzyLikeThisFieldQuery
                   @param {Double} min A positive double value.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -10044,7 +10044,7 @@
 
             /**
                   Length of required common prefix on variant terms. Defaults to 0..
-      
+
                   @member ejs.FuzzyLikeThisFieldQuery
                   @param {Integer} len A positive integer value.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -10059,9 +10059,9 @@
             },
 
             /**
-                  The analyzer that will be used to analyze the text. Defaults to the 
+                  The analyzer that will be used to analyze the text. Defaults to the
                   analyzer associated with the field.
-      
+
                   @member ejs.FuzzyLikeThisFieldQuery
                   @param {String} analyzerName The name of the analyzer.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -10078,7 +10078,7 @@
             /**
                   Should the <code>Query</code> fail when an unsupported field
                   is specified. Defaults to true.
-      
+
                   @member ejs.FuzzyLikeThisFieldQuery
                   @param {Boolean} trueFalse A boolean value
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -10094,7 +10094,7 @@
 
             /**
                   Sets the boost value of the <code>Query</code>.
-      
+
                   @member ejs.FuzzyLikeThisFieldQuery
                   @param {Double} boost A positive <code>double</code> value.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -10113,34 +10113,34 @@
 
     /**
       @class
-      <p>Fuzzy like this query find documents that are “like” provided text by 
+      <p>Fuzzy like this query find documents that are “like” provided text by
       running it against one or more fields.</p>
-  
-      <p>Fuzzifies ALL terms provided as strings and then picks the best n 
-      differentiating terms. In effect this mixes the behaviour of FuzzyQuery and 
-      MoreLikeThis but with special consideration of fuzzy scoring factors. This 
-      generally produces good results for queries where users may provide details 
-      in a number of fields and have no knowledge of boolean query syntax and 
+
+      <p>Fuzzifies ALL terms provided as strings and then picks the best n
+      differentiating terms. In effect this mixes the behaviour of FuzzyQuery and
+      MoreLikeThis but with special consideration of fuzzy scoring factors. This
+      generally produces good results for queries where users may provide details
+      in a number of fields and have no knowledge of boolean query syntax and
       also want a degree of fuzzy matching and a fast query.</p>
-    
-      <p>For each source term the fuzzy variants are held in a BooleanQuery with 
-      no coord factor (because we are not looking for matches on multiple variants 
-      in any one doc). Additionally, a specialized TermQuery is used for variants 
-      and does not use that variant term’s IDF because this would favour rarer 
-      terms eg misspellings. Instead, all variants use the same IDF 
-      ranking (the one for the source query term) and this is factored into the 
-      variant’s boost. If the source query term does not exist in the index the 
+
+      <p>For each source term the fuzzy variants are held in a BooleanQuery with
+      no coord factor (because we are not looking for matches on multiple variants
+      in any one doc). Additionally, a specialized TermQuery is used for variants
+      and does not use that variant term’s IDF because this would favour rarer
+      terms eg misspellings. Instead, all variants use the same IDF
+      ranking (the one for the source query term) and this is factored into the
+      variant’s boost. If the source query term does not exist in the index the
       average IDF of the variants is used.</p>
-  
+
       @name ejs.FuzzyLikeThisQuery
       @ejs query
       @borrows ejs.QueryMixin.boost as boost
       @borrows ejs.QueryMixin._type as _type
       @borrows ejs.QueryMixin.toJSON as toJSON
-  
+
       @desc
       <p>Constructs a query where each documents returned are “like” provided text</p>
-  
+
       @param {String} likeText The text to find documents like it.
       */
     ejs.FuzzyLikeThisQuery = function (likeText) {
@@ -10157,7 +10157,7 @@
                    The fields to run the query against.  If you call with a single field,
                    it is added to the existing list of fields.  If called with an array
                    of field names, it replaces any existing values with the new array.
-      
+
                    @member ejs.FuzzyLikeThisQuery
                    @param {(String|String[])} f A single field name or a list of field names.
                    @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -10184,7 +10184,7 @@
 
             /**
                   The text to find documents like
-      
+
                   @member ejs.FuzzyLikeThisQuery
                   @param {String} s A text string.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -10200,7 +10200,7 @@
 
             /**
                   Should term frequency be ignored. Defaults to false.
-      
+
                   @member ejs.FuzzyLikeThisQuery
                   @param {Boolean} trueFalse A boolean value
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -10215,9 +10215,9 @@
             },
 
             /**
-                  The maximum number of query terms that will be included in any 
+                  The maximum number of query terms that will be included in any
                   generated query. Defaults to 25.
-      
+
                   @member ejs.FuzzyLikeThisQuery
                   @param {Integer} max A positive integer value.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -10233,7 +10233,7 @@
 
             /**
                   The minimum similarity of the term variants. Defaults to 0.5.
-      
+
                   @member ejs.FuzzyLikeThisQuery
                   @param {Double} min A positive double value.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -10249,7 +10249,7 @@
 
             /**
                   Length of required common prefix on variant terms. Defaults to 0..
-      
+
                   @member ejs.FuzzyLikeThisQuery
                   @param {Integer} len A positive integer value.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -10264,9 +10264,9 @@
             },
 
             /**
-                  The analyzer that will be used to analyze the text. Defaults to the 
+                  The analyzer that will be used to analyze the text. Defaults to the
                   analyzer associated with the field.
-      
+
                   @member ejs.FuzzyLikeThisQuery
                   @param {String} analyzerName The name of the analyzer.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -10283,7 +10283,7 @@
             /**
                   Should the <code>Query</code> fail when an unsupported field
                   is specified. Defaults to true.
-      
+
                   @member ejs.FuzzyLikeThisQuery
                   @param {Boolean} trueFalse A boolean value
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -10302,26 +10302,26 @@
 
     /**
       @class
-      <p>A fuzzy search query based on the Damerau-Levenshtein (optimal string 
-      alignment) algorithm, though you can explicitly choose classic Levenshtein 
+      <p>A fuzzy search query based on the Damerau-Levenshtein (optimal string
+      alignment) algorithm, though you can explicitly choose classic Levenshtein
       by passing false to the transpositions parameter./p>
-    
-      <p>fuzzy query on a numeric field will result in a range query “around” 
+
+      <p>fuzzy query on a numeric field will result in a range query “around”
       the value using the min_similarity value. As an example, if you perform a
       fuzzy query against a field value of "12" with a min similarity setting
       of "2", the query will search for values between "10" and "14".</p>
-  
+
       @name ejs.FuzzyQuery
       @ejs query
       @borrows ejs.QueryMixin._type as _type
       @borrows ejs.QueryMixin.toJSON as toJSON
-  
+
       @desc
       <p>Constructs a query where each documents returned are “like” provided text</p>
-      
+
       @param {String} field The field to run the fuzzy query against.
       @param {String} value The value to fuzzify.
-      
+
        */
     ejs.FuzzyQuery = function (field, value) {
 
@@ -10337,7 +10337,7 @@
 
             /**
                    <p>The field to run the query against.</p>
-      
+
                    @member ejs.FuzzyQuery
                    @param {String} f A single field name.
                    @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -10358,7 +10358,7 @@
 
             /**
                   <p>The query text to fuzzify.</p>
-      
+
                   @member ejs.FuzzyQuery
                   @param {String} s A text string.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -10374,7 +10374,7 @@
 
             /**
                   <p>Set to false to use classic Levenshtein edit distance.</p>
-      
+
                   @member ejs.FuzzyQuery
                   @param {Boolean} trueFalse A boolean value
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -10389,9 +10389,9 @@
             },
 
             /**
-                  <p>The maximum number of query terms that will be included in any 
+                  <p>The maximum number of query terms that will be included in any
                   generated query. Defaults to <code>50</code>.<p>
-      
+
                   @member ejs.FuzzyQuery
                   @param {Integer} max A positive integer value.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -10407,7 +10407,7 @@
 
             /**
                   <p>The minimum similarity of the term variants. Defaults to <code>0.5</code>.</p>
-      
+
                   @member ejs.FuzzyQuery
                   @param {Double} min A positive double value.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -10423,7 +10423,7 @@
 
             /**
                   <p>Length of required common prefix on variant terms. Defaults to <code>0</code>.</p>
-      
+
                   @member ejs.FuzzyQuery
                   @param {Integer} len A positive integer value.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -10438,34 +10438,34 @@
             },
 
             /**
-                  <p>Sets rewrite method.  Valid values are:</p> 
-                  
+                  <p>Sets rewrite method.  Valid values are:</p>
+
                   <dl>
-                      <dd><code>constant_score_auto</code> - tries to pick the best constant-score rewrite 
+                      <dd><code>constant_score_auto</code> - tries to pick the best constant-score rewrite
                        method based on term and document counts from the query</dd>
-                    
-                      <dd><code>scoring_boolean</code> - translates each term into boolean should and 
+
+                      <dd><code>scoring_boolean</code> - translates each term into boolean should and
                        keeps the scores as computed by the query</dd>
-                    
+
                       <dd><code>constant_score_boolean</code> - same as scoring_boolean, expect no scores
                        are computed.</dd>
-                    
-                      <dd><code>constant_score_filter</code> - first creates a private Filter, by visiting 
+
+                      <dd><code>constant_score_filter</code> - first creates a private Filter, by visiting
                        each term in sequence and marking all docs for that term</dd>
-                    
+
                       <dd><code>top_terms_boost_N</code> - first translates each term into boolean should
                        and scores are only computed as the boost using the top <code>N</code>
                        scoring terms.  Replace <code>N</code> with an integer value.</dd>
-                    
+
                       <dd><code>top_terms_N</code> - first translates each term into boolean should
                        and keeps the scores as computed by the query. Only the top <code>N</code>
                        scoring terms are used.  Replace <code>N</code> with an integer value.</dd>
                   </dl>
-                  
+
                   <p>Default is <code>constant_score_auto</code>.</p>
-      
+
                   <p>This is an advanced option, use with care.</p>
-      
+
                   @member ejs.FuzzyQuery
                   @param {String} m The rewrite method as a string.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -10490,7 +10490,7 @@
 
             /**
                   <p>Sets the boost value of the <code>Query</code>.</p>
-      
+
                   @member ejs.FuzzyQuery
                   @param {Double} boost A positive <code>double</code> value.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -10509,23 +10509,23 @@
 
     /**
       @class
-      <p>Efficient querying of documents containing shapes indexed using the 
+      <p>Efficient querying of documents containing shapes indexed using the
       geo_shape type.</p>
-  
-      <p>Much like the geo_shape type, the geo_shape query uses a grid square 
-      representation of the query shape to find those documents which have shapes 
-      that relate to the query shape in a specified way. In order to do this, the 
-      field being queried must be of geo_shape type. The query will use the same 
+
+      <p>Much like the geo_shape type, the geo_shape query uses a grid square
+      representation of the query shape to find those documents which have shapes
+      that relate to the query shape in a specified way. In order to do this, the
+      field being queried must be of geo_shape type. The query will use the same
       PrefixTree configuration as defined for the field.</p>
-    
+
       @name ejs.GeoShapeQuery
       @ejs query
       @borrows ejs.QueryMixin._type as _type
       @borrows ejs.QueryMixin.toJSON as toJSON
-  
+
       @desc
       A Query to find documents with a geo_shapes matching a specific shape.
-  
+
       */
     ejs.GeoShapeQuery = function (field) {
 
@@ -10539,7 +10539,7 @@
 
             /**
                   Sets the field to query against.
-      
+
                   @member ejs.GeoShapeQuery
                   @param {String} f A valid field name.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -10560,7 +10560,7 @@
 
             /**
                   Sets the shape
-      
+
                   @member ejs.GeoShapeQuery
                   @param {String} shape A valid <code>Shape</code> object.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -10581,7 +10581,7 @@
             /**
                   Sets the indexed shape.  Use this if you already have shape definitions
                   already indexed.
-      
+
                   @member ejs.GeoShapeQuery
                   @param {String} indexedShape A valid <code>IndexedShape</code> object.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -10600,11 +10600,11 @@
             },
 
             /**
-                  Sets the shape relation type.  A relationship between a Query Shape 
-                  and indexed Shapes that will be used to determine if a Document 
+                  Sets the shape relation type.  A relationship between a Query Shape
+                  and indexed Shapes that will be used to determine if a Document
                   should be matched or not.  Valid values are:  intersects, disjoint,
                   and within.
-      
+
                   @member ejs.GeoShapeQuery
                   @param {String} indexedShape A valid <code>IndexedShape</code> object.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -10623,20 +10623,20 @@
             },
 
             /**
-                  <p>Sets the spatial strategy.</p>  
+                  <p>Sets the spatial strategy.</p>
                   <p>Valid values are:</p>
-                  
+
                   <dl>
                       <dd><code>recursive</code> - default, recursively traverse nodes in
-                        the spatial prefix tree.  This strategy has support for 
+                        the spatial prefix tree.  This strategy has support for
                         searching non-point shapes.</dd>
                       <dd><code>term</code> - uses a large TermsFilter on each node
-                        in the spatial prefix tree.  It only supports the search of 
+                        in the spatial prefix tree.  It only supports the search of
                         indexed Point shapes.</dd>
                   </dl>
-      
+
                   <p>This is an advanced setting, use with care.</p>
-                  
+
                   @since elasticsearch 0.90
                   @member ejs.GeoShapeQuery
                   @param {String} strategy The strategy as a string.
@@ -10657,7 +10657,7 @@
 
             /**
                   Sets the boost value for documents matching the <code>Query</code>.
-      
+
                   @member ejs.GeoShapeQuery
                   @param {Number} boost A positive <code>double</code> value.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -10676,19 +10676,19 @@
 
     /**
       @class
-      <p>The has_child query works the same as the has_child filter, 
-      by automatically wrapping the filter with a constant_score. Results in 
+      <p>The has_child query works the same as the has_child filter,
+      by automatically wrapping the filter with a constant_score. Results in
       parent documents that have child docs matching the query being returned.</p>
-    
+
       @name ejs.HasChildQuery
       @ejs query
       @borrows ejs.QueryMixin.boost as boost
       @borrows ejs.QueryMixin._type as _type
       @borrows ejs.QueryMixin.toJSON as toJSON
-  
+
       @desc
       Returns results that have child documents matching the query.
-  
+
       @param {Object} qry A valid query object.
       @param {String} type The child type
       */
@@ -10709,7 +10709,7 @@
 
             /**
                   Sets the query
-      
+
                   @member ejs.HasChildQuery
                   @param {Object} q A valid Query object
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -10729,7 +10729,7 @@
 
             /**
                   Sets the child document type to search against
-      
+
                   @member ejs.HasChildQuery
                   @param {String} t A valid type name
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -10744,9 +10744,9 @@
             },
 
             /**
-                  Sets the scope of the query.  A scope allows to run facets on the 
-                  same scope name that will work against the child documents. 
-      
+                  Sets the scope of the query.  A scope allows to run facets on the
+                  same scope name that will work against the child documents.
+
                   @deprecated since elasticsearch 0.90
                   @member ejs.HasChildQuery
                   @param {String} s The scope name as a string.
@@ -10758,14 +10758,14 @@
 
             /**
                   Sets the scoring method.  Valid values are:
-                  
+
                   none - the default, no scoring
                   max - the highest score of all matched child documents is used
                   sum - the sum the all the matched child documents is used
                   avg - the average of all matched child documents is used
-      
+
                   @deprecated since elasticsearch 0.90.1, use scoreMode
-                  
+
                   @member ejs.HasChildQuery
                   @param {String} s The score type as a string.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -10785,12 +10785,12 @@
 
             /**
                   Sets the scoring method.  Valid values are:
-                  
+
                   none - the default, no scoring
                   max - the highest score of all matched child documents is used
                   sum - the sum the all the matched child documents is used
                   avg - the average of all matched child documents is used
-      
+
                   @member ejs.HasChildQuery
                   @param {String} s The score type as a string.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -10810,7 +10810,7 @@
 
             /**
                   Sets the cutoff value to short circuit processing.
-      
+
                   @member ejs.HasChildQuery
                   @param {Integer} cutoff A positive <code>integer</code> value.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -10829,19 +10829,19 @@
 
     /**
       @class
-      <p>The has_parent query works the same as the has_parent filter, by 
-      automatically wrapping the filter with a constant_score. Results in 
+      <p>The has_parent query works the same as the has_parent filter, by
+      automatically wrapping the filter with a constant_score. Results in
       child documents that have parent docs matching the query being returned.</p>
-  
+
       @name ejs.HasParentQuery
       @ejs query
       @borrows ejs.QueryMixin.boost as boost
       @borrows ejs.QueryMixin._type as _type
       @borrows ejs.QueryMixin.toJSON as toJSON
-  
+
       @desc
       Returns results that have parent documents matching the query.
-  
+
       @param {Object} qry A valid query object.
       @param {String} parentType The child type
       */
@@ -10862,7 +10862,7 @@
 
             /**
                   Sets the query
-      
+
                   @member ejs.HasParentQuery
                   @param {Object} q A valid Query object
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -10882,7 +10882,7 @@
 
             /**
                   Sets the child document type to search against
-      
+
                   @member ejs.HasParentQuery
                   @param {String} t A valid type name
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -10897,9 +10897,9 @@
             },
 
             /**
-                  Sets the scope of the query.  A scope allows to run facets on the 
-                  same scope name that will work against the parent documents. 
-      
+                  Sets the scope of the query.  A scope allows to run facets on the
+                  same scope name that will work against the parent documents.
+
                   @deprecated since elasticsearch 0.90
                   @member ejs.HasParentQuery
                   @param {String} s The scope name as a string.
@@ -10911,12 +10911,12 @@
 
             /**
                   Sets the scoring method.  Valid values are:
-                  
+
                   none - the default, no scoring
                   score - the score of the parent is used in all child documents.
-      
+
                   @deprecated since elasticsearch 0.90.1 use scoreMode
-                  
+
                   @member ejs.HasParentQuery
                   @param {String} s The score type as a string.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -10936,10 +10936,10 @@
 
             /**
                   Sets the scoring method.  Valid values are:
-                  
+
                   none - the default, no scoring
                   score - the score of the parent is used in all child documents.
-                  
+
                   @member ejs.HasParentQuery
                   @param {String} s The score type as a string.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -10962,19 +10962,19 @@
 
     /**
       @class
-      <p>Filters documents that only have the provided ids. Note, this filter 
-      does not require the _id field to be indexed since it works using the 
+      <p>Filters documents that only have the provided ids. Note, this filter
+      does not require the _id field to be indexed since it works using the
       _uid field.</p>
-  
+
       @name ejs.IdsQuery
       @ejs query
       @borrows ejs.QueryMixin.boost as boost
       @borrows ejs.QueryMixin._type as _type
       @borrows ejs.QueryMixin.toJSON as toJSON
-  
+
       @desc
       Matches documents with the specified id(s).
-  
+
       @param {(String|String[])} ids A single document id or a list of document ids.
       */
     ejs.IdsQuery = function (ids) {
@@ -10997,7 +10997,7 @@
                   Sets the values array or adds a new value. if val is a string, it
                   is added to the list of existing document ids.  If val is an
                   array it is set as the document values and replaces any existing values.
-      
+
                   @member ejs.IdsQuery
                   @param {(String|String[])} val An single document id or an array of document ids.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -11023,7 +11023,7 @@
                   string, it is added to the list of existing types.  If type is an
                   array, it is set as the types and overwrites an existing types. This
                   parameter is optional.
-      
+
                   @member ejs.IdsQuery
                   @param {(String|String[])} type A type or a list of types
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -11053,22 +11053,22 @@
 
     /**
       @class
-      <p>The indices query can be used when executed across multiple indices, 
-      allowing to have a query that executes only when executed on an index that 
-      matches a specific list of indices, and another query that executes when it 
+      <p>The indices query can be used when executed across multiple indices,
+      allowing to have a query that executes only when executed on an index that
+      matches a specific list of indices, and another query that executes when it
       is executed on an index that does not match the listed indices.</p>
-  
+
       @name ejs.IndicesQuery
       @ejs query
       @borrows ejs.QueryMixin.boost as boost
       @borrows ejs.QueryMixin._type as _type
       @borrows ejs.QueryMixin.toJSON as toJSON
-  
+
       @desc
       A configurable query that is dependent on the index name.
-  
+
       @param {Query} qry A valid query object.
-      @param {(String|String[])} indices a single index name or an array of index 
+      @param {(String|String[])} indices a single index name or an array of index
         names.
       */
     ejs.IndicesQuery = function (qry, indices) {
@@ -11097,7 +11097,7 @@
                   Sets the indicies the query should match.  When passed a string,
                   the index name is added to the current list of indices.  When passed
                   an array, it overwites all current indices.
-      
+
                   @member ejs.IndicesQuery
                   @param {(String|String[])} i A single index name or an array of index names.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -11120,7 +11120,7 @@
 
             /**
                   Sets the query to be executed against the indices specified.
-      
+
                   @member ejs.IndicesQuery
                   @param {Query} q A valid Query object
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -11142,7 +11142,7 @@
                   Sets the query to be used on an index that does not match an index
                   name in the indices list.  Can also be set to "none" to not match any
                   documents or "all" to match all documents.
-      
+
                   @member ejs.IndicesQuery
                   @param {(Query|String)} q A valid Query object or "none" or "all"
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -11173,16 +11173,16 @@
       @class
       <p>This query can be used to match all the documents
       in a given set of collections and/or types.</p>
-  
+
       @name ejs.MatchAllQuery
       @ejs query
       @borrows ejs.QueryMixin.boost as boost
       @borrows ejs.QueryMixin._type as _type
       @borrows ejs.QueryMixin.toJSON as toJSON
-  
+
       @desc
       <p>A query that returns all documents.</p>
-  
+
        */
     ejs.MatchAllQuery = function () {
         return ejs.QueryMixin('match_all');
@@ -11190,19 +11190,19 @@
 
     /**
       @class
-      A <code>MatchQuery</code> is a type of <code>Query</code> that accepts 
+      A <code>MatchQuery</code> is a type of <code>Query</code> that accepts
       text/numerics/dates, analyzes it, generates a query based on the
       <code>MatchQuery</code> type.
-    
+
       @name ejs.MatchQuery
       @ejs query
       @borrows ejs.QueryMixin._type as _type
       @borrows ejs.QueryMixin.toJSON as toJSON
-  
+
       @desc
       A Query that appects text, analyzes it, generates internal query based
       on the MatchQuery type.
-  
+
       @param {String} field the document field/field to query against
       @param {String} qstr the query string
       */
@@ -11220,7 +11220,7 @@
 
             /**
                   Sets the query string for the <code>Query</code>.
-      
+
                   @member ejs.MatchQuery
                   @param {String} qstr The query string to search for.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -11237,7 +11237,7 @@
             /**
                   Sets the type of the <code>MatchQuery</code>.  Valid values are
                   boolean, phrase, and phrase_prefix.
-      
+
                   @member ejs.MatchQuery
                   @param {String} type Any of boolean, phrase, phrase_prefix.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -11257,7 +11257,7 @@
 
             /**
                   Sets the fuzziness value for the <code>Query</code>.
-      
+
                   @member ejs.MatchQuery
                   @param {Double} fuzz A <code>double</code> value between 0.0 and 1.0.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -11272,10 +11272,10 @@
             },
 
             /**
-                  Sets the maximum threshold/frequency to be considered a low 
-                  frequency term in a <code>CommonTermsQuery</code>.  
+                  Sets the maximum threshold/frequency to be considered a low
+                  frequency term in a <code>CommonTermsQuery</code>.
                   Set to a value between 0 and 1.
-      
+
                   @member ejs.MatchQuery
                   @param {Number} freq A positive <code>double</code> value.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -11291,7 +11291,7 @@
 
             /**
                   Sets the prefix length for a fuzzy prefix <code>MatchQuery</code>.
-      
+
                   @member ejs.MatchQuery
                   @param {Integer} l A positive <code>integer</code> length value.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -11307,7 +11307,7 @@
 
             /**
                   Sets the max expansions of a fuzzy <code>MatchQuery</code>.
-      
+
                   @member ejs.MatchQuery
                   @param {Integer} e A positive <code>integer</code> value.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -11323,7 +11323,7 @@
 
             /**
                   Sets default operator of the <code>Query</code>.  Default: or.
-      
+
                   @member ejs.MatchQuery
                   @param {String} op Any of "and" or "or", no quote characters.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -11344,7 +11344,7 @@
             /**
                   Sets the default slop for phrases. If zero, then exact phrase matches
                   are required.  Default: 0.
-      
+
                   @member ejs.MatchQuery
                   @param {Integer} slop A positive <code>integer</code> value.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -11360,7 +11360,7 @@
 
             /**
                   Sets the analyzer name used to analyze the <code>Query</code> object.
-      
+
                   @member ejs.MatchQuery
                   @param {String} analyzer A valid analyzer name.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -11377,7 +11377,7 @@
             /**
                   Sets a percent value controlling how many "should" clauses in the
                   resulting <code>Query</code> should match.
-      
+
                   @member ejs.MatchQuery
                   @param {Integer} minMatch An <code>integer</code> between 0 and 100.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -11392,32 +11392,32 @@
             },
 
             /**
-                  Sets rewrite method.  Valid values are: 
-                  
-                  constant_score_auto - tries to pick the best constant-score rewrite 
+                  Sets rewrite method.  Valid values are:
+
+                  constant_score_auto - tries to pick the best constant-score rewrite
                     method based on term and document counts from the query
-                    
-                  scoring_boolean - translates each term into boolean should and 
+
+                  scoring_boolean - translates each term into boolean should and
                     keeps the scores as computed by the query
-                    
+
                   constant_score_boolean - same as scoring_boolean, expect no scores
                     are computed.
-                    
-                  constant_score_filter - first creates a private Filter, by visiting 
+
+                  constant_score_filter - first creates a private Filter, by visiting
                     each term in sequence and marking all docs for that term
-                    
+
                   top_terms_boost_N - first translates each term into boolean should
                     and scores are only computed as the boost using the top N
                     scoring terms.  Replace N with an integer value.
-                    
+
                   top_terms_N -   first translates each term into boolean should
                       and keeps the scores as computed by the query. Only the top N
                       scoring terms are used.  Replace N with an integer value.
-                  
+
                   Default is constant_score_auto.
-      
+
                   This is an advanced option, use with care.
-      
+
                   @member ejs.MatchQuery
                   @param {String} m The rewrite method as a string.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -11440,32 +11440,32 @@
             },
 
             /**
-                  Sets fuzzy rewrite method.  Valid values are: 
-                  
-                  constant_score_auto - tries to pick the best constant-score rewrite 
+                  Sets fuzzy rewrite method.  Valid values are:
+
+                  constant_score_auto - tries to pick the best constant-score rewrite
                     method based on term and document counts from the query
-                    
-                  scoring_boolean - translates each term into boolean should and 
+
+                  scoring_boolean - translates each term into boolean should and
                     keeps the scores as computed by the query
-                    
+
                   constant_score_boolean - same as scoring_boolean, expect no scores
                     are computed.
-                    
-                  constant_score_filter - first creates a private Filter, by visiting 
+
+                  constant_score_filter - first creates a private Filter, by visiting
                     each term in sequence and marking all docs for that term
-                    
+
                   top_terms_boost_N - first translates each term into boolean should
                     and scores are only computed as the boost using the top N
                     scoring terms.  Replace N with an integer value.
-                    
+
                   top_terms_N -   first translates each term into boolean should
                       and keeps the scores as computed by the query. Only the top N
                       scoring terms are used.  Replace N with an integer value.
-                  
+
                   Default is constant_score_auto.
-      
+
                   This is an advanced option, use with care.
-                  
+
                   @member ejs.MatchQuery
                   @param {String} m The rewrite method as a string.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -11488,9 +11488,9 @@
             },
 
             /**
-                  Set to false to use classic Levenshtein edit distance in the 
+                  Set to false to use classic Levenshtein edit distance in the
                   fuzzy query.
-      
+
                   @member ejs.MatchQuery
                   @param {Boolean} trueFalse A boolean value
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -11506,7 +11506,7 @@
 
             /**
                   Enables lenient parsing of the query string.
-      
+
                   @member ejs.MatchQuery
                   @param {Boolean} trueFalse A boolean value
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -11522,8 +11522,8 @@
 
             /**
                   Sets what happens when no terms match.  Valid values are
-                  "all" or "none".  
-      
+                  "all" or "none".
+
                   @member ejs.MatchQuery
                   @param {String} q A no match action, "all" or "none".
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -11543,7 +11543,7 @@
 
             /**
                   Sets the boost value for documents matching the <code>Query</code>.
-      
+
                   @member ejs.MatchQuery
                   @param {Number} boost A positive <code>double</code> value.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -11562,20 +11562,20 @@
 
     /**
       @class
-      <p>The more_like_this_field query is the same as the more_like_this query, 
+      <p>The more_like_this_field query is the same as the more_like_this query,
       except it runs against a single field.</p>
-  
+
       @name ejs.MoreLikeThisFieldQuery
       @ejs query
       @borrows ejs.QueryMixin._type as _type
       @borrows ejs.QueryMixin.toJSON as toJSON
-  
+
       @desc
       <p>Constructs a query where each documents returned are “like” provided text</p>
-  
+
       @param {String} field The field to run the query against.
       @param {String} likeText The text to find documents like it.
-  
+
        */
     ejs.MoreLikeThisFieldQuery = function (field, likeText) {
 
@@ -11591,7 +11591,7 @@
 
             /**
                    The field to run the query against.
-      
+
                    @member ejs.MoreLikeThisFieldQuery
                    @param {String} f A single field name.
                    @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -11612,7 +11612,7 @@
 
             /**
                   The text to find documents like
-      
+
                   @member ejs.MoreLikeThisFieldQuery
                   @param {String} s A text string.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -11627,9 +11627,9 @@
             },
 
             /**
-                  The percentage of terms to match on (float value). 
+                  The percentage of terms to match on (float value).
                   Defaults to 0.3 (30 percent).
-      
+
                   @member ejs.MoreLikeThisFieldQuery
                   @param {Double} percent A double value between 0 and 1.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -11644,9 +11644,9 @@
             },
 
             /**
-                  The frequency below which terms will be ignored in the source doc. 
+                  The frequency below which terms will be ignored in the source doc.
                   The default frequency is 2.
-      
+
                   @member ejs.MoreLikeThisFieldQuery
                   @param {Integer} freq A positive integer value.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -11661,9 +11661,9 @@
             },
 
             /**
-                  The maximum number of query terms that will be included in any 
+                  The maximum number of query terms that will be included in any
                   generated query. Defaults to 25.
-      
+
                   @member ejs.MoreLikeThisFieldQuery
                   @param {Integer} max A positive integer value.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -11678,12 +11678,12 @@
             },
 
             /**
-                  An array of stop words. Any word in this set is considered 
-                  “uninteresting” and ignored. Even if your Analyzer allows stopwords, 
-                  you might want to tell the MoreLikeThis code to ignore them, as for 
-                  the purposes of document similarity it seems reasonable to assume 
+                  An array of stop words. Any word in this set is considered
+                  “uninteresting” and ignored. Even if your Analyzer allows stopwords,
+                  you might want to tell the MoreLikeThis code to ignore them, as for
+                  the purposes of document similarity it seems reasonable to assume
                   that “a stop word is never interesting”.
-              
+
                   @member ejs.MoreLikeThisFieldQuery
                   @param {Array} stopWords An array of string stopwords
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -11698,9 +11698,9 @@
             },
 
             /**
-                  The frequency at which words will be ignored which do not occur in 
+                  The frequency at which words will be ignored which do not occur in
                   at least this many docs. Defaults to 5.
-      
+
                   @member ejs.MoreLikeThisFieldQuery
                   @param {Integer} min A positive integer value.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -11715,10 +11715,10 @@
             },
 
             /**
-                  The maximum frequency in which words may still appear. Words that 
-                  appear in more than this many docs will be ignored. 
+                  The maximum frequency in which words may still appear. Words that
+                  appear in more than this many docs will be ignored.
                   Defaults to unbounded.
-      
+
                   @member ejs.MoreLikeThisFieldQuery
                   @param {Integer} max A positive integer value.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -11733,9 +11733,9 @@
             },
 
             /**
-                  The minimum word length below which words will be ignored. 
+                  The minimum word length below which words will be ignored.
                   Defaults to 0.
-              
+
                   @member ejs.MoreLikeThisFieldQuery
                   @param {Integer} len A positive integer value.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -11750,9 +11750,9 @@
             },
 
             /**
-                  The maximum word length above which words will be ignored. 
+                  The maximum word length above which words will be ignored.
                   Defaults to unbounded (0).
-              
+
                   @member ejs.MoreLikeThisFieldQuery
                   @param {Integer} len A positive integer value.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -11767,9 +11767,9 @@
             },
 
             /**
-                  The analyzer that will be used to analyze the text. Defaults to the 
+                  The analyzer that will be used to analyze the text. Defaults to the
                   analyzer associated with the field.
-      
+
                   @member ejs.MoreLikeThisFieldQuery
                   @param {String} analyzerName The name of the analyzer.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -11784,9 +11784,9 @@
             },
 
             /**
-                  Sets the boost factor to use when boosting terms. 
+                  Sets the boost factor to use when boosting terms.
                   Defaults to 1.
-      
+
                   @member ejs.MoreLikeThisFieldQuery
                   @param {Double} boost A positive <code>double</code> value.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -11803,7 +11803,7 @@
             /**
                   Should the <code>Query</code> fail when an unsupported field
                   is specified. Defaults to true.
-      
+
                   @member ejs.MoreLikeThisFieldQuery
                   @param {Boolean} trueFalse A boolean value
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -11819,7 +11819,7 @@
 
             /**
                   Sets the boost value of the <code>Query</code>.
-      
+
                   @member ejs.MoreLikeThisFieldQuery
                   @param {Double} boost A positive <code>double</code> value.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -11838,21 +11838,21 @@
 
     /**
       @class
-      <p>More like this query find documents that are “like” provided text by 
+      <p>More like this query find documents that are “like” provided text by
       running it against one or more fields.</p>
-  
+
       @name ejs.MoreLikeThisQuery
       @ejs query
       @borrows ejs.QueryMixin.boost as boost
       @borrows ejs.QueryMixin._type as _type
       @borrows ejs.QueryMixin.toJSON as toJSON
-  
+
       @desc
       <p>Constructs a query where each documents returned are “like” provided text</p>
-  
+
       @param {(String|String[])} fields A single field or array of fields to run against.
       @param {String} likeText The text to find documents like it.
-    
+
        */
     ejs.MoreLikeThisQuery = function (fields, likeText) {
 
@@ -11877,7 +11877,7 @@
                    The fields to run the query against.  If you call with a single field,
                    it is added to the existing list of fields.  If called with an array
                    of field names, it replaces any existing values with the new array.
-      
+
                    @member ejs.MoreLikeThisQuery
                    @param {(String|String[])} f A single field name or a list of field names.
                    @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -11900,7 +11900,7 @@
 
             /**
                   The text to find documents like
-      
+
                   @member ejs.MoreLikeThisQuery
                   @param {String} s A text string.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -11915,9 +11915,9 @@
             },
 
             /**
-                  The percentage of terms to match on (float value). 
+                  The percentage of terms to match on (float value).
                   Defaults to 0.3 (30 percent).
-      
+
                   @member ejs.MoreLikeThisQuery
                   @param {Double} percent A double value between 0 and 1.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -11932,9 +11932,9 @@
             },
 
             /**
-                  The frequency below which terms will be ignored in the source doc. 
+                  The frequency below which terms will be ignored in the source doc.
                   The default frequency is 2.
-      
+
                   @member ejs.MoreLikeThisQuery
                   @param {Integer} freq A positive integer value.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -11949,9 +11949,9 @@
             },
 
             /**
-                  The maximum number of query terms that will be included in any 
+                  The maximum number of query terms that will be included in any
                   generated query. Defaults to 25.
-      
+
                   @member ejs.MoreLikeThisQuery
                   @param {Integer} max A positive integer value.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -11966,12 +11966,12 @@
             },
 
             /**
-                  An array of stop words. Any word in this set is considered 
-                  “uninteresting” and ignored. Even if your Analyzer allows stopwords, 
-                  you might want to tell the MoreLikeThis code to ignore them, as for 
-                  the purposes of document similarity it seems reasonable to assume 
+                  An array of stop words. Any word in this set is considered
+                  “uninteresting” and ignored. Even if your Analyzer allows stopwords,
+                  you might want to tell the MoreLikeThis code to ignore them, as for
+                  the purposes of document similarity it seems reasonable to assume
                   that “a stop word is never interesting”.
-                
+
                   @member ejs.MoreLikeThisQuery
                   @param {Array} stopWords An array of string stopwords
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -11986,9 +11986,9 @@
             },
 
             /**
-                  The frequency at which words will be ignored which do not occur in 
+                  The frequency at which words will be ignored which do not occur in
                   at least this many docs. Defaults to 5.
-      
+
                   @member ejs.MoreLikeThisQuery
                   @param {Integer} min A positive integer value.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -12003,10 +12003,10 @@
             },
 
             /**
-                  The maximum frequency in which words may still appear. Words that 
-                  appear in more than this many docs will be ignored. 
+                  The maximum frequency in which words may still appear. Words that
+                  appear in more than this many docs will be ignored.
                   Defaults to unbounded.
-      
+
                   @member ejs.MoreLikeThisQuery
                   @param {Integer} max A positive integer value.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -12021,9 +12021,9 @@
             },
 
             /**
-                  The minimum word length below which words will be ignored. 
+                  The minimum word length below which words will be ignored.
                   Defaults to 0.
-                
+
                   @member ejs.MoreLikeThisQuery
                   @param {Integer} len A positive integer value.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -12038,9 +12038,9 @@
             },
 
             /**
-                  The maximum word length above which words will be ignored. 
+                  The maximum word length above which words will be ignored.
                   Defaults to unbounded (0).
-                
+
                   @member ejs.MoreLikeThisQuery
                   @param {Integer} len A positive integer value.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -12055,9 +12055,9 @@
             },
 
             /**
-                  The analyzer that will be used to analyze the text. Defaults to the 
+                  The analyzer that will be used to analyze the text. Defaults to the
                   analyzer associated with the field.
-      
+
                   @member ejs.MoreLikeThisQuery
                   @param {String} analyzerName The name of the analyzer.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -12072,9 +12072,9 @@
             },
 
             /**
-                  Sets the boost factor to use when boosting terms. 
+                  Sets the boost factor to use when boosting terms.
                   Defaults to 1.
-      
+
                   @member ejs.MoreLikeThisQuery
                   @param {Double} boost A positive <code>double</code> value.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -12091,7 +12091,7 @@
             /**
                   Should the <code>Query</code> fail when an unsupported field
                   is specified. Defaults to true.
-      
+
                   @member ejs.MoreLikeThisQuery
                   @param {Boolean} trueFalse A boolean value
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -12110,22 +12110,22 @@
 
     /**
       @class
-      A <code>MultiMatchQuery</code> query builds further on top of the 
-      <code>MatchQuery</code> by allowing multiple fields to be specified. 
-      The idea here is to allow to more easily build a concise match type query 
-      over multiple fields instead of using a relatively more expressive query 
+      A <code>MultiMatchQuery</code> query builds further on top of the
+      <code>MatchQuery</code> by allowing multiple fields to be specified.
+      The idea here is to allow to more easily build a concise match type query
+      over multiple fields instead of using a relatively more expressive query
       by using multiple match queries within a bool query.
-    
+
       @name ejs.MultiMatchQuery
       @ejs query
       @borrows ejs.QueryMixin.boost as boost
       @borrows ejs.QueryMixin._type as _type
       @borrows ejs.QueryMixin.toJSON as toJSON
-  
+
       @desc
-      A Query that allow to more easily build a MatchQuery 
+      A Query that allow to more easily build a MatchQuery
       over multiple fields
-  
+
       @param {(String|String[])} fields the single field or array of fields to search across
       @param {String} qstr the query string
       */
@@ -12150,13 +12150,13 @@
 
             /**
                   Sets the fields to search across.  If passed a single value it is
-                  added to the existing list of fields.  If passed an array of 
+                  added to the existing list of fields.  If passed an array of
                   values, they overwite all existing values.
-      
+
                   @member ejs.MultiMatchQuery
-                  @param {(String|String[])} f A single field or list of fields names to 
+                  @param {(String|String[])} f A single field or list of fields names to
                     search across.
-                  @returns {Object} returns <code>this</code> so that calls can be 
+                  @returns {Object} returns <code>this</code> so that calls can be
                     chained. Returns {Array} current value if `f` not specified.
                   */
             fields: function (f) {
@@ -12179,7 +12179,7 @@
                   Sets whether or not queries against multiple fields should be combined using Lucene's
                   <a href="http://lucene.apache.org/java/3_0_0/api/core/org/apache/lucene/search/DisjunctionMaxQuery.html">
                   DisjunctionMaxQuery</a>
-      
+
                   @member ejs.MultiMatchQuery
                   @param {String} trueFalse A <code>true/false</code> value.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -12199,7 +12199,7 @@
                   results that include this term in only the best of those multiple
                   fields, without confusing this with the better case of two different
                   terms in the multiple fields.  Default: 0.0.
-      
+
                   @member ejs.MultiMatchQuery
                   @param {Double} tieBreaker A positive <code>double</code> value.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -12214,10 +12214,10 @@
             },
 
             /**
-                  Sets the maximum threshold/frequency to be considered a low 
-                  frequency term in a <code>CommonTermsQuery</code>.  
+                  Sets the maximum threshold/frequency to be considered a low
+                  frequency term in a <code>CommonTermsQuery</code>.
                   Set to a value between 0 and 1.
-      
+
                   @member ejs.MultiMatchQuery
                   @param {Number} freq A positive <code>double</code> value.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -12234,7 +12234,7 @@
             /**
                   Sets a percent value controlling how many "should" clauses in the
                   resulting <code>Query</code> should match.
-      
+
                   @member ejs.MultiMatchQuery
                   @param {Integer} minMatch An <code>integer</code> between 0 and 100.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -12249,32 +12249,32 @@
             },
 
             /**
-                  Sets rewrite method.  Valid values are: 
-                  
-                  constant_score_auto - tries to pick the best constant-score rewrite 
+                  Sets rewrite method.  Valid values are:
+
+                  constant_score_auto - tries to pick the best constant-score rewrite
                     method based on term and document counts from the query
-                    
-                  scoring_boolean - translates each term into boolean should and 
+
+                  scoring_boolean - translates each term into boolean should and
                     keeps the scores as computed by the query
-                    
+
                   constant_score_boolean - same as scoring_boolean, expect no scores
                     are computed.
-                    
-                  constant_score_filter - first creates a private Filter, by visiting 
+
+                  constant_score_filter - first creates a private Filter, by visiting
                     each term in sequence and marking all docs for that term
-                    
+
                   top_terms_boost_N - first translates each term into boolean should
                     and scores are only computed as the boost using the top N
                     scoring terms.  Replace N with an integer value.
-                    
+
                   top_terms_N -   first translates each term into boolean should
                       and keeps the scores as computed by the query. Only the top N
                       scoring terms are used.  Replace N with an integer value.
-                  
+
                   Default is constant_score_auto.
-      
+
                   This is an advanced option, use with care.
-      
+
                   @member ejs.MultiMatchQuery
                   @param {String} m The rewrite method as a string.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -12297,32 +12297,32 @@
             },
 
             /**
-                  Sets fuzzy rewrite method.  Valid values are: 
-                  
-                  constant_score_auto - tries to pick the best constant-score rewrite 
+                  Sets fuzzy rewrite method.  Valid values are:
+
+                  constant_score_auto - tries to pick the best constant-score rewrite
                     method based on term and document counts from the query
-                    
-                  scoring_boolean - translates each term into boolean should and 
+
+                  scoring_boolean - translates each term into boolean should and
                     keeps the scores as computed by the query
-                    
+
                   constant_score_boolean - same as scoring_boolean, expect no scores
                     are computed.
-                    
-                  constant_score_filter - first creates a private Filter, by visiting 
+
+                  constant_score_filter - first creates a private Filter, by visiting
                     each term in sequence and marking all docs for that term
-                    
+
                   top_terms_boost_N - first translates each term into boolean should
                     and scores are only computed as the boost using the top N
                     scoring terms.  Replace N with an integer value.
-                    
+
                   top_terms_N -   first translates each term into boolean should
                       and keeps the scores as computed by the query. Only the top N
                       scoring terms are used.  Replace N with an integer value.
-                  
+
                   Default is constant_score_auto.
-      
+
                   This is an advanced option, use with care.
-                  
+
                   @member ejs.MultiMatchQuery
                   @param {String} m The rewrite method as a string.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -12346,7 +12346,7 @@
 
             /**
                   Enables lenient parsing of the query string.
-      
+
                   @member ejs.MultiMatchQuery
                   @param {Boolean} trueFalse A boolean value
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -12362,7 +12362,7 @@
 
             /**
                   Sets the query string for the <code>Query</code>.
-      
+
                   @member ejs.MultiMatchQuery
                   @param {String} qstr The query string to search for.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -12379,7 +12379,7 @@
             /**
                   Sets the type of the <code>MultiMatchQuery</code>.  Valid values are
                   boolean, phrase, and phrase_prefix or phrasePrefix.
-      
+
                   @member ejs.MultiMatchQuery
                   @param {String} type Any of boolean, phrase, phrase_prefix or phrasePrefix.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -12399,7 +12399,7 @@
 
             /**
                   Sets the fuzziness value for the <code>Query</code>.
-      
+
                   @member ejs.MultiMatchQuery
                   @param {Double} fuzz A <code>double</code> value between 0.0 and 1.0.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -12415,7 +12415,7 @@
 
             /**
                   Sets the prefix length for a fuzzy prefix <code>Query</code>.
-      
+
                   @member ejs.MultiMatchQuery
                   @param {Integer} l A positive <code>integer</code> length value.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -12431,7 +12431,7 @@
 
             /**
                   Sets the max expansions of a fuzzy <code>Query</code>.
-      
+
                   @member ejs.MultiMatchQuery
                   @param {Integer} e A positive <code>integer</code> value.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -12447,7 +12447,7 @@
 
             /**
                   Sets default operator of the <code>Query</code>.  Default: or.
-      
+
                   @member ejs.MultiMatchQuery
                   @param {String} op Any of "and" or "or", no quote characters.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -12468,7 +12468,7 @@
             /**
                   Sets the default slop for phrases. If zero, then exact phrase matches
                   are required.  Default: 0.
-      
+
                   @member ejs.MultiMatchQuery
                   @param {Integer} slop A positive <code>integer</code> value.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -12484,7 +12484,7 @@
 
             /**
                   Sets the analyzer name used to analyze the <code>Query</code> object.
-      
+
                   @member ejs.MultiMatchQuery
                   @param {String} analyzer A valid analyzer name.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -12500,8 +12500,8 @@
 
             /**
                   Sets what happens when no terms match.  Valid values are
-                  "all" or "none".  
-      
+                  "all" or "none".
+
                   @member ejs.MultiMatchQuery
                   @param {String} q A no match action, "all" or "none".
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -12527,23 +12527,23 @@
       <p>Nested queries allow you to search against content within objects that are
          embedded inside of other objects. It is similar to <code>XPath</code> expressions
          in <code>XML</code> both conceptually and syntactically.</p>
-  
-      <p>The query is executed against the nested objects / docs as if they were 
-      indexed as separate docs and resulting in the rootparent doc (or parent 
+
+      <p>The query is executed against the nested objects / docs as if they were
+      indexed as separate docs and resulting in the rootparent doc (or parent
       nested mapping).</p>
-      
+
       @name ejs.NestedQuery
       @ejs query
       @borrows ejs.QueryMixin.boost as boost
       @borrows ejs.QueryMixin._type as _type
       @borrows ejs.QueryMixin.toJSON as toJSON
-  
+
       @desc
       <p>Constructs a query that is capable of executing a search against objects
          nested within a document.</p>
-  
+
       @param {String} path The nested object path.
-  
+
        */
     ejs.NestedQuery = function (path) {
 
@@ -12557,7 +12557,7 @@
 
             /**
                    Sets the root context for the nested query.
-                   
+
                    @member ejs.NestedQuery
                    @param {String} path The path defining the root context for the nested query.
                    @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -12573,7 +12573,7 @@
 
             /**
                    Sets the nested query to be executed.
-                   
+
                    @member ejs.NestedQuery
                    @param {Object} oQuery A valid Query object
                    @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -12594,7 +12594,7 @@
 
             /**
                    Sets the nested filter to be executed.
-                   
+
                    @member ejs.NestedQuery
                    @param {Object} oFilter A valid Filter object
                    @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -12614,7 +12614,7 @@
 
             /**
                    Sets how the inner (nested) matches affect scoring on the parent document.
-                   
+
                    @member ejs.NestedQuery
                    @param {String} mode The mode of scoring to be used for nested matches.
                                    Options are avg, total, max, none - defaults to avg
@@ -12636,9 +12636,9 @@
             },
 
             /**
-                  Sets the scope of the query.  A scope allows to run facets on the 
-                  same scope name that will work against the nested documents. 
-      
+                  Sets the scope of the query.  A scope allows to run facets on the
+                  same scope name that will work against the nested documents.
+
                   @deprecated since elasticsearch 0.90
                   @member ejs.NestedQuery
                   @param {String} s The scope name as a string.
@@ -12653,17 +12653,17 @@
 
     /**
       @class
-      <p>Matches documents that have fields containing terms with a specified 
+      <p>Matches documents that have fields containing terms with a specified
       prefix (not analyzed). The prefix query maps to Lucene PrefixQuery.</p>
-  
+
       @name ejs.PrefixQuery
       @ejs query
       @borrows ejs.QueryMixin._type as _type
       @borrows ejs.QueryMixin.toJSON as toJSON
-  
+
       @desc
       Matches documents containing the specified un-analyzed prefix.
-  
+
       @param {String} field A valid field name.
       @param {String} value A string prefix.
       */
@@ -12681,7 +12681,7 @@
 
             /**
                    The field to run the query against.
-      
+
                    @member ejs.PrefixQuery
                    @param {String} f A single field name.
                    @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -12702,7 +12702,7 @@
 
             /**
                   The prefix value.
-      
+
                   @member ejs.PrefixQuery
                   @param {String} p A string prefix
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -12717,32 +12717,32 @@
             },
 
             /**
-                  Sets rewrite method.  Valid values are: 
-                  
-                  constant_score_auto - tries to pick the best constant-score rewrite 
+                  Sets rewrite method.  Valid values are:
+
+                  constant_score_auto - tries to pick the best constant-score rewrite
                     method based on term and document counts from the query
-                    
-                  scoring_boolean - translates each term into boolean should and 
+
+                  scoring_boolean - translates each term into boolean should and
                     keeps the scores as computed by the query
-                    
+
                   constant_score_boolean - same as scoring_boolean, expect no scores
                     are computed.
-                    
-                  constant_score_filter - first creates a private Filter, by visiting 
+
+                  constant_score_filter - first creates a private Filter, by visiting
                     each term in sequence and marking all docs for that term
-                    
+
                   top_terms_boost_N - first translates each term into boolean should
                     and scores are only computed as the boost using the top N
                     scoring terms.  Replace N with an integer value.
-                    
+
                   top_terms_N -   first translates each term into boolean should
                       and keeps the scores as computed by the query. Only the top N
                       scoring terms are used.  Replace N with an integer value.
-                  
+
                   Default is constant_score_auto.
-      
+
                   This is an advanced option, use with care.
-      
+
                   @member ejs.PrefixQuery
                   @param {String} m The rewrite method as a string.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -12766,7 +12766,7 @@
 
             /**
                   Sets the boost value of the <code>Query</code>.
-      
+
                   @member ejs.PrefixQuery
                   @param {Double} boost A positive <code>double</code> value.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -12788,19 +12788,19 @@
       <p>A query that is parsed using Lucene's default query parser. Although Lucene provides the
       ability to create your own queries through its API, it also provides a rich query language
       through the Query Parser, a lexer which interprets a string into a Lucene Query.</p>
-  
+
       </p>See the Lucene <a href="http://lucene.apache.org/java/2_9_1/queryparsersyntax.html">Query Parser Syntax</a>
       for more information.</p>
-  
+
       @name ejs.QueryStringQuery
       @ejs query
       @borrows ejs.QueryMixin.boost as boost
       @borrows ejs.QueryMixin._type as _type
       @borrows ejs.QueryMixin.toJSON as toJSON
-  
+
       @desc
       A query that is parsed using Lucene's default query parser.
-  
+
       @param {String} qstr A valid Lucene query string.
       */
     ejs.QueryStringQuery = function (qstr) {
@@ -12815,7 +12815,7 @@
 
             /**
                   Sets the query string on this <code>Query</code> object.
-      
+
                   @member ejs.QueryStringQuery
                   @param {String} qstr A valid Lucene query string.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -12831,7 +12831,7 @@
 
             /**
                   Sets the default field/property this query should execute against.
-      
+
                   @member ejs.QueryStringQuery
                   @param {String} fieldName The name of document field/property.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -12846,13 +12846,13 @@
             },
 
             /**
-                  A set of fields/properties this query should execute against.  
-                  Pass a single value to add to the existing list of fields and 
-                  pass an array to overwrite all existing fields.  For each field, 
-                  you can apply a field specific boost by appending a ^boost to the 
+                  A set of fields/properties this query should execute against.
+                  Pass a single value to add to the existing list of fields and
+                  pass an array to overwrite all existing fields.  For each field,
+                  you can apply a field specific boost by appending a ^boost to the
                   field name.  For example, title^10, to give the title field a
                   boost of 10.
-      
+
                   @member ejs.QueryStringQuery
                   @param {Array} fieldNames A list of document fields/properties.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -12881,7 +12881,7 @@
                   Sets whether or not queries against multiple fields should be combined using Lucene's
                   <a href="http://lucene.apache.org/java/3_0_0/api/core/org/apache/lucene/search/DisjunctionMaxQuery.html">
                   DisjunctionMaxQuery</a>
-      
+
                   @member ejs.QueryStringQuery
                   @param {String} trueFalse A <code>true/false</code> value.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -12899,7 +12899,7 @@
                   Set the default <em>Boolean</em> operator. This operator is used to join individual query
                   terms when no operator is explicity used in the query string (i.e., <code>this AND that</code>).
                   Defaults to <code>OR</code>.
-      
+
                   @member ejs.QueryStringQuery
                   @param {String} op The operator to use, AND or OR.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -12919,7 +12919,7 @@
 
             /**
                   Sets the analyzer name used to analyze the <code>Query</code> object.
-      
+
                   @member ejs.QueryStringQuery
                   @param {String} analyzer A valid analyzer name.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -12936,7 +12936,7 @@
             /**
                   Sets the quote analyzer name used to analyze the <code>query</code>
                   when in quoted text.
-      
+
                   @member ejs.QueryStringQuery
                   @param {String} analyzer A valid analyzer name.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -12953,7 +12953,7 @@
             /**
                   Sets whether or not wildcard characters (* and ?) are allowed as the
                   first character of the <code>Query</code>.  Default: true.
-      
+
                   @member ejs.QueryStringQuery
                   @param {Boolean} trueFalse A <code>true/false</code> value.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -12971,7 +12971,7 @@
                   Sets whether or not terms from wildcard, prefix, fuzzy, and
                   range queries should automatically be lowercased in the <code>Query</code>
                   since they are not analyzed.  Default: true.
-      
+
                   @member ejs.QueryStringQuery
                   @param {Boolean} trueFalse A <code>true/false</code> value.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -12988,7 +12988,7 @@
             /**
                   Sets whether or not position increments will be used in the
                   <code>Query</code>. Default: true.
-      
+
                   @member ejs.QueryStringQuery
                   @param {Boolean} trueFalse A <code>true/false</code> value.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -13005,7 +13005,7 @@
 
             /**
                   Sets the prefix length for fuzzy queries.  Default: 0.
-      
+
                   @member ejs.QueryStringQuery
                   @param {Integer} fuzzLen A positive <code>integer</code> value.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -13021,7 +13021,7 @@
 
             /**
                   Set the minimum similarity for fuzzy queries.  Default: 0.5.
-      
+
                   @member ejs.QueryStringQuery
                   @param {Double} minSim A <code>double</code> value between 0 and 1.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -13038,7 +13038,7 @@
             /**
                   Sets the default slop for phrases. If zero, then exact phrase matches
                   are required.  Default: 0.
-      
+
                   @member ejs.QueryStringQuery
                   @param {Integer} slop A positive <code>integer</code> value.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -13056,7 +13056,7 @@
                   Sets whether or not we should attempt to analyzed wilcard terms in the
                   <code>Query</code>. By default, wildcard terms are not analyzed.
                   Analysis of wildcard characters is not perfect.  Default: false.
-      
+
                   @member ejs.QueryStringQuery
                   @param {Boolean} trueFalse A <code>true/false</code> value.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -13073,7 +13073,7 @@
             /**
                   Sets whether or not we should auto generate phrase queries *if* the
                   analyzer returns more than one term. Default: false.
-      
+
                   @member ejs.QueryStringQuery
                   @param {Boolean} trueFalse A <code>true/false</code> value.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -13090,7 +13090,7 @@
             /**
                   Sets a percent value controlling how many "should" clauses in the
                   resulting <code>Query</code> should match.
-      
+
                   @member ejs.QueryStringQuery
                   @param {Integer} minMatch An <code>integer</code> between 0 and 100.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -13111,7 +13111,7 @@
                   results that include this term in only the best of those multiple
                   fields, without confusing this with the better case of two different
                   terms in the multiple fields.  Default: 0.0.
-      
+
                   @member ejs.QueryStringQuery
                   @param {Double} tieBreaker A positive <code>double</code> value.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -13127,7 +13127,7 @@
 
             /**
                   If they query string should be escaped or not.
-      
+
                   @member ejs.QueryStringQuery
                   @param {Boolean} trueFalse A <code>true/false</code> value.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -13142,8 +13142,8 @@
             },
 
             /**
-                  Sets the max number of term expansions for fuzzy queries.  
-      
+                  Sets the max number of term expansions for fuzzy queries.
+
                   @member ejs.QueryStringQuery
                   @param {Integer} max A positive <code>integer</code> value.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -13158,32 +13158,32 @@
             },
 
             /**
-                  Sets fuzzy rewrite method.  Valid values are: 
-                  
-                  constant_score_auto - tries to pick the best constant-score rewrite 
+                  Sets fuzzy rewrite method.  Valid values are:
+
+                  constant_score_auto - tries to pick the best constant-score rewrite
                     method based on term and document counts from the query
-                    
-                  scoring_boolean - translates each term into boolean should and 
+
+                  scoring_boolean - translates each term into boolean should and
                     keeps the scores as computed by the query
-                    
+
                   constant_score_boolean - same as scoring_boolean, expect no scores
                     are computed.
-                    
-                  constant_score_filter - first creates a private Filter, by visiting 
+
+                  constant_score_filter - first creates a private Filter, by visiting
                     each term in sequence and marking all docs for that term
-                    
+
                   top_terms_boost_N - first translates each term into boolean should
                     and scores are only computed as the boost using the top N
                     scoring terms.  Replace N with an integer value.
-                    
+
                   top_terms_N -   first translates each term into boolean should
                       and keeps the scores as computed by the query. Only the top N
                       scoring terms are used.  Replace N with an integer value.
-                  
+
                   Default is constant_score_auto.
-      
+
                   This is an advanced option, use with care.
-                  
+
                   @member ejs.QueryStringQuery
                   @param {String} m The rewrite method as a string.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -13206,32 +13206,32 @@
             },
 
             /**
-                  Sets rewrite method.  Valid values are: 
-                  
-                  constant_score_auto - tries to pick the best constant-score rewrite 
+                  Sets rewrite method.  Valid values are:
+
+                  constant_score_auto - tries to pick the best constant-score rewrite
                     method based on term and document counts from the query
-                    
-                  scoring_boolean - translates each term into boolean should and 
+
+                  scoring_boolean - translates each term into boolean should and
                     keeps the scores as computed by the query
-                    
+
                   constant_score_boolean - same as scoring_boolean, expect no scores
                     are computed.
-                    
-                  constant_score_filter - first creates a private Filter, by visiting 
+
+                  constant_score_filter - first creates a private Filter, by visiting
                     each term in sequence and marking all docs for that term
-                    
+
                   top_terms_boost_N - first translates each term into boolean should
                     and scores are only computed as the boost using the top N
                     scoring terms.  Replace N with an integer value.
-                    
+
                   top_terms_N -   first translates each term into boolean should
                       and keeps the scores as computed by the query. Only the top N
                       scoring terms are used.  Replace N with an integer value.
-                  
+
                   Default is constant_score_auto.
-      
+
                   This is an advanced option, use with care.
-      
+
                   @member ejs.QueryStringQuery
                   @param {String} m The rewrite method as a string.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -13254,9 +13254,9 @@
             },
 
             /**
-                  Sets the suffix to automatically add to the field name when 
+                  Sets the suffix to automatically add to the field name when
                   performing a quoted search.
-      
+
                   @member ejs.QueryStringQuery
                   @param {String} s The suffix as a string.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -13272,7 +13272,7 @@
 
             /**
                   Enables lenient parsing of the query string.
-      
+
                   @member ejs.QueryStringQuery
                   @param {Boolean} trueFalse A boolean value
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -13291,19 +13291,19 @@
 
     /**
       @class
-      <p>Matches documents with fields that have terms within a certain range. 
-      The type of the Lucene query depends on the field type, for string fields, 
-      the TermRangeQuery, while for number/date fields, the query is a 
+      <p>Matches documents with fields that have terms within a certain range.
+      The type of the Lucene query depends on the field type, for string fields,
+      the TermRangeQuery, while for number/date fields, the query is a
       NumericRangeQuery.</p>
-  
+
       @name ejs.RangeQuery
       @ejs query
       @borrows ejs.QueryMixin._type as _type
       @borrows ejs.QueryMixin.toJSON as toJSON
-  
+
       @desc
       Matches documents with fields that have terms within a certain range.
-  
+
       @param {String} field A valid field name.
       */
     ejs.RangeQuery = function (field) {
@@ -13318,7 +13318,7 @@
 
             /**
                    The field to run the query against.
-      
+
                    @member ejs.RangeQuery
                    @param {String} f A single field name.
                    @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -13339,7 +13339,7 @@
 
             /**
                   The lower bound. Defaults to start from the first.
-      
+
                   @member ejs.RangeQuery
                   @param {*} f the lower bound value, type depends on field type
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -13355,7 +13355,7 @@
 
             /**
                   The upper bound. Defaults to unbounded.
-      
+
                   @member ejs.RangeQuery
                   @param {*} t the upper bound value, type depends on field type
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -13370,11 +13370,11 @@
             },
 
             /**
-                  Should the first from (if set) be inclusive or not. 
+                  Should the first from (if set) be inclusive or not.
                   Defaults to true
-      
+
                   @member ejs.RangeQuery
-                  @param {Boolean} trueFalse true to include, false to exclude 
+                  @param {Boolean} trueFalse true to include, false to exclude
                   @returns {Object} returns <code>this</code> so that calls can be chained.
                   */
             includeLower: function (trueFalse) {
@@ -13388,9 +13388,9 @@
 
             /**
                   Should the last to (if set) be inclusive or not. Defaults to true.
-      
+
                   @member ejs.RangeQuery
-                  @param {Boolean} trueFalse true to include, false to exclude 
+                  @param {Boolean} trueFalse true to include, false to exclude
                   @returns {Object} returns <code>this</code> so that calls can be chained.
                   */
             includeUpper: function (trueFalse) {
@@ -13403,9 +13403,9 @@
             },
 
             /**
-                  Greater than value.  Same as setting from to the value, and 
+                  Greater than value.  Same as setting from to the value, and
                   include_lower to false,
-      
+
                   @member ejs.RangeQuery
                   @param {*} val the value, type depends on field type
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -13422,7 +13422,7 @@
             /**
                   Greater than or equal to value.  Same as setting from to the value,
                   and include_lower to true.
-      
+
                   @member ejs.RangeQuery
                   @param {*} val the value, type depends on field type
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -13437,9 +13437,9 @@
             },
 
             /**
-                  Less than value.  Same as setting to to the value, and include_upper 
+                  Less than value.  Same as setting to to the value, and include_upper
                   to false.
-      
+
                   @member ejs.RangeQuery
                   @param {*} val the value, type depends on field type
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -13454,9 +13454,9 @@
             },
 
             /**
-                  Less than or equal to value.  Same as setting to to the value, 
+                  Less than or equal to value.  Same as setting to to the value,
                   and include_upper to true.
-      
+
                   @member ejs.RangeQuery
                   @param {*} val the value, type depends on field type
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -13472,7 +13472,7 @@
 
             /**
                   Sets the boost value of the <code>Query</code>.
-      
+
                   @member ejs.RangeQuery
                   @param {Double} boost A positive <code>double</code> value.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -13491,18 +13491,18 @@
 
     /**
       @class
-      <p>Matches documents that have fields matching a regular expression. Based 
-      on Lucene 4.0 RegexpQuery which uses automaton to efficiently iterate over 
+      <p>Matches documents that have fields matching a regular expression. Based
+      on Lucene 4.0 RegexpQuery which uses automaton to efficiently iterate over
       index terms.</p>
-  
+
       @name ejs.RegexpQuery
       @ejs query
       @borrows ejs.QueryMixin._type as _type
       @borrows ejs.QueryMixin.toJSON as toJSON
-  
+
       @desc
       Matches documents that have fields matching a regular expression.
-  
+
       @param {String} field A valid field name.
       @param {String} value A regex pattern.
       */
@@ -13520,7 +13520,7 @@
 
             /**
                    The field to run the query against.
-      
+
                    @member ejs.RegexpQuery
                    @param {String} f A single field name.
                    @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -13541,7 +13541,7 @@
 
             /**
                   The regexp value.
-      
+
                   @member ejs.RegexpQuery
                   @param {String} p A string regexp
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -13557,7 +13557,7 @@
 
             /**
                   The regex flags to use.  Valid flags are:
-                
+
                   INTERSECTION - Support for intersection notation
                   COMPLEMENT - Support for complement notation
                   EMPTY - Support for the empty language symbol: #
@@ -13565,11 +13565,11 @@
                   INTERVAL - Support for numerical interval notation: <n-m>
                   NONE - Disable support for all syntax options
                   ALL - Enables support for all syntax options
-                
+
                   Use multiple flags by separating with a "|" character.  Example:
-                
+
                   INTERSECTION|COMPLEMENT|EMPTY
-      
+
                   @member ejs.RegexpQuery
                   @param {String} f The flags as a string, separate multiple flags with "|".
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -13586,7 +13586,7 @@
             /**
                   The regex flags to use as a numeric value.  Advanced use only,
                   it is probably better to stick with the <code>flags</code> option.
-                
+
                   @member ejs.RegexpQuery
                   @param {String} v The flags as a numeric value.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -13601,32 +13601,32 @@
             },
 
             /**
-                  Sets rewrite method.  Valid values are: 
-                
-                  constant_score_auto - tries to pick the best constant-score rewrite 
+                  Sets rewrite method.  Valid values are:
+
+                  constant_score_auto - tries to pick the best constant-score rewrite
                     method based on term and document counts from the query
-                  
-                  scoring_boolean - translates each term into boolean should and 
+
+                  scoring_boolean - translates each term into boolean should and
                     keeps the scores as computed by the query
-                  
+
                   constant_score_boolean - same as scoring_boolean, expect no scores
                     are computed.
-                  
-                  constant_score_filter - first creates a private Filter, by visiting 
+
+                  constant_score_filter - first creates a private Filter, by visiting
                     each term in sequence and marking all docs for that term
-                  
+
                   top_terms_boost_N - first translates each term into boolean should
                     and scores are only computed as the boost using the top N
                     scoring terms.  Replace N with an integer value.
-                  
+
                   top_terms_N -   first translates each term into boolean should
                       and keeps the scores as computed by the query. Only the top N
                       scoring terms are used.  Replace N with an integer value.
-                
+
                   Default is constant_score_auto.
-      
+
                   This is an advanced option, use with care.
-      
+
                   @member ejs.RegexpQuery
                   @param {String} m The rewrite method as a string.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -13650,7 +13650,7 @@
 
             /**
                   Sets the boost value of the <code>Query</code>.
-      
+
                   @member ejs.RegexpQuery
                   @param {Double} boost A positive <code>double</code> value.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -13672,19 +13672,19 @@
       <p>Matches spans near the beginning of a field. The spanFirstQuery allows you to search
       for Spans that start and end within the first <code>n</code> positions of the document.
       The span first query maps to Lucene SpanFirstQuery.</p>
-  
+
       @name ejs.SpanFirstQuery
       @ejs query
       @borrows ejs.QueryMixin.boost as boost
       @borrows ejs.QueryMixin._type as _type
       @borrows ejs.QueryMixin.toJSON as toJSON
-  
+
       @desc
       Matches spans near the beginning of a field.
-  
+
       @param {Query} spanQry A valid SpanQuery
       @param {Integer} end the maximum end position in a match.
-      
+
       */
     ejs.SpanFirstQuery = function (spanQry, end) {
 
@@ -13703,7 +13703,7 @@
 
             /**
                   Sets the span query to match on.
-      
+
                   @member ejs.SpanFirstQuery
                   @param {Object} spanQuery Any valid span type query.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -13723,7 +13723,7 @@
 
             /**
                   Sets the maximum end position permitted in a match.
-      
+
                   @member ejs.SpanFirstQuery
                   @param {Number} position The maximum position length to consider.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -13745,16 +13745,16 @@
       <p>Wraps lucene MultiTermQueries as a SpanQuery so it can be used in the
       various Span* queries.  Examples of valid MultiTermQueries are
       <code>Fuzzy, NumericRange, Prefix, Regex, Range, and Wildcard</code>.</p>
-  
+
       @name ejs.SpanMultiTermQuery
       @ejs query
       @borrows ejs.QueryMixin.boost as boost
       @borrows ejs.QueryMixin._type as _type
       @borrows ejs.QueryMixin.toJSON as toJSON
-  
+
       @desc
       Use MultiTermQueries as a SpanQuery.
-  
+
       @param {Query} qry An optional multi-term query object.
       */
     ejs.SpanMultiTermQuery = function (qry) {
@@ -13777,7 +13777,7 @@
 
             /**
                   Sets the span query to match on.
-      
+
                   @member ejs.SpanMultiTermQuery
                   @param {Object} mtQuery Any valid multi-term query.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -13802,19 +13802,19 @@
       @class
       <p>A spanNearQuery will look to find a number of spanQuerys within a given
       distance from each other.</p>
-  
+
       @name ejs.SpanNearQuery
       @ejs query
       @borrows ejs.QueryMixin.boost as boost
       @borrows ejs.QueryMixin._type as _type
       @borrows ejs.QueryMixin.toJSON as toJSON
-  
+
       @desc
       Matches spans which are near one another.
-  
+
       @param {(Query|Query[])} clauses A single SpanQuery or array of SpanQueries
       @param {Integer} slop The number of intervening unmatched positions
-  
+
       */
     ejs.SpanNearQuery = function (clauses, slop) {
 
@@ -13847,7 +13847,7 @@
                   Sets the clauses used.  If passed a single SpanQuery, it is added
                   to the existing list of clauses.  If passed an array of
                   SpanQueries, they replace any existing clauses.
-      
+
                   @member ejs.SpanNearQuery
                   @param {(Query|Query[])} clauses A SpanQuery or array of SpanQueries.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -13879,7 +13879,7 @@
 
             /**
                   Sets the maximum number of intervening unmatched positions.
-      
+
                   @member ejs.SpanNearQuery
                   @param {Number} distance The number of intervening unmatched positions.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -13895,7 +13895,7 @@
 
             /**
                   Sets whether or not matches are required to be in-order.
-      
+
                   @member ejs.SpanNearQuery
                   @param {Boolean} trueFalse Determines if matches must be in-order.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -13912,7 +13912,7 @@
             /**
                   Sets whether or not payloads are being used. A payload is an arbitrary
                   byte array stored at a specific position (i.e. token/term).
-      
+
                   @member ejs.SpanNearQuery
                   @param {Boolean} trueFalse Whether or not to return payloads.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -13933,19 +13933,19 @@
       @class
       <p>Removes matches which overlap with another span query.
       The span not query maps to Lucene SpanNotQuery.</p>
-  
+
       @name ejs.SpanNotQuery
       @ejs query
       @borrows ejs.QueryMixin.boost as boost
       @borrows ejs.QueryMixin._type as _type
       @borrows ejs.QueryMixin.toJSON as toJSON
-  
+
       @desc
       Removes matches which overlap with another span query.
-  
+
       @param {Query} includeQry a valid SpanQuery whose matching docs will be returned.
       @param {Query} excludeQry a valid SpanQuery whose matching docs will not be returned
-      
+
       */
     ejs.SpanNotQuery = function (includeQry, excludeQry) {
 
@@ -13964,7 +13964,7 @@
 
             /**
                   Set the span query whose matches are filtered.
-      
+
                   @member ejs.SpanNotQuery
                   @param {Object} spanQuery Any valid span type query.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -13984,7 +13984,7 @@
 
             /**
                   Sets the span query whose matches must not overlap those returned.
-      
+
                   @member ejs.SpanNotQuery
                   @param {Object} spanQuery Any valid span type query.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -14009,18 +14009,18 @@
       @class
       <p>The spanOrQuery takes an array of SpanQuerys and will match if any of the
       underlying SpanQueries match. The span or query maps to Lucene SpanOrQuery.</p>
-  
+
       @name ejs.SpanOrQuery
       @ejs query
       @borrows ejs.QueryMixin.boost as boost
       @borrows ejs.QueryMixin._type as _type
       @borrows ejs.QueryMixin.toJSON as toJSON
-  
+
       @desc
       Matches the union of its span clauses.
-  
+
       @param {Object} clauses A single SpanQuery or array of SpanQueries.
-  
+
       */
     ejs.SpanOrQuery = function (clauses) {
 
@@ -14052,7 +14052,7 @@
                   Sets the clauses used.  If passed a single SpanQuery, it is added
                   to the existing list of clauses.  If passed an array of
                   SpanQueries, they replace any existing clauses.
-      
+
                   @member ejs.SpanOrQuery
                   @param {(Query|Query[])} clauses A SpanQuery or array of SpanQueries.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -14090,15 +14090,15 @@
       <p>A spanTermQuery is the basic unit of Lucene's Span Query which allows for nested,
       positional restrictions when matching documents. The spanTermQuery simply matches
       spans containing a term. It's essentially a termQuery with positional information asscoaited.</p>
-  
+
       @name ejs.SpanTermQuery
       @ejs query
       @borrows ejs.QueryMixin._type as _type
       @borrows ejs.QueryMixin.toJSON as toJSON
-  
+
       @desc
       Matches spans containing a term
-  
+
       @param {String} field the document field/field to query against
       @param {String} value the literal value to be matched
       */
@@ -14116,7 +14116,7 @@
 
             /**
                   Sets the field to query against.
-      
+
                   @member ejs.SpanTermQuery
                   @param {String} f A valid field name.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -14137,7 +14137,7 @@
 
             /**
                   Sets the term.
-      
+
                   @member ejs.SpanTermQuery
                   @param {String} t A single term.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -14153,7 +14153,7 @@
 
             /**
                   Sets the boost value for documents matching the <code>Query</code>.
-      
+
                   @member ejs.SpanTermQuery
                   @param {Double} boost A positive <code>double</code> value.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -14176,16 +14176,16 @@
       keyword or <em>term</em>. For instance, you might want to retieve all the
       documents/objects that contain the term <code>Javascript</code>. Term filters
       often serve as the basis for more complex queries such as <em>Boolean</em> queries.</p>
-  
+
       @name ejs.TermQuery
       @ejs query
       @borrows ejs.QueryMixin._type as _type
       @borrows ejs.QueryMixin.toJSON as toJSON
-  
+
       @desc
       A Query that matches documents containing a term. This may be
       combined with other terms with a BooleanQuery.
-  
+
       @param {String} field the document field/key to query against
       @param {String} term the literal value to be matched
       */
@@ -14203,7 +14203,7 @@
 
             /**
                   Sets the fields to query against.
-      
+
                   @member ejs.TermQuery
                   @param {String} f A valid field name.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -14224,7 +14224,7 @@
 
             /**
                   Sets the term.
-      
+
                   @member ejs.TermQuery
                   @param {String} t A single term.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -14240,7 +14240,7 @@
 
             /**
                   Sets the boost value for documents matching the <code>Query</code>.
-      
+
                   @member ejs.TermQuery
                   @param {Number} boost A positive <code>double</code> value.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -14259,19 +14259,19 @@
 
     /**
       @class
-      <p>A query that match on any (configurable) of the provided terms. This is 
-      a simpler syntax query for using a bool query with several term queries 
+      <p>A query that match on any (configurable) of the provided terms. This is
+      a simpler syntax query for using a bool query with several term queries
       in the should clauses.</p>
-  
+
       @name ejs.TermsQuery
       @ejs query
       @borrows ejs.QueryMixin.boost as boost
       @borrows ejs.QueryMixin._type as _type
       @borrows ejs.QueryMixin.toJSON as toJSON
-  
+
       @desc
-      A Query that matches documents containing provided terms. 
-  
+      A Query that matches documents containing provided terms.
+
       @param {String} field the document field/key to query against
       @param {(String|String[])} terms a single term or array of "terms" to match
       */
@@ -14293,7 +14293,7 @@
 
             /**
                   Sets the fields to query against.
-      
+
                   @member ejs.TermsQuery
                   @param {String} f A valid field name.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -14316,7 +14316,7 @@
                   Sets the terms.  If you t is a String, it is added to the existing
                   list of terms.  If t is an array, the list of terms replaces the
                   existing terms.
-      
+
                   @member ejs.TermsQuery
                   @param {(String|String[])} t A single term or an array or terms.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -14340,7 +14340,7 @@
             /**
                   Sets the minimum number of terms that need to match in a document
                   before that document is returned in the results.
-      
+
                   @member ejs.TermsQuery
                   @param {Integer} min A positive integer.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -14357,7 +14357,7 @@
             /**
                   Enables or disables similarity coordinate scoring of documents
                   matching the <code>Query</code>. Default: false.
-      
+
                   @member ejs.TermsQuery
                   @param {String} trueFalse A <code>true/false</code value.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -14376,23 +14376,23 @@
 
     /**
       @class
-      <p>TThe top_children query runs the child query with an estimated hits size, 
-      and out of the hit docs, aggregates it into parent docs. If there aren’t 
-      enough parent docs matching the requested from/size search request, then it 
+      <p>TThe top_children query runs the child query with an estimated hits size,
+      and out of the hit docs, aggregates it into parent docs. If there aren’t
+      enough parent docs matching the requested from/size search request, then it
       is run again with a wider (more hits) search.</p>
-  
-      <p>The top_children also provide scoring capabilities, with the ability to 
+
+      <p>The top_children also provide scoring capabilities, with the ability to
       specify max, sum or avg as the score type.</p>
-  
+
       @name ejs.TopChildrenQuery
       @ejs query
       @borrows ejs.QueryMixin.boost as boost
       @borrows ejs.QueryMixin._type as _type
       @borrows ejs.QueryMixin.toJSON as toJSON
-  
+
       @desc
       Returns child documents matching the query aggregated into the parent docs.
-  
+
       @param {Object} qry A valid query object.
       @param {String} type The child type to execute the query on
       */
@@ -14413,7 +14413,7 @@
 
             /**
                   Sets the query
-      
+
                   @member ejs.TopChildrenQuery
                   @param {Object} q A valid Query object
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -14433,7 +14433,7 @@
 
             /**
                   Sets the child document type to search against
-      
+
                   @member ejs.TopChildrenQuery
                   @param {String} t A valid type name
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -14448,9 +14448,9 @@
             },
 
             /**
-                  Sets the scope of the query.  A scope allows to run facets on the 
-                  same scope name that will work against the child documents. 
-      
+                  Sets the scope of the query.  A scope allows to run facets on the
+                  same scope name that will work against the child documents.
+
                   @deprecated since elasticsearch 0.90
                   @member ejs.TopChildrenQuery
                   @param {String} s The scope name as a string.
@@ -14463,11 +14463,11 @@
             /**
                   Sets the scoring type.  Valid values are max, sum, or avg. If
                   another value is passed it we silently ignore the value.
-      
+
                   @deprecated since elasticsearch 0.90.1, use scoreMode
-                  
+
                   @member ejs.TopChildrenQuery
-                  @param {String} s The scoring type as a string. 
+                  @param {String} s The scoring type as a string.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
                   */
             score: function (s) {
@@ -14484,11 +14484,11 @@
             },
 
             /**
-                  Sets the scoring type.  Valid values are max, sum, total, or avg. 
+                  Sets the scoring type.  Valid values are max, sum, total, or avg.
                   If another value is passed it we silently ignore the value.
-      
+
                   @member ejs.TopChildrenQuery
-                  @param {String} s The scoring type as a string. 
+                  @param {String} s The scoring type as a string.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
                   */
             scoreMode: function (s) {
@@ -14507,7 +14507,7 @@
             /**
                   Sets the factor which is the number of hits that are asked for in
                   the child query.  Defaults to 5.
-      
+
                   @member ejs.TopChildrenQuery
                   @param {Integer} f A positive integer value.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -14525,7 +14525,7 @@
                   Sets the incremental factor.  The incremental factor is used when not
                   enough child documents are returned so the factor is multiplied by
                   the incremental factor to fetch more results.  Defaults to 52
-      
+
                   @member ejs.TopChildrenQuery
                   @param {Integer} f A positive integer value.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -14544,23 +14544,23 @@
 
     /**
       @class
-      <p>Matches documents that have fields matching a wildcard expression 
-      (not analyzed). Supported wildcards are *, which matches any character 
-      sequence (including the empty one), and ?, which matches any single 
-      character. Note this query can be slow, as it needs to iterate over many 
-      wildcards. In order to prevent extremely slow wildcard queries, a wildcard 
-      wildcard should not start with one of the wildcards * or ?. The wildcard query 
+      <p>Matches documents that have fields matching a wildcard expression
+      (not analyzed). Supported wildcards are *, which matches any character
+      sequence (including the empty one), and ?, which matches any single
+      character. Note this query can be slow, as it needs to iterate over many
+      wildcards. In order to prevent extremely slow wildcard queries, a wildcard
+      wildcard should not start with one of the wildcards * or ?. The wildcard query
       maps to Lucene WildcardQuery.</p>
-  
+
       @name ejs.WildcardQuery
       @ejs query
       @borrows ejs.QueryMixin._type as _type
       @borrows ejs.QueryMixin.toJSON as toJSON
-  
+
       @desc
       A Query that matches documents containing a wildcard. This may be
       combined with other wildcards with a BooleanQuery.
-  
+
       @param {String} field the document field/key to query against
       @param {String} value the literal value to be matched
       */
@@ -14578,7 +14578,7 @@
 
             /**
                   Sets the fields to query against.
-      
+
                   @member ejs.WildcardQuery
                   @param {String} f A valid field name.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -14599,7 +14599,7 @@
 
             /**
                   Sets the wildcard query value.
-      
+
                   @member ejs.WildcardQuery
                   @param {String} v A single term.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -14614,32 +14614,32 @@
             },
 
             /**
-                  Sets rewrite method.  Valid values are: 
-                  
-                  constant_score_auto - tries to pick the best constant-score rewrite 
+                  Sets rewrite method.  Valid values are:
+
+                  constant_score_auto - tries to pick the best constant-score rewrite
                     method based on term and document counts from the query
-                    
-                  scoring_boolean - translates each term into boolean should and 
+
+                  scoring_boolean - translates each term into boolean should and
                     keeps the scores as computed by the query
-                    
+
                   constant_score_boolean - same as scoring_boolean, expect no scores
                     are computed.
-                    
-                  constant_score_filter - first creates a private Filter, by visiting 
+
+                  constant_score_filter - first creates a private Filter, by visiting
                     each term in sequence and marking all docs for that term
-                    
+
                   top_terms_boost_N - first translates each term into boolean should
                     and scores are only computed as the boost using the top N
                     scoring terms.  Replace N with an integer value.
-                    
+
                   top_terms_N -   first translates each term into boolean should
                       and keeps the scores as computed by the query. Only the top N
                       scoring terms are used.  Replace N with an integer value.
-                  
+
                   Default is constant_score_auto.
-      
+
                   This is an advanced option, use with care.
-      
+
                   @member ejs.WildcardQuery
                   @param {String} m The rewrite method as a string.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -14663,7 +14663,7 @@
 
             /**
                   Sets the boost value for documents matching the <code>Query</code>.
-      
+
                   @member ejs.WildcardQuery
                   @param {Number} boost A positive <code>double</code> value.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -14685,18 +14685,18 @@
       <p>The boost_factor score allows you to multiply the score by the provided
       boost_factor. This can sometimes be desired since boost value set on specific
       queries gets normalized, while for this score function it does not.</p>
-  
+
       @name ejs.BoostFactorScoreFunction
       @ejs scorefunction
       @borrows ejs.ScoreFunctionMixin.filter as filter
       @borrows ejs.ScoreFunctionMixin._type as _type
       @borrows ejs.ScoreFunctionMixin.toJSON as toJSON
-  
+
       @param {Float} boostVal the boost factor.
-  
+
       @desc
       <p>Multiply the score by the provided boost_factor.</p>
-  
+
       */
     ejs.BoostFactorScoreFunction = function (boostVal) {
 
@@ -14710,7 +14710,7 @@
 
             /**
             Sets the boost factor.
-      
+
             @member ejs.BoostFactorScoreFunction
             @param {Float} b the boost factor.
             @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -14733,21 +14733,21 @@
       the distance of a numeric field value of the document from a user given
       origin. This is similar to a range query, but with smooth edges instead of
       boxes.</p>
-  
+
       <p>Supported decay functions are: linear, exp, and gauss.</p>
-  
+
       @name ejs.DecayScoreFunction
       @ejs scorefunction
       @borrows ejs.ScoreFunctionMixin.filter as filter
       @borrows ejs.ScoreFunctionMixin._type as _type
       @borrows ejs.ScoreFunctionMixin.toJSON as toJSON
-  
+
       @param {String} field the document field to run decay function against.
-  
+
       @desc
       <p>Score a document with a function that decays depending on the distance
       of a numeric field value of the document from given origin.</p>
-  
+
       */
     ejs.DecayScoreFunction = function (field) {
 
@@ -14771,7 +14771,7 @@
 
             /**
             Use the linear decay function. Linear decay.
-      
+
             @member ejs.DecayScoreFunction
             @returns {Object} returns <code>this</code> so that calls can be chained.
             */
@@ -14781,7 +14781,7 @@
 
             /**
             Use the exp decay function. Exponential decay.
-      
+
             @member ejs.DecayScoreFunction
             @returns {Object} returns <code>this</code> so that calls can be chained.
             */
@@ -14791,7 +14791,7 @@
 
             /**
             Use the gauss decay function. Normal decay.
-      
+
             @member ejs.DecayScoreFunction
             @returns {Object} returns <code>this</code> so that calls can be chained.
             */
@@ -14801,7 +14801,7 @@
 
             /**
             Sets the fields to run the decay function against.
-      
+
             @member ejs.DecayScoreFunction
             @param {String} f A valid field name.
             @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -14822,7 +14822,7 @@
 
             /**
             Sets the scale/rate of decay.
-      
+
             @member ejs.DecayScoreFunction
             @param {String} s A valid scale value for the field type.
             @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -14839,7 +14839,7 @@
             /**
             Sets the origin which is the “central point” from which the distance is
             calculated.
-      
+
             @member ejs.DecayScoreFunction
             @param {String} o A valid origin value for the field type.
             @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -14863,7 +14863,7 @@
             /**
             Sets the decay value which defines how documents are scored at the distance
             given at scale.
-      
+
             @member ejs.DecayScoreFunction
             @param {Double} d A decay value as a double.
             @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -14881,7 +14881,7 @@
             Sets the decay offset.  The decay function will only compute a the decay
             function for documents with a distance greater that the defined offset.
             The default is 0.
-      
+
             @member ejs.DecayScoreFunction
             @param {String} o A valid offset value for the field type.
             @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -14902,16 +14902,16 @@
       @class
       <p>The random_score generates scores via a pseudo random number algorithm
       that is initialized with a seed.</p>
-  
+
       @name ejs.RandomScoreFunction
       @ejs scorefunction
       @borrows ejs.ScoreFunctionMixin.filter as filter
       @borrows ejs.ScoreFunctionMixin._type as _type
       @borrows ejs.ScoreFunctionMixin.toJSON as toJSON
-  
+
       @desc
       <p>Randomly score documents.</p>
-  
+
       */
     ejs.RandomScoreFunction = function () {
 
@@ -14923,7 +14923,7 @@
 
             /**
             Sets random seed value.
-      
+
             @member ejs.RandomScoreFunction
             @param {Long} s A seed value.
             @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -14945,16 +14945,16 @@
       <p>The script_score function allows you to wrap another query and customize
       the scoring of it optionally with a computation derived from other numeric
       field values in the doc using a script expression.</p>
-  
+
       @name ejs.ScriptScoreFunction
       @ejs scorefunction
       @borrows ejs.ScoreFunctionMixin.filter as filter
       @borrows ejs.ScoreFunctionMixin._type as _type
       @borrows ejs.ScoreFunctionMixin.toJSON as toJSON
-  
+
       @desc
       <p>Modify a documents score using a script.</p>
-  
+
       */
     ejs.ScriptScoreFunction = function () {
 
@@ -14966,7 +14966,7 @@
 
             /**
             Set the script that will modify the score.
-      
+
             @member ejs.ScriptScoreFunction
             @param {String} scriptCode A valid script string to execute.
             @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -14982,7 +14982,7 @@
 
             /**
             The script language being used.
-      
+
             @member ejs.ScriptScoreFunction
             @param {String} language The language of the script.
             @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -14999,7 +14999,7 @@
             /**
             Sets parameters that will be applied to the script.  Overwrites
             any existing params.
-      
+
             @member ejs.ScriptScoreFunction
             @param {Object} p An object where the keys are the parameter name and
               values are the parameter value.
@@ -15020,17 +15020,17 @@
 
     /**
       @class
-      <p>A GeoPoint object that can be used in queries and filters that 
+      <p>A GeoPoint object that can be used in queries and filters that
       take a GeoPoint.  GeoPoint supports various input formats.</p>
-  
+
       <p>See http://www.elasticsearch.org/guide/reference/mapping/geo-point-type.html</p>
-  
+
       @name ejs.GeoPoint
       @ejs geo
-  
+
       @desc
       <p>Defines a point</p>
-  
+
       @param {Array} p An optional point as an array in [lat, lon] format.
       */
     ejs.GeoPoint = function (p) {
@@ -15046,11 +15046,11 @@
 
             /**
                   Sets the GeoPoint as properties on an object.  The object must have
-                  a 'lat' and 'lon' or a 'geohash' property.  
-                
+                  a 'lat' and 'lon' or a 'geohash' property.
+
                   Example:
                   {lat: 41.12, lon: -71.34} or {geohash: "drm3btev3e86"}
-      
+
                   @member ejs.GeoPoint
                   @param {Object} obj an object with a lat and lon or geohash property.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -15076,11 +15076,11 @@
 
             /**
                   Sets the GeoPoint as a string.  The format is "lat,lon".
-                
+
                   Example:
-                
+
                   "41.12,-71.34"
-      
+
                   @member ejs.GeoPoint
                   @param {String} s a String point in "lat,lon" format.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -15098,12 +15098,12 @@
             },
 
             /**
-                  Sets the GeoPoint as a GeoHash.  The hash is a string of 
+                  Sets the GeoPoint as a GeoHash.  The hash is a string of
                   alpha-numeric characters with a precision length that defaults to 12.
-                
+
                   Example:
                   "drm3btev3e86"
-      
+
                   @member ejs.GeoPoint
                   @param {String} hash an GeoHash as a string
                   @param {Integer} precision an optional precision length, defaults
@@ -15128,10 +15128,10 @@
             /**
                   Sets the GeoPoint from an array point.  The array must contain only
                   2 values.  The first value is the lat and the 2nd value is the lon.
-                
+
                   Example:
                   [41.12, -71.34]
-      
+
                   @member ejs.GeoPoint
                   @param {Array} a an array of length 2.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -15152,7 +15152,7 @@
 
             /**
                   The type of ejs object.  For internal use only.
-                  
+
                   @member ejs.GeoPoint
                   @returns {String} the type of object
                   */
@@ -15163,7 +15163,7 @@
             /**
                   Retrieves the internal <code>script</code> object. This is typically used by
                   internal API functions so use with caution.
-      
+
                   @member ejs.GeoPoint
                   @returns {String} returns this object's internal object representation.
                   */
@@ -15180,21 +15180,21 @@
       field in question is stored (has store set to yes in the mapping), it will
       be used, otherwise, the actual _source will be loaded and the relevant
       field will be extracted from it.</p>
-  
+
       <p>If no term_vector information is provided (by setting it to
       with_positions_offsets in the mapping), then the plain highlighter will be
       used. If it is provided, then the fast vector highlighter will be used.
       When term vectors are available, highlighting will be performed faster at
       the cost of bigger index size.</p>
-  
+
       <p>See http://www.elasticsearch.org/guide/reference/api/search/highlighting.html</p>
-  
+
       @name ejs.Highlight
       @ejs request
-  
+
       @desc
       <p>Allows to highlight search results on one or more fields.</p>
-  
+
       @param {(String|String[])} fields An optional field or array of fields to highlight.
       */
     ejs.Highlight = function (fields) {
@@ -15231,7 +15231,7 @@
                   Allows you to set the fields that will be highlighted.  You can
                   specify a single field or an array of fields.  All fields are
                   added to the current list of fields.
-      
+
                   @member ejs.Highlight
                   @param {(String|String[])} vals A field name or array of field names.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -15258,7 +15258,7 @@
                   Sets the pre tags for highlighted fragments.  You can apply the
                   tags to a specific field by passing the field name in to the
                   <code>oField</code> parameter.
-      
+
                   @member ejs.Highlight
                   @param {(String|String[])} tags A single tag or an array of tags.
                   @param {String} oField An optional field name
@@ -15284,7 +15284,7 @@
                   Sets the post tags for highlighted fragments.  You can apply the
                   tags to a specific field by passing the field name in to the
                   <code>oField</code> parameter.
-      
+
                   @member ejs.Highlight
                   @param {(String|String[])} tags A single tag or an array of tags.
                   @param {String} oField An optional field name
@@ -15310,9 +15310,9 @@
                   Sets the order of highlight fragments.  You can apply the option
                   to a specific field by passing the field name in to the
                   <code>oField</code> parameter.  Valid values for order are:
-      
+
                   score - the score calculated by Lucene's highlighting framework.
-      
+
                   @member ejs.Highlight
                   @param {String} o The order.  Currently only "score".
                   @param {String} oField An optional field name
@@ -15335,9 +15335,9 @@
 
             /**
                   Sets the schema to be used for the tags. Valid values are:
-      
+
                   styled - 10 <em> pre tags with css class of hltN, where N is 1-10
-      
+
                   @member ejs.Highlight
                   @param {String} s The schema.  Currently only "styled".
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -15359,7 +15359,7 @@
                   Enables highlights in documents matched by a filter.
                   You can apply the option to a specific field by passing the field
                   name in to the <code>oField</code> parameter.  Defaults to false.
-      
+
                   @member ejs.Highlight
                   @param {Boolean} trueFalse If filtered docs should be highlighted.
                   @param {String} oField An optional field name
@@ -15380,7 +15380,7 @@
                   Sets the size of each highlight fragment in characters.
                   You can apply the option to a specific field by passing the field
                   name in to the <code>oField</code> parameter. Default:  100
-      
+
                   @member ejs.Highlight
                   @param {Integer} size The fragment size in characters.
                   @param {String} oField An optional field name
@@ -15401,7 +15401,7 @@
                   Sets the number of highlight fragments.
                   You can apply the option to a specific field by passing the field
                   name in to the <code>oField</code> parameter. Default:  5
-      
+
                   @member ejs.Highlight
                   @param {Integer} cnt The fragment size in characters.
                   @param {String} oField An optional field name
@@ -15420,10 +15420,10 @@
 
             /**
                   Sets highlight encoder.  Valid values are:
-      
+
                   default - the default, no encoding
                   html - to encode html characters if you use html tags
-      
+
                   @member ejs.Highlight
                   @param {String} e The encoder.  default or html
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -15448,7 +15448,7 @@
                   specifically on them.  You can apply the option to a specific
                   field by passing the field name in to the <code>oField</code>
                   parameter.  Defaults to false.
-      
+
                   @member ejs.Highlight
                   @param {Boolean} trueFalse If filtered docs should be highlighted.
                   @param {String} oField An optional field name
@@ -15470,7 +15470,7 @@
                   start of a boundary character. You can apply the option to a
                   specific field by passing the field name in to the
                   <code>oField</code> parameter. Default:  20
-      
+
                   @member ejs.Highlight
                   @param {Integer} cnt The max characters to scan.
                   @param {String} oField An optional field name
@@ -15494,7 +15494,7 @@
                   string with each boundary character defined in it. You can apply
                   the option to a specific field by passing the field name in to
                   the <code>oField</code> parameter. It defaults to ".,!? \t\n".
-      
+
                   @member ejs.Highlight
                   @param {String} charStr The boundary chars in a string.
                   @param {String} oField An optional field name
@@ -15515,10 +15515,10 @@
                   Sets the highligher type.  You can apply the option
                   to a specific field by passing the field name in to the
                   <code>oField</code> parameter.  Valid values for order are:
-      
+
                   fast-vector-highlighter - the fast vector based highligher
                   highlighter - the slower plain highligher
-      
+
                   @member ejs.Highlight
                   @param {String} t The highligher.
                   @param {String} oField An optional field name
@@ -15544,12 +15544,12 @@
                   Sets the fragmenter type.  You can apply the option
                   to a specific field by passing the field name in to the
                   <code>oField</code> parameter.  Valid values for order are:
-      
+
                   simple - breaks text up into same-size fragments with no concerns
                     over spotting sentence boundaries.
                   span - breaks text up into same-size fragments but does not split
                     up Spans.
-      
+
                   @member ejs.Highlight
                   @param {String} f The fragmenter.
                   @param {String} oField An optional field name
@@ -15573,9 +15573,9 @@
             /**
                   Sets arbitrary options that can be passed to the highlighter
                   implementation in use.
-      
+
                   @since elasticsearch 0.90.1
-      
+
                   @member ejs.Highlight
                   @param {String} opts A map/object of option name and values.
                   @param {Object} oField An optional field name
@@ -15598,7 +15598,7 @@
 
             /**
                   The type of ejs object.  For internal use only.
-      
+
                   @member ejs.Highlight
                   @returns {String} the type of object
                   */
@@ -15609,7 +15609,7 @@
             /**
                   Retrieves the internal <code>script</code> object. This is typically used by
                   internal API functions so use with caution.
-      
+
                   @member ejs.Highlight
                   @returns {String} returns this object's internal object representation.
                   */
@@ -15621,21 +15621,21 @@
 
     /**
       @class
-      <p>A shape which has already been indexed in another index and/or index 
-      type. This is particularly useful for when you have a pre-defined list of 
-      shapes which are useful to your application and you want to reference this 
-      using a logical name (for example ‘New Zealand’) rather than having to 
+      <p>A shape which has already been indexed in another index and/or index
+      type. This is particularly useful for when you have a pre-defined list of
+      shapes which are useful to your application and you want to reference this
+      using a logical name (for example ‘New Zealand’) rather than having to
       provide their coordinates each time.</p>
-  
+
       @name ejs.IndexedShape
       @ejs geo
-  
+
       @desc
       <p>Defines a shape that already exists in an index/type.</p>
-  
+
       @param {String} type The name of the type where the shape is indexed.
       @param {String} id The document id of the shape.
-  
+
       */
     ejs.IndexedShape = function (type, id) {
 
@@ -15648,7 +15648,7 @@
 
             /**
                   Sets the type which the shape is indexed under.
-      
+
                   @member ejs.IndexedShape
                   @param {String} t a valid shape type.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -15664,7 +15664,7 @@
 
             /**
                   Sets the document id of the indexed shape.
-      
+
                   @member ejs.IndexedShape
                   @param {String} id a valid document id.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -15679,9 +15679,9 @@
             },
 
             /**
-                  Sets the index which the shape is indexed under. 
+                  Sets the index which the shape is indexed under.
                   Defaults to "shapes".
-      
+
                   @member ejs.IndexedShape
                   @param {String} idx a valid index name.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -15696,9 +15696,9 @@
             },
 
             /**
-                  Sets the field name containing the indexed shape. 
+                  Sets the field name containing the indexed shape.
                   Defaults to "shape".
-      
+
                   @member ejs.IndexedShape
                   @param {String} field a valid field name.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -15714,7 +15714,7 @@
 
             /**
                   The type of ejs object.  For internal use only.
-                  
+
                   @member ejs.IndexedShape
                   @returns {String} the type of object
                   */
@@ -15725,7 +15725,7 @@
             /**
                   Retrieves the internal <code>script</code> object. This is typically used by
                   internal API functions so use with caution.
-      
+
                   @member ejs.IndexedShape
                   @returns {String} returns this object's internal object representation.
                   */
@@ -15738,13 +15738,13 @@
     /**
       @class
       <p>The <code>Request</code> object provides methods generating an elasticsearch request body.</p>
-  
+
       @name ejs.Request
       @ejs request
-  
+
       @desc
       <p>Provides methods for generating request bodies.</p>
-  
+
       @param {Object} conf A configuration object containing the initilization
         parameters.  The following parameters can be set in the conf object:
           indices - single index name or array of index names
@@ -15764,7 +15764,7 @@
 
             /**
                   <p>Sets the sorting for the query.  This accepts many input formats.</p>
-      
+
                   <dl>
                       <dd><code>sort()</code> - The current sorting values are returned.</dd>
                       <dd><code>sort(fieldName)</code> - Adds the field to the current list of sorting values.</dd>
@@ -15774,12 +15774,12 @@
                       <dd><code>sort(array)</code> - Replaces all current sorting values with values
                           from the array.  The array must contain only strings and Sort objects.</dd>
                   </dl>
-      
+
                   <p>Multi-level sorting is supported so the order in which sort fields
                   are added to the query requests is relevant.</p>
-      
+
                   <p>It is recommended to use <code>Sort</code> objects when possible.</p>
-      
+
                   @member ejs.Request
                   @param {String} fieldName The field to be sorted by.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -15844,7 +15844,7 @@
             /**
                  Enables score computation and tracking during sorting.  Be default,
                  when sorting scores are not computed.
-      
+
                   @member ejs.Request
                   @param {Boolean} trueFalse If scores should be computed and tracked.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -15863,7 +15863,7 @@
                   <code>from</code> parameter allows you to page through the result set
                   by making multiple request. This parameters specifies the starting
                   result/document number point. Combine with <code>size()</code> to achieve paging.
-      
+
                   @member ejs.Request
                   @param {Array} f The offset at which to start fetching results/documents from the result set.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -15879,7 +15879,7 @@
 
             /**
                   Sets the number of results/documents to be returned. This is set on a per page basis.
-      
+
                   @member ejs.Request
                   @param {Integer} s The number of results that are to be returned by the search.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -15896,10 +15896,10 @@
             /**
                   A timeout, bounding the request to be executed within the
                   specified time value and bail when expired. Defaults to no timeout.
-      
+
                   <p>This option is valid during the following operations:
                       <code>search</code> and <code>delete by query</code></p>
-      
+
                   @member ejs.Request
                   @param {Long} t The timeout value in milliseconds.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -15917,11 +15917,11 @@
             /**
                   By default, searches return full documents, meaning every property or field.
                   This method allows you to specify which fields you want returned.
-      
+
                   Pass a single field name and it is appended to the current list of
                   fields.  Pass an array of fields and it replaces all existing
                   fields.
-      
+
                   @member ejs.Request
                   @param {(String|String[])} s The field as a string or fields as array
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -15952,7 +15952,7 @@
                   unless you have used the fields parameter or if the _source field
                   is disabled.  Set the includes parameter to false to completely
                   disable returning the source field.
-      
+
                   @member ejs.Request
                   @param {(String|Boolean|String[])} includes The field or list of fields to include as array.
                     Set to a boolean false to disable the source completely.
@@ -15990,7 +15990,7 @@
             /**
                   Once a query executes, you can use rescore to run a secondary, more
                   expensive query to re-order the results.
-      
+
                   @member ejs.Request
                   @param {Rescore} r The rescore configuration.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -16012,7 +16012,7 @@
             /**
                   Allows you to set the specified query on this search object. This is the
                   query that will be used when the search is executed.
-      
+
                   @member ejs.Request
                   @param {Query} someQuery Any valid <code>Query</code> object.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -16033,7 +16033,7 @@
             /**
                   Allows you to set the specified facet on this request object. Multiple facets can
                   be set, all of which will be returned when the search is executed.
-      
+
                   @member ejs.Request
                   @param {Facet} facet Any valid <code>Facet</code> object.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -16060,7 +16060,7 @@
             Add an aggregation.  This method can be called multiple times
             in order to set multiple nested aggregations that will be executed
             at the same time as the search request.
-      
+
             @member ejs.Request
             @param {Aggregation} agg Any valid <code>Aggregation</code> object.
             @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -16087,7 +16087,7 @@
             Add an aggregation.  This method can be called multiple times
             in order to set multiple nested aggregations that will be executed
             at the same time as the search request.  Alias for the aggregation method.
-      
+
             @member ejs.Request
             @param {Aggregation} agg Any valid <code>Aggregation</code> object.
             @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -16098,7 +16098,7 @@
 
             /**
                   Allows you to set a specified filter on this request object.
-      
+
                   @member ejs.Request
                   @param {Object} filter Any valid <code>Filter</code> object.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -16119,7 +16119,7 @@
             /**
                   Performs highlighting based on the <code>Highlight</code>
                   settings.
-      
+
                   @member ejs.Request
                   @param {Highlight} h A valid Highlight object
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -16142,9 +16142,9 @@
                   Multiple suggesters can be set, all of which will be returned when
                   the search is executed.  Global suggestion text can be set by
                   passing in a string vs. a <code>Suggest</code> object.
-      
+
                   @since elasticsearch 0.90
-      
+
                   @member ejs.Request
                   @param {(String|Suggest)} s A valid Suggest object or a String to
                     set as the global suggest text.
@@ -16172,7 +16172,7 @@
 
             /**
                   Computes a document property dynamically based on the supplied <code>ScriptField</code>.
-      
+
                   @member ejs.Request
                   @param {ScriptField} oScriptField A valid <code>ScriptField</code>.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -16196,7 +16196,7 @@
 
             /**
                   Boosts hits in the specified index by the given boost value.
-      
+
                   @member ejs.Request
                   @param {String} index the index to boost
                   @param {Double} boost the boost value
@@ -16217,7 +16217,7 @@
 
             /**
                   Enable/Disable explanation of score for each search result.
-      
+
                   @member ejs.Request
                   @param {Boolean} trueFalse true to enable, false to disable
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -16233,7 +16233,7 @@
 
             /**
                   Enable/Disable returning version number for each search result.
-      
+
                   @member ejs.Request
                   @param {Boolean} trueFalse true to enable, false to disable
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -16249,7 +16249,7 @@
 
             /**
                   Filters out search results will scores less than the specified minimum score.
-      
+
                   @member ejs.Request
                   @param {Double} min a positive <code>double</code> value.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -16265,7 +16265,7 @@
 
             /**
                   The type of ejs object.  For internal use only.
-      
+
                   @member ejs.Request
                   @returns {String} the type of object
                   */
@@ -16276,7 +16276,7 @@
             /**
                   Retrieves the internal <code>query</code> object. This is typically used by
                   internal API functions so use with caution.
-      
+
                   @member ejs.Request
                   @returns {String} returns this object's internal object representation.
                   */
@@ -16290,16 +16290,16 @@
     /**
       @class
       <p>A method that allows to rescore queries with a typically more expensive.</p>
-  
+
       @name ejs.Rescore
       @ejs request
-  
+
       @desc
       <p>Defines an operation that rescores a query with another query.</p>
-  
+
       @param {Number} windowSize The optional number of documents to reorder per shard.
       @param {Query} windowSize The optional query to use for rescoring.
-  
+
       */
     ejs.Rescore = function (windowSize, qry) {
 
@@ -16327,7 +16327,7 @@
 
             /**
                   Sets the query used by the rescoring.
-      
+
                   @member ejs.Rescore
                   @param {Query} someQuery a valid query.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -16347,7 +16347,7 @@
 
             /**
                   Sets the weight assigned to the original query of the rescoring.
-      
+
                   @member ejs.Rescore
                   @param {Number} weight a valid query weight.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -16367,7 +16367,7 @@
 
             /**
                   Sets the weight assigned to the query used to rescore the original query.
-      
+
                   @member ejs.Rescore
                   @param {Number} weight a valid rescore query weight.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -16387,7 +16387,7 @@
 
             /**
                   Sets the window_size parameter of the rescoring.
-      
+
                   @member ejs.Rescore
                   @param {Number} size a valid window size.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -16407,13 +16407,13 @@
 
             /**
                   Sets the scoring mode.  Valid values are:
-                  
+
                   total - default mode, the scores combined
                   multiply - the scores multiplied
                   min - the lowest of the scores
-                  max - the highest score 
+                  max - the highest score
                   avg - the average of the scores
-      
+
                   @member ejs.Rescore
                   @param {String} s The score mode as a string.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -16434,7 +16434,7 @@
 
             /**
                   The type of ejs object.  For internal use only.
-      
+
                   @member ejs.Rescore
                   @returns {String} the type of object
                   */
@@ -16445,7 +16445,7 @@
             /**
                   Retrieves the internal <code>script</code> object. This is typically used by
                   internal API functions so use with caution.
-      
+
                   @member ejs.Rescore
                   @returns {String} returns this object's internal object representation.
                   */
@@ -16461,15 +16461,15 @@
       <code>price</code> and <code>quantity</code>. At query time, you could define a computed
       property that dynamically creates a new field called <code>total</code>in each document
       based on the calculation <code>price * quantity</code>.</p>
-  
+
       @name ejs.ScriptField
       @ejs request
-  
+
       @desc
       <p>Computes dynamic document properties based on information from other fields.</p>
-  
+
       @param {String} fieldName A name of the script field to create.
-  
+
       */
     ejs.ScriptField = function (fieldName) {
         var script = {};
@@ -16481,7 +16481,7 @@
             /**
                   The script language being used. Currently supported values are
                   <code>javascript</code> and <code>mvel</code>.
-      
+
                   @member ejs.ScriptField
                   @param {String} language The language of the script.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -16497,7 +16497,7 @@
 
             /**
                   Sets the script/code that will be used to perform the calculation.
-      
+
                   @member ejs.ScriptField
                   @param {String} expression The script/code to use.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -16513,7 +16513,7 @@
 
             /**
                   Allows you to set script parameters to be used during the execution of the script.
-      
+
                   @member ejs.ScriptField
                   @param {Object} oParams An object containing key/value pairs representing param name/value.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -16530,7 +16530,7 @@
             /**
                   If execeptions thrown from the script should be ignored or not.
                   Default: false
-      
+
                   @member ejs.ScriptField
                   @param {Boolean} trueFalse if execptions should be ignored
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -16546,7 +16546,7 @@
 
             /**
                   The type of ejs object.  For internal use only.
-                  
+
                   @member ejs.ScriptField
                   @returns {String} the type of object
                   */
@@ -16557,7 +16557,7 @@
             /**
                   Retrieves the internal <code>script</code> object. This is typically used by
                   internal API functions so use with caution.
-      
+
                   @member ejs.ScriptField
                   @returns {String} returns this object's internal <code>facet</code> property.
                   */
@@ -16569,20 +16569,20 @@
 
     /**
       @class
-      <p>A Shape object that can be used in queries and filters that 
+      <p>A Shape object that can be used in queries and filters that
       take a Shape.  Shape uses the GeoJSON format.</p>
-  
+
       <p>See http://www.geojson.org/</p>
-  
+
       @name ejs.Shape
       @ejs geo
-  
+
       @desc
       <p>Defines a shape</p>
-  
+
       @param {String} type A valid shape type.
       @param {Array} coords An valid coordinat definition for the given shape.
-  
+
       */
     ejs.Shape = function (type, coords) {
 
@@ -16610,7 +16610,7 @@
             /**
                   Sets the shape type.  Can be set to one of:  point, linestring, polygon,
                   multipoint, envelope, or multipolygon.
-      
+
                   @member ejs.Shape
                   @param {String} t a valid shape type.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -16632,7 +16632,7 @@
                   Sets the coordinates for the shape definition.  Note, the coordinates
                   are not validated in this api.  Please see GeoJSON and ElasticSearch
                   documentation for correct coordinate definitions.
-      
+
                   @member ejs.Shape
                   @param {Array} c a valid coordinates definition for the shape.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -16648,7 +16648,7 @@
 
             /**
                   Sets the radius for parsing a circle <code>Shape</code>.
-      
+
                   @member ejs.Shape
                   @param {String} r a valid radius value for a circle.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -16664,7 +16664,7 @@
 
             /**
                   The type of ejs object.  For internal use only.
-                  
+
                   @member ejs.Shape
                   @returns {String} the type of object
                   */
@@ -16675,7 +16675,7 @@
             /**
                   Retrieves the internal <code>script</code> object. This is typically used by
                   internal API functions so use with caution.
-      
+
                   @member ejs.Shape
                   @returns {String} returns this object's internal object representation.
                   */
@@ -16687,17 +16687,17 @@
 
     /**
       @class
-      <p>A Sort object that can be used in on the Request object to specify 
+      <p>A Sort object that can be used in on the Request object to specify
       various types of sorting.</p>
-  
+
       <p>See http://www.elasticsearch.org/guide/reference/api/search/sort.html</p>
-  
+
       @name ejs.Sort
       @ejs request
-  
+
       @desc
       <p>Defines a sort value</p>
-  
+
       @param {String} fieldName The fieldName to sort against.  Defaults to _score
         if not specified.
       */
@@ -16720,9 +16720,9 @@
 
             /**
                   Set's the field to sort on
-      
+
                   @member ejs.Sort
-                  @param {String} f The name of a field 
+                  @param {String} f The name of a field
                   @returns {Object} returns <code>this</code> so that calls can be chained.
                   */
             field: function (f) {
@@ -16742,7 +16742,7 @@
 
             /**
                   Enables sorting based on a distance from a GeoPoint
-      
+
                   @member ejs.Sort
                   @param {GeoPoint} point A valid GeoPoint object
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -16768,7 +16768,7 @@
 
             /**
                   Enables sorting based on a script.
-      
+
                   @member ejs.Sort
                   @param {String} scriptCode The script code as a string
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -16790,12 +16790,12 @@
 
             /**
                   Sets the sort order.  Valid values are:
-                
+
                   asc - for ascending order
                   desc - for descending order
-      
+
                   Valid during sort types:  field, geo distance, and script
-                
+
                   @member ejs.Sort
                   @param {String} o The sort order as a string, asc or desc.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -16816,7 +16816,7 @@
             /**
                   Sets the sort order to ascending (asc).  Same as calling
                   <code>order('asc')</code>.
-                
+
                   @member ejs.Sort
                   @returns {Object} returns <code>this</code> so that calls can be chained.
                   */
@@ -16828,7 +16828,7 @@
             /**
                   Sets the sort order to descending (desc).  Same as calling
                   <code>order('desc')</code>.
-                
+
                   @member ejs.Sort
                   @returns {Object} returns <code>this</code> so that calls can be chained.
                   */
@@ -16838,13 +16838,13 @@
             },
 
             /**
-                  Sets the order with a boolean value.  
-                
+                  Sets the order with a boolean value.
+
                   true = descending sort order
                   false = ascending sort order
-      
+
                   Valid during sort types:  field, geo distance, and script
-                
+
                   @member ejs.Sort
                   @param {Boolean} trueFalse If sort should be in reverse order.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -16860,13 +16860,13 @@
 
             /**
                   Sets the value to use for missing fields.  Valid values are:
-                
+
                   _last - to put documents with the field missing last
                   _first - to put documents with the field missing first
                   {String} - any string value to use as the sort value.
-      
+
                   Valid during sort types:  field
-                
+
                   @member ejs.Sort
                   @param {String} m The value to use for documents with the field missing.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -16882,9 +16882,9 @@
 
             /**
                   Sets if the sort should ignore unmapped fields vs throwing an error.
-      
+
                   Valid during sort types:  field
-                
+
                   @member ejs.Sort
                   @param {Boolean} trueFalse If sort should ignore unmapped fields.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -16901,9 +16901,9 @@
             /**
                    Sets the distance unit.  Valid values are "mi" for miles or "km"
                    for kilometers. Defaults to "km".
-      
+
                    Valid during sort types:  geo distance
-                 
+
                    @member ejs.Sort
                    @param {Number} unit the unit of distance measure.
                    @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -16924,13 +16924,13 @@
             /**
                   If the lat/long points should be normalized to lie within their
                   respective normalized ranges.
-                
+
                   Normalized ranges are:
                   lon = -180 (exclusive) to 180 (inclusive) range
                   lat = -90 to 90 (both inclusive) range
-      
+
                   Valid during sort types:  geo distance
-                
+
                   @member ejs.Sort
                   @param {String} trueFalse True if the coordinates should be normalized. False otherwise.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -16945,13 +16945,13 @@
             },
 
             /**
-                  How to compute the distance. Can either be arc (better precision) 
+                  How to compute the distance. Can either be arc (better precision)
                   or plane (faster). Defaults to arc.
-      
+
                   Valid during sort types:  geo distance
-                
+
                   @member ejs.Sort
-                  @param {String} type The execution type as a string.  
+                  @param {String} type The execution type as a string.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
                   */
             distanceType: function (type) {
@@ -16968,13 +16968,13 @@
             },
 
             /**
-                  Sets parameters that will be applied to the script.  Overwrites 
+                  Sets parameters that will be applied to the script.  Overwrites
                   any existing params.
-      
+
                   Valid during sort types:  script
-                
+
                   @member ejs.Sort
-                  @param {Object} p An object where the keys are the parameter name and 
+                  @param {Object} p An object where the keys are the parameter name and
                     values are the parameter value.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
                   */
@@ -16989,9 +16989,9 @@
 
             /**
                   Sets the script language.
-      
+
                   Valid during sort types:  script
-                
+
                   @member ejs.Sort
                   @param {String} lang The script language, default mvel.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -17007,14 +17007,14 @@
 
             /**
                   Sets the script sort type.  Valid values are:
-                
+
                   <dl>
                       <dd><code>string</code> - script return value is sorted as a string</dd>
                       <dd><code>number</code> - script return value is sorted as a number</dd>
                   <dl>
-      
+
                   Valid during sort types:  script
-                
+
                   @member ejs.Sort
                   @param {String} type The sort type.  Either string or number.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -17034,16 +17034,16 @@
 
             /**
                   Sets the sort mode.  Valid values are:
-                
+
                   <dl>
                       <dd><code>min</code> - sort by lowest value</dd>
                       <dd><code>max</code> - sort by highest value</dd>
                       <dd><code>sum</code> - sort by the sum of all values</dd>
                       <dd><code>avg</code> - sort by the average of all values</dd>
                   <dl>
-                  
+
                   Valid during sort types:  field, geo distance
-                
+
                   @since elasticsearch 0.90
                   @member ejs.Sort
                   @param {String} m The sort mode.  Either min, max, sum, or avg.
@@ -17064,9 +17064,9 @@
 
             /**
                   Sets the path of the nested object.
-      
+
                   Valid during sort types:  field, geo distance
-                
+
                   @since elasticsearch 0.90
                   @member ejs.Sort
                   @param {String} path The nested path value.
@@ -17084,9 +17084,9 @@
             /**
                   <p>Allows you to set a filter that nested objects must match
                   in order to be considered during sorting.</p>
-      
+
                   Valid during sort types: field, geo distance
-                  
+
                   @since elasticsearch 0.90
                   @member ejs.Sort
                   @param {Object} oFilter A valid <code>Filter</code> object.
@@ -17107,7 +17107,7 @@
 
             /**
                   The type of ejs object.  For internal use only.
-                
+
                   @member ejs.Sort
                   @returns {String} the type of object
                   */
@@ -17118,7 +17118,7 @@
             /**
                   Retrieves the internal <code>script</code> object. This is typically used by
                   internal API functions so use with caution.
-      
+
                   @member ejs.Sort
                   @returns {String} returns this object's internal object representation.
                   */
@@ -17131,9 +17131,9 @@
     /**
       @class
       @suggester
-      <p>The completion suggester is a so-called prefix suggester. It does not do spell 
+      <p>The completion suggester is a so-called prefix suggester. It does not do spell
       correction like the term or phrase suggesters but allows basic auto-complete functionality.</p>
-  
+
       @name ejs.CompletionSuggester
       @ejs suggest
       @borrows ejs.SuggesterMixin.text as text
@@ -17143,12 +17143,12 @@
       @borrows ejs.SuggestContextMixin.field as field
       @borrows ejs.SuggestContextMixin.size as size
       @borrows ejs.SuggestContextMixin.shardSize as shardSize
-    
+
       @since elasticsearch 0.90.4
-    
+
       @desc
       <p>A suggester that allows basic auto-complete functionality.</p>
-  
+
       @param {String} name The name which be used to refer to this suggester.
       */
     ejs.CompletionSuggester = function (name) {
@@ -17166,7 +17166,7 @@
             /**
                   <p>Enable fuzzy completions which means a can spell a word
                   incorrectly and still get a suggestion.</p>
-      
+
                   @member ejs.CompletionSuggester
                   @param {Boolean} trueFalse true to enable fuzzy completions, false to disable.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -17186,10 +17186,10 @@
             },
 
             /**
-                  <p>Sets if transpositions should be counted as one or two changes, defaults 
+                  <p>Sets if transpositions should be counted as one or two changes, defaults
                   to true when fuzzy is enabled.  Automatically enables fuzzy suggestions
                   when set to any value.</p>
-      
+
                   @member ejs.CompletionSuggester
                   @param {Boolean} trueFalse true to enable transpositions.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -17208,10 +17208,10 @@
             },
 
             /**
-                  <p>Sets all are measurements (like edit distance, transpositions and lengths) 
-                  in unicode code points (actual letters) instead of bytes.  Automatically 
+                  <p>Sets all are measurements (like edit distance, transpositions and lengths)
+                  in unicode code points (actual letters) instead of bytes.  Automatically
                   enables fuzzy suggestions when set to any value.</p>
-      
+
                   @member ejs.CompletionSuggester
                   @param {Boolean} trueFalse true to set unicode aware, false to disable.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -17230,9 +17230,9 @@
             },
 
             /**
-                  <p>Maximum edit distance (fuzziness), defaults to 1.  Automatically 
+                  <p>Maximum edit distance (fuzziness), defaults to 1.  Automatically
                   enables fuzzy suggestions when set to any value.</p>
-      
+
                   @member ejs.CompletionSuggester
                   @param {Integer} d A positive integer value.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -17251,9 +17251,9 @@
             },
 
             /**
-                  <p>Minimum length of the input before fuzzy suggestions are returned, defaults 
+                  <p>Minimum length of the input before fuzzy suggestions are returned, defaults
                   to 3.  Automatically enables fuzzy suggestions when set to any value.</p>
-      
+
                   @member ejs.CompletionSuggester
                   @param {Integer} m A positive integer value.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -17272,9 +17272,9 @@
             },
 
             /**
-                  <p>Minimum length of the input, which is not checked for fuzzy alternatives, defaults 
+                  <p>Minimum length of the input, which is not checked for fuzzy alternatives, defaults
                   to 1.  Automatically enables fuzzy suggestions when set to any value.</p>
-      
+
                   @member ejs.CompletionSuggester
                   @param {Integer} l A positive integer value.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -17300,7 +17300,7 @@
       <p>DirectGenerator is a candidate generator for <code>PhraseSuggester</code>.
       It generates terms based on edit distance and operators much like the
       <code>TermSuggester</code>.</p>
-  
+
       @name ejs.DirectGenerator
       @ejs suggest
       @borrows ejs.DirectSettingsMixin.accuracy as accuracy
@@ -17313,12 +17313,12 @@
       @borrows ejs.DirectSettingsMixin.prefixLength as prefixLength
       @borrows ejs.DirectSettingsMixin.minWordLen as minWordLen
       @borrows ejs.DirectSettingsMixin.minDocFreq as minDocFreq
-  
+
       @since elasticsearch 0.90
-    
+
       @desc
       <p>A candidate generator that generates terms based on edit distance.</p>
-    
+
       */
     ejs.DirectGenerator = function () {
 
@@ -17331,10 +17331,10 @@
         return extend(_common, {
 
             /**
-                  <p>Sets an analyzer that is applied to each of the tokens passed to 
+                  <p>Sets an analyzer that is applied to each of the tokens passed to
                   this generator.  The analyzer is applied to the original tokens,
                   not the generated tokens.</p>
-      
+
                   @member ejs.DirectGenerator
                   @param {String} analyzer A valid analyzer name.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -17349,9 +17349,9 @@
             },
 
             /**
-                  <p>Sets an analyzer that is applied to each of the generated tokens 
+                  <p>Sets an analyzer that is applied to each of the generated tokens
                   before they are passed to the actual phrase scorer.</p>
-      
+
                   @member ejs.DirectGenerator
                   @param {String} analyzer A valid analyzer name.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -17367,7 +17367,7 @@
 
             /**
                   <p>Sets the field used to generate suggestions from.</p>
-      
+
                   @member ejs.DirectGenerator
                   @param {String} field A valid field name.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -17383,7 +17383,7 @@
 
             /**
                   <p>Sets the number of suggestions returned for each token.</p>
-      
+
                   @member ejs.DirectGenerator
                   @param {Integer} s A positive integer value.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -17399,7 +17399,7 @@
 
             /**
                   The type of ejs object.  For internal use only.
-              
+
                   @member ejs.DirectGenerator
                   @returns {String} the type of object
                   */
@@ -17410,7 +17410,7 @@
             /**
                   <p>Retrieves the internal <code>generator</code> object. This is typically used by
                      internal API functions so use with caution.</p>
-      
+
                   @member ejs.DirectGenerator
                   @returns {String} returns this object's internal <code>generator</code> property.
                   */
@@ -17427,7 +17427,7 @@
       phrase suggestions are weighted based on ngram-langugage models. In practice
       it will be able to make better decision about which tokens to pick based on
       co-occurence and frequencies.</p>
-  
+
       @name ejs.PhraseSuggester
       @ejs suggest
       @borrows ejs.SuggesterMixin.text as text
@@ -17437,12 +17437,12 @@
       @borrows ejs.SuggestContextMixin.field as field
       @borrows ejs.SuggestContextMixin.size as size
       @borrows ejs.SuggestContextMixin.shardSize as shardSize
-  
+
       @since elasticsearch 0.90
-  
+
       @desc
       <p>A suggester that suggests entire corrected phrases.</p>
-  
+
       @param {String} name The name which be used to refer to this suggester.
       */
     ejs.PhraseSuggester = function (name) {
@@ -17461,7 +17461,7 @@
                   <p>Sets the likelihood of a term being a misspelled even if the
                   term exists in the dictionary. The default it 0.95 corresponding
                   to 5% or the real words are misspelled.</p>
-      
+
                   @member ejs.PhraseSuggester
                   @param {Double} l A positive double value greater than 0.0.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -17480,7 +17480,7 @@
                   phrases score which is used as a threshold for other suggest
                   candidates. Only candidates that score higher than the threshold
                   will be included in the result.</p>
-      
+
                   @member ejs.PhraseSuggester
                   @param {Double} c A positive double value.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -17498,7 +17498,7 @@
                   <p>Sets the separator that is used to separate terms in the bigram
                   field. If not set the whitespce character is used as a
                   separator.</p>
-      
+
                   @member ejs.PhraseSuggester
                   @param {String} sep A string separator.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -17515,7 +17515,7 @@
             /**
                   <p>Sets the maximum percentage of the terms that at most
                   considered to be misspellings in order to form a correction.</p>
-      
+
                   @member ejs.PhraseSuggester
                   @param {Double} c A positive double value greater between 0 and 1.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -17533,7 +17533,7 @@
                   <p>Sets the max size of the n-grams (shingles) in the field. If
                   the field doesn't contain n-grams (shingles) this should be
                   omitted or set to 1.</p>
-      
+
                   @member ejs.PhraseSuggester
                   @param {Integer} s A positive integer value.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -17549,7 +17549,7 @@
 
             /**
                   <p>Forces the use of unigrams.</p>
-      
+
                   @member ejs.PhraseSuggester
                   @param {Boolean} trueFalse True to force unigrams, false otherwise.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -17565,7 +17565,7 @@
 
             /**
                   <p>Sets the token limit.</p>
-      
+
                   @member ejs.PhraseSuggester
                   @param {Integer} l A positive integer value.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -17583,7 +17583,7 @@
                   <p>A smoothing model that takes the weighted mean of the unigrams,
                   bigrams and trigrams based on user supplied weights (lambdas). The
                   sum of tl, bl, and ul must equal 1.</p>
-      
+
                   @member ejs.PhraseSuggester
                   @param {Double} tl A positive double value used for trigram weight.
                   @param {Double} bl A positive double value used for bigram weight.
@@ -17610,7 +17610,7 @@
                   <p>A smoothing model that uses an additive smoothing model where a
                   constant (typically 1.0 or smaller) is added to all counts to
                   balance weights, The default alpha is 0.5.</p>
-      
+
                   @member ejs.PhraseSuggester
                   @param {Double} alpha A double value.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -17634,7 +17634,7 @@
                   models if the higher order count is 0 and discounts the lower
                   order n-gram model by a constant factor. The default discount is
                   0.4.</p>
-      
+
                   @member ejs.PhraseSuggester
                   @param {Double} discount A double value.
                   @returns {Object} returns <code>this</code> so that calls can be chained.
@@ -17655,7 +17655,7 @@
 
             /**
                   <p>Enables highlighting of suggestions</p>
-      
+
                   @member ejs.PhraseSuggester
                   @param {String} preTag A tag used at highlight start.
                   @param {String} postTag A tag used at the end of the highlight.
@@ -17678,7 +17678,7 @@
                   Adds a direct generator. If passed a single <code>Generator</code>
                   it is added to the list of existing generators.  If passed an
                   array of Generators, they replace all existing generators.
-      
+
                   @member ejs.PhraseSuggester
                   @param {(Generator|Generator[])} oGenerator A valid Generator or
                     array of Generator objects.
@@ -17718,12 +17718,12 @@
 
     /**
       @class
-      <p>TermSuggester suggests terms based on edit distance. The provided suggest 
-      text is analyzed before terms are suggested. The suggested terms are 
-      provided per analyzed suggest text token.  This leaves the suggest-selection 
-      to the API consumer.  For a higher level suggester, please use the 
+      <p>TermSuggester suggests terms based on edit distance. The provided suggest
+      text is analyzed before terms are suggested. The suggested terms are
+      provided per analyzed suggest text token.  This leaves the suggest-selection
+      to the API consumer.  For a higher level suggester, please use the
       <code>PhraseSuggester</code>.</p>
-  
+
       @name ejs.TermSuggester
       @ejs suggest
       @borrows ejs.SuggesterMixin.text as text
@@ -17743,12 +17743,12 @@
       @borrows ejs.SuggestContextMixin.field as field
       @borrows ejs.SuggestContextMixin.size as size
       @borrows ejs.SuggestContextMixin.shardSize as shardSize
-  
+
       @since elasticsearch 0.90
-      
+
       @desc
       <p>A suggester that suggests terms based on edit distance.</p>
-  
+
       @param {String} name The name which be used to refer to this suggester.
       */
     ejs.TermSuggester = function (name) {

@@ -12,7 +12,7 @@ angular
             .startSymbol('{[{')
             .endSymbol('}]}');
     })
-    .constant('euiHost', legi.elastic.request)
+    .constant('euiHost', legi.search.request)
     .controller("formCtrl", ['$scope', '$window', '$log', '$http', function($scope, $window, $log, $http) {
         $scope.block = null;
         $scope.display = 'block';
@@ -69,14 +69,14 @@ angular
 
         $scope.isSubmitingNewQuestion = false;
         $scope.submitNewQuestion = function() {
-          $scope.isSubmitingNewQuestion = true;
+          $scope.isSubmitingNewQuestion = false;
         };
         $scope.unSubmitNewQuestion = function() {
           $scope.isSubmitingNewQuestion = false;
         };
         $scope.newQuestion = false;
         $scope.showNewQuestion = function() {
-          $scope.newQuestion = true;
+          $scope.newQuestion = false;
         };
         $scope.hideNewQuestion = function() {
           $scope.newQuestion = false;
@@ -365,6 +365,7 @@ angular
             }
 
             $http(req).then(function(response){
+              $log.log(response);
 
               for (var i = 0; i < response.data.qs.length; i++) {
 

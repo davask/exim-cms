@@ -1,15 +1,16 @@
 {% extends sonata_block.templates.block_base %}
 {% trans_default_domain "DwlLcddSearchBundle" %}
 
-{#% set lcddSearchFields = ["'_all'"] %#}
-{% set lcddSearchFields = ["'question'"] %}
+{% set legiSearchIndex = legi.search.index %}
+{% set lcddSearchFields = "['ARTICLE.META.META_SPEC.META_ARTICLE.NUM.$t',ARTICLE.BLOC_TEXTUEL.CONTENU.$t','ARTICLE.BLOC_TEXTUEL.CONTENU.p.$t']" %}
+{% set lcddSearchHighlightsFields = "['_all']" %}
 
 {% block block %}
 <div class="dwl-search-block {% if settings.display == 'inline' and settings.inline_class != '' %} {{ settings.inline_class }}{% endif %} {% if settings.display == 'bottom' and settings.bottom_class != '' %} {{ settings.bottom_class }}{% endif %}">
 
     <div class="dwl-search-block-search-hero-form{% if settings.display == 'block' and settings.block_class != ''  %} {{ settings.block_class }}{% endif %}{% if settings.display == 'bottom' %} col-sm-6 pull-right{% endif %}"
          ng-controller="formCtrl"
-         eui-index="'{{ lcdd.elastic.index }}'"
+         eui-index="'{{ legiSearchIndex }}'"
          ng-init="initSettings('{{block.id}}', '{{ settings.display }}', '{{ questionForm.vars.full_name }}');"
          data-form="{{ questionForm.vars.full_name }}"
          ng-mouseleave="hideDisplay()" ng-mouseenter="showDisplay()"
@@ -26,7 +27,7 @@
 {% endif -%}
         >
           <div class="form-group">
-              <lcdd-search class="input-group" field="{{ lcddSearchFields | join(',') }}"></lcdd-search>
+              <lcdd-search class="input-group" field="{{ lcddSearchFields }}" highlights="{{ lcddSearchHighlightsFields }}"></lcdd-search>
               <div class="dwl-search-block-results panel-group" role="tablist" aria-multiselectable="true" ng-if="!isSubmitingNewQuestion && allowDisplay">
                 {% include 'DwlLcddSearchBundle:Search:question.html.twig' %}
               </div>
@@ -68,23 +69,14 @@
     {% endif %}
 
     <script type="text/javascript">
-      if (typeof(lcdd) == 'undefined') {
-        var lcdd = {};
-      }
-      if (typeof(lcdd.elastic) == 'undefined') {
-        lcdd['elastic'] = {};
-      }
-      if (typeof(lcdd.elastic.request) == 'undefined') {
-        lcdd['elastic']['request'] = '{{ lcdd.elastic.request }}';
-      }
       if (typeof(legi) == 'undefined') {
         var legi = {};
       }
-      if (typeof(legi.elastic) == 'undefined') {
-        legi['elastic'] = {};
+      if (typeof(legi.search) == 'undefined') {
+        legi['search'] = {};
       }
-      if (typeof(legi.elastic.request) == 'undefined') {
-        legi['elastic']['request'] = '{{ legi.elastic.request }}';
+      if (typeof(legi.search.request) == 'undefined') {
+        legi['search']['request'] = '{{ legi.search.request }}';
       }
     </script>
 </div>

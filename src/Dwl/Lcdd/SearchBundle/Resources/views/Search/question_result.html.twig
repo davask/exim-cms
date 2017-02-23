@@ -1,6 +1,8 @@
-<a href="{[{ showQuestion(question.slug) }]}" title="{[{ question.question }]}" ng-if="question.qualified">
-  <span ng-bind-html="doc.highlight.question"></span>
-</a>
-<span ng-if="!question.qualified">
-  <span ng-bind-html="doc.highlight.question"></span><small> - attente d'une r&eacute;ponse </small>
-</a>
+<span>
+<!-- lcddSearchFields = "['ARTICLE.BLOC_TEXTUEL.CONTENU.$t','ARTICLE.BLOC_TEXTUEL.CONTENU.p.$t']" -->
+  <span ng-bind-html="loi.ARTICLE.META.META_COMMUN.NATURE.$t"></span>:<span ng-bind-html="loi.ARTICLE.META.META_SPEC.META_ARTICLE.NUM.$t"></span>
+  <p>
+      <span ng-bind-html="loi.ARTICLE.BLOC_TEXTUEL.CONTENU.$t"></span>
+      <span ng-bind-html="loi.ARTICLE.BLOC_TEXTUEL.CONTENU.p.$t"></span>
+  </p>
+</span>

@@ -1,8 +1,3 @@
-parameters:
-    legi.elastic.host: ''
-    legi.elastic.port: ''
-    legi.elastic.request: ''
-    legi.elastic.index: ''
 twig:
     paths:
         '%exim.lcdd.search.resources%/views': views
@@ -13,6 +8,11 @@ twig:
                 port: '%lcdd.elastic.port%'
                 request: '%lcdd.elastic.request%'
                 index: '%lcdd.elastic.index%'
+            search:
+                host: '%lcdd.search.host%'
+                port: '%lcdd.search.port%'
+                request: '%lcdd.search.request%'
+                index: '%lcdd.search.index%'
         legi:
             elastic:
                 host: '%legi.elastic.host%'
@@ -20,6 +20,7 @@ twig:
                 request: '%legi.elastic.request%'
                 index: '%legi.elastic.index%'
             search:
-                host: '%lcdd.search.host%'
-                port: '%lcdd.search.port%'
-                request: '%lcdd.search.request%'
+                host: '%legi.search.host%'
+                port: '%legi.search.port%'
+                request: '%legi.search.request%'
+                index: '%legi.search.index%'
