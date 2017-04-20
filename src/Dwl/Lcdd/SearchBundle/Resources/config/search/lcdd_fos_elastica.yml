@@ -10,23 +10,23 @@ fos_elastica:
 
     indexes:
 
-        lcdd:
+        # lcdd:
 
-            type_prototype:
-                persistence:
-                   driver:                      orm
-                   identifier:                  id
+        #     type_prototype:
+        #         persistence:
+        #            driver:                      orm
+        #            identifier:                  id
 
-            client: lcdd
+        #     client: lcdd
 
-            types:
+        #     types:
 
-                # lcdd Search Bundle
-                question:
-                    # serializer:                 { groups: ['lcdd_search'] }
-                    mappings:
-                        question:               { type: string }
+        #         # lcdd Search Bundle
+        #         question:
+        #             # serializer:                 { groups: ['lcdd_search'] }
+        #             mappings:
+        #                 question:               { type: string }
 
-                    persistence:
-                        model:    Dwl\Lcdd\SearchBundle\Entity\Question
-                        provider: ~
+        #             persistence:
+        #                 model:    Dwl\Lcdd\SearchBundle\Entity\Question
+        #                 provider: ~
