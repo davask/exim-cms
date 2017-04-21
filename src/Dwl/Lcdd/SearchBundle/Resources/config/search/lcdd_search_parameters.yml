@@ -21,21 +21,21 @@ parameters:
       - '//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.3.0/ui-bootstrap-tpls.min.js'
       - '/bundles/dwllcddsearch/vendor/elastic.js/dist/elastic.min.js'
 
-    lcdd.elastic.host: 163.172.38.212
+    lcdd.elastic.host: elasticsearch.loisfrancaises.com
     lcdd.elastic.port: 9200
-    lcdd.elastic.request: 'http://%lcdd.elastic.host%:%lcdd.elastic.port%'
+    lcdd.elastic.request: 'http://%lcdd.elastic.host%'
     lcdd.elastic.index: 'lcdd'
-    lcdd.search.host: 163.172.38.212
-    lcdd.search.port: 9200
-    lcdd.search.request: 'http://%lcdd.search.host%:%lcdd.search.port%'
+    lcdd.search.host: elasticsearch.loisfrancaises.com
+    lcdd.search.port: 443
+    lcdd.search.request: 'https://%lcdd.search.host%'
     lcdd.search.index: 'lcdd'
 
-    legi.elastic.host: 163.172.38.212
+    legi.elastic.host: elasticsearch.loisfrancaises.com
     legi.elastic.port: 9200
-    legi.elastic.request: 'http://%legi.elastic.host%:%legi.elastic.port%'
+    legi.elastic.request: 'http://%legi.elastic.host%'
     legi.elastic.index: 'legi'
 
-    legi.search.host: public.ginkgo-migration.com
-    legi.search.port: 9200
-    legi.search.request: 'http://%legi.search.host%:%legi.search.port%'
+    legi.search.host: elasticsearch.loisfrancaises.com
+    legi.search.port: 443
+    legi.search.request: 'https://%legi.search.host%'
     legi.search.index: 'legi'

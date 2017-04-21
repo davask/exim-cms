@@ -69,11 +69,11 @@ class DwlLcddSearchExtension extends Extension
             '/bundles/dwllcddsearch/vendor/elastic.js/dist/elastic.min.js',
         ));
 
-        $container->setParameter('lcdd.elastic.host', '163.172.35.42');
+        $container->setParameter('lcdd.elastic.host', '163.172.38.212');
         $container->setParameter('lcdd.elastic.port', '9200');
         $container->setParameter('lcdd.elastic.request', 'http://%lcdd.elastic.host%:%lcdd.elastic.port%');
         $container->setParameter('lcdd.elastic.index', 'lcdd');
-        $container->setParameter('legi.elastic.host', '163.172.49.222');
+        $container->setParameter('legi.elastic.host', '163.172.38.212');
         $container->setParameter('legi.elastic.port', '9200');
         $container->setParameter('legi.elastic.request', 'http://%legi.elastic.host%:%legi.elastic.port%');
         $container->setParameter('legi.elastic.index', 'legi');

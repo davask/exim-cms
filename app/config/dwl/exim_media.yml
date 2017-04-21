@@ -34,6 +34,9 @@ sonata_media:
             directory:  '%exim.theme.path.upload%'
             create:     true
 
+    pixlr:
+        referrer: eXim Project
+
 # http://www.reussir-mon-ecommerce.fr/2012/08/15/manipuler-les-images-avec-symfony2-et-liipimaginebundle/
 # https://www.youtube.com/watch?v=8QUam-fBtd0
 # https://www.opensky.com/

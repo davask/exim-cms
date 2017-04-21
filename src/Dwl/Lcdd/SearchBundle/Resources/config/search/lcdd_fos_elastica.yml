@@ -4,29 +4,28 @@ fos_elastica:
             host: %lcdd.elastic.host%
             port: %lcdd.elastic.port%
 
-    serializer:
-        callback_class:                         FOS\ElasticaBundle\Serializer\Callback
-        serializer:                             serializer
-
     indexes:
 
-        # lcdd:
+        lcdd:
 
-        #     type_prototype:
-        #         persistence:
-        #            driver:                      orm
-        #            identifier:                  id
+            types:
 
-        #     client: lcdd
+                # lcdd Search Bundle
+                question:
+                    properties:
+                        slug:                   { type: string, boost: 5 }
+                        question:               { type: string }
+                        qualified:              { type: boolean }
+                        date_create:            { type: date }
+                        date_update:            { type: date }
+                        # legalTags
+                        # civilTags
+                        # categories
+                        # media
+                        # speaker
 
-        #     types:
-
-        #         # lcdd Search Bundle
-        #         question:
-        #             # serializer:                 { groups: ['lcdd_search'] }
-        #             mappings:
-        #                 question:               { type: string }
-
-        #             persistence:
-        #                 model:    Dwl\Lcdd\SearchBundle\Entity\Question
-        #                 provider: ~
+                    persistence:
+                        driver:                 orm
+                        model:                  Dwl\Lcdd\SearchBundle\Entity\Question
+                        provider:               ~
+                        finder:                 ~
