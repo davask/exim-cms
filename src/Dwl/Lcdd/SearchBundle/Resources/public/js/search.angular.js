@@ -12,7 +12,7 @@ angular
             .startSymbol('{[{')
             .endSymbol('}]}');
     })
-    .constant('euiHost', legi.elastic.request)
+    .constant('euiHost', lcdd.search.request)
     .controller("formCtrl", ['$scope', '$window', '$log', '$http', function($scope, $window, $log, $http) {
         $scope.block = null;
         $scope.display = 'block';
@@ -45,8 +45,9 @@ angular
 
         };
 
-        $scope.$watch('indexVM.query.query()', function(newVal, oldVal){
-          $scope.userQuestion = newVal;
+        $scope.$watch('indexVM.query.value()', function(newVal, oldVal){
+          $log.log(newVal.substring(0, newVal.length-1));
+          $scope.userQuestion = newVal.substring(0, newVal.length-1);
           $scope.unSubmitNewQuestion();
         });
 
@@ -356,7 +357,7 @@ angular
         $scope.getQuestions = function(){
 
             var req = {
-              method: 'POST',
+              method: 'GET',
               url: $scope.searchUrl,
               data: {
                 format: 'json',

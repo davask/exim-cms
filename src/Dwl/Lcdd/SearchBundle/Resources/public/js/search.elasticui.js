@@ -1294,10 +1294,10 @@ var elasticui;
     eui-enabled="true" \
     name="question" \
     />\
-    <span class="input-group-btn" ng-if="userQuestion.length && !isSubmitingNewQuestion && allowDisplay && isBlockDisplay" >\
+    <span class="input-group-btn" ng-if="userQuestion.length > 3 && !isSubmitingNewQuestion && allowDisplay && isBlockDisplay" >\
     <button class="btn btn-link" type="button" ng-click="submitNewQuestion();">Soumettre</button>\
     </span>\
-    <span class="input-group-btn" ng-if="userQuestion.length && !isSubmitingNewQuestion && allowDisplay && isInlineDisplay">\
+    <span class="input-group-btn" ng-if="userQuestion.length > 3 && !isSubmitingNewQuestion && allowDisplay && isInlineDisplay">\
     <button class="btn btn-link" type="button" ng-click="searchQuestion();"><i class="fa fa-search"></i></a>\
     </span>\
 ';

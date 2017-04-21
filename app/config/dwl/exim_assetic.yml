@@ -12,7 +12,7 @@ assetic:
             apply_to: '\.sass$'
             # style: 'compressed'
         compass:
-            bin: '/usr/local/bin/compass'
+            bin: '/usr/bin/compass'
             apply_to: '\.scss$'
             # style: 'compressed'
     assets:

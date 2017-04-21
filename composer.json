@@ -156,7 +156,7 @@
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
             "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile",
             "COMPOSER_PROCESS_TIMEOUT=600 php bin/exim_reset.php",
-            "DWLC_USER_NAME=`whoami` bash /tmp/dwl/symfony.sh"
+            "DWLC_USER_NAME=`whoami` bash /dwl/symfony.sh"
         ]
     },
 

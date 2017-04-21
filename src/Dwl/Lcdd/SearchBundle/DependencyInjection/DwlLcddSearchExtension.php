@@ -73,10 +73,18 @@ class DwlLcddSearchExtension extends Extension
         $container->setParameter('lcdd.elastic.port', '9200');
         $container->setParameter('lcdd.elastic.request', 'http://%lcdd.elastic.host%:%lcdd.elastic.port%');
         $container->setParameter('lcdd.elastic.index', 'lcdd');
+        $container->setParameter('lcdd.search.host', 'elasticsearch.loisfrancaises.com');
+        $container->setParameter('lcdd.search.port', '443');
+        $container->setParameter('lcdd.search.request', 'https://%lcdd.search.host%');
+        $container->setParameter('lcdd.search.index', 'lcdd');
         $container->setParameter('legi.elastic.host', '163.172.38.212');
         $container->setParameter('legi.elastic.port', '9200');
         $container->setParameter('legi.elastic.request', 'http://%legi.elastic.host%:%legi.elastic.port%');
         $container->setParameter('legi.elastic.index', 'legi');
+        $container->setParameter('legi.search.host', 'elasticsearch.loisfrancaises.com');
+        $container->setParameter('legi.search.port', '443');
+        $container->setParameter('legi.search.request', 'https://%legi.search.host%');
+        $container->setParameter('legi.search.index', 'legi');
     }
 
     /**

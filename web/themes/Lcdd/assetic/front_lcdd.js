@@ -2593,7 +2593,7 @@ function Buffer(subject, encoding, offset) {
   if (encoding == "base64" && typeof subject == "string") {
     subject = stringtrim(subject);
     while (subject.length % 4 != 0) {
-      subject = subject + "="; 
+      subject = subject + "=";
     }
   }
 
@@ -3701,7 +3701,7 @@ Buffer.prototype.writeDoubleBE = function(value, offset, noAssert) {
 
 	function b64ToByteArray(b64) {
 		var i, j, l, tmp, placeHolders, arr;
-	
+
 		if (b64.length % 4 > 0) {
 			throw 'Invalid string. Length must be a multiple of 4';
 		}
@@ -3892,7 +3892,7 @@ function Buffer(subject, encoding, offset) {
   if (encoding == "base64" && typeof subject == "string") {
     subject = stringtrim(subject);
     while (subject.length % 4 != 0) {
-      subject = subject + "="; 
+      subject = subject + "=";
     }
   }
 
@@ -5002,7 +5002,7 @@ module.exports=require('q9TxCC');
 
 	function b64ToByteArray(b64) {
 		var i, j, l, tmp, placeHolders, arr;
-	
+
 		if (b64.length % 4 > 0) {
 			throw 'Invalid string. Length must be a multiple of 4';
 		}
@@ -29550,7 +29550,7 @@ function Client(config) {
   } else {
     config.__reused = true;
   }
-    
+
   function EsApiClient() {
     // our client will log minimally by default
     if (!config.hasOwnProperty('log')) {
@@ -32273,6 +32273,7 @@ module.exports = utils;
 
 },{"__browserify_Buffer":12,"__browserify_process":13,"lodash-node/modern":87,"path":5,"util":8}]},{},[189])
 ;
+
 var elasticui;
 (function (elasticui) {
     var util;
@@ -33569,10 +33570,10 @@ var elasticui;
     eui-enabled="true" \
     name="question" \
     />\
-    <span class="input-group-btn" ng-if="userQuestion.length && !isSubmitingNewQuestion && allowDisplay && isBlockDisplay" >\
+    <span class="input-group-btn" ng-if="userQuestion.length > 3 && !isSubmitingNewQuestion && allowDisplay && isBlockDisplay" >\
     <button class="btn btn-link" type="button" ng-click="submitNewQuestion();">Soumettre</button>\
     </span>\
-    <span class="input-group-btn" ng-if="userQuestion.length && !isSubmitingNewQuestion && allowDisplay && isInlineDisplay">\
+    <span class="input-group-btn" ng-if="userQuestion.length > 3 && !isSubmitingNewQuestion && allowDisplay && isInlineDisplay">\
     <button class="btn btn-link" type="button" ng-click="searchQuestion();"><i class="fa fa-search"></i></a>\
     </span>\
 ';
@@ -33602,7 +33603,7 @@ angular
             .startSymbol('{[{')
             .endSymbol('}]}');
     })
-    .constant('euiHost', legi.elastic.request)
+    .constant('euiHost', lcdd.search.request)
     .controller("formCtrl", ['$scope', '$window', '$log', '$http', function($scope, $window, $log, $http) {
         $scope.block = null;
         $scope.display = 'block';
@@ -33635,8 +33636,9 @@ angular
 
         };
 
-        $scope.$watch('indexVM.query.query()', function(newVal, oldVal){
-          $scope.userQuestion = newVal;
+        $scope.$watch('indexVM.query.value()', function(newVal, oldVal){
+          $log.log(newVal.substring(0, newVal.length-1));
+          $scope.userQuestion = newVal.substring(0, newVal.length-1);
           $scope.unSubmitNewQuestion();
         });
 
@@ -33946,7 +33948,7 @@ angular
         $scope.getQuestions = function(){
 
             var req = {
-              method: 'POST',
+              method: 'GET',
               url: $scope.searchUrl,
               data: {
                 format: 'json',
