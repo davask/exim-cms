@@ -9,6 +9,7 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\SearchType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -70,6 +71,8 @@ class QuestionType extends AbstractType
                     ->orWhere('q.qualifiedQuestion = :qId')
                     ->setParameter('qId', $question->getId());
                 }
+            ))
+            ->add('legiIds', HiddenType::class, array(
             ))
             ->add('legalTags', null, array(
                 'expanded'=>false,

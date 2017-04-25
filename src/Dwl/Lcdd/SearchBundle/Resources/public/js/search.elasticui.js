@@ -1312,3 +1312,42 @@ var elasticui;
         })(directives = widgets.directives || (widgets.directives = {}));
     })(widgets = elasticui.widgets || (elasticui.widgets = {}));
 })(elasticui || (elasticui = {}));
+var elasticui;
+(function (elasticui) {
+    var widgets;
+    (function (widgets) {
+        var directives;
+        (function (directives) {
+            // The widgets show how to create reusable components on top of ElasticUI.
+            // You can also directly use the directive.template html in your front-end (see docs/widgets.md for more info)
+            var LegiArticleDirective = (function () {
+                function LegiArticleDirective($parse) {
+                    var directive = {};
+                    directive.restrict = 'E';
+                    directive.scope = true;
+                    directive.link = {
+                        'pre': function (scope, element, attrs) {
+                            elasticui.util.AngularTool.setupBinding($parse, scope, attrs, ["field", "highlights"]);
+                        }
+                    };
+                    // TODO: should be debounced
+                    var queryMatch = 'ejs.MatchQuery(field, ( querystring.length > 0 ? \'Article \'+querystring : \'\' ))';
+                    // var queryMatch = 'ejs.WildcardQuery(field, \'Article \'+querystring+\'*\')';
+                    directive.template = '\
+<input type="text" class="dwl-article-form-article-input form-control" placeholder="{[{placeholder}]}" \
+    eui-query="' + queryMatch + '" ng-model="querystring" \
+    eui-highlight="ejs.Highlight(highlights).preTags(\'<b>\').postTags(\'</b>\')" \
+    eui-enabled="true" \
+    />\
+';
+                    return directive;
+                }
+                LegiArticleDirective.$inject = ['$parse'];
+                return LegiArticleDirective;
+            })();
+            directives.LegiArticleDirective = LegiArticleDirective;
+            directives.directives.directive('legiArticle', LegiArticleDirective);
+
+        })(directives = widgets.directives || (widgets.directives = {}));
+    })(widgets = elasticui.widgets || (elasticui.widgets = {}));
+})(elasticui || (elasticui = {}));

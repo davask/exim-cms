@@ -1,7 +1,7 @@
 {% extends sonata_block.templates.block_base %}
 {% trans_default_domain "DwlLcddSearchBundle" %}
 
-{% set legiSearchIndex = lcdd.search.index %}
+{% set lcddSearchIndex = lcdd.search.index %}
 {% set lcddSearchFields = ["'question'"] %}
 {% set lcddSearchHighlightsFields = lcddSearchFields %}
 
@@ -10,7 +10,7 @@
 
     <div class="dwl-search-block-search-hero-form{% if settings.display == 'block' and settings.block_class != ''  %} {{ settings.block_class }}{% endif %}{% if settings.display == 'bottom' %} col-sm-6 pull-right{% endif %}"
          ng-controller="formCtrl"
-         eui-index="'{{ legiSearchIndex }}'"
+         eui-index="'{{ lcddSearchIndex }}'"
          ng-init="initSettings('{{block.id}}', '{{ settings.display }}', '{{ questionForm.vars.full_name }}');"
          data-form="{{ questionForm.vars.full_name }}"
          ng-mouseleave="hideDisplay()" ng-mouseenter="showDisplay()"
@@ -78,6 +78,9 @@
       if (typeof(lcdd.search.request) == 'undefined') {
         lcdd['search']['request'] = '{{ lcdd.search.request }}';
       }
+      if (typeof(lcdd.search.index) == 'undefined') {
+        lcdd['search']['index'] = '{{ lcdd.search.index }}';
+      }
       if (typeof(legi) == 'undefined') {
         var legi = {};
       }
@@ -86,6 +89,9 @@
       }
       if (typeof(legi.search.request) == 'undefined') {
         legi['search']['request'] = '{{ legi.search.request }}';
+      }
+      if (typeof(legi.search.index) == 'undefined') {
+        legi['search']['index'] = '{{ legi.search.index }}';
       }
     </script>
 </div>

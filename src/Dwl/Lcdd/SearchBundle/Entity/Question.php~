@@ -523,27 +523,4 @@ class Question
     {
         return $this->speaker;
     }
-
-    /**
-     * Set legiIds
-     *
-     * @param string $legiIds
-     * @return Question
-     */
-    public function setLegiIds($legiIds)
-    {
-        $this->legiIds = $legiIds;
-
-        return $this;
-    }
-
-    /**
-     * Get legiIds
-     *
-     * @return string
-     */
-    public function getLegiIds()
-    {
-        return $this->legiIds;
-    }
 }

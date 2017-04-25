@@ -13,7 +13,7 @@ namespace Sonata\Bundle\DemoBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
-use Dwl\Exim\CoreBundle\Entity\User\User;
+use Sonata\UserBundle\Entity\User;
 
 /**
  * @ORM\Entity
@@ -35,7 +35,7 @@ class Inspection
     protected $car;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Dwl\Exim\CoreBundle\Entity\User\User", cascade={"persist"}, fetch="EAGER")
+     * @ORM\ManyToOne(targetEntity="Application\Sonata\UserBundle\Entity\User", cascade={"persist"}, fetch="EAGER")
      * @ORM\JoinColumn(nullable=false)
      * @Assert\NotNull
      **/

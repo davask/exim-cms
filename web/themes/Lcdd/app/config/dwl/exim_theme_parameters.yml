@@ -14,8 +14,8 @@ parameters:
 
     exim.theme.name: Lcdd
     exim.theme.host: dev.lachainedudroit.fr
-    exim.theme.assets.version.css: '1.0.2'
-    exim.theme.assets.version.js: '1.0.3'
+    exim.theme.assets.version.css: '1.0.3'
+    exim.theme.assets.version.js: '1.0.4'
     exim.theme.assets.version.img: '1.0'
     exim.theme.front.css:
         - '%exim.theme.path.root%/assets/legacy/compass/scss/sonata_legacy.scss'
@@ -30,6 +30,7 @@ parameters:
     exim.theme.vendor_front.css:
         - 'https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css'
         - 'https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'
+        - '//cdnjs.cloudflare.com/ajax/libs/angular-ui-select/0.20.0/select.css'
     exim.theme.vendor_front.js:
         - 'https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js'
         - 'https://cdnjs.cloudflare.com/ajax/libs/sizzle/2.2.0/sizzle.min.js'
@@ -39,6 +40,7 @@ parameters:
         # lcdd bundle
         - '//code.angularjs.org/1.4.7/angular.js'
         - '//code.angularjs.org/1.2.25/angular-sanitize.js'
+        - '//cdnjs.cloudflare.com/ajax/libs/angular-ui-select/0.20.0/select.js'
         - '//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.3.0/ui-bootstrap-tpls.min.js'
         - '/bundles/dwllcddsearch/vendor/elastic.js/dist/elastic.min.js'
 
