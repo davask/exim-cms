@@ -34025,7 +34025,7 @@ jQuery(document).ready(function(){
 });
 
 angular
-    .module('article', ['ngSanitize', 'ui.bootstrap', 'elasticui', 'ui.select'])
+    .module('article', ['ngSanitize', 'ui.bootstrap', 'elasticui', 'ui.select', 'dwl.legi'])
     .config(function($interpolateProvider){
         $interpolateProvider
             .startSymbol('{[{')
@@ -34086,10 +34086,44 @@ angular
       $scope.placeholder="Rechercher un numero d'article";
       $scope.userQuery="";
       $scope.selected=[];
+      $scope.type="";
+      $scope.tags=[];
 
-      $scope.$watch('selected', function(newVal, oldVal){
-        console.log(newVal);
-      });
+      if (typeof $window['legalTaggle'] == "undefined") {
+        $window['legalTaggle'] = new $window.Taggle('legalTags', {
+          'additionalTagListClasses': 'list-inline',
+          'bootstrapInput': true,
+          'placeholder': "Saisissez un mot-cle...",
+          'additionalTagListLiClasses': 'col-xs-12',
+          'additionalTagListLiInputClasses': 'col-xs-12',
+          'onTagRemove': function (event, tag) {
+            $window.jQuery('dwl-legi-tags[type="legal"] [data-value="'+tag+'"]').show();
+          },
+          'hiddenInputName': 'dwl_lcdd_searchbundle_question[legalTags][]'
+        });
+      }
+      if (typeof $window['civilTaggle'] == "undefined") {
+        $window['civilTaggle'] = new $window.Taggle('civilTags', {
+          'additionalTagListClasses': 'list-inline',
+          'bootstrapInput': true,
+          'placeholder': "Saisissez un mot-cle...",
+          'additionalTagListLiClasses': 'col-xs-12',
+          'additionalTagListLiInputClasses': 'col-xs-12',
+          'onTagRemove': function (event, tag) {
+            $window.jQuery('dwl-legi-tags[type="civil"] [data-value="'+tag+'"]').show();
+          },
+          'hiddenInputName': 'dwl_lcdd_searchbundle_question[civilTags][]'
+        });
+      }
+      $scope.addSavedTags = function(type, tags) {
+        $scope.type=type;
+        $scope.tags=tags;
+        $window[type+'Taggle'].add(tags);
+      };
+      $scope.addTag = function(tag, type) {
+        $window[type+'Taggle'].add(tag);
+        $window.jQuery('dwl-legi-tags[type="'+type+'"] [data-value="'+tag+'"]').hide();
+      };
 
       $scope.getLegiByIds = function(){
         var legiIds = $scope.getLegiIds();

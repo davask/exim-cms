@@ -53,7 +53,21 @@
     {{ form_row(edit_form.media) }}
 {% endblock %}
 
+{% block _dwl_lcdd_searchbundle_question_civilTags_widget %}
+    <div class="text_widget">
+        {{ block('form_widget_simple') }}
+    </div>
+{% endblock %}
 {% block sonata_profile_form_end %}
+<style type="text/css">
+.taggle_sizer {
+  padding: 0;
+  margin: 0;
+  position: absolute;
+  top: -9999px;
+  z-index: -1;
+  visibility: hidden; }
+</style>
 {% set legiSearchIndex = legi.search.index %}
 {% set legiSearchFields = ["'DWL.TEXT.TITLE.short'"] %}
 {% set legiSearchHighlightsFields = ["'DWL.TEXT.TITLE.short'"] %}
@@ -99,25 +113,8 @@
                 </small>
             </ui-select-choices>
         </ui-select>
-<!--         <ul class="list-inline" ng-repeat="doc in indexVM.results.hits.hits | orderBy:'_source.DWL.TEXT.num'" ng-init="DWL=doc._source.DWL">
-            <li>
-                <a href="{[{DWL.URL.REFERRAL.content}]}"
-                   target="_blank"
-                   title="legifrance"
-                   id="{[{DWL.TEXT.uniqueid}]}"
-                   ng-bind-html="DWL.TEXT.TITLE.code+': '+doc.highlight['DWL.TEXT.TITLE.short'][0]"
-                   ></a>
-                <br/>
-                <!- - tags:<br/> - ->
-                <!- - <ul class="list-inline" ng-bind-html="tags | tagsReplace" ng-init="tags=DWL.TEXT.TAGS.content"></ul> - ->
-                <!- - {[{DWL|json}]} - ->
-                <!- - {[{doc|json}]} - ->
-            </li>
-        </ul> -->
         {{ form_row(edit_form.legiIds) }}
-        {[{ legalTagsSuggest }]}
         {{ form_row(edit_form.legalTags) }}
-        {[{ civilTagsSuggest }]}
         {{ form_row(edit_form.civilTags) }}
         {{ form_row(edit_form.unqualifiedQuestions) }}
     </div>

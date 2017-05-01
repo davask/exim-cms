@@ -4,6 +4,7 @@ namespace Dwl\Lcdd\SearchBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
@@ -47,6 +48,7 @@ class Question
      * @var string
      *
      * @ORM\Column(name="legi_ids", type="string", length=255)
+     * @Assert\NotBlank(message = "Veuillez indiquer au minimum une loi pour qualifier la question")
      */
     private $legiIds;
 

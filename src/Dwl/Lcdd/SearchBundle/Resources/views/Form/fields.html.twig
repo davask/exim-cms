@@ -1,0 +1,18 @@
+{# Widgets #}
+
+{% block dwllegitags_row %}
+    <div class="clearfix">
+        {{ block('dwllegitags_widget') }}
+    </div>
+{% endblock %}
+{% block dwllegitags_widget %}
+    {% spaceless %}
+        {% set tag_type = tag_type|default('legal') %}
+        <div id="{{tag_type}}Tags"></div>
+        <dwl-legi-tags
+            type="{{tag_type}}"
+            selected="selected"
+            tags="{% for tag in data %}{% if loop.index0 > 0 %}|{% endif %}{{ tag.name }}{% endfor %}"
+            ></dwl-legi-tags>
+    {% endspaceless %}
+{% endblock %}

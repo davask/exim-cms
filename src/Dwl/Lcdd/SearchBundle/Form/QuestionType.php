@@ -4,6 +4,8 @@ namespace Dwl\Lcdd\SearchBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
@@ -13,12 +15,24 @@ use Symfony\Component\Form\Extension\Core\Type\SearchType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Sonata\MediaBundle\Form\Type\MediaType;
+
+use Application\Sonata\ClassificationBundle\Entity\Tag;
+use Dwl\Lcdd\SearchBundle\Form\Type\dwlLegiTagsType;
 
 class QuestionType extends AbstractType
 {
 
+    protected $em;
+
+    public function __construct($entityManager)
+    {
+        $this->em = $entityManager;
+    }
+
     /**
+     * @author David Asquiedge <davask.42@gmail.com>
      * @param FormBuilderInterface $builder
      * @param array $options
      */
@@ -73,28 +87,20 @@ class QuestionType extends AbstractType
                 }
             ))
             ->add('legiIds', HiddenType::class, array(
+                'required' => true
             ))
-            ->add('legalTags', null, array(
-                'expanded'=>false,
-                'multiple'=>true,
-                'by_reference' => false,
-                'placeholder'=>'Choisissez un ou plusieurs tags legaux par cette question',
-                'query_builder' => function ($repo) {
-                  return $repo->createQueryBuilder('t')
-                    ->where('t.context = \'lcdd\'')
-                  ;
-                }
+            ->add('civilTags', dwlLegiTagsType::class, array(
+                'tag_type'=>'civil',
+                'data'=>$question->getCivilTags(),
+                // 'by_reference' => false,
+                // 'placeholder'=>'Choisissez un ou plusieurs tags civils par cette question',
             ))
-            ->add('civilTags', null, array(
-                'expanded'=>false,
-                'multiple'=>true,
-                'by_reference' => false,
-                'placeholder'=>'Choisissez un ou plusieurs tags civils par cette question',
-                'query_builder' => function ($repo) {
-                  return $repo->createQueryBuilder('t')
-                    ->where('t.context = \'lcdd\'')
-                  ;
-                }
+            ->add('legalTags', dwlLegiTagsType::class, array(
+                'data'=>$question->getLegalTags(),
+                // 'expanded'=>false,
+                // 'multiple'=>true,
+                // 'by_reference' => false,
+                // 'placeholder'=>'Choisissez un ou plusieurs tags legaux par cette question',
             ))
             ->add('categories', null, array(
                 'expanded'=>false,

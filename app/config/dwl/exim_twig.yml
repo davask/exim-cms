@@ -27,3 +27,6 @@ twig:
     form:
         resources:
             - 'ApplicationSonataMediaBundle:Form:media_widgets.html.twig'
+    # TODO - export form widgets to theme
+    # form_themes:
+    #         - 'EximTheme%exim.theme.name%FrontBundle:Form:form_theme_layout.html.twig'
