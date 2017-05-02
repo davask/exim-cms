@@ -59,64 +59,10 @@
     </div>
 {% endblock %}
 {% block sonata_profile_form_end %}
-<style type="text/css">
-.taggle_sizer {
-  padding: 0;
-  margin: 0;
-  position: absolute;
-  top: -9999px;
-  z-index: -1;
-  visibility: hidden; }
-</style>
-{% set legiSearchIndex = legi.search.index %}
-{% set legiSearchFields = ["'DWL.TEXT.TITLE.short'"] %}
-{% set legiSearchHighlightsFields = ["'DWL.TEXT.TITLE.short'"] %}
-<div class="dwl-article-form">
-    <div class="content-embed"
-         ng-controller="articleCtrl"
-         ng-init="getLegiByIds()"
-         eui-index="'{{ legiSearchIndex }}'"
-         ng-cloak>
-         <div>
-         </div>
-        <legi-article
-            art-eui-select
-            class="input-group"
-            field="{{ legiSearchFields | join(',') }}"
-            highlights="{{ legiSearchHighlightsFields | join(',') }}"
-            style="display:none;"
-            ></legi-article>
-        <ui-select
-            multiple
-            art-ui-select
-            autofocus="false"
-            ng-model="uniqueIds"
-            theme="bootstrap"
-            close-on-select="false"
-            on-select="addLegiIds($item, $model)"
-            on-remove="removeLegiIds($item, $model)"
-            reset-search-input="false"
-            title="{[{placeholder}]}"
-            style="height:initial;"
-            >
-            <ui-select-match placeholder="{[{placeholder}]}">
-                {[{$item._source.DWL.TEXT.TITLE.code}]} - {[{$item._source.DWL.TEXT.TITLE.short}]}
-            </ui-select-match>
-            <ui-select-choices repeat="doc in (indexVM.results.hits.hits | orderBy:'_source.DWL.TEXT.num' | filter: $select.search) track by $index">
-                <div style="cursor:pointer;" ng-bind-html="doc._source.DWL.TEXT.TITLE.code+': '+doc._source.DWL.TEXT.TITLE.short | highlight: $select.search"></div>
-                <small>
-                    <a href="{[{doc._source.DWL.URL.REFERRAL.content}]}"
-                   target="_blank"
-                   title="legifrance"
-                   ng-bind-html="doc._source.DWL.TEXT.uniqueid"
-                   ></a>
-                </small>
-            </ui-select-choices>
-        </ui-select>
-        {{ form_row(edit_form.legiIds) }}
-        {{ form_row(edit_form.legalTags) }}
-        {{ form_row(edit_form.civilTags) }}
-        {{ form_row(edit_form.unqualifiedQuestions) }}
+<div>
+    <div class="content-embed">
+    {{ form_row(edit_form.legiIds) }}
+    {{ form_row(edit_form.unqualifiedQuestions) }}
     </div>
 </div>
 <div class="content-embed">

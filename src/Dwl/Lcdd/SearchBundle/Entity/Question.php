@@ -21,7 +21,7 @@ use JMS\Serializer\Annotation\ExclusionPolicy;
 class Question
 {
     /**
-     * @var int
+     * @var integer
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -45,10 +45,13 @@ class Question
     private $slug;
 
     /**
-     * @var string
+     * @var ArrayCollection
      *
-     * @ORM\Column(name="legi_ids", type="string", length=255)
-     * @Assert\NotBlank(message = "Veuillez indiquer au minimum une loi pour qualifier la question")
+     * @ORM\ManyToMany(targetEntity="\Dwl\Lcdd\SearchBundle\Entity\Article")
+     * @ORM\JoinTable(name="questions__articles",
+     *      joinColumns={@ORM\JoinColumn(name="question_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="article_id", referencedColumnName="id")}
+     * )
      */
     private $legiIds;
 

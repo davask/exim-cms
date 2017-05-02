@@ -12,6 +12,10 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityHidden;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Doctrine\ORM\EntityRepository;
 
+use Application\Sonata\ClassificationBundle\Entity\Tag;
+use Dwl\Lcdd\SearchBundle\Form\Type\dwlLegiTagsType;
+use Dwl\Lcdd\SearchBundle\Form\Type\dwlLegiArticlesType;
+
 use Symfony\Component\Form\FormEvent;
 use Symfony\Component\Form\FormEvents;
 
@@ -94,6 +98,7 @@ class QuestionAdmin extends Admin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $question = $this->getSubject();
+        dump($question);
 
         $datagridMapper
             ->add('question')
@@ -109,23 +114,9 @@ class QuestionAdmin extends Admin
                     ;
                 },
             ))
-            ->add('legalTags', null, array('field_options' => array('expanded' => false,'multiple' => true)), null, array(
-                'class' => 'ApplicationSonataClassificationBundle:Tag',
-                'query_builder' => function(EntityRepository $repository) {
-                    $qb = $repository->createQueryBuilder('t');
-                    return $qb
-                        ->where($qb->expr()->eq('t.context', '\'lcdd\''))
-                    ;
-                },
-            ))
-            ->add('civilTags', null, array('field_options' => array('expanded' => false,'multiple' => true)), null, array(
-                'class' => 'ApplicationSonataClassificationBundle:Tag',
-                'query_builder' => function(EntityRepository $repository) {
-                    $qb = $repository->createQueryBuilder('t');
-                    return $qb
-                        ->where($qb->expr()->eq('t.context', '\'lcdd\''))
-                    ;
-                },
+            ->add('legiIds', dwlLegiArticlesType::class, array(
+                'display_assets' => true,
+                'question' => $question,
             ))
             ->add('categories', null, array('field_options' => array('expanded' => false,'multiple' => true)), null, array(
                 'class' => 'ApplicationSonataClassificationBundle:Category',
@@ -194,27 +185,16 @@ class QuestionAdmin extends Admin
             ;
         }
         $formMapper
-            ->add('legalTags', EntityType::class, array(
-                'class' => 'ApplicationSonataClassificationBundle:Tag',
-                'multiple' => true,
-                'required' => true,
-                'query_builder' => function(EntityRepository $repository) {
-                    $qb = $repository->createQueryBuilder('t');
-                    return $qb
-                        ->where($qb->expr()->eq('t.context', '\'lcdd\''))
-                    ;
-                },
+            ->add('legiIds', dwlLegiArticlesType::class, array(
+                'display_assets' => true,
+                'data' => $question->getLegiIds(),
             ))
-            ->add('civilTags', EntityType::class, array(
-                'class' => 'ApplicationSonataClassificationBundle:Tag',
-                'multiple' => true,
-                'required' => true,
-                'query_builder' => function(EntityRepository $repository) {
-                    $qb = $repository->createQueryBuilder('t');
-                    return $qb
-                        ->where($qb->expr()->eq('t.context', '\'lcdd\''))
-                    ;
-                },
+            ->add('legalTags', dwlLegiTagsType::class, array(
+                'data' => $question->getLegalTags(),
+            ))
+            ->add('civilTags', dwlLegiTagsType::class, array(
+                'tag_type' => 'civil',
+                'data' => $question->getCivilTags(),
             ))
             ->add('categories', EntityType::class, array(
                 'class' => 'ApplicationSonataClassificationBundle:Category',

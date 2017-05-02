@@ -2,13 +2,14 @@
 namespace Dwl\Lcdd\SearchBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormView;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
-class dwlLegiTagsType extends AbstractType
+class dwlLegiArticlesType extends AbstractType
 {
 
     /**
@@ -25,23 +26,37 @@ class dwlLegiTagsType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'dwllegitags';
+        return 'dwllegiarticles';
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
 
         $resolver->setDefaults(array(
-            'label' => 'legi Tags',
-            'label_render' => 'legi Tags!',
-            'sonata_field_description' => 'Dynamic Legi tag management',
+            'required' => 'true',
+            'label' => 'label dynamic article management',
+            'label_render' => 'label render dynamic article management',
+            'sonata_field_description' => 'sonata description: dynamic article management',
             'multipart' => false,
-            'tag_type' => 'legal',
-            'by_reference' => false,
-            'data' => array(),
-            'allow_extra_fields' => true,
             'display_assets' => false,
+            'data' => array(),
+            'question' => null,
         ));
+    }
+
+    public function buildForm(FormBuilderInterface $builder, array $options)
+    {
+        $builder
+            ->add('legalTags', dwlLegiTagsType::class, array(
+                'mapped' => false,
+                'data' => !empty($options['question']) ? $options['question']->getLegalTags() : array(),
+            ))
+            ->add('civilTags', dwlLegiTagsType::class, array(
+                'mapped' => false,
+                'tag_type' => 'civil',
+                'data' => !empty($options['question']) ? $options['question']->getCivilTags() : array(),
+            ))
+        ;
     }
 
     /**
@@ -52,8 +67,7 @@ class dwlLegiTagsType extends AbstractType
 
         $view->vars = array_replace($view->vars, array(
             'display_assets' => $options['display_assets'],
-            'tag_type' => $options['tag_type'],
-            'data' => !empty($options['data']) ? $options['data'] : array(),
+            'data' => !empty($options['question']) ? $options['question']->getLegiIds() : array(),
         ));
 
     }
@@ -64,7 +78,7 @@ class dwlLegiTagsType extends AbstractType
     public function finishView(FormView $view, FormInterface $form, array $options)
     {
         $view->vars['multipart'] = false;
-        $view->vars['unique_block_prefix'] = '_dwl_lcdd_searchbundle_question_'.$options['tag_type'].'Tags';
+        $view->vars['unique_block_prefix'] = '_dwl_lcdd_searchbundle_question_legiIds';
         $view->vars['block_prefixes'] = [];
         $view->vars['block_prefixes'][] = $this->getBlockPrefix();
         $view->vars['cache_key'] = $view->vars['unique_block_prefix'].'_'.$this->getName();

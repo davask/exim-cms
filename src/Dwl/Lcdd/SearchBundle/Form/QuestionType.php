@@ -20,6 +20,7 @@ use Sonata\MediaBundle\Form\Type\MediaType;
 
 use Application\Sonata\ClassificationBundle\Entity\Tag;
 use Dwl\Lcdd\SearchBundle\Form\Type\dwlLegiTagsType;
+use Dwl\Lcdd\SearchBundle\Form\Type\dwlLegiArticlesType;
 
 class QuestionType extends AbstractType
 {
@@ -86,21 +87,9 @@ class QuestionType extends AbstractType
                     ->setParameter('qId', $question->getId());
                 }
             ))
-            ->add('legiIds', HiddenType::class, array(
-                'required' => true
-            ))
-            ->add('civilTags', dwlLegiTagsType::class, array(
-                'tag_type'=>'civil',
-                'data'=>$question->getCivilTags(),
-                // 'by_reference' => false,
-                // 'placeholder'=>'Choisissez un ou plusieurs tags civils par cette question',
-            ))
-            ->add('legalTags', dwlLegiTagsType::class, array(
-                'data'=>$question->getLegalTags(),
-                // 'expanded'=>false,
-                // 'multiple'=>true,
-                // 'by_reference' => false,
-                // 'placeholder'=>'Choisissez un ou plusieurs tags legaux par cette question',
+            ->add('legiIds', dwlLegiArticlesType::class, array(
+                'display_assets' => true,
+                'question' => $question,
             ))
             ->add('categories', null, array(
                 'expanded'=>false,
