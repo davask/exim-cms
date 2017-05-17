@@ -219,23 +219,33 @@ angular
         return true;
       };
       $scope.addLegiIds = function(item, model){
-        var legiIds = $scope.getLegiIds();
-        console.log(item._source.DWL.TEXT.uniqueid,legiIds);
-        legiIds.push(item._source.DWL.TEXT.uniqueid);
-        console.log(item._source.DWL.TEXT.uniqueid,legiIds);
 
-        $scope.selected.push(item);
-        console.log(item._source.DWL.TEXT.uniqueid,legiIds);
+        var legiIds = $scope.getLegiIds();
+        legiIds.push(item._source.DWL.TEXT.uniqueid);
+
+        var obj = {};
+        for ( var i=0, len=$scope.selected.length; i < len; i++ ) {
+          obj[$scope.selected[i]._source.DWL.TEXT.uniqueid] = $scope.selected[i];
+        }
+        obj[item._source.DWL.TEXT.uniqueid] = item;
+        var selected = new Array();
+        for ( var key in obj ) {
+          selected.push(obj[key]);
+        }
+        $scope.selected = selected;
 
         $scope.setLegiIds(legiIds);
-        console.log(item._source.DWL.TEXT.uniqueid,legiIds);
-
         return true;
       };
       $scope.removeLegiIds = function(item, model){
         var legiIds = $scope.getLegiIds();
         var uniqueIdIndex = legiIds.indexOf(item._source.DWL.TEXT.uniqueid);
         legiIds.splice(uniqueIdIndex, 1);
+        for (var i = 0; i < $scope.selected.length; i++) {
+          if ($scope.selected[i]._source.DWL.TEXT.uniqueid == item._source.DWL.TEXT.uniqueid) {
+            $scope.selected.splice(i, 1);
+          }
+        }
         $scope.setLegiIds(legiIds);
         return true;
       };
@@ -295,7 +305,6 @@ angular
             scope.$parent.userQuery=$select.search;
           });
           scope.$watch(function(){ return Data.getSelected(); }, function(newVal, oldVal){
-            console.log(newVal);
             $select.selected = newVal;
           });
         }
