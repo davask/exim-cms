@@ -11,11 +11,11 @@
   z-index: -1;
   visibility: hidden; }
 </style>
+{% set adminFormUniqId = formUniqId | default('dwl_lcdd_searchbundle_question') %}
 {% set legiSearchIndex = legi.search.index %}
 {% set legiSearchFields = ["'DWL.TEXT.TITLE.short'"] %}
 {% set legiSearchHighlightsFields = ["'DWL.TEXT.TITLE.short'"] %}
 {% include 'DwlLcddSearchBundle:Snippet:elastic_settings.html.twig' %}
-<div class="dwl-article-form-elements">
     <div
      ng-controller="articleCtrl"
      ng-init="getLegiByIds()"
@@ -55,11 +55,15 @@
                 </small>
             </ui-select-choices>
         </ui-select>
-        <input type="hidden" id="dwl_lcdd_searchbundle_question_legiIds" name="dwl_lcdd_searchbundle_question[legiIds]" required="required" class=" form-control" value="">
-        {{ form_row(form.legalTags) }}
-        {{ form_row(form.civilTags) }}
+        <div id="{{adminFormUniqId}}_legiIds">
+    {% for legiId in data %}
+            <input type="hidden" name="{{adminFormUniqId}}[legiIds][]" class=" form-control" value="{{ legiId }}">
+    {% endfor %}
+        </div>
+    {% set display_assets = display_assets|default(false) %}
     {% if display_assets %}
         <script type="text/javascript">
+            var adminFormUniqId = '{{adminFormUniqId}}';
             var importScript = (function (oBody) {
 
               function loadError (oError) {
@@ -105,15 +109,13 @@
         </script>
     {% endif %}
     </div>
-</div>
     {% endspaceless %}
 {% endblock %}
 
 {% block dwllegitags_row %}
-    <div class="clearfix">
+    <div class="clearfix" ng-controller="tagCtrl">
         {{ block('dwllegitags_widget') }}
     </div>
-    {% set display_assets = display_assets|default(false) %}
 {% endblock %}
 {% block dwllegitags_widget %}
     {% spaceless %}

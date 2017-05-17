@@ -98,7 +98,6 @@ class QuestionAdmin extends Admin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $question = $this->getSubject();
-        dump($question);
 
         $datagridMapper
             ->add('question')
@@ -114,10 +113,18 @@ class QuestionAdmin extends Admin
                     ;
                 },
             ))
-            ->add('legiIds', dwlLegiArticlesType::class, array(
-                'display_assets' => true,
-                'question' => $question,
-            ))
+            // ->add('legiIds', dwlLegiArticlesType::class, array(
+            //     'em' => $this->em,
+            //     'display_assets' => true,
+            //     'question' => $question,
+            // ))
+            // ->add('legalTags', dwlLegiTagsType::class, array(
+            //     'em' => $this->em
+            // ))
+            // ->add('civilTags', dwlLegiTagsType::class, array(
+            //     'em' => $this->em,
+            //     'tag_type' => 'civil'
+            // ))
             ->add('categories', null, array('field_options' => array('expanded' => false,'multiple' => true)), null, array(
                 'class' => 'ApplicationSonataClassificationBundle:Category',
                 'query_builder' => function(EntityRepository $repository) {
@@ -137,6 +144,7 @@ class QuestionAdmin extends Admin
     protected function configureFormFields(FormMapper $formMapper)
     {
         $question = $this->getSubject();
+        $em = $this->getConfigurationPool()->getContainer()->get('doctrine.orm.entity_manager');
 
         $formMapper
             ->add('question')
@@ -186,15 +194,17 @@ class QuestionAdmin extends Admin
         }
         $formMapper
             ->add('legiIds', dwlLegiArticlesType::class, array(
+                'em' => $em,
                 'display_assets' => true,
-                'data' => $question->getLegiIds(),
+                'question' => $question,
+                'formUniqId' => $this->getUniqid(),
             ))
             ->add('legalTags', dwlLegiTagsType::class, array(
-                'data' => $question->getLegalTags(),
+                'em' => $em
             ))
             ->add('civilTags', dwlLegiTagsType::class, array(
-                'tag_type' => 'civil',
-                'data' => $question->getCivilTags(),
+                'em' => $em,
+                'tag_type' => 'civil'
             ))
             ->add('categories', EntityType::class, array(
                 'class' => 'ApplicationSonataClassificationBundle:Category',

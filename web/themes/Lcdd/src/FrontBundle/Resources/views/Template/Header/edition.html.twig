@@ -62,4 +62,9 @@
                     </li>
                 {% endif %}
             {% endif %}
+    {% if app.environment == 'dev' %}
+                <li>
+                    {% include "ObCacheNukeBundle::button.html.twig" %}
+                </li>
+    {% endif %}
 {% endif %}

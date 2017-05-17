@@ -88,8 +88,16 @@ class QuestionType extends AbstractType
                 }
             ))
             ->add('legiIds', dwlLegiArticlesType::class, array(
+                'em' => $this->em,
                 'display_assets' => true,
                 'question' => $question,
+            ))
+            ->add('legalTags', dwlLegiTagsType::class, array(
+                'em' => $this->em
+            ))
+            ->add('civilTags', dwlLegiTagsType::class, array(
+                'em' => $this->em,
+                'tag_type' => 'civil'
             ))
             ->add('categories', null, array(
                 'expanded'=>false,

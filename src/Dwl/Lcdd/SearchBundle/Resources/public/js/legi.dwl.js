@@ -1,3 +1,19 @@
+var unique = function (arr) {
+  var u = {}, a = [];
+  for(var i = 0, l = arr.length; i < l; ++i){
+      if(!u.hasOwnProperty(arr[i])) {
+          a.push(arr[i]);
+          u[arr[i]] = 1;
+      }
+  }
+  return a;
+};
+var parseHtmlEnteties = function (str) {
+    return str.replace(/&#([0-9]{1,4});/gi, function(match, numStr) {
+        var num = parseInt(numStr, 10); // read num as normal number
+        return String.fromCharCode(num);
+    });
+};
 var elasticui;
 (function (elasticui) {
     var widgets;
@@ -70,8 +86,8 @@ var dwlLegi;
     <div ng-repeat="doc in selected track by $index">\
         <ul class="list-inline">\
             <li><b>{[{doc._source.DWL.TEXT.TITLE.code}]} - {[{doc._source.DWL.TEXT.TITLE.short}]}:</b></li> \
-            <li data-value="{[{tag}]}" class="btn btn-default tag-{[{$parent.$index}]}-{[{$index}]}" ng-repeat="tag in doc._source.DWL.TEXT.TAGS.content.split(\'|\') | orderBy: \'+\' track by $index" ng-click="addTag(tag, type)">\
-                <span>{[{ tag }]}</span>\
+            <li data-value="{[{ tag }]}" class="btn btn-default tag-{[{$parent.$index}]}-{[{$index}]}" ng-repeat="tag in doc._source.DWL.TEXT.TAGS.content.split(\'|\') | orderBy: \'+\' track by $index" ng-click="addTag(tag, type)">\
+                <span>{[{ tag | unicode2html }]}</span>\
                 <span style="font-size: 14px;line-height: 1.4;" class="close">&nbsp;+</span>\
             </li>\
         </ul>\
@@ -98,20 +114,15 @@ angular
     })
     .filter('tagsReplace',function() {
         return function(input) {
-            function unique(arr) {
-                var u = {}, a = [];
-                for(var i = 0, l = arr.length; i < l; ++i){
-                    if(!u.hasOwnProperty(arr[i])) {
-                        a.push(arr[i]);
-                        u[arr[i]] = 1;
-                    }
-                }
-                return a;
-            }
             var tags = unique(input.split('|'));
             if (input) {
                 return '<li>'+tags.join('</li><li>')+'</li>';
             }
+        }
+    })
+    .filter('unicode2html',function() {
+        return function(input) {
+            return parseHtmlEnteties(input);
         }
     })
     .filter('propsFilter', function() {
@@ -146,52 +157,33 @@ angular
       };
     })
     .constant('euiHost', legi.search.request)
-    .controller("articleCtrl", ['$scope', '$window', '$log', '$http', function($scope, $window, $log, $http) {
+    .constant('adminFormUniqId', adminFormUniqId)
+    .factory('Data', function(){
+      var data = {
+          selected: []
+      }
+      return {
+        getSelected: function () {
+            return data.selected;
+        },
+        setSelected: function (selected) {
+            data.selected = selected;
+        }
+      };
+    })
+    .controller("articleCtrl", ['$scope', '$window', '$log', '$http', 'Data', 'adminFormUniqId', function($scope, $window, $log, $http, Data, adminFormUniqId) {
 
-      $scope.placeholder="Rechercher un numero d'article";
+      $scope.placeholder="Saisissez un numero d'article de loi";
       $scope.userQuery="";
       $scope.selected=[];
-      $scope.type="";
-      $scope.tags=[];
 
-      if (typeof $window['legalTaggle'] == "undefined") {
-        $window['legalTaggle'] = new $window.Taggle('legalTags', {
-          'additionalTagListClasses': 'list-inline',
-          'bootstrapInput': true,
-          'placeholder': "Saisissez un mot-cle...",
-          'additionalTagListLiClasses': 'col-xs-12',
-          'additionalTagListLiInputClasses': 'col-xs-12',
-          'onTagRemove': function (event, tag) {
-            $window.jQuery('dwl-legi-tags[type="legal"] [data-value="'+tag+'"]').show();
-          },
-          'hiddenInputName': 'dwl_lcdd_searchbundle_question[legalTags][]'
-        });
-      }
-      if (typeof $window['civilTaggle'] == "undefined") {
-        $window['civilTaggle'] = new $window.Taggle('civilTags', {
-          'additionalTagListClasses': 'list-inline',
-          'bootstrapInput': true,
-          'placeholder': "Saisissez un mot-cle...",
-          'additionalTagListLiClasses': 'col-xs-12',
-          'additionalTagListLiInputClasses': 'col-xs-12',
-          'onTagRemove': function (event, tag) {
-            $window.jQuery('dwl-legi-tags[type="civil"] [data-value="'+tag+'"]').show();
-          },
-          'hiddenInputName': 'dwl_lcdd_searchbundle_question[civilTags][]'
-        });
-      }
-      $scope.addSavedTags = function(type, tags) {
-        $scope.type=type;
-        $scope.tags=tags;
-        $window[type+'Taggle'].add(tags);
-      };
-      $scope.addTag = function(tag, type) {
-        $window[type+'Taggle'].add(tag);
-        $window.jQuery('dwl-legi-tags[type="'+type+'"] [data-value="'+tag+'"]').hide();
-      };
+      $scope.$watch('selected', function(newVal, oldVal){
+        Data.setSelected(newVal);
+      });
 
       $scope.getLegiByIds = function(){
         var legiIds = $scope.getLegiIds();
+        console.log(legiIds);
         for (var i = 0; i < legiIds.length; i++) {
           $http({
             method: 'POST',
@@ -211,22 +203,33 @@ angular
         }
       }
       $scope.getLegiIds = function(){
-        var legiIdsString = jQuery('#dwl_lcdd_searchbundle_question_legiIds').val();
-        legiIds = legiIdsString.split('|');
-        if (legiIds[0] == "") {
-          legiIds = [];
-        }
+        var legiIdsObject = $window.jQuery('input[name="'+adminFormUniqId+'[legiIds][]"]');
+        legiIds = [];
+        legiIdsObject.each(function(index){
+          legiIds[legiIds.length] = $window.jQuery(this).val();
+        });
         return legiIds;
       };
       $scope.setLegiIds = function(legiIds){
-        var legiIdsString = legiIds.join('|');
-        jQuery('#dwl_lcdd_searchbundle_question_legiIds').val(legiIdsString);
+        var inputs = '';
+        for (var i = 0; i < legiIds.length; i++) {
+          inputs += '<input type="hidden" name="'+adminFormUniqId+'[legiIds][]" class=" form-control" value="'+legiIds[i]+'">';
+        }
+        $window.jQuery('#'+adminFormUniqId+'_legiIds').html(inputs);
         return true;
       };
       $scope.addLegiIds = function(item, model){
         var legiIds = $scope.getLegiIds();
+        console.log(item._source.DWL.TEXT.uniqueid,legiIds);
         legiIds.push(item._source.DWL.TEXT.uniqueid);
+        console.log(item._source.DWL.TEXT.uniqueid,legiIds);
+
+        $scope.selected.push(item);
+        console.log(item._source.DWL.TEXT.uniqueid,legiIds);
+
         $scope.setLegiIds(legiIds);
+        console.log(item._source.DWL.TEXT.uniqueid,legiIds);
+
         return true;
       };
       $scope.removeLegiIds = function(item, model){
@@ -236,19 +239,69 @@ angular
         $scope.setLegiIds(legiIds);
         return true;
       };
-    }]).directive('artUiSelect', function() {
+
+    }])
+    .controller("tagCtrl", ['$scope', '$window', '$log', '$http', 'Data', 'adminFormUniqId', function($scope, $window, $log, $http, Data, adminFormUniqId) {
+
+      $scope.type="";
+      $scope.tags=[];
+      $scope.selected=Data.getSelected();
+
+      $scope.$watch(function () { return Data.getSelected(); }, function(newVal, oldVal){
+        $scope.selected=newVal;
+      });
+
+      if (typeof $window['legalTaggle'] == "undefined") {
+        $window['legalTaggle'] = new $window.Taggle('legalTags', {
+          'additionalTagListClasses': 'list-inline',
+          'bootstrapInput': true,
+          'placeholder': "Saisissez un mot-cle...",
+          'additionalTagListLiClasses': 'col-xs-12',
+          'additionalTagListLiInputClasses': 'col-xs-12',
+          'onTagRemove': function (event, tag) {
+            $window.jQuery('dwl-legi-tags[type="legal"] [data-value="'+tag+'"]').show();
+          },
+          'hiddenInputName': ''+adminFormUniqId+'[legalTags][]'
+        });
+      }
+      if (typeof $window['civilTaggle'] == "undefined") {
+        $window['civilTaggle'] = new $window.Taggle('civilTags', {
+          'additionalTagListClasses': 'list-inline',
+          'bootstrapInput': true,
+          'placeholder': "Saisissez un mot-cle...",
+          'additionalTagListLiClasses': 'col-xs-12',
+          'additionalTagListLiInputClasses': 'col-xs-12',
+          'onTagRemove': function (event, tag) {
+            $window.jQuery('dwl-legi-tags[type="civil"] [data-value="'+tag+'"]').show();
+          },
+          'hiddenInputName': ''+adminFormUniqId+'[civilTags][]'
+        });
+      }
+      $scope.addSavedTags = function(type, tags) {
+        $scope.type=type;
+        $scope.tags=tags;
+        $window[type+'Taggle'].add(tags);
+      };
+      $scope.addTag = function(tag, type) {
+        $window[type+'Taggle'].add(parseHtmlEnteties(tag));
+        $window.jQuery('dwl-legi-tags[type="'+type+'"] [data-value="'+tag+'"]').hide();
+      };
+    }])
+    .directive('artUiSelect', ['Data', function(Data) {
       return {
         require: 'uiSelect',
         link: function(scope, element, attrs, $select) {
           scope.$watch('$select.search', function(newVal, oldVal){
             scope.$parent.userQuery=$select.search;
           });
-          scope.$watch('$parent.selected', function(newVal, oldVal){
-            $select.selected=newVal;
+          scope.$watch(function(){ return Data.getSelected(); }, function(newVal, oldVal){
+            console.log(newVal);
+            $select.selected = newVal;
           });
         }
       };
-    }).directive('artEuiSelect', function() {
+    }])
+    .directive('artEuiSelect', function() {
       return {
         link: function(scope, element, attrs, querystring) {
           scope.$watch('userQuery', function(newVal, oldVal){
@@ -258,5 +311,9 @@ angular
       };
     });
 jQuery(document).ready(function(){
-  angular.bootstrap(document.getElementsByClassName('dwl-article-form-elements'), ['article']);
+  var e = document.getElementsByClassName('dwl-article-form-elements');
+  if (!e.length) {
+    e = document.getElementsByTagName('body');
+  }
+  angular.bootstrap(e, ['article']);
 });

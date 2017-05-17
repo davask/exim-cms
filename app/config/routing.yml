@@ -34,5 +34,9 @@ _api:
 _liip_imagine:
     resource: "@LiipImagineBundle/Resources/config/routing.xml"
 
+ob_cache_nuke:
+    resource: "@ObCacheNukeBundle/Resources/config/routing.yml"
+    prefix:   /
+
 fos_js_routing:
     resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"

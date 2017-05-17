@@ -6,6 +6,12 @@
     {% for css in theme.assets.css.vendor %}
     <link rel="stylesheet" href="{{css}}" media="all">
     {% endfor %}
+    <link rel='stylesheet' href='//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.css'/>
+    <style>
+        #nprogress .bar {
+            background: #ffffff;
+        }
+    </style>
 {# exim space fix -#}
 <!-- exim extra styles -->
     {% for css in theme.assets.css.extra %}

@@ -77,6 +77,11 @@
                                 </a>
                                 {% include sonata_admin.adminPool.getTemplate('add_block') %}
                             </li>
+                            {% if app.environment == 'dev' %}
+                            <li>
+                                {% include "ObCacheNukeBundle::button.html.twig" %}
+                            </li>
+                            {% endif %}
 
                             {% block sonata_top_nav_menu_add_block %}
                                 <li class="dropdown">

@@ -61,8 +61,12 @@
 {% block sonata_profile_form_end %}
 <div>
     <div class="content-embed">
-    {{ form_row(edit_form.legiIds) }}
-    {{ form_row(edit_form.unqualifiedQuestions) }}
+        <div class="dwl-article-form-elements">
+            {{ form_row(edit_form.legiIds) }}
+            {{ form_row(edit_form.legalTags) }}
+            {{ form_row(edit_form.civilTags) }}
+        </div>
+        {{ form_row(edit_form.unqualifiedQuestions) }}
     </div>
 </div>
 <div class="content-embed">

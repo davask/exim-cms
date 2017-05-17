@@ -53,6 +53,14 @@ class Article
     private $dateUpdate;
 
     /**
+     * {@inheritdoc}
+     */
+    public function __toString()
+    {
+        return $this->getUniqueId() ?: 'n/a';
+    }
+
+    /**
      * Get id
      *
      * @return integer

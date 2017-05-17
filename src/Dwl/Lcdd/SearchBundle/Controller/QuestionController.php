@@ -359,7 +359,7 @@ class QuestionController extends Controller
 
         $form = $this->createForm(new QuestionType($this->em), $entity, array(
             'action' => $this->generateUrl('question_update', array('id' => $entity->getId())),
-            'method' => 'POSt',
+            'method' => 'POST',
         ));
 
         $form->add('submit', 'submit', array('label' => 'Update'));
@@ -414,68 +414,17 @@ class QuestionController extends Controller
             throw $this->createNotFoundException('Unable to find Question entity.');
         }
 
-        $data = $request->request->get('dwl_lcdd_searchbundle_question');
-        $tagRepo = $this->em->getRepository('ApplicationSonataClassificationBundle:Tag');
-        $contextRepo = $this->em->getRepository('ApplicationSonataClassificationBundle:Context');
-        $cLcdd = $contextRepo->findOneByName('lcdd');
-        if(!empty($data['legalTags'])) {
-            $legalTags = $data['legalTags'];
-            $data['legalTags'] = array();
-            for ($i=0; $i < count($legalTags); $i++) {
-                if (!is_object($legalTags)) {
-                    $slug = Tag::slugify($legalTags[$i]);
-                    $tag = $tagRepo->findOneBySlug($slug);
-                    if (empty($tag)) {
-                        $tag = new Tag();
-                        $tag->setName($legalTags[$i]);
-                        $tag->setEnabled(true);
-                        $tag->setContext($cLcdd);
-                        $this->em->persist($tag);
-                        $this->em->flush();
-                    }
-                    // $data['legalTags'][] = (string)$tag->getId();
-                    $data['legalTags'][] = $tag;
-                }
-            }
-        } else {
-            $data['legalTags'] = array();
-        }
-        if(!empty($data['civilTags'])) {
-            $civilTags = $data['civilTags'];
-            $data['civilTags'] = array();
-            for ($i=0; $i < count($civilTags); $i++) {
-                if (!is_object($civilTags)) {
-                    $slug = Tag::slugify($civilTags[$i]);
-                    $tag = $tagRepo->findOneBySlug($slug);
-                    if (empty($tag)) {
-                        $tag = new Tag();
-                        $tag->setName($civilTags[$i]);
-                        $tag->setEnabled(true);
-                        $tag->setContext($cLcdd);
-                        $this->em->persist($tag);
-                        $this->em->flush();
-                    }
-                    // $data['civilTags'][] = (string)$tag->getId();
-                    $data['civilTags'][] = $tag;
-                }
-            }
-        } else {
-            $data['civilTags'] = array();
-        }
-        $request->request->set('dwl_lcdd_searchbundle_question', $data);
-        dump($request->request->get('dwl_lcdd_searchbundle_question'));
-
         $deleteForm = $this->createDeleteForm($id);
         $editForm = $this->createEditForm($question);
         $editForm->handleRequest($request);
-        dump($request,$editForm);
+
+        dump($editForm);
 
         if ($editForm->isValid()) {
             $this->em->flush();
 
             return $this->redirect($this->generateUrl('question_edit', array('id' => $id)));
         }
-        dump($question);
 
         $site = $this->get('sonata.page.manager.site')->findOneBy(array('id'=>1));
         $page = $this->get('sonata.page.cms_manager_selector')->retrieve()
