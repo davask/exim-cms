@@ -183,7 +183,6 @@ angular
 
       $scope.getLegiByIds = function(){
         var legiIds = $scope.getLegiIds();
-        console.log(legiIds);
         for (var i = 0; i < legiIds.length; i++) {
           $http({
             method: 'POST',

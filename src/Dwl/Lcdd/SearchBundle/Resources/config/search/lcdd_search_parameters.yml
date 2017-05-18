@@ -13,6 +13,7 @@ parameters:
       - '%exim.lcdd.search.resources%/public/scss/page_search.scss'
     exim.lcdd.search.javascript:
       - '%exim.lcdd.search.resources%/public/js/elasticsearch.angular.js'
+      # - '%exim.lcdd.search.resources%/public/js/elasticui.js'
       - '%exim.lcdd.search.resources%/public/js/search.elasticui.js'
       - '%exim.lcdd.search.resources%/public/js/search.angular.js'
     exim.lcdd.search.vendor.javascript:

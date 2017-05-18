@@ -47,7 +47,6 @@ angular
 
         $scope.$watch('indexVM.query.value()', function(newVal, oldVal){
           if(typeof(newVal) != 'undefined'){
-            console.log(newVal);
             $scope.userQuestion = newVal.substring(0, newVal.length-1);
             $scope.unSubmitNewQuestion();
           }

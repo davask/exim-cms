@@ -1,6 +1,7 @@
 {% extends sonata_block.templates.block_base %}
 {% trans_default_domain "DwlLcddSearchBundle" %}
 
+{% set lcddSearchHost = lcdd.search.request %}
 {% set lcddSearchIndex = lcdd.search.index %}
 {% set lcddSearchFields = ["'question'"] %}
 {% set lcddSearchHighlightsFields = lcddSearchFields %}
@@ -10,6 +11,7 @@
 
     <div class="dwl-search-block-search-hero-form{% if settings.display == 'block' and settings.block_class != ''  %} {{ settings.block_class }}{% endif %}{% if settings.display == 'bottom' %} col-sm-6 pull-right{% endif %}"
          ng-controller="formCtrl"
+         eui-host="'{{ lcddSearchHost }}'"
          eui-index="'{{ lcddSearchIndex }}'"
          ng-init="initSettings('{{block.id}}', '{{ settings.display }}', '{{ questionForm.vars.full_name }}');"
          data-form="{{ questionForm.vars.full_name }}"

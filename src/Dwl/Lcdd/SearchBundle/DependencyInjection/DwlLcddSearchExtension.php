@@ -66,6 +66,7 @@ class DwlLcddSearchExtension extends Extension
         $container->setParameter('exim.lcdd.search.vendor.javascript', array(
             '//code.angularjs.org/1.2.16/angular.js',
             '//code.angularjs.org/1.2.25/angular-sanitize.js',
+            '//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/2.3.0/ui-bootstrap-tpls.min.js',
             '/bundles/dwllcddsearch/vendor/elastic.js/dist/elastic.min.js',
         ));
 
