@@ -57,6 +57,7 @@
               <!-- <iframe class="embed-responsive-item" src="..."></iframe> -->
               {{ question.media.providerMetadata.html | raw}}
             </div>
+    {% else %}
     {% endif %}
     {{ form_row(edit_form.media) }}
 </div>

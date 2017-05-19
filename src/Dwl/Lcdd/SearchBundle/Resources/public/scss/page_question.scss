@@ -1,10 +1,14 @@
 .question {
 
-    .edit {
+    &.edit {
 
         form[name="dwl_lcdd_searchbundle_question"] {
             .form-group {
                 background: transparent;
+            }
+            .taggle, li.btn[data-value] {
+                font-size: 12px;
+                padding: 0 0 0 5px;
             }
         }
 

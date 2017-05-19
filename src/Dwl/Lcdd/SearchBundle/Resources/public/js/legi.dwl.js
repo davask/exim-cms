@@ -82,10 +82,10 @@ var dwlLegi;
 
                 directive.template = '\
 <div style="font-size:12px;" ng-if="type == \'legal\'">\
-    suggestions de mot-cl&eacute;s \
+    suggestions de mot-clés \
     <div ng-repeat="doc in selected track by $index">\
         <ul class="list-inline">\
-            <li><b>{[{doc._source.DWL.TEXT.TITLE.code}]} - {[{doc._source.DWL.TEXT.TITLE.short}]}:</b></li> \
+            <li><b>{[{ doc._source.DWL.TEXT.TITLE.code | unicode2html }]} - {[{ doc._source.DWL.TEXT.TITLE.short | unicode2html }]}:</b></li> \
             <li data-value="{[{ tag }]}" class="btn btn-default tag-{[{$parent.$index}]}-{[{$index}]}" ng-repeat="tag in doc._source.DWL.TEXT.TAGS.content.split(\'|\') | orderBy: \'+\' track by $index" ng-click="addTag(tag, type)">\
                 <span>{[{ tag | unicode2html }]}</span>\
                 <span style="font-size: 14px;line-height: 1.4;" class="close">&nbsp;+</span>\

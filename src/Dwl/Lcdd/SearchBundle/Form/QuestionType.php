@@ -73,7 +73,9 @@ class QuestionType extends AbstractType
                 'translation_domain' => 'DwlLcddSearchBundle',
             ))
             // ->add('slug')
-            ->add('qualified')
+            ->add('qualified', null, array(
+                'label' => 'Est-ce une question qualifieé',
+            ))
             // ->add('date_create')
             // ->add('date_update')
             // ->add('qualifiedQuestion')
@@ -81,7 +83,8 @@ class QuestionType extends AbstractType
                 'expanded'=>false,
                 'multiple'=>true,
                 'by_reference' => false,
-                'placeholder'=>'Choisissez une ou plusieurs questions qualifiees par cette question',
+                'placeholder'=>'Choisissez une ou plusieurs questions qualifiées par cette question',
+                'label' => 'Questions non qualifiées',
                 'query_builder' => function ($repo) use ($question) {
                   return $repo->createQueryBuilder('q')
                     ->where('q.qualified = 0')
@@ -104,7 +107,7 @@ class QuestionType extends AbstractType
                 'tag_type' => 'civil'
             ))
             ->add('categories', null, array(
-                'label'=> 'categories :',
+                'label'=> 'catégories :',
                 'expanded'=>false,
                 'multiple'=>true,
                 'required' => count($question->getCategories()) > 0 ? false : true,
