@@ -213,6 +213,9 @@
     margin-bottom: 0;
     position:relative;
 }
+#question .form-group {
+    background: transparent;
+}
 .input-group {
     background:$white;
     border: 1px solid darken($white, 10%);

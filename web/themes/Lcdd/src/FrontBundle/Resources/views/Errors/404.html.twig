@@ -1,0 +1,17 @@
+{% trans_default_domain "DwlLcddSearchBundle" %}
+{% extends "EximTheme"~theme.name~"FrontBundle:Template:default.html.twig" %}
+
+{% block bodyClass %}{{parent()}} error{% endblock %}
+{% block contentClass %}{{parent()}} 404{% endblock %}
+
+{% block content %}
+<div class="col-sm-offset-2 col-sm-8">
+    <div class="jumbotron text-center" style="margin-top:20px;">
+      <h1>{{ error_message | raw }}</h1>
+      <br/>
+      <br/>
+      <p><a class="btn btn-primary btn-lg" href="{{ url('page_slug', { 'path': '/' }) }}" role="button">page d'accuel</a></p>
+    </div>
+</div>
+{% endblock %}
+

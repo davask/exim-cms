@@ -113,30 +113,24 @@ class QuestionController extends Controller
 
         $this->postConstruct();
 
-        $question = $this->repo->findOneBySlug($slug);
-
-        if (!$question instanceof Question) {
-            throw new NotFoundHttpException('Question not found');
-        }
-
-        $this->container->get('sonata.seo.page')
-            ->setTitle($question->getQuestion())
-            ->addMeta('property', 'og:title', $question->getQuestion())
-            ->addMeta('property', 'og:type', 'question')
-            ->addMeta('property', 'og:url',  $this->generateUrl('dwl_lcdd_get_question', array(
-                'slug'  => $question->getSlug()
-            ), true))
-        ;
+        $question = $this->repo->findOneBy(array('slug' => $slug, 'qualified' => true));
 
         $site = $this->get('sonata.page.manager.site')->findOneBy(array('id'=>1));
         $page = $this->get('sonata.page.cms_manager_selector')->retrieve()
             ->getPageByRouteName($site,$this->get('request')->get('_route'));
 
         $viewDatas = array(
-            'question' => $question,
             'page' => $page,
             'blocks' => $this->container->getParameter('lcdd.speaker.configuration.speaker_blocks'),
         );
+
+
+        if (!$question instanceof Question) {
+            $viewDatas['error_message'] = 'Cette question n\'existe pas ou n\'a pas encore &eacute;t&eacute; valid&eacute;e !';
+            return $this->viewDatasRender($viewDatas, 'EximTheme'.$this->getParameter('exim.theme.name').'FrontBundle:Errors:404.html.twig');
+        }
+
+        $viewDatas['question'] = $question;
 
         return $this->viewDatasRender($viewDatas, 'DwlLcddSearchBundle:Question:get.html.twig');
 
@@ -229,33 +223,33 @@ class QuestionController extends Controller
         return $viewDatas;
     }
 
-    public function qualifyAction($id)
-    {
-        $this->postConstruct();
+    // public function qualifyAction($id)
+    // {
+    //     $this->postConstruct();
 
-        $question = $this->repo->findOneById($id);
+    //     $question = $this->repo->findOneById($id);
 
-        if (!$question) {
-            throw $this->createNotFoundException('Unable to find Question entity.');
-        }
+    //     if (!$question) {
+    //         throw $this->createNotFoundException('Unable to find Question entity.');
+    //     }
 
-        $questionQualified = new Question();
-        $questionQualified->addUnqualifiedQuestion($question);
+    //     $questionQualified = new Question();
+    //     $questionQualified->addUnqualifiedQuestion($question);
 
-        $editForm = $this->createCreateForm($questionQualified);
+    //     $editForm = $this->createCreateForm($questionQualified);
 
-        $site = $this->get('sonata.page.manager.site')->findOneBy(array('id'=>1));
-        $page = $this->get('sonata.page.cms_manager_selector')->retrieve()
-            ->getPageByRouteName($site,$this->get('request')->get('_route'));
+    //     $site = $this->get('sonata.page.manager.site')->findOneBy(array('id'=>1));
+    //     $page = $this->get('sonata.page.cms_manager_selector')->retrieve()
+    //         ->getPageByRouteName($site,$this->get('request')->get('_route'));
 
-        return $this->render('DwlLcddSearchBundle:Question:new.html.twig', array(
-            'question'      => $questionQualified,
-            'edit_form'   => $editForm->createView(),
-            'page' => $page,
-            'blocks' => $this->container->getParameter('lcdd.speaker.configuration.speaker_blocks'),
-        ));
+    //     return $this->render('DwlLcddSearchBundle:Question:new.html.twig', array(
+    //         'question'      => $questionQualified,
+    //         'edit_form'   => $editForm->createView(),
+    //         'page' => $page,
+    //         'blocks' => $this->container->getParameter('lcdd.speaker.configuration.speaker_blocks'),
+    //     ));
 
-    }
+    // }
 
     /**
      * Creates a new Question entity.
@@ -310,37 +304,41 @@ class QuestionController extends Controller
         return $form;
     }
 
-    // /**
-    //  * @Rest\View
-    //  */
-    // public function newAction()
-    // {
-    //     return $this->viewDatasRender($this->processForm(new Question()));
-    // }
-
     /**
-     * Displays a form to create a new Question entity.
-     *
+     * @Rest\View
      */
     public function newAction()
     {
-        $this->postConstruct();
-
-        $question = new Question();
-
-        $editForm = $this->createCreateForm($question);
-
-        $site = $this->get('sonata.page.manager.site')->findOneBy(array('id'=>1));
-        $page = $this->get('sonata.page.cms_manager_selector')->retrieve()
-            ->getPageByRouteName($site,$this->get('request')->get('_route'));
-
-        return $this->render('DwlLcddSearchBundle:Question:new.html.twig', array(
-            'question'      => $question,
-            'edit_form'   => $editForm->createView(),
-            'page' => $page,
-            'blocks' => $this->container->getParameter('lcdd.speaker.configuration.speaker_blocks'),
-        ));
+        return $this->viewDatasRender($this->processForm(new Question()));
     }
+
+    // /**
+    //  * Displays a form to create a new Question entity.
+    //  *
+    //  */
+    // public function newAction()
+    // {
+    //     $this->postConstruct();
+
+    //     $question = new Question();
+
+    //     $editForm = $this->createCreateForm($question);
+
+    //     $site = $this->get('sonata.page.manager.site')->findOneBy(array('id'=>1));
+    //     $page = $this->get('sonata.page.cms_manager_selector')->retrieve()
+    //         ->getPageByRouteName($site,$this->get('request')->get('_route'));
+
+
+    //     $viewDatas = array(
+    //         'question'      => $question,
+    //         'edit_form'   => $editForm->createView(),
+    //         'page' => $page,
+    //         'blocks' => $this->container->getParameter('lcdd.speaker.configuration.speaker_blocks'),
+    //     );
+
+    //     return $this->viewDatasRender($viewDatas, 'DwlLcddSearchBundle:Question:new.html.twig');
+
+    // }
 
     /**
     * Creates a form to edit a Question entity.
@@ -378,25 +376,30 @@ class QuestionController extends Controller
 
         $question = $this->repo->findOneById($id);
 
+        $site = $this->get('sonata.page.manager.site')->findOneBy(array('id'=>1));
+        $page = $this->get('sonata.page.cms_manager_selector')->retrieve()
+            ->getPageByRouteName($site,$this->get('request')->get('_route'));
+
+        $viewDatas = array(
+            'page' => $page,
+            'blocks' => $this->container->getParameter('lcdd.speaker.configuration.speaker_blocks'),
+        );
+
+
         if (!$question) {
-            throw $this->createNotFoundException('Unable to find Question entity.');
+            $viewDatas['error_message'] = 'Impossible de trouver cette question';
+            return $this->viewDatasRender($viewDatas, 'EximTheme'.$this->getParameter('exim.theme.name').'FrontBundle:Errors:404.html.twig');
         }
 
         $editForm = $this->createEditForm($question);
         $deleteForm = $this->createDeleteForm($id);
 
-        $site = $this->get('sonata.page.manager.site')->findOneBy(array('id'=>1));
-        $page = $this->get('sonata.page.cms_manager_selector')->retrieve()
-            ->getPageByRouteName($site,$this->get('request')->get('_route'));
+        $viewDatas['question'] = $question;
+        $viewDatas['edit_form'] = $editForm->createView();
+        $viewDatas['delete_form'] = $deleteForm->createView();
 
 
-        return $this->render('DwlLcddSearchBundle:Question:edit.html.twig', array(
-            'question'      => $question,
-            'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
-            'page' => $page,
-            'blocks' => $this->container->getParameter('lcdd.speaker.configuration.speaker_blocks'),
-        ));
+        return $this->render('DwlLcddSearchBundle:Question:edit.html.twig', $viewDatas);
     }
 
     /**
@@ -408,17 +411,25 @@ class QuestionController extends Controller
         $this->postConstruct();
 
         $question = $this->repo->findOneById($id);
-        // die();
+
+        $site = $this->get('sonata.page.manager.site')->findOneBy(array('id'=>1));
+        $page = $this->get('sonata.page.cms_manager_selector')->retrieve()
+            ->getPageByRouteName($site,$this->get('request')->get('_route'));
+
+        $viewDatas = array(
+            'page' => $page,
+            'blocks' => $this->container->getParameter('lcdd.speaker.configuration.speaker_blocks'),
+        );
 
         if (!$question) {
-            throw $this->createNotFoundException('Unable to find Question entity.');
+            $viewDatas['error_message'] = 'Impossible de trouver cette question';
+
+            return $this->viewDatasRender($viewDatas, 'EximTheme'.$this->getParameter('exim.theme.name').'FrontBundle:Errors:404.html.twig');
         }
 
         $deleteForm = $this->createDeleteForm($id);
         $editForm = $this->createEditForm($question);
         $editForm->handleRequest($request);
-
-        dump($editForm);
 
         if ($editForm->isValid()) {
             $this->em->flush();
@@ -426,9 +437,9 @@ class QuestionController extends Controller
             return $this->redirect($this->generateUrl('question_edit', array('id' => $id)));
         }
 
-        $site = $this->get('sonata.page.manager.site')->findOneBy(array('id'=>1));
-        $page = $this->get('sonata.page.cms_manager_selector')->retrieve()
-            ->getPageByRouteName($site,$this->get('request')->get('_route'));
+        $viewDatas['question'] = $question;
+        $viewDatas['edit_form'] = $editForm->createView();
+        $viewDatas['delete_form'] = $deleteForm->createView();
 
         return $this->render('DwlLcddSearchBundle:Question:edit.html.twig', array(
             'question'      => $question,
@@ -455,19 +466,30 @@ class QuestionController extends Controller
         $form = $this->createDeleteForm($id);
         $form->handleRequest($request);
 
+        $site = $this->get('sonata.page.manager.site')->findOneBy(array('id'=>1));
+        $page = $this->get('sonata.page.cms_manager_selector')->retrieve()
+            ->getPageByRouteName($site,$this->get('request')->get('_route'));
+
+        $viewDatas = array(
+            'page' => $page,
+            'blocks' => $this->container->getParameter('lcdd.speaker.configuration.speaker_blocks'),
+        );
+
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
             $entity = $em->getRepository('DwlLcddSearchBundle:Question')->find($id);
 
             if (!$entity) {
-                throw $this->createNotFoundException('Unable to find Question entity.');
+                $viewDatas['error_message'] = 'Impossible de trouver cette question';
+                throw $this->createNotFoundException($viewDatas['error_message']);
+                // return $this->viewDatasRender($viewDatas, 'EximTheme'.$this->getParameter('exim.theme.name').'FrontBundle:Errors:404.html.twig');
             }
 
             $em->remove($entity);
             $em->flush();
         }
 
-        return $this->redirect($this->generateUrl('question'));
+        return $this->redirect($this->generateUrl('dwl_lcdd_search_question'));
     }
 
     /**

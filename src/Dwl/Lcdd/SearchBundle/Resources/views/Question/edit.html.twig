@@ -1,6 +1,6 @@
 {% extends "DwlLcddSearchBundle:Question:base.html.twig" %}
 
-{% block bodyClass %}{{parent()}} question{% endblock %}
+{% block bodyClass %}{{parent()}} question edit{% endblock %}
 {% block contentClass %}{{parent()}} edit{% endblock %}
 
 {% block exim_profile_action %}
@@ -38,19 +38,28 @@
 {% endblock %}
 
 {% block content_embed %}
-<div>
-    {{ form_row(edit_form.categories) }}
+<div class="row">
+<div class="col-xs-12">{{ form_row(edit_form.categories) }}</div>
+<div class="col-xs-12">
+    {{ form_label(edit_form.question) }}<h1>{{ form_widget(edit_form.question) }}</h1>
 </div>
-<div>
-    {{ form_row(edit_form.question) }}
-</div>
-<div>
+<div class="col-xs-12">
     {{ form_row(edit_form.speaker) }}
 </div>
+</div>
+
 {% endblock %}
 
 {% block content_video %}
+<div class="row">
+    {% if question.media.providerMetadata is defined %}
+            <div class="embed-responsive embed-responsive-16by9 col-xs-12">
+              <!-- <iframe class="embed-responsive-item" src="..."></iframe> -->
+              {{ question.media.providerMetadata.html | raw}}
+            </div>
+    {% endif %}
     {{ form_row(edit_form.media) }}
+</div>
 {% endblock %}
 
 {% block _dwl_lcdd_searchbundle_question_civilTags_widget %}
@@ -71,8 +80,9 @@
 </div>
 <div class="content-embed">
     {{ form_row(edit_form.qualified) }}
-    {{ form_row(edit_form.submit, { 'attr' : { 'class' : 'btn-link pull-right' } }) }}
+    {{ form_row(edit_form.submit, { 'label' : 'Enregistrer', 'attr' : { 'class' : 'btn-link pull-right' } }) }}
     {{ form_end(edit_form) }}
 </div>
 {% endblock %}
 
+{% block lcdd_list_similar '' %}

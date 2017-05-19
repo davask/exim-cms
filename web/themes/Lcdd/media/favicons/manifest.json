@@ -8,6 +8,6 @@
 		}
 	],
 	"theme_color": "#113f59",
-	"start_url": "http:\/\/www.lachainedudroit.fr\/",
+	"start_url": "https:\/\/dev.lachainedudroit.fr\/",
 	"display": "standalone"
 }

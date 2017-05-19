@@ -33692,6 +33692,8 @@ angular
         };
 
         $scope.initForm = function () {
+          console.log($window.NProgress);
+           $window.NProgress.start();
 
             var $form = $window.jQuery('.dwl-search-block-question-form[name="'+$scope.form+'"]');
             var values = {};
@@ -33710,15 +33712,17 @@ angular
               }
               $window.jQuery(notyTarget).noty({
                   text: response.data.message,
-                  timeout: 2000,
+                  timeout: 500,
                   type: response.data.success ? 'success':'warning'
               });
+              $window.NProgress.done();
             }, function(response){
               $window.jQuery(notyTarget).noty({
                   text: response.data.message,
-                  timeout: 2000,
+                  timeout: 500,
                   type: 'error'
               });
+              $window.NProgress.done();
             });
 
         };

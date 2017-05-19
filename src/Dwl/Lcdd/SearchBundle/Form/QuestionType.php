@@ -48,7 +48,10 @@ class QuestionType extends AbstractType
             'provider' => 'sonata.media.provider.vimeo',
             'context'  => 'lcdd',
             'required' => $hasMedia,
-            'new_on_update' => false
+            'new_on_update' => false,
+            'attr' => array(
+                'placeholder'=>'Indiquer l\'identifiant de votre video vimeo',
+            )
         ));
 
         if($hasMedia) {
@@ -58,15 +61,15 @@ class QuestionType extends AbstractType
 
         $builder
             ->add('question', TextType::class, array(
+                'label' => 'En train de regarder:',
                 'attr' => array(
                      "class" => "dwl-search-block-question-input form-control",
                      "placeholder" => "_f._q.your_question",
                 ),
                 'label' => '_f._q.suggest_new',
-                'label_attr' => array(
-                     "class" => "h3",
-                ),
-                // 'data' => '{[{ userQuestion }]}',
+                // 'label_attr' => array(
+                //      "class" => "h3",
+                // ),
                 'translation_domain' => 'DwlLcddSearchBundle',
             ))
             // ->add('slug')
@@ -100,6 +103,7 @@ class QuestionType extends AbstractType
                 'tag_type' => 'civil'
             ))
             ->add('categories', null, array(
+                'label'=> 'categories :',
                 'expanded'=>false,
                 'multiple'=>true,
                 'required' => count($question->getCategories()) > 0 ? false : true,
@@ -109,12 +113,15 @@ class QuestionType extends AbstractType
                     ->leftJoin('c.parent', 'p')
                     ->where('c.context = \'lcdd\'')
                     ->andWhere('p.slug = \'codes\'');
-                }
+                },
+                'translation_domain' => 'DwlLcddSearchBundle',
             ))
             ->add($mediaField)
             ->add('speaker', TextType::class, array(
+                'label'=> 'Par :',
                 'disabled' => true,
                 'required' => false,
+                'translation_domain' => 'DwlLcddSearchBundle',
             ))
             ->add('submit', SubmitType::class, array(
                 'label' => '_f._q.submit',
