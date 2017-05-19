@@ -85,6 +85,7 @@ class QuestionType extends AbstractType
                 'query_builder' => function ($repo) use ($question) {
                   return $repo->createQueryBuilder('q')
                     ->where('q.qualified = 0')
+                    ->andWhere('q.id <> :qId')
                     ->andWhere('q.qualifiedQuestion IS NULL')
                     ->orWhere('q.qualifiedQuestion = :qId')
                     ->setParameter('qId', $question->getId());
