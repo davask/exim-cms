@@ -77,17 +77,7 @@
                                 </a>
                                 {% include sonata_admin.adminPool.getTemplate('add_block') %}
                             </li>
-                            {% if app.environment == 'dev' %}
-                            <li>
-                                {% include "DwlEximCoreBundle:Refresh:button.html.twig" with { 'ob_route': 'dwl_exim_core_refresh_cache_clear', 'ob_text': 'cache clear' } %}
-                            </li>
-                            <li>
-                                {% include "DwlEximCoreBundle:Refresh:button.html.twig" with { 'ob_route': 'dwl_exim_core_refresh_sonata_cache_page_cs', 'ob_text': 'create snapshots' } %}
-                            </li>
-                            <li>
-                                {% include "DwlEximCoreBundle:Refresh:button.html.twig" with { 'ob_route': 'dwl_exim_core_refresh_sonata_cache_page_ucr', 'ob_text': 'Update routes' } %}
-                            </li>
-                            {% endif %}
+                            {% include "DwlEximCoreBundle:Refresh:refreshNavElements.html.twig" %}
 
                             {% block sonata_top_nav_menu_add_block %}
                                 <li class="dropdown">
