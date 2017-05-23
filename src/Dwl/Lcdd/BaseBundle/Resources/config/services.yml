@@ -1,0 +1,9 @@
+parameters:
+    lcdd.base.list.videos.class: Dwl\Lcdd\BaseBundle\Block\VideosBlockService
+
+services:
+   lcdd.base.list.videos:
+       class: '%lcdd.base.list.videos.class%'
+       tags:
+            - { name: sonata.block }
+       arguments: ['lcdd.base.list.videos', '@templating', '@service_container']

@@ -101,6 +101,8 @@ sonata_page:
             containers:
                  content_search:
                      name: Moteur de recherche
+                 content_concept_visual:
+                     name: Concept - visuel
                  content_concept:
                      name: Concept
                  content_video:
@@ -114,7 +116,7 @@ sonata_page:
             matrix:
                  layout: |
                      ssssssssssss
-                     iiiiiiiiiiii
+                     IIIIIIIIiiii
                      vvvvvvvvvvvv
                      qqqqqqqqqqqq
                      cccccccccccc
@@ -122,6 +124,7 @@ sonata_page:
 
                  mapping:
                      s: content_search
+                     I: content_concept_visual
                      i: content_concept
                      v: content_video
                      q: content_question

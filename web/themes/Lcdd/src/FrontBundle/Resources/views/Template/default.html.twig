@@ -79,6 +79,25 @@
 
 {% endblock %}
 
+{% block page_content_concept %}
+
+        {% if page is defined %}
+        <div class="col-sm-8">
+            {% if page.name != 'Home'%}
+                {{ sonata_page_render_container('content_concept_visual', 'global') }}
+            {% endif %}
+            {{ sonata_page_render_container('content_concept_visual', page) }}
+        </div>
+        <div class="col-sm-4">
+            {% if page.name != 'Home'%}
+                {{ sonata_page_render_container('content_concept', 'global') }}
+            {% endif %}
+            {{ sonata_page_render_container('content_concept', page) }}
+        </div>
+        {% endif %}
+
+{% endblock %}
+
 {% block page_content %}
     <div class="body-content">
     {% if content is defined %}

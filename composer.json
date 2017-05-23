@@ -27,6 +27,7 @@
             "Sonata\\Bundle\\QABundle\\": "src/Sonata/Bundle/QABundle",
             "Sonata\\Bundle\\DemoBundle\\": "src/Sonata/Bundle/DemoBundle",
 
+            "Dwl\\Lcdd\\BaseBundle\\": "src/Dwl/Lcdd/BaseBundle",
             "Dwl\\Lcdd\\SearchBundle\\": "src/Dwl/Lcdd/SearchBundle",
             "Dwl\\Lcdd\\SpeakerBundle\\": "src/Dwl/Lcdd/SpeakerBundle"
         }
@@ -56,9 +57,9 @@
         "michelf/php-markdown": "~1.6",
         "mopa/bootstrap-bundle": "v3.0.0-beta3",
         "nelmio/api-doc-bundle": "dev-master",
-        "ob/cachenuke-bundle": "@dev",
         "sensio/distribution-bundle": "~4.0",
         "sensio/framework-extra-bundle": "^3.0.2",
+        "sensiolabs/ansi-to-html": "^1.1",
         "simplethings/entity-audit-bundle": "~0.5",
         "sonata-project/admin-bundle": "3.x-dev",
         "sonata-project/block-bundle": "3.x-dev",

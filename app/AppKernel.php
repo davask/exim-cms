@@ -118,7 +118,6 @@ class AppKernel extends Kernel
             new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
             new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
             new Bazinga\Bundle\GeocoderBundle\BazingaGeocoderBundle(),
-            new Ob\CacheNukeBundle\ObCacheNukeBundle(),
 
 
             // EXIM CORE
@@ -133,6 +132,7 @@ class AppKernel extends Kernel
             new FOS\ElasticaBundle\FOSElasticaBundle(),
 
             // LCDD
+            new Dwl\Lcdd\BaseBundle\DwlLcddBaseBundle(),
             new Dwl\Lcdd\SearchBundle\DwlLcddSearchBundle(),
             new Dwl\Lcdd\SpeakerBundle\DwlLcddSpeakerBundle(),
 

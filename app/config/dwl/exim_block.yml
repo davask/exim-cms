@@ -6,6 +6,7 @@ sonata_block:
     blocks:
 
         dwl.lcdd.block.search:
+        # lcdd.base.list.video:
         lcdd.speaker.block.menu:
         lcdd.speaker.block.account:
 

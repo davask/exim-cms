@@ -4,7 +4,7 @@
 // ini_set('display_startup_errors', 1);
 // error_reporting(E_ALL);
 
-if ($_SERVER['PATH_INFO'] === '/nuke') {
+if (substr( $_SERVER['PATH_INFO'], 0, 8 ) === '/refresh') {
     ini_set('max_execution_time', '300');
     ini_set('memory_limit', '256M');
 }

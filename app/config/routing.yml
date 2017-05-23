@@ -2,6 +2,10 @@ dwl_exim_core:
     resource: "@DwlEximCoreBundle/Resources/config/routing.yml"
     prefix:   /
 
+dwl_lcdd_base:
+    resource: "@DwlLcddBaseBundle/Resources/config/routing.yml"
+    prefix:   /
+
 dwl_lcdd_search:
     resource: "@DwlLcddSearchBundle/Resources/config/routing.yml"
     prefix:   /
@@ -33,10 +37,6 @@ _api:
 
 _liip_imagine:
     resource: "@LiipImagineBundle/Resources/config/routing.xml"
-
-ob_cache_nuke:
-    resource: "@ObCacheNukeBundle/Resources/config/routing.yml"
-    prefix:   /
 
 fos_js_routing:
     resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
