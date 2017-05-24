@@ -64,23 +64,6 @@
     {% if display_assets %}
         <script type="text/javascript">
             var adminFormUniqId = '{{adminFormUniqId}}';
-            var importScript = (function (oBody) {
-
-              function loadError (oError) {
-                throw new URIError("The script " + oError.target.src + " is not accessible.");
-              }
-
-              return function (sSrc, fOnload) {
-                var oScript = document.createElement("script");
-                oScript.type = "text\/javascript";
-                oScript.onerror = loadError;
-                if (fOnload) { oScript.onload = fOnload; }
-                oBody.appendChild(oScript);
-                oScript.src = sSrc;
-              }
-
-            })(document.body);
-
             loadArticleJs = function () {
                 importScript("{{ asset('bundles/dwllcddsearch/vendor/elastic.js/dist/elastic.min.js') }}", function () {
                     importScript("{{ asset('bundles/dwllcddsearch/vendor/taggle.js/src/taggle.js') }}", function () {

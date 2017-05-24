@@ -31,4 +31,43 @@
         {% include 'EximTheme'~theme.name~'AdminBundle:Objects:head_sonata_head_title.html.twig' %}
     {%- endblock %}
     </title>
+
+    {% block exim_page_header_javascripts %}
+    <script type="text/javascript">
+        var importScript = (function () {
+
+          function loadError (oError) {
+            throw new URIError("The script " + oError.target.src + " is not accessible.");
+          }
+
+          return function (sSrc, fOnload) {
+            var oScript = document.createElement("script");
+            oScript.type = "text\/javascript";
+            oScript.onerror = loadError;
+            if (fOnload) { oScript.onload = fOnload; }
+            document.body.appendChild(oScript);
+            oScript.src = sSrc;
+          }
+
+        })();
+        var importStylesheet = (function () {
+
+          function loadError (oError) {
+            throw new URIError("The stylesheet " + oError.target.src + " is not accessible.");
+          }
+
+          return function (sSrc, fOnload) {
+            var oStyle = document.createElement("link");
+            oStyle.rel = "stylesheet";
+            oStyle.media = "all";
+            oStyle.onerror = loadError;
+            if (fOnload) { oStyle.onload = fOnload; }
+            document.head.appendChild(oStyle);
+            oStyle.href = sSrc;
+          }
+
+        })();
+    </script>
+    {% endblock %}
+
 </head>

@@ -1,0 +1,90 @@
+{% extends sonata_block.templates.block_base %}
+
+{% block block %}
+<style type="text/css">
+    .block-list-question {
+        background:#f4f2eb;
+        padding: 50px;
+    }
+    .block-list-question ul li {
+        list-style-type: none;
+    }
+
+    .block-list-question .title {
+        font-weight:bold;
+    }
+    .block-list-question .category {
+        color:#d54f58;
+        text-transform: uppercase;
+        font-weight:bold;
+    }
+    .block-list-question .tag {
+
+    }
+    .block-list-question .date {
+        color:#a0a0a0;
+    }
+
+    .block-list-question .question-qualified > div {
+        background:$white;
+        border-radius: 5px;
+        height: 270px;
+        margin-bottom: 20px;
+    }
+    .block-list-question .question-qualified > div .img-responsive {
+        width:100%;
+    }
+    .block-list-question .question-qualified > div > div {
+        padding:10px;
+    }
+    .slick-prev {
+      left: 20px;
+    }
+    .slick-next {
+      right: 20px;
+    }
+    .slick-next:before, .slick-prev:before {
+      color:#333333;
+    }
+
+</style>
+
+    <div class="sub-header">
+
+        <h2>{{ settings.title | trans }}</h2>
+        <hr class="subheader"/>
+
+    </div>
+
+    <div class="slick-list block-list-question sonata-feeds-container row">
+        {% for question in questions %}
+            <div class="question question-qualified col-sm-3">
+            {% include 'DwlLcddBaseBundle:Snippet:item_list.html.twig' with { 'q' : question } %}
+            </div>
+        {% else %}
+            No video available.
+        {% endfor %}
+    </div>
+    <script type="text/javascript">
+        window.onload = function(){
+            if (typeof(window.jQuery.fn.slick) == 'undefined') {
+                importStylesheet(
+                    "//cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css",
+                    importStylesheet(
+                        "https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css",
+                        importScript(
+                            "//cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.js",
+                            function () {
+                                $('.block-list-question').slick({
+                                  slidesToShow: 4,
+                                  slidesToScroll: 4
+                                });
+                            }
+                        )
+                    )
+                );
+            }
+        };
+    </script>
+
+{% endblock %}

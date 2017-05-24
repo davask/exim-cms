@@ -1,9 +1,9 @@
 parameters:
-    lcdd.base.list.videos.class: Dwl\Lcdd\BaseBundle\Block\VideosBlockService
+    lcdd.base.list.questions.class: Dwl\Lcdd\BaseBundle\Block\ListQuestionsBlockService
 
 services:
-   lcdd.base.list.videos:
-       class: '%lcdd.base.list.videos.class%'
+   lcdd.base.list.questions:
+       class: '%lcdd.base.list.questions.class%'
        tags:
             - { name: sonata.block }
-       arguments: ['lcdd.base.list.videos', '@templating', '@service_container']
+       arguments: ['lcdd.base.list.questions', '@templating', '@service_container', '@doctrine.orm.entity_manager']

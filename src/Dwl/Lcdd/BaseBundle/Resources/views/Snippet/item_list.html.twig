@@ -1,0 +1,26 @@
+<div>
+    <a class="title" href="{{ url('dwl_lcdd_get_question', { slug: q.slug }) }}" title="{{ q.question }}">
+        {% if q.media is not null %}
+        <img src="{{q.media.providerMetadata.thumbnail_url_with_play_button}}" alt="{{ q.question }}" class="img-responsive"/>
+        {% else %}
+        <img src="#" alt="{{q.question}}" class="empty img-responsive"/>
+        {% endif %}
+    </a>
+    <div>
+        {% if q.categories|length > 0 %}
+        <ul class="list-inline">
+            {% for cat in q.categories %}
+            <li class="category">{{ cat.name }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        <span class="title">
+            <a href="{{ url('dwl_lcdd_get_question', { slug: q.slug }) }}" title="{{ q.question }}">
+                {{ q.question }}
+            </a>
+        </span>
+        <div class="date">
+            {{ q.dateUpdate.date | date("d/m/Y") }}
+        </div>
+    </div>
+</div>

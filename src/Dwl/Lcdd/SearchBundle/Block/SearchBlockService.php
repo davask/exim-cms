@@ -33,7 +33,7 @@ use Symfony\Component\Form\FormEvent;
 /**
  * PageExtension.
  *
- * @author     Thomas Rabaix <thomas.rabaix@sonata-project.org>
+ * @author     David Asquiedge <contact@davaskweblimited.com>
  */
 class SearchBlockService extends BaseBlockService
 {

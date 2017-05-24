@@ -98,6 +98,19 @@
 
 {% endblock %}
 
+{% block page_content_video %}
+
+        {% if page is defined %}
+        <div class="col-sm-12">
+            {% if page.name != 'Home'%}
+                {{ sonata_page_render_container('content_video', 'global') }}
+            {% endif %}
+            {{ sonata_page_render_container('content_video', page) }}
+        </div>
+        {% endif %}
+
+{% endblock %}
+
 {% block page_content %}
     <div class="body-content">
     {% if content is defined %}
