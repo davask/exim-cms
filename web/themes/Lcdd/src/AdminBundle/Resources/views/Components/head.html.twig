@@ -32,6 +32,23 @@
     {%- endblock %}
     </title>
 
+    <link rel='stylesheet' href='//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.css'/>
+    <style>
+        #nprogress .bar {
+            background: #ffffff;
+        }
+        #nprogress .spinner {
+          bottom: 7px;
+          top: initial;
+          left: 5px;
+          right: initial;
+        }
+        #nprogress .spinner-icon {
+            border-top-color:#333333;
+            border-left-color:#333333;
+        }
+    </style>
+
     {% block exim_page_header_javascripts %}
     <script type="text/javascript">
         var importScript = (function () {

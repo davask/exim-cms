@@ -111,13 +111,90 @@ class ListQuestionsBlockService extends BaseBlockService
     {
         $this->repo = $this->em->getRepository('DwlLcddSearchBundle:Question');
         $this->repoMedia = $this->em->getRepository('ApplicationSonataMediaBundle:Media');
+        $this->repoUser = $this->em->getRepository('DwlLcddSpeakerBundle:Speaker');
 
-        $questions = $this->repo->findBy(
-            array('qualified' => true),
-            array('date_update' => 'DESC'),
-            12
-        );
+        $settings = $blockContext->getSettings();
+        $attributes = $this->container->get('request')->attributes;
+        $listType = $settings['list'];
 
+        $filterBy = array();
+        $orderBy = array();
+
+        $site = $this->container->get('sonata.page.manager.site')->findOneBy(array('id'=>1));
+        $page = $this->container->get('sonata.page.cms_manager_selector')->retrieve()
+            ->getPageByRouteName($site,$attributes->get('_route'));
+        dump($attributes);
+
+        $speaker = null;
+        $categories = array();
+        switch ($listType) {
+            case 'user':
+                if ($attributes->get('_route') == 'lcdd_speaker_get') {
+                    $speaker = $this->repoUser->findOneByUsernameCanonical($attributes->get('username'));
+                }
+                if (empty($speaker)) {
+                    $listType = 'new';
+                }
+                break;
+
+            case 'similar':
+                if ($attributes->get('_route') == 'dwl_lcdd_get_question') {
+                    $question = $this->repo->findOneBySlug($attributes->get('slug'));
+                    if(!empty($question)) {
+                        $categories = $question->getCategories();
+                    }
+                }
+                if (count($categories) == 0) {
+                    $listType = 'new';
+                }
+                break;
+
+            case 'view':
+                break;
+
+            default:
+                break;
+        }
+
+        switch ($listType) {
+            case 'user':
+                $filterBy['speaker'] = $speaker->getId();
+                $orderBy['date_update'] = 'DESC';
+                $questions = $this->repo->findBy(
+                    $filterBy,
+                    $orderBy
+                );
+                break;
+
+            case 'similar':
+                $questions = $this->repo->findSimilarByCategories(
+                    $categories,
+                    12
+                );
+                break;
+
+            case 'view':
+                $filterBy['qualified'] = true;
+                $orderBy['views'] = 'DESC';
+                $questions = $this->repo->findBy(
+                    $filterBy,
+                    $orderBy,
+                    12
+                );
+                break;
+
+            default:
+                $filterBy['qualified'] = true;
+                $orderBy['date_update'] = 'DESC';
+                $questions = $this->repo->findBy(
+                    $filterBy,
+                    $orderBy,
+                    12
+                );
+                break;
+        }
+
+        $displayQuestions = array();
         foreach ($questions as $key => $value) {
             $media = $value->getMedia();
             if(!empty($media)){
@@ -125,12 +202,20 @@ class ListQuestionsBlockService extends BaseBlockService
                 $media->getProviderMetadata();
                 $questions[$key]->setMedia($media);
             }
+            if (!empty($questions[$key]->getSlug())) {
+                $displayQuestions[] = $questions[$key];
+            }
         }
+
+        $defaultImag = $this->repoMedia->findOneById(92);
+        $defaultImag->getProviderMetadata();
+        dump($displayQuestions);
 
         return $this->renderResponse($blockContext->getTemplate(), array(
             'block' => $blockContext->getBlock(),
-            'settings' => $blockContext->getSettings(),
-            'questions' => $questions,
+            'settings' => $settings,
+            'questions' => $displayQuestions,
+            'di' => $defaultImag,
         ), $response);
     }
 

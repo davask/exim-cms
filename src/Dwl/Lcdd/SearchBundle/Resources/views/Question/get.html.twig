@@ -2,7 +2,7 @@
 {% block content_embed %}
 <div>Cat&eacute;gories:{% for u in question.categories %}{% if not loop.first %}, {% endif %}{{ u.name }}{% endfor %}</div>
 <div>
-    En train de regarder:<h1>{{question.question}}</h1><small><a href="{{ path('question_edit', {'id': question.id }) }}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></small>
+    En train de regarder:<h1>{{question.question}}</h1><small><a href="{{ path('question_like', {'id': question.id }) }}">like</a></small><small><a href="{{ path('question_edit', {'id': question.id }) }}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></small>
 </div>
 <div>
     Par: <a href="{{ path('lcdd_speaker_get', {'username': question.speaker.customer.user.usernameCanonical }) }}">

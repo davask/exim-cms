@@ -1,9 +1,9 @@
 <div>
     <a class="title" href="{{ url('dwl_lcdd_get_question', { slug: q.slug }) }}" title="{{ q.question }}">
         {% if q.media is not null %}
-        <img src="{{q.media.providerMetadata.thumbnail_url_with_play_button}}" alt="{{ q.question }}" class="img-responsive"/>
+        <img src="{{q.media.providerMetadata.thumbnail_url_with_play_button}}" alt="{{ q.question }}" class="img-responsive" style="object-fit: cover;height: 160px;"/>
         {% else %}
-        <img src="#" alt="{{q.question}}" class="empty img-responsive"/>
+        <img src="{% path di, 'default_responsive' %}" alt="{{q.question}}" class="empty img-responsive" style="object-fit: cover;height: 160px;"/>
         {% endif %}
     </a>
     <div>
@@ -20,7 +20,7 @@
             </a>
         </span>
         <div class="date">
-            {{ q.dateUpdate.date | date("d/m/Y") }}
+            {{ q.dateUpdate.date | date("d/m/Y") }}, {{q.views}}
         </div>
     </div>
 </div>

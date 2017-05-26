@@ -115,6 +115,11 @@ class QuestionController extends Controller
 
         $question = $this->repo->findOneBy(array('slug' => $slug, 'qualified' => true));
 
+        $views = $question->getViews();
+        $question->setViews($views+1);
+        $this->em->persist($question);
+        $this->em->flush();
+
         $site = $this->get('sonata.page.manager.site')->findOneBy(array('id'=>1));
         $page = $this->get('sonata.page.cms_manager_selector')->retrieve()
             ->getPageByRouteName($site,$this->get('request')->get('_route'));
@@ -508,5 +513,45 @@ class QuestionController extends Controller
             ->getForm()
         ;
     }
+
+    public function likeAction($id)
+    {
+        $this->postConstruct();
+        $viewDatas = array('like' => '+0');
+        if ($this->get('request')->headers->get('host') === $this->get('request')->server->get('HTTP_HOST')) {
+
+            $question = $this->repo->findOneById($id);
+            $likes = $question->getLikes();
+            $question->setLikes($likes+1);
+            $this->em->persist($question);
+            $this->em->flush();
+
+            $viewDatas['like'] = '+1';
+
+
+        }
+
+        return new JsonResponse($viewDatas);
+    }
+
+    // /**
+    //  * @Rest\View
+    //  */
+    // public function viewAction($id)
+    // {
+    //     if ($this->get('request')->headers->get('host') === $this->get('request')->server->get('HTTP_HOST')) {
+    //         $this->postConstruct();
+
+    //         $question = $this->repo->findOneById($id);
+    //         $views = $question->getViews();
+    //         $question->setViews($views+1);
+    //         $this->em->persist($question);
+    //         $this->em->flush();
+
+    //         $viewDatas = array('view' => '+1');
+    //         return $this->viewDatasRender($viewDatas);
+
+    //     }
+    // }
 
 }

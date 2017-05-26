@@ -14,5 +14,5 @@ services:
               label: Intervenants
               show_in_dashboard: false
               label: speaker
-              label_translator_strategy: sonata.admin.label.strategy.underscore
+              label_translator_strategy: sonata.admin.label.strategy.native
         arguments: ['', '%dwl.lcdd.speaker.admin.speaker.entity%', '%dwl.lcdd.speaker.admin.speaker.controller%']

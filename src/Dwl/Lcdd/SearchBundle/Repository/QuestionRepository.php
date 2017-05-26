@@ -43,4 +43,32 @@ class QuestionRepository extends EntityRepository
 
         return $qs;
     }
+
+    public function findSimilarByCategories($categories, $limit = 12) {
+
+        $cats = array();
+        foreach ($categories as $key => $category) {
+            $cats[] = $category->getId();
+        }
+
+        $qs = $this->getEntityManager()
+            ->createQueryBuilder()
+            ->select('q', 'c')
+            ->from('\Dwl\Lcdd\SearchBundle\Entity\Question', 'q')
+            ->leftJoin('q.categories', 'c')
+            ->where('q.qualified', '1')
+            ->orderBy('q.date_update', 'DESC')
+        ;
+
+        $qs->add('where', $qs->expr()->in('c', ':cats'))
+            ->setParameter('cats', $cats)
+            ->setMaxResults($limit)
+            ->getQuery()
+            ->getResult()
+        ;
+
+
+        return $qs;
+    }
+
 }

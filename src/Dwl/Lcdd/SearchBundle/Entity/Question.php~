@@ -21,7 +21,7 @@ use JMS\Serializer\Annotation\ExclusionPolicy;
 class Question
 {
     /**
-     * @var int
+     * @var integer
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -45,10 +45,13 @@ class Question
     private $slug;
 
     /**
-     * @var string
+     * @var ArrayCollection
      *
-     * @ORM\Column(name="legi_ids", type="string", length=255, nullable=true)
-     * @Assert\NotBlank(message = "Veuillez indiquer au minimum une loi pour qualifier la question")
+     * @ORM\ManyToMany(targetEntity="\Dwl\Lcdd\SearchBundle\Entity\Article")
+     * @ORM\JoinTable(name="questions__articles",
+     *      joinColumns={@ORM\JoinColumn(name="question_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="article_id", referencedColumnName="id")}
+     * )
      */
     private $legiIds;
 
@@ -140,6 +143,20 @@ class Question
     private $speaker;
 
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="likes", type="integer", options={"default"=0})
+     */
+    private $likes;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="views", type="integer", options={"default"=0})
+     */
+    private $views;
+
+    /**
      * {@inheritdoc}
      */
     public function __toString()
@@ -156,6 +173,8 @@ class Question
         $this->legalTags = new \Doctrine\Common\Collections\ArrayCollection();
         $this->civilTags = new \Doctrine\Common\Collections\ArrayCollection();
         $this->categories = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->likes = 0;
+        $this->views = 0;
     }
 
     /**

@@ -12,7 +12,10 @@ question_new:
 
 question_qualify:
     path:     /{id}/qualify
-    defaults: { _controller: "DwlLcddSearchBundle:Question:qualify" }
+    defaults:
+        _controller: "DwlLcddSearchBundle:Question:qualify"
+        _locale: fr
+        _format: 'json'
     options:
         expose: true
 
@@ -36,3 +39,17 @@ question_delete:
     path:     /{id}/delete
     defaults: { _controller: "DwlLcddSearchBundle:Question:delete" }
     methods:  [POST, DELETE]
+
+question_like:
+    path:     /{id}/like
+    defaults: { _controller: "DwlLcddSearchBundle:Question:like" }
+    methods:  [GET, POST]
+    options:
+        expose: true
+
+# question_view:
+#     path:     /{id}/view
+#     defaults: { _controller: "DwlLcddSearchBundle:Question:view" }
+#     methods:  [GET, POST]
+#     options:
+#         expose: true

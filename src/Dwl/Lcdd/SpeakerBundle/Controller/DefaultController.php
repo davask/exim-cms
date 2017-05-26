@@ -107,12 +107,6 @@ class DefaultController extends Controller
         //     ->limit(5)
         //     ->find();
 
-        dump(
-            $address
-            // $objects
-        );
-
-
         $site = $this->get('sonata.page.manager.site')->findOneBy(array('id'=>1));
         $page = $this->get('sonata.page.cms_manager_selector')->retrieve()
             ->getPageByRouteName($site,$this->get('request')->get('_route'));

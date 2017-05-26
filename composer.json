@@ -20,6 +20,8 @@
             "Application\\Sonata\\UserBundle\\": "vendor/davask/exim/src/Application/Sonata/UserBundle",
             "Dwl\\Exim\\CoreBundle\\": "vendor/davask/exim/src/CoreBundle",
             "Dwl\\Exim\\ThemeBundle\\": "vendor/davask/exim/src/ThemeBundle",
+            "Dwl\\Exim\\AdminBundle\\": "vendor/davask/exim/src/AdminBundle",
+            "Dwl\\Exim\\FrontBundle\\": "vendor/davask/exim/src/FrontBundle",
 
             "Exim\\Theme\\Lcdd\\FrontBundle\\": "web/themes/Lcdd/src/FrontBundle",
             "Exim\\Theme\\Lcdd\\AdminBundle\\": "web/themes/Lcdd/src/AdminBundle",

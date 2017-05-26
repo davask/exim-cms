@@ -143,6 +143,20 @@ class Question
     private $speaker;
 
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="likes", type="integer", options={"default"=0})
+     */
+    private $likes;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="views", type="integer", options={"default"=0})
+     */
+    private $views;
+
+    /**
      * {@inheritdoc}
      */
     public function __toString()
@@ -159,6 +173,8 @@ class Question
         $this->legalTags = new \Doctrine\Common\Collections\ArrayCollection();
         $this->civilTags = new \Doctrine\Common\Collections\ArrayCollection();
         $this->categories = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->likes = 0;
+        $this->views = 0;
     }
 
     /**
@@ -550,5 +566,74 @@ class Question
     public function getLegiIds()
     {
         return $this->legiIds;
+    }
+
+    /**
+     * Set likes
+     *
+     * @param integer $likes
+     * @return Question
+     */
+    public function setLikes($likes)
+    {
+        $this->likes = $likes;
+
+        return $this;
+    }
+
+    /**
+     * Get likes
+     *
+     * @return integer 
+     */
+    public function getLikes()
+    {
+        return $this->likes;
+    }
+
+    /**
+     * Set views
+     *
+     * @param integer $views
+     * @return Question
+     */
+    public function setViews($views)
+    {
+        $this->views = $views;
+
+        return $this;
+    }
+
+    /**
+     * Get views
+     *
+     * @return integer 
+     */
+    public function getViews()
+    {
+        return $this->views;
+    }
+
+    /**
+     * Add legiIds
+     *
+     * @param \Dwl\Lcdd\SearchBundle\Entity\Article $legiIds
+     * @return Question
+     */
+    public function addLegiId(\Dwl\Lcdd\SearchBundle\Entity\Article $legiIds)
+    {
+        $this->legiIds[] = $legiIds;
+
+        return $this;
+    }
+
+    /**
+     * Remove legiIds
+     *
+     * @param \Dwl\Lcdd\SearchBundle\Entity\Article $legiIds
+     */
+    public function removeLegiId(\Dwl\Lcdd\SearchBundle\Entity\Article $legiIds)
+    {
+        $this->legiIds->removeElement($legiIds);
     }
 }

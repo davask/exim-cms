@@ -5,9 +5,6 @@ sonata_admin:
     dashboard:
 
         groups:
-            sonata.admin.group.lcdd:
-                roles: [ROLE_SUPER_ADMIN]
-                label: LCDD
-                icon:  '<i class="fa fa-lcdd"><img src="/bundles/dwllcddsearch/images/favicon-16x16.png"/></i>'
+            sonata.admin.group.content:
                 items:
                     - dwl.lcdd.search.question

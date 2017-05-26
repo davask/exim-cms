@@ -123,6 +123,8 @@ class AppKernel extends Kernel
             // EXIM CORE
             new Dwl\Exim\CoreBundle\DwlEximCoreBundle(),
             new Dwl\Exim\ThemeBundle\DwlEximThemeBundle(),
+            new Dwl\Exim\AdminBundle\DwlEximAdminBundle(),
+            new Dwl\Exim\FrontBundle\DwlEximFrontBundle(),
 
             // APP
             // new AppBundle\AppBundle(),

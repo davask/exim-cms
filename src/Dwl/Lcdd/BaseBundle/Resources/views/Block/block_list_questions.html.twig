@@ -59,10 +59,10 @@
     <div class="slick-list block-list-question sonata-feeds-container row">
         {% for question in questions %}
             <div class="question question-qualified col-sm-3">
-            {% include 'DwlLcddBaseBundle:Snippet:item_list.html.twig' with { 'q' : question } %}
+            {% include 'DwlLcddBaseBundle:Snippet:item_list.html.twig' with { 'q' : question, 'di' : di } %}
             </div>
         {% else %}
-            No video available.
+            Pas de videos disponible.
         {% endfor %}
     </div>
     <script type="text/javascript">

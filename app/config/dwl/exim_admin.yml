@@ -90,29 +90,9 @@ sonata_admin:
                 label_catalogue: SonataDemoBundle
                 icon:            '<i class="fa fa-th"></i>'
                 items:
-                    - sonata.news.admin.post
+                    # - sonata.news.admin.post
                     - sonata.media.admin.media
-                    - sonata.media.admin.gallery
-
-            sonata.admin.group.comment:
-                roles: [ROLE_SUPER_ADMIN]
-                label:           Conversation
-                label_catalogue: SonataNewsBundle
-                icon:            '<i class="fa fa-comments"></i>'
-                items:
-                    - sonata.comment.admin.thread
-                    - sonata.news.admin.comment
-
-            sonata.admin.group.ecommerce:
-                roles: [ROLE_SUPER_ADMIN]
-                label:           sonata_ecommerce
-                label_catalogue: SonataAdminBundle
-                icon:            '<i class="fa fa-dollar"></i>'
-                items:
-                    - sonata.customer.admin.customer
-                    - sonata.invoice.admin.invoice
-                    - sonata.order.admin.order
-                    - sonata.product.admin.product
+                    # - sonata.media.admin.gallery
 
             sonata.admin.group.classification:
                 roles: [ROLE_SUPER_ADMIN]
@@ -122,17 +102,38 @@ sonata_admin:
                 items:
                     - sonata.classification.admin.category
                     - sonata.classification.admin.tag
-                    - sonata.classification.admin.collection
-                    - sonata.classification.admin.context
+                    # - sonata.classification.admin.collection
+                    # - sonata.classification.admin.context
+
+            # sonata.admin.group.comment:
+            #     roles: [ROLE_SUPER_ADMIN]
+            #     label:           Conversation
+            #     label_catalogue: SonataNewsBundle
+            #     icon:            '<i class="fa fa-comments"></i>'
+            #     items:
+            #         - sonata.comment.admin.thread
+            #         - sonata.news.admin.comment
+
+            # sonata.admin.group.ecommerce:
+            #     roles: [ROLE_SUPER_ADMIN]
+            #     label:           sonata_ecommerce
+            #     label_catalogue: SonataAdminBundle
+            #     icon:            '<i class="fa fa-dollar"></i>'
+            #     items:
+            #         - sonata.customer.admin.customer
+            #         - sonata.invoice.admin.invoice
+            #         - sonata.order.admin.order
+            #         - sonata.product.admin.product
 
             sonata.admin.group.user:
                 roles: [ROLE_SUPER_ADMIN]
                 label:           exim_user
-                label_catalogue: SonataAdminBundle
+                label_catalogue: DwlEximAdminBundle
                 icon:            '<i class="fa fa-user"></i>'
                 items:
-                    - sonata.user.admin.user
-                    - sonata.customer.admin.customer
+                    # - sonata.customer.admin.customer
+                    # - sonata.user.admin.user
+                    - sonata.user.admin.group
 
             sonata.admin.group.administration:
                 roles: [ROLE_SUPER_ADMIN]
@@ -140,31 +141,10 @@ sonata_admin:
                 label_catalogue: SonataAdminBundle
                 icon:            '<i class="fa fa-cogs"></i>'
                 items:
-                    - sonata.user.admin.user
-                    - sonata.user.admin.group
-                    - sonata.notification.admin.message
-
-            sonata.admin.group.site_builder:
-                roles: [ROLE_SUPER_ADMIN]
-                label:           Site Builder
-                label_catalogue: SonataPageBundle
-                icon:            '<i class="fa fa-puzzle-piece"></i>'
-                items:
                     - sonata.page.admin.site
                     - sonata.page.admin.page
                     - sonata.page.admin.block
-
-            sonata.admin.group.exim:
-                roles: [ROLE_EXIM_USER]
-                label:           mon_profil
-                label_catalogue: DwlEximCoreBundle
-                icon:            '<i class="fa fa-user"></i>'
-                items:
-                    - route:        page_slug
-                      route_params:
-                        path: /admin/lcdd/speaker/item.id/edit
-                      label:        Intervenants
-
+                    - sonata.notification.admin.message
 
     templates:
         layout:                         EximTheme%exim.theme.name%AdminBundle::standard_layout.html.twig

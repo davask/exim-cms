@@ -14,7 +14,7 @@ services:
               label: Questions
               show_in_dashboard: false
               label: question
-              label_translator_strategy: sonata.admin.label.strategy.underscore
+              label_translator_strategy: sonata.admin.label.strategy.native
         arguments: ['', '%dwl.lcdd.search.question.admin.question.entity%', '%dwl.lcdd.search.question.admin.question.controller%']
         # calls:
             # - [setQuestionPool, ['@dwl.lcdd.search.question.pool']]
